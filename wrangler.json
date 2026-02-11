@@ -1,6 +1,6 @@
 
 {
-  "name": "level-customs-v2",
+  "name": "Stats-customs",
   "pages_build_output_dir": "dist",
   "compatibility_date": "2025-01-01",
   "compatibility_flags": [
@@ -9,10 +9,8 @@
   "vars": {
     "ALLOW_SEED": "true"
   },
-  "kv_namespaces": [
-    {
-      "binding": "STATSCUSTOMSDATA",
-      "id": "418a356f89b341d0ba3492aec63d1518"
-    }
-  ]
+"kv_namespaces": [{
+                    "binding": "STATSCUSTOMSDATA",
+                    "id": "38726e2bb77d4ea38040f3c111977bbd"
+                 }]
 }
