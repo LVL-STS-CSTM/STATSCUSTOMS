@@ -82,7 +82,7 @@ export const onRequestGet = async (context: { env: Env; request: Request }) => {
         return new Response('Invalid credentials', { status: 401 });
     }
 
-    // Seeding Logic
+    // Seeding Logic using Cloudflare KV put()
     try {
         let count = 0;
         const keys = Object.keys(DATA_TO_SEED);
