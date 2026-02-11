@@ -60,21 +60,21 @@ export const onRequestGet = async (context: { env: Env; request: Request }) => {
         });
     }
     
-    // Default credentials for first-time use, or check against existing KV credential
+    // Default credentials for first-time use
     let validUser = 'admin';
     let validPass = 'password';
 
-    if (env.STATSCUSTOMSDATA) {
-        try {
+    try {
+        if (env.STATSCUSTOMSDATA) {
             const storedCredsRaw = await env.STATSCUSTOMSDATA.get('credential');
             if (storedCredsRaw) {
                 const creds = JSON.parse(storedCredsRaw);
                 validUser = creds.username || validUser;
                 validPass = creds.password || validPass;
             }
-        } catch (e) {
-            console.error("Credential parse failed, using defaults.");
         }
+    } catch (e) {
+        console.error("Credential parse failed, using defaults.");
     }
 
     const auth = atob(authHeader.split(' ')[1]);
@@ -87,7 +87,7 @@ export const onRequestGet = async (context: { env: Env; request: Request }) => {
     // Seeding Logic
     try {
         if (!env.STATSCUSTOMSDATA) {
-             throw new Error("STATSCUSTOMSDATA binding not found.");
+             throw new Error("STATSCUSTOMSDATA binding not found. Please check Cloudflare Pages settings.");
         }
 
         let count = 0;
