@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="https://i.imgur.com/9FhbGuI.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STATS CUSTOM APPAREL</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="STATS CUSTOMS APPAREL">
+    <meta name="description" content="The partner for your needs. Locally crafted excellence designed to make your brand stand out.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://statscustoms.ph/">
+    <meta property="og:title" content="STATS CUSTOMS | Quality Custom Clothing">
+    <meta property="og:description" content="Custom apparel crafted for performance, designed for impact. Elevate your team with locally-made quality.">
+    <meta property="og:image" content="https://i.imgur.com/pNaqcyN.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="STATS CUSTOMS | Quality Custom Clothing">
+    <meta property="twitter:description" content="Premium custom apparel for teams and businesses. Elevate your brand with locally-crafted excellence.">
+    <meta property="twitter:image" content="https://i.imgur.com/pNaqcyN.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Futura', 'Jost', 'sans-serif'],
+              eurostile: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'], // Remap for existing code compatibility
+              oswald: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'],
+              heading: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'],
+            },
+            fontWeight: {
+              // Override standard weights for a cleaner, more premium look
+              // Shifting weights down significantly to avoid the "Too Bold" look
+              'medium': '400',
+              'semibold': '400',
+              'bold': '500',
+              'extrabold': '500',
+              'black': '600', 
+            },
+            colors: {
+              brand: {
+                black: '#000000',
+                dark: '#111111',
+                gray: '#333333',
+              }
+            },
+            keyframes: {
+              'splash-fade-spin-out': {
+                '0%': { transform: 'scale(0.9) rotate(0deg)', opacity: '0' },
+                '25%': { transform: 'scale(1) rotate(0deg)', opacity: '1' },
+                '100%': { transform: 'scale(0.9) rotate(720deg)', opacity: '0' },
+              },
+              'fade-in': { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+              'fade-in-up': { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+              'scroll': { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+            },
+            animation: {
+              'splash-fade-spin-out': 'splash-fade-spin-out 2s linear forwards',
+              'fade-in': 'fade-in 0.5s ease-out forwards',
+              'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+              'scroll': 'scroll 25s linear infinite',
+            },
+          },
+        },
+      }
+    </script>
+    
+    <style>
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Futura', 'Jost', sans-serif; 
+        background-color: #ffffff; /* Clean white background for tech feel */
+        color: #111;
+        -webkit-font-smoothing: antialiased;
+        font-weight: 300; /* Set a lighter baseline weight */
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+  <script type="importmap">
+{
+  "imports": {
+    "@vercel/kv": "https://esm.sh/@vercel/kv@^2.0.0",
+    "googleapis": "https://esm.sh/googleapis@^140.0.1",
+    "react/": "https://esm.sh/react@^19.1.1/",
+    "react": "https://esm.sh/react@^19.1.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "stream": "https://esm.sh/stream@^0.0.3",
+    "buffer": "https://esm.sh/buffer@^6.0.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
