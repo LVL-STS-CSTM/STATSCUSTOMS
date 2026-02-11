@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { Product, FaqItem, HeroContent, Partner, HowWeWorkSection, Material, InfoCard, FeaturedVideoContent, BrandReview, PlatformRating, CommunityPost, PageBanner, Collection, Service, Capability, SubscriptionModalContent, HomeFeature } from '../types';
 import { initialProductsData, initialCollectionsData } from './initialProductData';
@@ -54,7 +53,6 @@ const dataKeys = [
 ];
 
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    // Initialize with fallback data so the app works even if API fails (404)
     const [data, setData] = useState<Partial<Omit<DataContextType, 'isLoading' | 'error' | 'updateData' | 'fetchData'>>>({
         products: initialProductsData,
         collections: initialCollectionsData,
@@ -84,28 +82,21 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         try {
             const responses = await Promise.all(dataKeys.map(key =>
                 fetch(`/api/data/${key}`).then(async res => {
-                    if (!res.ok) {
-                        // If API is missing (local dev without backend), return null to keep initial data
-                        if (res.status === 404) return null;
-                        throw new Error(`Failed to fetch ${key}: ${res.statusText}`);
-                    }
-                    // Check if content-type is JSON before parsing
+                    if (!res.ok) return null;
                     const contentType = res.headers.get("content-type");
-                    if (contentType && contentType.indexOf("application/json") !== -1) {
+                    if (contentType && contentType.includes("application/json")) {
                         return res.json();
-                    } else {
-                        // If we got HTML (e.g. 404 fallback page), return null
-                        return null;
                     }
-                })
+                    return null;
+                }).catch(() => null)
             ));
 
-            const newData: Partial<Omit<DataContextType, 'isLoading' | 'error' | 'updateData' | 'fetchData'>> = {};
+            const newData: any = {};
             let hasNewData = false;
 
             responses.forEach((resData, index) => {
                 if (resData !== null) {
-                    (newData as any)[dataKeys[index]] = resData;
+                    newData[dataKeys[index]] = resData;
                     hasNewData = true;
                 }
             });
@@ -115,8 +106,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             }
 
         } catch (err: any) {
-            console.warn("API fetch failed or is unavailable, utilizing static fallback data.", err);
-            // We don't set a hard error state here so the UI still renders with initial data
+            console.warn("API unavailable, using fallback data.");
         } finally {
             setIsLoading(false);
         }
@@ -138,26 +128,13 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 body: JSON.stringify(newData),
             });
 
-            // Handle non-JSON responses safely
-            const contentType = response.headers.get("content-type");
-            if (contentType && contentType.indexOf("application/json") !== -1) {
-                 if (!response.ok) {
-                    throw new Error(`API error: ${response.statusText}`);
-                }
-            } else {
-                 if (!response.ok) {
-                     // Likely an HTML error page or similar
-                     throw new Error(`API Endpoint not available or returned non-JSON. Status: ${response.status}`);
-                 }
-            }
+            if (!response.ok) throw new Error(`Update failed: ${response.status}`);
 
             setData(prev => ({ ...prev, [key]: newData }));
             return true;
 
         } catch (err: any) {
-            console.error(`Failed to update data for key ${key}:`, err);
-            // Fallback: Update local state anyway for instant UI feedback in dev mode
-            setData(prev => ({ ...prev, [key]: newData }));
+            console.error(`Failed to update ${key}:`, err);
             return false;
         }
     };
@@ -195,8 +172,6 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
 export const useData = (): DataContextType => {
     const context = useContext(DataContext);
-    if (context === undefined) {
-        throw new Error('useData must be used within a DataProvider');
-    }
+    if (!context) throw new Error('useData must be used within a DataProvider');
     return context;
 };

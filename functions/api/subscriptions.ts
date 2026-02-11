@@ -1,4 +1,3 @@
-
 interface Env {
   GOOGLE_SERVICE_ACCOUNT_EMAIL: string;
   GOOGLE_PRIVATE_KEY: string;
@@ -7,22 +6,40 @@ interface Env {
 }
 
 const SECURITY_HEADERS = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'X-Content-Type-Options': 'nosniff'
 };
 
 async function signJwt(email: string, privateKey: string, scope: string) {
   const header = { alg: 'RS256', typ: 'JWT' };
   const now = Math.floor(Date.now() / 1000);
   const claim = { iss: email, scope: scope, aud: 'https://oauth2.googleapis.com/token', exp: now + 3600, iat: now };
+  
   const encodedHeader = btoa(JSON.stringify(header)).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
   const encodedClaim = btoa(JSON.stringify(claim)).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
   const message = `${encodedHeader}.${encodedClaim}`;
-  const pemContents = privateKey.replace("-----BEGIN PRIVATE KEY-----", "").replace("-----END PRIVATE KEY-----", "").replace(/\s/g, "");
-  const binaryKey = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
-  const key = await crypto.subtle.importKey("pkcs8", binaryKey.buffer, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["sign"]);
-  const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", key, new TextEncoder().encode(message));
-  const encodedSignature = btoa(String.fromCharCode(...new Uint8Array(signature))).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
-  return `${message}.${encodedSignature}`;
+  
+  const pemContents = privateKey
+    .replace(/\\n/g, '\n')
+    .replace(/-----BEGIN PRIVATE KEY-----/g, '')
+    .replace(/-----END PRIVATE KEY-----/g, '')
+    .replace(/\s/g, '');
+
+  try {
+    const binaryKey = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
+    const key = await crypto.subtle.importKey(
+      "pkcs8", 
+      binaryKey.buffer, 
+      { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, 
+      false, 
+      ["sign"]
+    );
+    const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", key, new TextEncoder().encode(message));
+    const encodedSignature = btoa(String.fromCharCode(...new Uint8Array(signature))).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+    return `${message}.${encodedSignature}`;
+  } catch (e) {
+    throw new Error(`JWT_SIGNING_FAILURE: ${e instanceof Error ? e.message : 'Unknown error'}`);
+  }
 }
 
 async function getAccessToken(env: Env) {
@@ -32,6 +49,7 @@ async function getAccessToken(env: Env) {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwt}`
   });
+  if (!res.ok) throw new Error("OAUTH_TOKEN_EXPIRED");
   const data: any = await res.json();
   return data.access_token;
 }
@@ -64,14 +82,16 @@ export const onRequestGet = async (context: { env: Env; request: Request }) => {
 
   try {
     const token = await getAccessToken(env);
-    const res = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${env.GOOGLE_SHEET_ID}/values/Subscriptions!A:B`, { headers: { 'Authorization': `Bearer ${token}` } });
+    const res = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${env.GOOGLE_SHEET_ID}/values/Subscriptions!A:B`, { 
+        headers: { 'Authorization': `Bearer ${token}` } 
+    });
     const data: any = await res.json();
     const rows = data.values || [];
     if (rows.length < 2) return new Response(JSON.stringify([]), { status: 200, headers: SECURITY_HEADERS });
     const subscriptions = rows.slice(1).map((row: any) => ({ date: row[0], email: row[1] }));
     return new Response(JSON.stringify(subscriptions), { status: 200, headers: SECURITY_HEADERS });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: SECURITY_HEADERS });
+    return new Response(JSON.stringify({ error: 'Data retrieval failure' }), { status: 500, headers: SECURITY_HEADERS });
   }
 };
 
@@ -80,13 +100,13 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
   const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
 
   if (!(await checkRateLimit(ip, env))) {
-    return new Response(JSON.stringify({ message: 'Rate limit exceeded. Try again later.' }), { status: 429, headers: SECURITY_HEADERS });
+    return new Response(JSON.stringify({ message: 'Too many attempts. Please try again later.' }), { status: 429, headers: SECURITY_HEADERS });
   }
 
   try {
     const { email } = await request.json() as any;
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-        return new Response(JSON.stringify({ message: 'Invalid email address.' }), { status: 400, headers: SECURITY_HEADERS });
+        return new Response(JSON.stringify({ message: 'Please provide a valid email.' }), { status: 400, headers: SECURITY_HEADERS });
     }
 
     const token = await getAccessToken(env);
@@ -98,6 +118,6 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
     });
     return new Response(JSON.stringify({ success: true }), { status: 200, headers: SECURITY_HEADERS });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: SECURITY_HEADERS });
+    return new Response(JSON.stringify({ error: 'Subscription service offline' }), { status: 500, headers: SECURITY_HEADERS });
   }
 };

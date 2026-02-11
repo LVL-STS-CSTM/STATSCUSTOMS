@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 
 interface Env {
@@ -12,14 +11,14 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
     const body: any = await request.json();
     const { type, payload } = body;
     
-    // Initialize with the environment variable from the context
+    // Initialize exactly as per guidelines using env from context
     const ai = new GoogleGenAI({ apiKey: env.API_KEY });
 
     if (type === 'description') {
       const { productName, category } = payload;
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: `Write a 2-line technical marketing spec for ${productName} (${category}). No markdown. Focus on high-performance B2B apparel.`,
+        contents: `Write a 2-line technical marketing spec for ${productName} (${category}). No markdown. Focus on high-performance apparel.`,
       });
       
       return new Response(JSON.stringify({ text: response.text?.trim() || "Quality technical apparel." }), { 
@@ -30,7 +29,7 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
     } else if (type === 'advisor') {
       const { messages, allProducts } = payload;
       
-      const productContext = allProducts.map((p: any) => 
+      const productContext = (allProducts || []).map((p: any) => 
           `ID: ${p.id}, Name: ${p.name}, Category: ${p.category}, Price: ${p.price ? `$${p.price}` : 'N/A'}`
       ).join('\n');
 
@@ -40,7 +39,7 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
       
       Identify the best match for the user. Be concise. One sentence max.`;
 
-      const contents = messages.slice(1).map((m: any) => ({
+      const contents = (messages || []).slice(1).map((m: any) => ({
           role: m.sender === 'user' ? 'user' : 'model',
           parts: [{ text: m.text }]
       }));
@@ -61,7 +60,7 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
 
   } catch (error: any) {
     console.error("Uplink Error:", error);
-    return new Response(JSON.stringify({ message: 'Service Unavailable' }), { 
+    return new Response(JSON.stringify({ message: 'Service Unavailable', details: error.message }), { 
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
