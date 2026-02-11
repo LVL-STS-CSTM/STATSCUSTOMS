@@ -1,5 +1,6 @@
+
 interface Env {
-  LEVEL_DATA_KV: any;
+  STATSCUSTOMSDATA: any;
   ADMIN_SECRET: string;
 }
 
@@ -8,23 +9,23 @@ const SECURITY_HEADERS = {
 };
 
 async function checkLoginRateLimit(ip: string, env: Env) {
-  if (!env.LEVEL_DATA_KV) return true;
+  if (!env.STATSCUSTOMSDATA) return true;
   const key = `rl_login_fail_${ip}`;
-  const count = await env.LEVEL_DATA_KV.get(key);
+  const count = await env.STATSCUSTOMSDATA.get(key);
   if (count && parseInt(count) >= 5) return false;
   return true;
 }
 
 async function recordLoginFailure(ip: string, env: Env) {
-  if (!env.LEVEL_DATA_KV) return;
+  if (!env.STATSCUSTOMSDATA) return;
   const key = `rl_login_fail_${ip}`;
-  const count = await env.LEVEL_DATA_KV.get(key);
+  const count = await env.STATSCUSTOMSDATA.get(key);
   const newCount = (count ? parseInt(count) : 0) + 1;
-  await env.LEVEL_DATA_KV.put(key, newCount.toString(), { expirationTtl: 900 }); // 15 min lock
+  await env.STATSCUSTOMSDATA.put(key, newCount.toString(), { expirationTtl: 900 }); // 15 min lock
 }
 
 async function clearLoginFailures(ip: string, env: Env) {
-  if (env.LEVEL_DATA_KV) await env.LEVEL_DATA_KV.delete(`rl_login_fail_${ip}`);
+  if (env.STATSCUSTOMSDATA) await env.STATSCUSTOMSDATA.delete(`rl_login_fail_${ip}`);
 }
 
 async function signToken(payload: any, secret: string) {
@@ -47,7 +48,7 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
 
   try {
     const { username, password } = await context.request.json() as any;
-    const storedCredsRaw = await context.env.LEVEL_DATA_KV.get('credential');
+    const storedCredsRaw = await context.env.STATSCUSTOMSDATA.get('credential');
     
     if (!storedCredsRaw) return new Response('Initialization Pending', { status: 500, headers: SECURITY_HEADERS });
 

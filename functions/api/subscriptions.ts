@@ -1,8 +1,9 @@
+
 interface Env {
   GOOGLE_SERVICE_ACCOUNT_EMAIL: string;
   GOOGLE_PRIVATE_KEY: string;
   GOOGLE_SHEET_ID: string;
-  LEVEL_DATA_KV: any;
+  STATSCUSTOMSDATA: any;
 }
 
 const SECURITY_HEADERS = {
@@ -36,12 +37,12 @@ async function getAccessToken(env: Env) {
 }
 
 async function checkRateLimit(ip: string, env: Env) {
-  if (!env.LEVEL_DATA_KV) return true;
+  if (!env.STATSCUSTOMSDATA) return true;
   const key = `rl_sub_${ip}`;
-  const count = await env.LEVEL_DATA_KV.get(key);
+  const count = await env.STATSCUSTOMSDATA.get(key);
   const currentCount = count ? parseInt(count) : 0;
   if (currentCount >= 10) return false;
-  await env.LEVEL_DATA_KV.put(key, (currentCount + 1).toString(), { expirationTtl: 3600 });
+  await env.STATSCUSTOMSDATA.put(key, (currentCount + 1).toString(), { expirationTtl: 3600 });
   return true;
 }
 
@@ -49,7 +50,7 @@ const isAuthenticated = async (req: Request, env: Env) => {
   const authHeader = req.headers.get('Authorization');
   if (!authHeader?.startsWith('Bearer ')) return false;
   const token = authHeader.substring(7);
-  const storedCredsRaw = await env.LEVEL_DATA_KV.get('credential');
+  const storedCredsRaw = await env.STATSCUSTOMSDATA.get('credential');
   if (!storedCredsRaw) return false;
   const storedCreds = JSON.parse(storedCredsRaw);
   return token === `${storedCreds.username}:${storedCreds.password}`;

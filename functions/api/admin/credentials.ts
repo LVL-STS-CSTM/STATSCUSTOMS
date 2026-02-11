@@ -1,5 +1,6 @@
+
 interface Env {
-  LEVEL_DATA_KV: any;
+  STATSCUSTOMSDATA: any;
 }
 
 const SECURITY_HEADERS = {
@@ -20,7 +21,7 @@ const getAuthToken = (req: Request) => {
 
 const isAuthenticated = async (token: string | null, env: Env) => {
   if (!token) return false;
-  const storedCredsRaw = await env.LEVEL_DATA_KV.get('credential');
+  const storedCredsRaw = await env.STATSCUSTOMSDATA.get('credential');
   if (!storedCredsRaw) return false;
   const storedCreds = JSON.parse(storedCredsRaw);
   const expectedToken = `${storedCreds.username}:${storedCreds.password}`;
@@ -49,7 +50,7 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
     }
 
     // Persist new credentials to KV
-    await env.LEVEL_DATA_KV.put('credential', JSON.stringify({ username, password }));
+    await env.STATSCUSTOMSDATA.put('credential', JSON.stringify({ username, password }));
     
     return new Response(JSON.stringify({ success: true }), {
       status: 200,

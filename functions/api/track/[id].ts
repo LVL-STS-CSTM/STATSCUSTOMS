@@ -21,7 +21,13 @@ async function signJwt(email: string, privateKey: string, scope: string) {
   const encodedClaim = btoa(JSON.stringify(claim)).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
   const message = `${encodedHeader}.${encodedClaim}`;
 
-  const pemContents = privateKey.replace("-----BEGIN PRIVATE KEY-----", "").replace("-----END PRIVATE KEY-----", "").replace(/\s/g, "");
+  // Clean the private key string
+  const pemContents = privateKey
+    .replace(/\\n/g, '\n')
+    .replace("-----BEGIN PRIVATE KEY-----", "")
+    .replace("-----END PRIVATE KEY-----", "")
+    .replace(/\s/g, "");
+    
   const binaryKey = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
 
   const key = await crypto.subtle.importKey(
@@ -61,14 +67,15 @@ export const onRequestGet = async (context: { env: Env; params: { id: string } }
 
   try {
     const token = await getAccessToken(env);
+    // Fetch columns A through I to get ID, Status, Name, etc.
     const res = await fetch(
-      `https://sheets.googleapis.com/v4/spreadsheets/${env.GOOGLE_SHEET_ID}/values/Quotes!A:I`,
+      `https://sheets.googleapis.com/v4/spreadsheets/${env.GOOGLE_SHEET_ID}/values/Quotes!A:O`,
       { headers: { 'Authorization': `Bearer ${token}` } }
     );
     const data: any = await res.json();
     const rows = data.values || [];
     
-    // Find the specific row
+    // Find the specific row by ID (Column A is index 0)
     const row = rows.find((r: any) => r[0] === quoteId);
 
     if (!row) {
@@ -76,16 +83,30 @@ export const onRequestGet = async (context: { env: Env; params: { id: string } }
     }
 
     // Return partial/safe data for public tracking
+    // Parsing the JSON stored in the last column (Column O, index 14) for item details
+    let items = [];
+    try {
+        const rawJson = row[14];
+        if (rawJson) {
+            const parsed = JSON.parse(rawJson);
+            if (parsed.items) {
+                items = parsed.items.map((item: any) => ({
+                    product: { name: item.product.name } 
+                }));
+            }
+        }
+    } catch (e) {
+        // Fallback if JSON parsing fails
+    }
+
     const quote = {
       id: row[0],
       submissionDate: row[1],
       status: row[2],
       contact: {
-        name: row[3], // Keep name for verification but mask other sensitive fields if needed
+        name: row[3], // Keep name for verification
       },
-      items: JSON.parse(row[8] || '[]').map((item: any) => ({
-          product: { name: item.product.name } // Only share names of items
-      }))
+      items: items
     };
 
     return new Response(JSON.stringify(quote), {
@@ -93,6 +114,6 @@ export const onRequestGet = async (context: { env: Env; params: { id: string } }
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: 'System processing error' }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'System processing error', details: err.message }), { status: 500 });
   }
 };

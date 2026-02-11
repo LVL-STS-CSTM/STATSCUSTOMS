@@ -1,6 +1,7 @@
+
 interface Env {
   // Use any because KVNamespace type is not recognized in this environment
-  LEVEL_DATA_KV: any;
+  STATSCUSTOMSDATA: any;
   ADMIN_SECRET: string;
 }
 
@@ -41,7 +42,7 @@ const getAuthToken = (req: Request) => {
 
 export const onRequestGet = async (context: { env: Env; params: { [key: string]: string | string[] }; request: Request }) => {
   const key = context.params.key as string;
-  const data = await context.env.LEVEL_DATA_KV.get(key, 'json');
+  const data = await context.env.STATSCUSTOMSDATA.get(key, 'json');
 
   if (data === null) {
     return new Response(JSON.stringify({ message: 'Empty Segment' }), {
@@ -70,7 +71,7 @@ export const onRequestPost = async (context: { env: Env; params: { [key: string]
 
   try {
     const body = await context.request.json();
-    await context.env.LEVEL_DATA_KV.put(key, JSON.stringify(body));
+    await context.env.STATSCUSTOMSDATA.put(key, JSON.stringify(body));
     return new Response(JSON.stringify({ success: true }), { status: 200, headers: SECURITY_HEADERS });
   } catch {
     return new Response(JSON.stringify({ message: 'I/O Failure' }), { status: 500, headers: SECURITY_HEADERS });

@@ -1,8 +1,9 @@
+
 interface Env {
   GOOGLE_SERVICE_ACCOUNT_EMAIL: string;
   GOOGLE_PRIVATE_KEY: string;
   GOOGLE_SHEET_ID: string;
-  LEVEL_DATA_KV: any;
+  STATSCUSTOMSDATA: any;
   ADMIN_SECRET: string;
 }
 
@@ -24,12 +25,12 @@ async function verifyToken(token: string, secret: string) {
 }
 
 async function checkRateLimit(ip: string, type: string, limit: number, windowSeconds: number, env: Env) {
-  if (!env.LEVEL_DATA_KV) return true;
+  if (!env.STATSCUSTOMSDATA) return true;
   const key = `rl_${type}_${ip}`;
-  const count = await env.LEVEL_DATA_KV.get(key);
+  const count = await env.STATSCUSTOMSDATA.get(key);
   const currentCount = count ? parseInt(count) : 0;
   if (currentCount >= limit) return false;
-  await env.LEVEL_DATA_KV.put(key, (currentCount + 1).toString(), { expirationTtl: windowSeconds });
+  await env.STATSCUSTOMSDATA.put(key, (currentCount + 1).toString(), { expirationTtl: windowSeconds });
   return true;
 }
 

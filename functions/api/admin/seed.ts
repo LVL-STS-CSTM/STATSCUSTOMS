@@ -1,6 +1,5 @@
 
-import { createClient } from '@vercel/kv';
-import { initialProductsData, initialCollectionsData } from '../../context/initialProductData';
+import { initialProductsData, initialCollectionsData } from '../../../context/initialProductData';
 import { 
     initialFaqData, 
     initialHeroData, 
@@ -17,17 +16,14 @@ import {
     initialCapabilityData,
     initialSubscriptionModalData,
     initialHomeFeatureData
-} from '../../context/initialContentData';
+} from '../../../context/initialContentData';
 
-// This is a Vercel Serverless Function
-// GET /api/admin/seed
-// It uses Basic Auth for one-time setup protection.
+interface Env {
+  STATSCUSTOMSDATA: any;
+  ADMIN_SECRET: string;
+}
 
-export const config = {
-  runtime: 'edge',
-};
-
-const DATA_TO_SEED = {
+const DATA_TO_SEED: Record<string, any> = {
     products: initialProductsData,
     collections: initialCollectionsData,
     faqs: initialFaqData,
@@ -47,28 +43,11 @@ const DATA_TO_SEED = {
     homeFeature: initialHomeFeatureData
 };
 
-// Robust client getter to handle various environment variable naming schemes
-function getKvClient() {
-    const url = process.env.KV_REST_API_URL || process.env.REDIS_URL || process.env.UPSTASH_REDIS_REST_URL;
-    const token = process.env.KV_REST_API_TOKEN || process.env.REDIS_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+export const onRequestGet = async (context: { env: Env; request: Request }) => {
+    const { request, env } = context;
 
-    if (!url || !token) {
-        // This specific error message is what the library throws, so we'll throw it ourselves.
-        throw new Error('@vercel/kv: Missing required environment variables KV_REST_API_URL and KV_REST_API_TOKEN');
-    }
-    
-    // The Upstash/Redis URL might be in the wrong format. The kv client expects an https URL.
-    if (!url.startsWith('https')) {
-      throw new Error(`Upstash Redis client was passed an invalid URL. You should pass a URL starting with https. Received: "${url}".`);
-    }
-
-    return createClient({ url, token });
-}
-
-
-export default async function handler(req: Request): Promise<Response> {
-    // --- Basic Authentication Check ---
-    const authHeader = req.headers.get('authorization');
+    // Basic Authentication Check
+    const authHeader = request.headers.get('authorization');
     if (!authHeader) {
         return new Response('Authentication required', {
             status: 401,
@@ -76,35 +55,40 @@ export default async function handler(req: Request): Promise<Response> {
         });
     }
     
+    // Retrieve stored credentials to validate against
+    const storedCredsRaw = await env.STATSCUSTOMSDATA.get('credential');
+    let validUser = 'admin'; // Default fallback if not set
+    let validPass = 'password';
+
+    if (storedCredsRaw) {
+        const creds = JSON.parse(storedCredsRaw);
+        validUser = creds.username;
+        validPass = creds.password;
+    }
+
     const auth = atob(authHeader.split(' ')[1]);
     const [user, pass] = auth.split(':');
-    
-    const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
-    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
-    if (user !== ADMIN_USERNAME || pass !== ADMIN_PASSWORD) {
+    if (user !== validUser || pass !== validPass) {
         return new Response('Invalid credentials', { status: 401 });
     }
 
-    // --- Seeding Logic ---
+    // Seeding Logic for Cloudflare KV
     try {
-        const kv = getKvClient();
-        const pipeline = kv.pipeline();
         let count = 0;
-        
-        for (const [key, data] of Object.entries(DATA_TO_SEED)) {
-            pipeline.set(key, data);
+        const keys = Object.keys(DATA_TO_SEED);
+
+        for (const key of keys) {
+            const data = DATA_TO_SEED[key];
+            await env.STATSCUSTOMSDATA.put(key, JSON.stringify(data));
             count++;
         }
 
-        await pipeline.exec();
-
         const successMessage = `
             <h1>Database Seeding Successful!</h1>
-            <p>Successfully seeded ${count} data keys into your Vercel KV store.</p>
-            <p><strong>Keys loaded:</strong> ${Object.keys(DATA_TO_SEED).join(', ')}</p>
-            <p>Your website content is now live. You can now manage it from the Admin Dashboard.</p>
-            <p style="color: red; font-weight: bold;">For security, consider removing this API file (\`/api/admin/seed.ts\`) from your project after this initial setup.</p>
+            <p>Successfully seeded ${count} data keys into your Cloudflare KV store.</p>
+            <p><strong>Keys loaded:</strong> ${keys.join(', ')}</p>
+            <p>Your website content is now live.</p>
         `;
         
         return new Response(successMessage, { 
@@ -113,12 +97,9 @@ export default async function handler(req: Request): Promise<Response> {
         });
 
     } catch (error: any) {
-        console.error("Failed to seed database:", error);
-        const errorMessage = error.message;
-
-        return new Response(`<h1>Seeding Failed</h1><p>An error occurred: ${errorMessage}</p>`, { 
+        return new Response(`<h1>Seeding Failed</h1><p>An error occurred: ${error.message}</p>`, { 
             status: 500, 
             headers: { 'Content-Type': 'text/html' }
         });
     }
-}
+};

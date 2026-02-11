@@ -6,24 +6,22 @@ interface Env {
 }
 
 export const onRequestPost = async (context: { env: Env; request: Request }) => {
-  const { request } = context;
+  const { request, env } = context;
 
   try {
     const body: any = await request.json();
     const { type, payload } = body;
     
-    // As per guidelines: Always initialize new instance right before the call
-    // The API key must be obtained exclusively from the environment variable process.env.API_KEY.
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    // Initialize with the environment variable from the context
+    const ai = new GoogleGenAI({ apiKey: env.API_KEY });
 
     if (type === 'description') {
       const { productName, category } = payload;
-      // Use ai.models.generateContent directly with model name and prompt
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: `Write a 2-line technical marketing spec for ${productName} (${category}). No markdown. Focus on high-performance B2B apparel.`,
       });
-      // Extract generated text directly from response.text property
+      
       return new Response(JSON.stringify({ text: response.text?.trim() || "Quality technical apparel." }), { 
         status: 200,
         headers: { 'Content-Type': 'application/json' }
@@ -47,7 +45,6 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
           parts: [{ text: m.text }]
       }));
 
-      // Use ai.models.generateContent with systemInstruction in config
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: contents,

@@ -1,7 +1,7 @@
 
 interface Env {
   // Use any to bypass KVNamespace build error
-  LEVEL_DATA_KV: any;
+  STATSCUSTOMSDATA: any;
   GOOGLE_SHEET_ID: string;
   ADMIN_SECRET: string;
 }
@@ -14,7 +14,7 @@ export const onRequestGet = async (context: { env: Env; request: Request }) => {
 
   try {
     const health = {
-        kv: !!env.LEVEL_DATA_KV,
+        kv: !!env.STATSCUSTOMSDATA,
         sheets: !!env.GOOGLE_SHEET_ID,
         timestamp: new Date().toISOString(),
         region: request.headers.get('cf-ipcountry') || 'Global'
