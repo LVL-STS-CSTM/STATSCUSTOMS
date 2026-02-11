@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,69 +28,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+    
+    <!-- Restored Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Futura', 'Jost', 'sans-serif'],
-              eurostile: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'], // Remap for existing code compatibility
-              oswald: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'],
-              heading: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'],
-            },
-            fontWeight: {
-              // Override standard weights for a cleaner, more premium look
-              // Shifting weights down significantly to avoid the "Too Bold" look
-              'medium': '400',
-              'semibold': '400',
-              'bold': '500',
-              'extrabold': '500',
-              'black': '600', 
-            },
-            colors: {
-              brand: {
-                black: '#000000',
-                dark: '#111111',
-                gray: '#333333',
-              }
-            },
-            keyframes: {
-              'splash-fade-spin-out': {
-                '0%': { transform: 'scale(0.9) rotate(0deg)', opacity: '0' },
-                '25%': { transform: 'scale(1) rotate(0deg)', opacity: '1' },
-                '100%': { transform: 'scale(0.9) rotate(720deg)', opacity: '0' },
-              },
-              'fade-in': { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-              'fade-in-up': { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-              'scroll': { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
-            },
-            animation: {
-              'splash-fade-spin-out': 'splash-fade-spin-out 2s linear forwards',
-              'fade-in': 'fade-in 0.5s ease-out forwards',
-              'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
-              'scroll': 'scroll 25s linear infinite',
-            },
-          },
-        },
-      }
-    </script>
-    
-    <style>
-      html { scroll-behavior: smooth; }
-      body {
-        font-family: 'Futura', 'Jost', sans-serif; 
-        background-color: #ffffff; /* Clean white background for tech feel */
-        color: #111;
-        -webkit-font-smoothing: antialiased;
-        font-weight: 300; /* Set a lighter baseline weight */
-      }
-      .no-scrollbar::-webkit-scrollbar { display: none; }
-      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
-  <script type="importmap">
+    <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.4",
