@@ -48,7 +48,7 @@ export const onRequestGet = async (context: { env: Env; request: Request }) => {
 
     // Check if seeding is allowed via env var
     if (env.ALLOW_SEED !== 'true') {
-        return new Response('Seeding disabled. Set ALLOW_SEED=true in dashboard.', { status: 403 });
+        return new Response('Seeding disabled. Set ALLOW_SEED=true in dashboard variables.', { status: 403 });
     }
 
     // Basic Authentication Check
@@ -60,19 +60,21 @@ export const onRequestGet = async (context: { env: Env; request: Request }) => {
         });
     }
     
-    // Default credentials for first-time use
+    // Default credentials for first-time use, or check against existing KV credential
     let validUser = 'admin';
     let validPass = 'password';
 
-    try {
-        const storedCredsRaw = await env.STATSCUSTOMSDATA.get('credential');
-        if (storedCredsRaw) {
-            const creds = JSON.parse(storedCredsRaw);
-            validUser = creds.username || validUser;
-            validPass = creds.password || validPass;
+    if (env.STATSCUSTOMSDATA) {
+        try {
+            const storedCredsRaw = await env.STATSCUSTOMSDATA.get('credential');
+            if (storedCredsRaw) {
+                const creds = JSON.parse(storedCredsRaw);
+                validUser = creds.username || validUser;
+                validPass = creds.password || validPass;
+            }
+        } catch (e) {
+            console.error("Credential parse failed, using defaults.");
         }
-    } catch (e) {
-        console.error("Credential parse failed, using defaults.");
     }
 
     const auth = atob(authHeader.split(' ')[1]);
@@ -82,8 +84,12 @@ export const onRequestGet = async (context: { env: Env; request: Request }) => {
         return new Response('Invalid credentials', { status: 401 });
     }
 
-    // Seeding Logic using Cloudflare KV put()
+    // Seeding Logic
     try {
+        if (!env.STATSCUSTOMSDATA) {
+             throw new Error("STATSCUSTOMSDATA binding not found.");
+        }
+
         let count = 0;
         const keys = Object.keys(DATA_TO_SEED);
 

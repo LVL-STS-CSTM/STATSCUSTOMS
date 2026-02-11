@@ -1,5 +1,5 @@
 interface Env {
-  // Use any because KVNamespace type is not recognized in this environment
+  // Use any because KVNamespace type is not recognized in this specific build environment without specific types
   STATSCUSTOMSDATA: any;
   ADMIN_SECRET: string;
 }
@@ -43,9 +43,10 @@ export const onRequestGet = async (context: { env: Env; params: { [key: string]:
   const key = context.params.key as string;
   
   if (!context.env.STATSCUSTOMSDATA) {
-      return new Response(JSON.stringify({ message: 'Database Configuration Error' }), { status: 500, headers: SECURITY_HEADERS });
+      return new Response(JSON.stringify({ message: 'Database Configuration Error: STATSCUSTOMSDATA binding missing' }), { status: 500, headers: SECURITY_HEADERS });
   }
 
+  // Use Cloudflare KV's get method
   const data = await context.env.STATSCUSTOMSDATA.get(key, 'json');
 
   if (data === null) {
@@ -75,6 +76,7 @@ export const onRequestPost = async (context: { env: Env; params: { [key: string]
 
   try {
     const body = await context.request.json();
+    // Use Cloudflare KV's put method
     await context.env.STATSCUSTOMSDATA.put(key, JSON.stringify(body));
     return new Response(JSON.stringify({ success: true }), { status: 200, headers: SECURITY_HEADERS });
   } catch (e: any) {

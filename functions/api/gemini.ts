@@ -11,7 +11,7 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
     const body: any = await request.json();
     const { type, payload } = body;
     
-    // Initialize exactly as per guidelines using env from context
+    // Initialize using the GoogleGenAI class as per standard
     const ai = new GoogleGenAI({ apiKey: env.API_KEY });
 
     if (type === 'description') {
@@ -21,7 +21,7 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
         contents: `Write a 2-line technical marketing spec for ${productName} (${category}). No markdown. Focus on high-performance apparel.`,
       });
       
-      return new Response(JSON.stringify({ text: response.text?.trim() || "Quality technical apparel." }), { 
+      return new Response(JSON.stringify({ text: response.text || "Quality technical apparel." }), { 
         status: 200,
         headers: { 'Content-Type': 'application/json' }
       });
