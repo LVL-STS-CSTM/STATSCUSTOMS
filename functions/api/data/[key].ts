@@ -1,4 +1,3 @@
-
 interface Env {
   // Use any because KVNamespace type is not recognized in this environment
   STATSCUSTOMSDATA: any;
@@ -42,6 +41,11 @@ const getAuthToken = (req: Request) => {
 
 export const onRequestGet = async (context: { env: Env; params: { [key: string]: string | string[] }; request: Request }) => {
   const key = context.params.key as string;
+  
+  if (!context.env.STATSCUSTOMSDATA) {
+      return new Response(JSON.stringify({ message: 'Database Configuration Error' }), { status: 500, headers: SECURITY_HEADERS });
+  }
+
   const data = await context.env.STATSCUSTOMSDATA.get(key, 'json');
 
   if (data === null) {
@@ -73,7 +77,7 @@ export const onRequestPost = async (context: { env: Env; params: { [key: string]
     const body = await context.request.json();
     await context.env.STATSCUSTOMSDATA.put(key, JSON.stringify(body));
     return new Response(JSON.stringify({ success: true }), { status: 200, headers: SECURITY_HEADERS });
-  } catch {
-    return new Response(JSON.stringify({ message: 'I/O Failure' }), { status: 500, headers: SECURITY_HEADERS });
+  } catch (e: any) {
+    return new Response(JSON.stringify({ message: 'I/O Failure', error: e.message }), { status: 500, headers: SECURITY_HEADERS });
   }
 };
