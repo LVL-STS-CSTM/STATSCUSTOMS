@@ -4,6 +4,8 @@ import { Product, Color, Material, View } from '../types';
 import ProductGrid from './ProductGrid';
 import SizeGuideModal from './SizeGuideModal';
 import { RulerIcon } from './icons';
+// Added missing context import to handle adding items to the inquiry list
+import { useQuote } from '../context/CartContext';
 
 interface ProductPageProps {
     product: Product;
@@ -15,13 +17,17 @@ interface ProductPageProps {
     onProductClick: (product: Product) => void;
 }
 
+/**
+ * @description Product detail page component that allows users to select colors, sizes, and add to their inquiry list.
+ */
 const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, onNavigate, showToast, materials, allProducts, onProductClick }) => {
-    const sectionLabelClasses = "text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-2 block";
+    // FIX: Access addToQuote from CartContext
+    const { addToQuote } = useQuote();
+    const sectionLabelClasses = "text-[9px] font-bold uppercase tracking-[0.4em] text-zinc-400 mb-3 block";
 
-    // Determine default color based on URL param or availability
     const defaultColor = useMemo(() => {
         if (!product || !product.availableColors) return null;
-        const colors = product.availableColors.filter(c => !!c); // Filter out nulls
+        const colors = product.availableColors.filter(c => !!c);
         if (initialColorName) {
             return colors.find(c => c.name && c.name.toLowerCase() === initialColorName.toLowerCase()) || colors[0] || null;
         }
@@ -31,33 +37,24 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
     const [selectedColor, setSelectedColor] = useState<Color | null>(defaultColor);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
+    // FIX: State to track selected quantities for each size
+    const [selectedSizes, setSelectedSizes] = useState<{ [key: string]: number }>({});
     
-    // Filter images based on selected color with robust null checking
     const imagesForDisplay = useMemo(() => {
         if (!product) return [];
         const imageUrls = product.imageUrls || {};
-        
-        // Safety check if selectedColor is valid and has images
         if (selectedColor && selectedColor.name && imageUrls[selectedColor.name] && imageUrls[selectedColor.name].length > 0) {
             return imageUrls[selectedColor.name];
         }
-        
-        // Fallback to all images if no specific color selected or no images for color
         const allImages = Object.values(imageUrls);
-        if (allImages.length > 0) {
-            return allImages.flat();
-        }
-        
-        return [];
+        return allImages.length > 0 ? allImages.flat() : [];
     }, [selectedColor, product]);
 
-    // Lookup material name safely
     const materialName = useMemo(() => {
         if (!product || !materials) return 'Premium Technical Fabric';
         return materials.find(m => m.id === product.materialId)?.name || 'Premium Technical Fabric';
     }, [product, materials]);
 
-    // Get related products (same category) safely
     const relatedProducts = useMemo(() => {
         if (!allProducts || !product) return [];
         return allProducts
@@ -65,114 +62,195 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
             .slice(0, 4);
     }, [allProducts, product]);
 
+    const handleAddSize = (sizeName: string) => {
+        setSelectedSizes(prev => ({
+            ...prev,
+            [sizeName]: (prev[sizeName] || 0) + 1
+        }));
+    };
+
+    const handleRemoveSize = (sizeName: string) => {
+        setSelectedSizes(prev => {
+            const next = { ...prev };
+            if (next[sizeName] > 1) {
+                next[sizeName] -= 1;
+            } else {
+                delete next[sizeName];
+            }
+            return next;
+        });
+    };
+
+    const handleAddToQuote = () => {
+        if (!selectedColor) {
+            showToast("Please select a color.");
+            return;
+        }
+        if (Object.keys(selectedSizes).length === 0) {
+            showToast("Please select at least one size.");
+            return;
+        }
+        
+        addToQuote(product, selectedColor, selectedSizes);
+        showToast(`Added ${product.name} to your inquiry list.`);
+        setSelectedSizes({});
+    };
+
     if (!product) return null;
 
     return (
         <div className="bg-white min-h-screen">
             <div className="max-w-[1600px] mx-auto px-4 md:px-8 py-6 md:py-12">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
                     
                     {/* LEFT: Product Images Gallery */}
-                    <div className="lg:col-span-7 flex flex-col md:flex-row gap-4">
-                        <div className="order-2 md:order-1 flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto no-scrollbar md:w-20 shrink-0 h-fit py-2 md:py-0">
-                            {imagesForDisplay.map((url, i) => (
+                    <div className="lg:col-span-7 flex flex-col md:flex-row gap-6">
+                        {/* Thumbnails */}
+                        <div className="order-2 md:order-1 flex md:flex-col gap-3 overflow-y-auto max-h-[800px] no-scrollbar pr-2 min-w-[80px]">
+                            {imagesForDisplay.map((url, idx) => (
                                 <button 
-                                    key={i} 
-                                    onClick={() => setActiveImageIndex(i)}
-                                    className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border-2 transition-all shrink-0 ${activeImageIndex === i ? 'border-black opacity-100 scale-100' : 'border-transparent opacity-50 hover:opacity-80 scale-95 hover:scale-100'}`}
+                                    key={idx} 
+                                    onClick={() => setActiveImageIndex(idx)}
+                                    className={`relative aspect-[3/4] w-20 md:w-full overflow-hidden border-2 transition-all ${activeImageIndex === idx ? 'border-black' : 'border-transparent'}`}
                                 >
-                                    <img src={url} className="w-full h-full object-cover" alt="" />
+                                    <img src={url} alt={`${product.name} thumb ${idx}`} className="w-full h-full object-cover" />
                                 </button>
                             ))}
                         </div>
 
-                        <div className="order-1 md:order-2 flex-grow rounded-[2rem] overflow-hidden bg-zinc-50 border border-zinc-100 aspect-[4/5] shadow-sm relative group cursor-zoom-in">
+                        {/* Main Image */}
+                        <div className="order-1 md:order-2 flex-grow aspect-[3/4] overflow-hidden bg-zinc-50 border border-zinc-100 rounded-sm">
                             <img 
-                                src={imagesForDisplay[activeImageIndex] || imagesForDisplay[0] || 'https://placehold.co/600x800?text=No+Image'} 
+                                src={imagesForDisplay[activeImageIndex] || 'https://placehold.co/800x1000?text=No+Image'} 
                                 alt={product.name} 
-                                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" 
+                                className="w-full h-full object-cover"
                             />
                         </div>
                     </div>
 
-                    {/* RIGHT: Product Details (Catalog View) */}
-                    <div className="lg:col-span-5 relative">
-                        <div className="lg:sticky lg:top-24 space-y-10">
-                            <header className="space-y-6">
-                                <div className="flex items-center gap-3">
-                                    <span className="px-3 py-1.5 bg-zinc-100 text-[9px] font-black uppercase tracking-[0.2em] rounded-md text-zinc-600">{product.category}</span>
+                    {/* RIGHT: Product Details */}
+                    <div className="lg:col-span-5 space-y-10">
+                        <section>
+                            <div className="flex justify-between items-start mb-4">
+                                <div>
+                                    <span className={sectionLabelClasses}>{product.categoryGroup} / {product.category}</span>
+                                    <h1 className="font-eurostile font-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-widest text-gray-900 leading-tight">{product.name}</h1>
                                 </div>
-                                
-                                <h1 className="font-eurostile text-4xl md:text-5xl lg:text-6xl text-zinc-900 uppercase tracking-tighter leading-[0.9] drop-shadow-sm">
-                                    {product.name}
-                                </h1>
-                                
-                                <p className="text-sm md:text-base text-zinc-500 leading-relaxed font-light antialiased border-l-2 border-zinc-200 pl-6 max-w-lg">
-                                    {product.description}
-                                </p>
-                            </header>
-
-                            {/* Visual Variants (Colors) */}
-                            <div>
-                                <span className={sectionLabelClasses}>Visual Styles</span>
-                                <div className="flex flex-wrap gap-3">
-                                    {(product.availableColors || []).map(color => (
-                                        // Ensure color is defined before rendering
-                                        color && color.name ? (
-                                            <button 
-                                                key={color.name}
-                                                onClick={() => setSelectedColor(color)}
-                                                className={`group relative w-12 h-12 rounded-full flex items-center justify-center transition-all ${selectedColor?.name === color.name ? 'ring-2 ring-black ring-offset-2 scale-110' : 'hover:scale-110 opacity-80 hover:opacity-100'}`}
-                                                title={color.name}
-                                            >
-                                                <div className="w-full h-full rounded-full border border-black/10 shadow-sm" style={{ backgroundColor: color.hex }}></div>
-                                                <span className="absolute -bottom-8 bg-black text-white text-[9px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none uppercase tracking-wider z-10">{color.name}</span>
-                                            </button>
-                                        ) : null
-                                    ))}
-                                </div>
+                                {product.price && (
+                                    <span className="font-oswald text-2xl font-bold">₱{product.price.toLocaleString()}</span>
+                                )}
                             </div>
+                            <p className="text-gray-600 leading-relaxed max-w-xl">{product.description}</p>
+                        </section>
 
-                            {/* Materials & Fabrics */}
-                            <div className="pt-8 border-t border-zinc-100">
-                                <span className={sectionLabelClasses}>Material & Fabric</span>
-                                <p className="text-lg font-eurostile font-bold text-zinc-900 uppercase tracking-wide">{materialName}</p>
+                        {/* Color Selection */}
+                        <section>
+                            <span className={sectionLabelClasses}>Select Color: {selectedColor?.name}</span>
+                            <div className="flex flex-wrap gap-3">
+                                {product.availableColors.map(color => (
+                                    <button
+                                        key={color.name}
+                                        onClick={() => {
+                                            setSelectedColor(color);
+                                            setActiveImageIndex(0);
+                                        }}
+                                        className={`group relative w-10 h-10 rounded-full border-2 transition-all flex items-center justify-center ${selectedColor?.name === color.name ? 'border-black p-0.5' : 'border-transparent'}`}
+                                        title={color.name}
+                                    >
+                                        <span className="w-full h-full rounded-full border border-zinc-100" style={{ backgroundColor: color.hex }}></span>
+                                    </button>
+                                ))}
                             </div>
+                        </section>
 
-                            {/* Actions: Size Chart Only */}
-                            <div className="pt-4">
+                        {/* Size Selection */}
+                        <section>
+                            <div className="flex justify-between items-center mb-3">
+                                <span className={sectionLabelClasses}>Select Sizes</span>
                                 <button 
                                     onClick={() => setIsSizeGuideOpen(true)}
-                                    className="w-full py-4 bg-white border border-zinc-200 text-black rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] hover:border-black hover:bg-zinc-50 transition-all flex items-center justify-center gap-2 group shadow-sm"
+                                    className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-black transition-colors"
                                 >
-                                    <RulerIcon className="w-4 h-4 text-zinc-400 group-hover:text-black transition-colors" />
-                                    <span>View Size Chart</span>
+                                    <RulerIcon className="w-3.5 h-3.5" />
+                                    Size Guide
                                 </button>
                             </div>
-                        </div>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                {product.availableSizes.map(size => (
+                                    <div key={size.name} className="flex items-center justify-between border border-zinc-200 rounded-lg p-3 group hover:border-black transition-colors">
+                                        <span className="text-xs font-black uppercase">{size.name}</span>
+                                        <div className="flex items-center gap-3">
+                                            {(selectedSizes[size.name] || 0) > 0 && (
+                                                <button onClick={() => handleRemoveSize(size.name)} className="text-zinc-300 hover:text-black font-bold">-</button>
+                                            )}
+                                            <span className={`text-xs font-mono font-bold ${(selectedSizes[size.name] || 0) > 0 ? 'text-black' : 'text-zinc-300'}`}>
+                                                {selectedSizes[size.name] || 0}
+                                            </span>
+                                            <button onClick={() => handleAddSize(size.name)} className="text-zinc-300 hover:text-black font-bold">+</button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Action Buttons */}
+                        <section className="pt-6 space-y-4">
+                            <button 
+                                onClick={handleAddToQuote}
+                                className="w-full py-5 bg-black text-white font-black uppercase tracking-[0.3em] text-[11px] rounded-full hover:bg-zinc-800 transition-all shadow-2xl active:scale-95"
+                            >
+                                Add to Inquiry List
+                            </button>
+                            {product.moq && (
+                                <p className="text-center text-[9px] font-bold text-zinc-400 uppercase tracking-widest">
+                                    Minimum Order Quantity: {product.moq} pcs
+                                </p>
+                            )}
+                        </section>
+
+                        {/* Technical Details */}
+                        <section className="border-t border-zinc-100 pt-10 space-y-6">
+                            <div>
+                                <h4 className="text-[10px] font-black uppercase tracking-widest mb-2">Technical Material</h4>
+                                <p className="text-sm font-bold text-gray-900 uppercase tracking-tight">{materialName}</p>
+                            </div>
+                            {product.supportedPrinting && product.supportedPrinting.length > 0 && (
+                                <div>
+                                    <h4 className="text-[10px] font-black uppercase tracking-widest mb-2">Compatible Finishes</h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        {product.supportedPrinting.map(method => (
+                                            <span key={method} className="px-3 py-1 bg-zinc-50 border border-zinc-100 rounded text-[9px] font-black uppercase tracking-widest text-zinc-400">
+                                                {method}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </section>
                     </div>
                 </div>
 
-                {/* Related Products Section */}
+                {/* RELATED PRODUCTS */}
                 {relatedProducts.length > 0 && (
-                    <div className="mt-32 pt-16 border-t border-zinc-100">
-                        <div className="flex items-center justify-between mb-12">
-                            <h2 className="font-eurostile text-2xl uppercase tracking-widest text-zinc-900">More from {product.categoryGroup}</h2>
-                            <button onClick={() => onNavigate('catalogue', product.categoryGroup)} className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 hover:text-black transition-colors">View All</button>
+                    <section className="mt-32 pt-24 border-t border-zinc-100">
+                        <div className="text-center mb-16">
+                            <span className={sectionLabelClasses}>More like this</span>
+                            <h2 className="font-eurostile font-black text-3xl uppercase tracking-tighter">Related Gear</h2>
                         </div>
                         <ProductGrid products={relatedProducts} onProductClick={onProductClick} />
-                    </div>
+                    </section>
                 )}
             </div>
-            
+
             <SizeGuideModal 
                 isOpen={isSizeGuideOpen} 
                 onClose={() => setIsSizeGuideOpen(false)} 
-                productName={product.name}
-                sizes={product.availableSizes || []}
+                productName={product.name} 
+                sizes={product.availableSizes} 
             />
         </div>
     );
 };
 
+// FIX: Added missing default export
 export default ProductPage;

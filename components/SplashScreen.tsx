@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 
 interface SplashScreenProps {
@@ -35,7 +34,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ isFadingOut }) => {
         3. Exit: scale-110 opacity-0 blur-sm (Dissolve/Disappear effect)
       */}
       <div 
-        className={`relative w-32 h-32 md:w-48 md:h-48 transition-all duration-[1200ms] cubic-bezier(0.16, 1, 0.3, 1) transform ${
+        className={`relative w-28 h-28 md:w-40 md:h-40 transition-all duration-[1200ms] cubic-bezier(0.16, 1, 0.3, 1) transform ${
           isFadingOut 
             ? 'scale-110 opacity-0 blur-sm' // Disappear
             : animateEnter 
@@ -44,9 +43,12 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ isFadingOut }) => {
         }`}
       >
         <img
-          src="https://i.imgur.com/9FhbGuI.png"
-          alt="STATS CUSTOMS Logo"
-          className="relative w-full h-full object-contain invert"
+          src="https://i.imgur.com/OIYeMvS.png"
+          alt="STATS CUSTOM APPAREL"
+          className="relative w-full h-full object-contain"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "https://i.imgur.com/vHq0L9A.png";
+          }}
         />
       </div>
     </div>

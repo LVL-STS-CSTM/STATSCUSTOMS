@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 
 interface LazyImageProps {
@@ -53,7 +52,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
                 <div className="absolute inset-0 z-10 bg-zinc-100 flex items-center justify-center">
                     <div className="w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-[scroll_1.5s_infinite] transition-transform"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                         <img src="https://i.imgur.com/9FhbGuI.png" alt="" className="w-12 h-12 grayscale" />
+                         <img src="https://i.imgur.com/OIYeMvS.png" alt="" className="w-8 h-8 grayscale" />
                     </div>
                 </div>
             )}

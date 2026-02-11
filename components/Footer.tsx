@@ -1,6 +1,8 @@
-
 import React from 'react';
-import { FacebookIcon, InstagramIcon, ThreadsIcon, TiktokIcon, LinkedinIcon, MailIcon } from './icons';
+import { 
+    FacebookImgIcon, InstagramImgIcon, ThreadsImgIcon, 
+    TiktokImgIcon, LinkedinImgIcon, MailImgIcon 
+} from './icons';
 import { View } from '../types';
 
 interface FooterProps {
@@ -68,22 +70,22 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <h4 className="text-white mb-6 font-oswald font-bold uppercase text-xl tracking-widest">CONNECT</h4>
           <div className="flex gap-5 my-2.5">
             <a href="https://www.facebook.com/statsph" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[#d4d4d4] hover:text-white transition-all transform hover:scale-110">
-              <FacebookIcon className="w-6 h-6" />
+              <FacebookImgIcon className="w-6 h-6 grayscale hover:grayscale-0" />
             </a>
             <a href="https://www.instagram.com/statsph/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="text-[#d4d4d4] hover:text-white transition-all transform hover:scale-110">
-              <InstagramIcon className="w-6 h-6" />
+              <InstagramImgIcon className="w-6 h-6 grayscale hover:grayscale-0" />
             </a>
             <a href="https://www.threads.net/@statsph?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer" aria-label="Threads" className="text-[#d4d4d4] hover:text-white transition-all transform hover:scale-110">
-               <ThreadsIcon className="w-6 h-6" />
+               <ThreadsImgIcon className="w-6 h-6 grayscale hover:grayscale-0" />
             </a>
             <a href="https://www.tiktok.com/@statsph?_t=8s5OXGDiNX8&_r=1" aria-label="Tiktok" target="_blank" rel="noopener noreferrer" className="text-[#d4d4d4] hover:text-white transition-all transform hover:scale-110">
-              <TiktokIcon className="w-6 h-6" />
+              <TiktokImgIcon className="w-6 h-6 grayscale hover:grayscale-0" />
             </a>
             <a href="https://www.linkedin.com/company/stats-technical-apparel" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="text-[#d4d4d4] hover:text-white transition-all transform hover:scale-110">
-              <LinkedinIcon className="w-6 h-6" />
+              <LinkedinImgIcon className="w-6 h-6 grayscale hover:grayscale-0" />
             </a>
             <a href="mailto:statsfxl@gmail.com" aria-label="Email" target="_blank" rel="noopener noreferrer" className="text-[#d4d4d4] hover:text-white transition-all transform hover:scale-110">
-              <MailIcon className="w-6 h-6" />
+              <MailImgIcon className="w-6 h-6 grayscale hover:grayscale-0" />
             </a>
           </div>
         </div>

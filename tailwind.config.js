@@ -8,16 +8,18 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Futura', 'Jost', 'sans-serif'],
+        sans: ['Futura', '"Futura Std"', 'Jost', 'sans-serif'],
         eurostile: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'],
         oswald: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'],
         heading: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'],
       },
       fontWeight: {
+        'light': '300',
+        'normal': '300',
         'medium': '400',
-        'semibold': '400',
+        'semibold': '500',
         'bold': '500',
-        'extrabold': '500',
+        'extrabold': '600',
         'black': '600', 
       },
       colors: {

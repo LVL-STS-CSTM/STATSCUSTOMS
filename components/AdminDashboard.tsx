@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { useAdmin } from '../context/AdminContext';
 import { useData } from '../context/DataContext';
@@ -202,8 +201,8 @@ const AdminDashboard: React.FC = () => {
             <div className="max-w-[1600px] mx-auto">
                 <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
                     <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 bg-black rounded-3xl flex items-center justify-center shadow-2xl">
-                             <img src="https://i.imgur.com/9FhbGuI.png" alt="STATS" className="h-8 w-auto invert" />
+                        <div className="w-16 h-16 bg-black rounded-3xl flex items-center justify-center shadow-2xl overflow-hidden">
+                             <img src="https://i.imgur.com/OIYeMvS.png" alt="STATS" className="h-10 w-auto" />
                         </div>
                         <div>
                             <div className="flex items-center gap-3">

@@ -1,8 +1,52 @@
 import React from 'react';
+import { ICON_ASSETS } from '../constants/iconAssets';
 
 interface IconProps {
   className?: string;
 }
+
+/**
+ * @description A generic component for rendering image-based icons (PNG/JPG/etc)
+ */
+export const ImageIcon: React.FC<IconProps & { src: string, alt: string }> = ({ className = "w-6 h-6", src, alt }) => (
+    <img 
+        src={src} 
+        alt={alt} 
+        className={`${className} object-contain transition-all duration-300`} 
+        onError={(e) => {
+            // Fallback: hides broken icons if the image isn't found in public folder yet
+            (e.target as HTMLImageElement).style.opacity = '0';
+        }}
+    />
+);
+
+// --- Image-based Social Icons (Wrappers for the Registry) ---
+
+export const FacebookImgIcon: React.FC<IconProps> = (props) => (
+    <ImageIcon {...props} src={ICON_ASSETS.social.facebook} alt="Facebook" />
+);
+
+export const InstagramImgIcon: React.FC<IconProps> = (props) => (
+    <ImageIcon {...props} src={ICON_ASSETS.social.instagram} alt="Instagram" />
+);
+
+export const ThreadsImgIcon: React.FC<IconProps> = (props) => (
+    <ImageIcon {...props} src={ICON_ASSETS.social.threads} alt="Threads" />
+);
+
+export const TiktokImgIcon: React.FC<IconProps> = (props) => (
+    <ImageIcon {...props} src={ICON_ASSETS.social.tiktok} alt="Tiktok" />
+);
+
+export const LinkedinImgIcon: React.FC<IconProps> = (props) => (
+    <ImageIcon {...props} src={ICON_ASSETS.social.linkedin} alt="LinkedIn" />
+);
+
+export const MailImgIcon: React.FC<IconProps> = (props) => (
+    <ImageIcon {...props} src={ICON_ASSETS.social.mail} alt="Email" />
+);
+
+// --- Existing SVG Icons (Preserved for internal UI) ---
 
 export const FacebookIcon: React.FC<IconProps> = ({ className = "w-6 h-6" }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

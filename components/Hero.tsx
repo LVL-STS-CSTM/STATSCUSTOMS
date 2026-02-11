@@ -24,9 +24,9 @@ const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, bu
     const [hasError, setHasError] = useState(false);
 
     const heroHeightClass = isFirst ? 'min-h-screen lg:max-h-[1080px]' : 'h-[60vh] min-h-[400px]';
-    // Maintaining smaller font sizes for cleaner look as requested
+    // Slightly nudged down titles for a more sophisticated, "perfect" scale
     const titleSize = isFirst ? 'text-xl md:text-2xl lg:text-3xl' : 'text-lg md:text-xl lg:text-2xl';
-    const descriptionSize = 'text-[10px] md:text-[11px]';
+    const descriptionSize = 'text-[9px] md:text-[10px]';
     
     const alignmentClass = 'flex items-end justify-start text-left';
     const paddingClass = 'pb-12 md:pb-24 pl-6 md:pl-12';
@@ -64,11 +64,11 @@ const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, bu
 
             <div className={`relative z-10 w-full max-w-screen-2xl mx-auto ${paddingClass}`}>
                 <div className="max-w-xl text-white">
-                    <h1 className={`font-eurostile font-black ${titleSize} tracking-widest mb-4 uppercase leading-[0.95] drop-shadow-2xl animate-fade-in-up [animation-delay:100ms] whitespace-pre-line`}>
+                    <h1 className={`font-eurostile font-bold ${titleSize} tracking-[0.2em] mb-4 uppercase leading-[1.15] drop-shadow-2xl animate-fade-in-up [animation-delay:100ms] whitespace-pre-line`}>
                         {title}
                     </h1>
                     
-                    <p className={`${descriptionSize} leading-relaxed mb-8 text-white/60 font-medium max-w-sm uppercase tracking-[0.2em] animate-fade-in-up [animation-delay:200ms] whitespace-pre-line`}>
+                    <p className={`${descriptionSize} leading-relaxed mb-10 text-white/70 font-medium max-w-sm uppercase tracking-[0.3em] animate-fade-in-up [animation-delay:200ms] whitespace-pre-line antialiased`}>
                         {description}
                     </p>
                     
@@ -76,15 +76,11 @@ const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, bu
                         <div className="animate-fade-in-up [animation-delay:300ms]">
                             <button 
                                 onClick={() => onNavigate('catalogue', buttonCollectionLink)}
-                                className="group relative px-10 py-4 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full overflow-hidden shadow-[0_0_40px_-10px_rgba(255,255,255,0.2)] transition-all duration-500 hover:scale-105 hover:bg-white/10 hover:border-white/30 hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.4)] active:scale-95"
+                                className="group relative px-10 py-4 bg-white/5 backdrop-blur-2xl border border-white/20 rounded-full overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/10 hover:border-white/40 active:scale-95"
                             >
-                                {/* Liquid Shimmer Effect */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out skew-x-[-20deg] pointer-events-none"></div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out skew-x-[-20deg] pointer-events-none"></div>
                                 
-                                {/* Inner Glow */}
-                                <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_20px_rgba(255,255,255,0.1)] pointer-events-none"></div>
-
-                                <span className="relative z-10 text-white text-[10px] font-black uppercase tracking-[0.3em] group-hover:tracking-[0.4em] transition-all duration-500 drop-shadow-md">
+                                <span className="relative z-10 text-white text-[10px] font-bold uppercase tracking-[0.3em] group-hover:tracking-[0.4em] transition-all duration-500">
                                     {buttonText}
                                 </span>
                             </button>
