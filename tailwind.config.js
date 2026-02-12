@@ -8,7 +8,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Futura', '"Futura Std"', 'Jost', 'sans-serif'],
+        // Body Font: Prioritize Futura
+        sans: ['Futura', 'Jost', 'sans-serif'],
+        
+        // Display/Heading Fonts: Prioritize Rheiborn Sans Clean
+        // Mapping all display aliases (eurostile, oswald, heading) to Rheiborn
         eurostile: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'],
         oswald: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'],
         heading: ['"Rheiborn Sans Clean"', 'Antonio', 'sans-serif'],
