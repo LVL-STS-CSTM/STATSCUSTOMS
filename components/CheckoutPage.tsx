@@ -123,10 +123,10 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate, showToast }) =>
                     </svg>
                 </div>
                 <h1 className="font-eurostile font-black text-3xl uppercase tracking-widest text-gray-900 mb-4">
-                    Inquiry Sent
+                    Requisition Submitted
                 </h1>
                 <p className="text-zinc-500 text-sm max-w-md mx-auto leading-relaxed uppercase tracking-widest font-medium mb-12">
-                    Your custom inquiry has been submitted. A specialist will review your requirements and contact you within 24 hours.
+                    Your project brief has been logged. A specialist will review specs and deploy a quotation within 24 hours.
                 </p>
                 <Button variant="solid" onClick={() => onNavigate('home')} className="px-12 py-5 rounded-full">
                     Back to Home
@@ -262,7 +262,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate, showToast }) =>
                                 ) : (
                                     <>
                                         <SendIcon className="w-5 h-5" />
-                                        <span>Submit for Quotation</span>
+                                        <span>SUBMIT REQUISITION</span>
                                     </>
                                 )}
                             </Button>

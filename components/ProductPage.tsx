@@ -3,7 +3,6 @@ import React, { useState, useMemo } from 'react';
 import { Product, Color, Material, View } from '../types';
 import ProductGrid from './ProductGrid';
 import SizeGuideModal from './SizeGuideModal';
-import { RulerIcon, PlusIcon, MinusIcon } from './icons';
 import { useQuote } from '../context/CartContext';
 import CallToAction from './CallToAction';
 
@@ -18,11 +17,11 @@ interface ProductPageProps {
 }
 
 /**
- * @description Product detail page component that is optimized for responsiveness and touch interactions.
+ * @description Product detail page component re-engineered for a simple, premium aesthetic.
+ * Removes complex selectors in favor of a specification list.
  */
 const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, onNavigate, showToast, materials, allProducts, onProductClick }) => {
     const { addToQuote } = useQuote();
-    const sectionLabelClasses = "text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 mb-3 block";
 
     const defaultColor = useMemo(() => {
         if (!product || !product.availableColors) return null;
@@ -33,14 +32,15 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
         return colors[0] || null;
     }, [product, initialColorName]);
 
+    // We still track this for image display, even if selection UI is hidden/simplified
     const [selectedColor, setSelectedColor] = useState<Color | null>(defaultColor);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
-    const [selectedSizes, setSelectedSizes] = useState<{ [key: string]: number }>({});
     
     const imagesForDisplay = useMemo(() => {
         if (!product) return [];
         const imageUrls = product.imageUrls || {};
+        // Default to showing images for the selected color, or all if none/default
         if (selectedColor && selectedColor.name && imageUrls[selectedColor.name] && imageUrls[selectedColor.name].length > 0) {
             return imageUrls[selectedColor.name];
         }
@@ -60,193 +60,121 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
             .slice(0, 4);
     }, [allProducts, product]);
 
-    const handleAddSize = (sizeName: string) => {
-        setSelectedSizes(prev => ({
-            ...prev,
-            [sizeName]: (prev[sizeName] || 0) + 1
-        }));
-    };
-
-    const handleRemoveSize = (sizeName: string) => {
-        setSelectedSizes(prev => {
-            const next = { ...prev };
-            if (next[sizeName] > 1) {
-                next[sizeName] -= 1;
-            } else {
-                delete next[sizeName];
-            }
-            return next;
-        });
-    };
-
     const handleAddToQuote = () => {
-        if (!selectedColor) {
-            showToast("Please select a color.");
-            return;
-        }
-        if (Object.keys(selectedSizes).length === 0) {
-            showToast("Please select at least one size.");
-            return;
-        }
-        
-        addToQuote(product, selectedColor, selectedSizes);
-        showToast(`Added ${product.name} to your inquiry list.`);
-        setSelectedSizes({});
+        // Since we removed specific selectors, we add generic/default values
+        // The user will refine details during the quotation consultation process
+        const colorToAdd = selectedColor || product.availableColors[0];
+        // Default to 1 unit of the first available size just to get it in the list
+        const defaultSize = product.availableSizes[0]?.name || 'One Size';
+        const sizeQuantities = { [defaultSize]: product.moq || 1 }; // Default to MOQ or 1
+
+        addToQuote(product, colorToAdd, sizeQuantities);
+        showToast(`Added ${product.name} to inquiry list.`);
     };
 
     if (!product) return null;
 
     return (
-        <div className="bg-white min-h-screen">
-            <div className="max-w-[1600px] mx-auto px-4 md:px-8 py-6 md:py-12">
-                {/* Main Product Layout - Changed to 50/50 Split for better scaling */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 xl:gap-24">
+        <div className="bg-white min-h-screen font-sans text-[#333]">
+            <div className="max-w-[1600px] mx-auto px-4 md:px-12 py-12 md:py-20">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     
-                    {/* LEFT: Product Images Gallery */}
-                    <div className="flex flex-col gap-4">
-                        {/* Main Image */}
-                        <div className="w-full aspect-[3/4] overflow-hidden bg-zinc-50 border border-zinc-100 rounded-lg shadow-sm">
-                            <img 
-                                src={imagesForDisplay[activeImageIndex] || 'https://placehold.co/800x1000?text=No+Image'} 
-                                alt={product.name} 
-                                className="w-full h-full object-cover transition-opacity duration-500"
-                            />
-                        </div>
-
-                        {/* Thumbnails */}
-                        <div className="flex gap-3 overflow-x-auto no-scrollbar py-2">
+                    {/* LEFT: Image Gallery (Vertical Thumbnails + Main) */}
+                    <div className="lg:col-span-7 flex flex-col-reverse lg:flex-row gap-4 lg:h-[80vh] lg:min-h-[600px] lg:max-h-[900px]">
+                        {/* Vertical Thumbnails (Hidden on mobile, uses horizontal) */}
+                        <div className="hidden lg:flex flex-col gap-4 overflow-y-auto no-scrollbar w-24 flex-shrink-0">
                             {imagesForDisplay.map((url, idx) => (
                                 <button 
                                     key={idx} 
                                     onClick={() => setActiveImageIndex(idx)}
-                                    className={`relative aspect-[3/4] w-20 flex-shrink-0 overflow-hidden border-2 transition-all rounded-md ${activeImageIndex === idx ? 'border-black opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                                    className={`w-full aspect-[3/4] border transition-all ${activeImageIndex === idx ? 'border-black opacity-100' : 'border-transparent opacity-60 hover:opacity-100 hover:border-zinc-200'}`}
                                 >
-                                    <img src={url} alt={`${product.name} thumb ${idx}`} className="w-full h-full object-cover" />
+                                    <img src={url} alt={`View ${idx}`} className="w-full h-full object-cover" />
                                 </button>
                             ))}
                         </div>
+
+                        {/* Mobile Horizontal Thumbnails */}
+                        <div className="flex lg:hidden gap-3 overflow-x-auto no-scrollbar pb-2">
+                             {imagesForDisplay.map((url, idx) => (
+                                <button 
+                                    key={idx} 
+                                    onClick={() => setActiveImageIndex(idx)}
+                                    className={`w-20 aspect-[3/4] flex-shrink-0 border transition-all ${activeImageIndex === idx ? 'border-black' : 'border-transparent opacity-70'}`}
+                                >
+                                    <img src={url} alt={`View ${idx}`} className="w-full h-full object-cover" />
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Main Image */}
+                        <div className="flex-grow bg-zinc-50 border border-zinc-100 relative overflow-hidden group cursor-zoom-in">
+                            <img 
+                                src={imagesForDisplay[activeImageIndex] || 'https://placehold.co/800x1000?text=No+Image'} 
+                                alt={product.name} 
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            />
+                        </div>
                     </div>
 
-                    {/* RIGHT: Product Details - Sticky on Desktop */}
-                    <div className="relative">
-                        <div className="lg:sticky lg:top-24 space-y-10 md:space-y-12">
-                            <section>
-                                <div className="flex flex-col gap-2 mb-6">
-                                    <div className="flex justify-between items-start">
-                                        <span className={sectionLabelClasses}>{product.categoryGroup} / {product.category}</span>
-                                        {product.price && (
-                                            <span className="font-oswald text-xl font-bold text-black">₱{product.price.toLocaleString()}</span>
-                                        )}
-                                    </div>
-                                    <h1 className="font-eurostile font-black text-3xl sm:text-4xl md:text-5xl uppercase tracking-widest text-gray-900 leading-[0.9]">{product.name}</h1>
-                                </div>
-                                <p className="text-gray-600 text-base md:text-lg leading-relaxed antialiased font-light">{product.description}</p>
-                            </section>
+                    {/* RIGHT: Product Details (Clean Text Layout) */}
+                    <div className="lg:col-span-5 lg:pl-8 lg:sticky lg:top-24 h-fit">
+                        <header className="mb-8">
+                            <h1 className="font-heading text-4xl md:text-5xl text-black mb-6 uppercase tracking-tight leading-none">{product.name}</h1>
+                            <div className="h-px w-full bg-zinc-200 mb-8"></div>
+                            
+                            <p className="text-sm font-medium text-zinc-500 uppercase tracking-widest mb-2">
+                                Best used for: <span className="text-black">{product.categoryGroup || 'Performance'}, {product.category}</span>
+                            </p>
+                        </header>
 
-                            {/* Color Selection */}
+                        <div className="space-y-10">
+                            {/* Static Specs List */}
                             <section>
-                                <span className={sectionLabelClasses}>Select Color: <span className="text-black">{selectedColor?.name}</span></span>
-                                <div className="flex flex-wrap gap-4">
-                                    {product.availableColors.map(color => (
-                                        <button
-                                            key={color.name}
-                                            onClick={() => {
-                                                setSelectedColor(color);
-                                                setActiveImageIndex(0);
-                                            }}
-                                            className={`group relative w-12 h-12 rounded-full border-2 transition-all flex items-center justify-center ${selectedColor?.name === color.name ? 'border-black p-1' : 'border-zinc-200'}`}
-                                            aria-label={`Select color ${color.name}`}
-                                        >
-                                            <span className="w-full h-full rounded-full border border-zinc-100 shadow-inner" style={{ backgroundColor: color.hex }}></span>
-                                            {selectedColor?.name === color.name && (
-                                                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-black rounded-full"></div>
-                                            )}
-                                        </button>
-                                    ))}
-                                </div>
-                            </section>
-
-                            {/* Size Selection */}
-                            <section>
-                                <div className="flex justify-between items-center mb-4">
-                                    <span className={sectionLabelClasses}>Select Sizes & Quantity</span>
-                                    <button 
-                                        onClick={() => setIsSizeGuideOpen(true)}
-                                        className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-black transition-colors border-b border-zinc-200 hover:border-black pb-0.5"
-                                    >
-                                        <RulerIcon className="w-4 h-4" />
-                                        Size Guide
-                                    </button>
-                                </div>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                                    {product.availableSizes.map(size => (
-                                        <div key={size.name} className={`flex flex-col justify-between border rounded-xl p-3 transition-all ${selectedSizes[size.name] > 0 ? 'border-black bg-zinc-50' : 'border-zinc-200 bg-white hover:border-zinc-300'}`}>
-                                            <span className="text-xs font-black uppercase tracking-wider mb-3 text-center">{size.name}</span>
-                                            <div className="flex items-center justify-between gap-2">
-                                                <button 
-                                                    onClick={() => handleRemoveSize(size.name)} 
-                                                    className="w-8 h-8 flex items-center justify-center bg-white border border-zinc-200 rounded-full text-zinc-400 hover:text-black hover:border-black transition-colors"
-                                                    disabled={!selectedSizes[size.name]}
-                                                >
-                                                    <MinusIcon className="w-3 h-3" />
-                                                </button>
-                                                
-                                                <span className="text-sm font-mono font-black text-center w-6">
-                                                    {selectedSizes[size.name] || 0}
-                                                </span>
-                                                
-                                                <button 
-                                                    onClick={() => handleAddSize(size.name)} 
-                                                    className="w-8 h-8 flex items-center justify-center bg-black text-white rounded-full hover:bg-zinc-800 transition-all"
-                                                >
-                                                    <PlusIcon className="w-3 h-3" />
-                                                </button>
-                                            </div>
+                                <h3 className="font-bold text-black uppercase tracking-wider mb-6 text-sm">Customization:</h3>
+                                <ul className="space-y-6 text-sm text-zinc-600 leading-relaxed">
+                                    <li className="flex flex-col gap-1">
+                                        <span className="font-bold text-black">1. Fabric Options:</span>
+                                        <span>{materialName}. Available in 30+ colors.</span>
+                                    </li>
+                                    <li className="flex flex-col gap-1">
+                                        <span className="font-bold text-black">2. Printing & Embroidery Options:</span>
+                                        <span>{product.supportedPrinting && product.supportedPrinting.length > 0 ? product.supportedPrinting.join(', ') : 'Silk Screen Printing, Heat-press Printing, or Direct Embroidery'}</span>
+                                    </li>
+                                    <li className="flex flex-col gap-1">
+                                        <span className="font-bold text-black">3. Available Sizes:</span>
+                                        <div className="flex items-center gap-2">
+                                            <span>
+                                                {product.availableSizes.map(s => s.name).join(', ')}
+                                                {product.availableSizes.length > 0 && ', or other Custom Sizes'}
+                                            </span>
+                                            <button 
+                                                onClick={() => setIsSizeGuideOpen(true)}
+                                                className="text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-black border-b border-zinc-200 hover:border-black ml-2"
+                                            >
+                                                View Chart
+                                            </button>
                                         </div>
-                                    ))}
-                                </div>
+                                    </li>
+                                    <li className="flex flex-col gap-1">
+                                        <span className="font-bold text-black">4. Minimum Order Quantity:</span>
+                                        <span>{product.moq || 24} pieces</span>
+                                    </li>
+                                </ul>
                             </section>
 
-                            {/* Action Buttons */}
-                            <section className="space-y-4 pt-4">
-                                <button 
-                                    onClick={handleAddToQuote}
-                                    className="w-full py-5 bg-black text-white font-black uppercase tracking-[0.3em] text-[11px] rounded-full hover:scale-[1.02] transition-transform shadow-xl flex items-center justify-center gap-3"
-                                >
-                                    <span>Add to Inquiry List</span>
-                                </button>
-                                {product.moq && (
-                                    <p className="text-center text-[9px] font-black text-zinc-400 uppercase tracking-widest">
-                                        Minimum Order Quantity: <span className="text-zinc-900">{product.moq} pieces</span>
-                                    </p>
-                                )}
-                            </section>
+                            <div className="h-px w-full bg-zinc-100"></div>
 
-                            {/* Technical Details Accordion-like look */}
-                            <section className="border-t border-zinc-100 pt-8 grid grid-cols-2 gap-8">
-                                <div>
-                                    <h4 className="text-[9px] font-black uppercase tracking-widest text-zinc-400 mb-2">Material</h4>
-                                    <p className="text-sm font-bold text-gray-900 uppercase tracking-tight">{materialName}</p>
-                                </div>
-                                {product.leadTimeWeeks && (
-                                    <div>
-                                        <h4 className="text-[9px] font-black uppercase tracking-widest text-zinc-400 mb-2">Lead Time</h4>
-                                        <p className="text-sm font-bold text-gray-900 uppercase tracking-tight">{product.leadTimeWeeks} Weeks</p>
-                                    </div>
-                                )}
-                                {product.supportedPrinting && product.supportedPrinting.length > 0 && (
-                                    <div className="col-span-2">
-                                        <h4 className="text-[9px] font-black uppercase tracking-widest text-zinc-400 mb-2">Best For</h4>
-                                        <div className="flex flex-wrap gap-2">
-                                            {product.supportedPrinting.map(method => (
-                                                <span key={method} className="px-2 py-1 bg-zinc-100 rounded text-[9px] font-bold uppercase tracking-wide text-zinc-600">
-                                                    {method}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </section>
+                            <p className="text-xs text-zinc-400 italic leading-relaxed">
+                                Note: Products featured are sample works only. Stats Customs works to help you turn your designs into actual garments you can use, no matter how unique.
+                            </p>
+
+                            <button 
+                                onClick={handleAddToQuote}
+                                className="w-full py-5 bg-black text-white font-black uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 transition-all shadow-xl"
+                            >
+                                ADD TO REQUISITION LIST
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -255,8 +183,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                 {relatedProducts.length > 0 && (
                     <section className="mt-32 pt-20 border-t border-zinc-100">
                         <div className="text-center mb-16">
-                            <span className={sectionLabelClasses}>Complementary Gear</span>
-                            <h2 className="font-eurostile font-black text-3xl md:text-4xl uppercase tracking-tighter">Complete The Look</h2>
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 mb-3 block">Recommended Gear</span>
+                            <h2 className="font-heading font-black text-3xl md:text-4xl uppercase tracking-tighter">Tactical Loadout</h2>
                         </div>
                         <ProductGrid products={relatedProducts} onProductClick={onProductClick} />
                     </section>
@@ -270,7 +198,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                 sizes={product.availableSizes} 
             />
 
-            <div className="mt-20">
+            <div className="mt-0">
                 <CallToAction onNavigate={onNavigate} />
             </div>
         </div>

@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { useAdmin } from '../context/AdminContext';
 import { useData } from '../context/DataContext';
@@ -23,6 +24,7 @@ import SecurityManagement from './SecurityManagement';
 import ServiceManagement from './ServiceManagement';
 import SubscriptionModalManagement from './SubscriptionModalManagement';
 import HomeFeatureManagement from './HomeFeatureManagement';
+import { ViewGridSmallIcon, CartIcon, UserIcon, SparklesIcon, TargetIcon, CloseIcon } from './icons';
 
 const STATUSES: QuoteStatus[] = ['New', 'Contacted', 'In Progress', 'Completed', 'Cancelled'];
 
@@ -58,78 +60,80 @@ const QuoteManagement: React.FC = () => {
 
     return (
         <div className="space-y-6">
-            <div className="bg-white shadow-xl rounded-[2rem] border border-gray-100 overflow-hidden">
-                <header className="px-8 py-8 border-b border-gray-50 flex flex-col sm:flex-row sm:items-center justify-between gap-6 bg-gray-50/30">
-                    <div className="flex gap-1.5 p-1 bg-zinc-100 rounded-2xl w-fit">
-                        {[
-                            { id: 'all', label: 'All Inquiries', count: counts.all },
-                            { id: 'orders', label: 'Store Orders', count: counts.orders },
-                            { id: 'quotes', label: 'Custom Requests', count: counts.quotes }
-                        ].map(tab => (
-                            <button 
-                                key={tab.id}
-                                onClick={() => setFilterTab(tab.id as any)}
-                                className={`px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${filterTab === tab.id ? 'bg-black text-white shadow-lg' : 'text-zinc-400 hover:text-zinc-600'}`}
-                            >
-                                {tab.label} <span className="ml-1 opacity-50">{tab.count}</span>
-                            </button>
-                        ))}
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Sort By</span>
-                        <select
-                            value={sortOrder}
-                            onChange={(e) => setSortOrder(e.target.value as any)}
-                            className="px-6 py-2.5 bg-white border border-zinc-200 rounded-xl text-[10px] font-black uppercase tracking-widest focus:ring-2 focus:ring-black outline-none"
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div>
+                    <h2 className="text-2xl font-eurostile font-black uppercase tracking-widest">Inquiries & Orders</h2>
+                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mt-1">Manage customer requests</p>
+                </div>
+                <div className="flex bg-white p-1 rounded-lg border border-zinc-200 shadow-sm">
+                    {[
+                        { id: 'all', label: 'All' },
+                        { id: 'orders', label: 'Direct Orders' },
+                        { id: 'quotes', label: 'Quotes' }
+                    ].map(tab => (
+                        <button 
+                            key={tab.id}
+                            onClick={() => setFilterTab(tab.id as any)}
+                            className={`px-4 py-1.5 rounded-md text-[10px] font-black uppercase tracking-widest transition-all ${filterTab === tab.id ? 'bg-black text-white shadow-md' : 'text-zinc-400 hover:text-black'}`}
                         >
-                            <option value="newest">Newest First</option>
-                            <option value="oldest">Oldest First</option>
-                        </select>
-                    </div>
-                </header>
-                <div className="overflow-x-auto no-scrollbar">
-                    <table className="min-w-full divide-y divide-gray-100">
-                        <thead className="bg-white">
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <div className="bg-white shadow-sm rounded-xl border border-zinc-200 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-zinc-100">
+                        <thead className="bg-zinc-50">
                             <tr>
-                                <th className="px-8 py-5 text-left text-[9px] font-black text-zinc-300 uppercase tracking-widest">Reference ID</th>
-                                <th className="px-8 py-5 text-left text-[9px] font-black text-zinc-300 uppercase tracking-widest">Customer Name</th>
-                                <th className="px-8 py-5 text-left text-[9px] font-black text-zinc-300 uppercase tracking-widest">Order Status</th>
-                                <th className="px-8 py-5 text-right text-[9px] font-black text-zinc-300 uppercase tracking-widest">Action</th>
+                                <th className="px-6 py-4 text-left text-[9px] font-black text-zinc-400 uppercase tracking-[0.2em]">ID / Date</th>
+                                <th className="px-6 py-4 text-left text-[9px] font-black text-zinc-400 uppercase tracking-[0.2em]">Customer</th>
+                                <th className="px-6 py-4 text-left text-[9px] font-black text-zinc-400 uppercase tracking-[0.2em]">Type</th>
+                                <th className="px-6 py-4 text-left text-[9px] font-black text-zinc-400 uppercase tracking-[0.2em]">Status</th>
+                                <th className="px-6 py-4 text-right text-[9px] font-black text-zinc-400 uppercase tracking-[0.2em]">Action</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-50">
+                        <tbody className="divide-y divide-zinc-50">
                             {filteredQuotes.map((quote) => (
-                                <tr key={quote.id} className="hover:bg-zinc-50/50 transition-colors">
-                                    <td className="px-8 py-6 whitespace-nowrap">
+                                <tr key={quote.id} className="hover:bg-zinc-50 transition-colors group">
+                                    <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex flex-col">
-                                            <span className="text-[11px] font-mono font-black text-gray-900">{quote.id}</span>
-                                            <span className="text-[9px] font-bold text-zinc-400 uppercase">{new Date(quote.submissionDate).toLocaleDateString()}</span>
+                                            <span className="text-xs font-mono font-bold text-black">{quote.id}</span>
+                                            <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-wide">{new Date(quote.submissionDate).toLocaleDateString()}</span>
                                         </div>
                                     </td>
-                                    <td className="px-8 py-6 whitespace-nowrap">
+                                    <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex flex-col">
-                                            <span className="text-sm font-black text-gray-900 uppercase tracking-tight">{quote.contact.name}</span>
-                                            <span className="text-[10px] text-zinc-400 font-medium">{quote.contact.email}</span>
+                                            <span className="text-xs font-black text-zinc-800 uppercase tracking-wide">{quote.contact.name}</span>
+                                            <span className="text-[10px] text-zinc-400">{quote.contact.email}</span>
                                         </div>
                                     </td>
-                                    <td className="px-8 py-6 whitespace-nowrap">
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest ${
+                                            quote.id.startsWith('ORD') ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-indigo-50 text-indigo-600 border border-indigo-100'
+                                        }`}>
+                                            {quote.id.startsWith('ORD') ? 'Order' : 'Quote'}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
                                         <select
                                             value={quote.status}
                                             onChange={(e) => updateQuoteStatus(quote.id, e.target.value as QuoteStatus)}
-                                            className={`px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border-2 transition-all ${
-                                                quote.status === 'New' ? 'border-zinc-100 bg-zinc-50 text-zinc-400' :
-                                                quote.status === 'Completed' ? 'border-emerald-100 bg-emerald-50 text-emerald-600' :
-                                                quote.status === 'Cancelled' ? 'border-red-100 bg-red-50 text-red-600' :
-                                                'border-black bg-black text-white shadow-md'
+                                            className={`appearance-none pl-3 pr-8 py-1.5 rounded-md text-[9px] font-black uppercase tracking-widest border cursor-pointer focus:ring-1 focus:ring-black outline-none bg-white transition-all ${
+                                                quote.status === 'New' ? 'border-amber-200 text-amber-600 bg-amber-50' :
+                                                quote.status === 'Completed' ? 'border-emerald-200 text-emerald-600 bg-emerald-50' :
+                                                quote.status === 'Cancelled' ? 'border-red-200 text-red-600 bg-red-50' :
+                                                'border-zinc-200 text-zinc-600'
                                             }`}
                                         >
                                             {STATUSES.map(status => <option key={status} value={status}>{status}</option>)}
                                         </select>
                                     </td>
-                                    <td className="px-8 py-6 whitespace-nowrap text-right">
+                                    <td className="px-6 py-4 whitespace-nowrap text-right">
                                         <button 
                                             onClick={() => setSelectedQuote(quote)} 
-                                            className="px-6 py-2.5 bg-zinc-900 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-black transition-all active:scale-95 shadow-sm"
+                                            className="text-[9px] font-black uppercase tracking-widest text-zinc-400 hover:text-black border-b border-transparent hover:border-black transition-all pb-0.5"
                                         >
                                             View Details
                                         </button>
@@ -138,8 +142,8 @@ const QuoteManagement: React.FC = () => {
                             ))}
                             {filteredQuotes.length === 0 && (
                                 <tr>
-                                    <td colSpan={4} className="text-center py-20 text-zinc-300 text-[10px] font-black uppercase tracking-[0.4em]">
-                                        No inquiries found
+                                    <td colSpan={5} className="text-center py-20 text-zinc-300 text-[10px] font-black uppercase tracking-[0.4em]">
+                                        No data available
                                     </td>
                                 </tr>
                             )}
@@ -158,6 +162,28 @@ const QuoteManagement: React.FC = () => {
     )
 }
 
+const NavItem: React.FC<{ 
+    active: boolean; 
+    onClick: () => void; 
+    label: string; 
+    icon?: React.ReactNode 
+}> = ({ active, onClick, label, icon }) => (
+    <button 
+        onClick={onClick}
+        className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 group ${
+            active 
+            ? 'bg-white text-black shadow-lg shadow-black/5 transform translate-x-1' 
+            : 'text-zinc-500 hover:text-black hover:bg-zinc-100'
+        }`}
+    >
+        <span className={`transition-colors ${active ? 'text-black' : 'text-zinc-400 group-hover:text-black'}`}>
+            {icon || <div className="w-4 h-4 bg-current rounded-full" />}
+        </span>
+        <span className="text-[10px] font-black uppercase tracking-[0.2em]">{label}</span>
+        {active && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-black animate-pulse" />}
+    </button>
+);
+
 const AdminDashboard: React.FC = () => {
     const { logout, subscriptions, submittedQuotes, fetchAdminData } = useAdmin();
     const { fetchData, isLoading: isDataSyncing } = useData();
@@ -169,15 +195,15 @@ const AdminDashboard: React.FC = () => {
     };
 
     const contentSubTabs = [
-        { id: 'banners', label: 'Home Hero' },
-        { id: 'feature-section', label: 'Home Feature' },
-        { id: 'page-headers', label: 'Page Banners' },
+        { id: 'banners', label: 'Hero Banners' },
+        { id: 'feature-section', label: 'Feature Carousel' },
+        { id: 'page-headers', label: 'Page Headers' },
         { id: 'info-cards', label: 'Info Cards' },
-        { id: 'featured-video', label: 'Video Feature' },
-        { id: 'signup-popup', label: 'Signup Popup' },
+        { id: 'featured-video', label: 'Video Section' },
+        { id: 'signup-popup', label: 'Newsletter Popup' },
         { id: 'services', label: 'Services' },
-        { id: 'materials', label: 'Fabrics' },
-        { id: 'how-we-work', label: 'Process' },
+        { id: 'materials', label: 'Materials' },
+        { id: 'how-we-work', label: 'Process Steps' },
         { id: 'partners', label: 'Partners' },
         { id: 'brand-reviews', label: 'Reviews' },
         { id: 'platform-ratings', label: 'Ratings' },
@@ -185,133 +211,112 @@ const AdminDashboard: React.FC = () => {
         { id: 'community', label: 'Community' },
     ];
 
-    const mainTabs = [
-        { id: 'analytics', label: 'Dashboard' },
-        { id: 'quotes', label: 'Inquiries', count: submittedQuotes.length },
-        { id: 'products', label: 'Products' },
-        { id: 'collections', label: 'Collections' },
-        { id: 'subscriptions', label: 'Audience', count: subscriptions.length },
-        { id: 'email-marketing', label: 'Marketing' },
-        { id: 'content', label: 'Site Content' },
-        { id: 'security', label: 'Admin Settings' }
-    ];
-
     return (
-        <div className="min-h-screen p-4 sm:p-6 lg:p-10 bg-zinc-50 font-sans selection:bg-black selection:text-white">
-            <div className="max-w-[1600px] mx-auto">
-                <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
-                    <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 bg-black rounded-3xl flex items-center justify-center shadow-2xl overflow-hidden">
-                             <img src="https://i.imgur.com/OIYeMvS.png" alt="STATS" className="h-10 w-auto" />
+        <div className="min-h-screen bg-zinc-50 font-sans flex flex-col md:flex-row">
+            {/* Sidebar Navigation */}
+            <aside className="w-full md:w-64 lg:w-72 bg-[#0F0F0F] text-white flex-shrink-0 flex flex-col h-screen sticky top-0 overflow-y-auto no-scrollbar border-r border-black">
+                <div className="p-8">
+                    <div className="flex items-center gap-3 mb-10">
+                        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <img src="https://i.imgur.com/OIYeMvS.png" alt="Stats" className="w-6 h-6 object-contain" />
                         </div>
                         <div>
-                            <div className="flex items-center gap-3">
-                                <h1 className="text-3xl font-eurostile font-black uppercase tracking-tighter text-gray-900 leading-none">Admin Dashboard</h1>
-                                <span className="bg-zinc-200 text-zinc-900 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-widest border border-zinc-300">Stats PH v2.1</span>
-                            </div>
-                            <p className="text-gray-400 mt-1 text-xs font-bold tracking-widest uppercase opacity-70">Store Management Interface</p>
+                            <h1 className="font-eurostile font-black text-lg uppercase tracking-widest leading-none">Admin</h1>
+                            <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Dashboard v2.1</span>
                         </div>
                     </div>
-                    
-                    <div className="flex items-center gap-4">
+
+                    <nav className="space-y-1">
+                        <div className="px-4 py-2 text-[9px] font-black text-zinc-600 uppercase tracking-[0.3em]">Main</div>
+                        <NavItem active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')} label="Overview" icon={<ViewGridSmallIcon className="w-4 h-4"/>} />
+                        <NavItem active={activeTab === 'quotes'} onClick={() => setActiveTab('quotes')} label="Inquiries" icon={<CartIcon className="w-4 h-4"/>} />
+                        <NavItem active={activeTab === 'products'} onClick={() => setActiveTab('products')} label="Products" icon={<TargetIcon className="w-4 h-4"/>} />
+                        <NavItem active={activeTab === 'collections'} onClick={() => setActiveTab('collections')} label="Collections" icon={<ViewGridSmallIcon className="w-4 h-4"/>} />
+                        
+                        <div className="px-4 py-2 text-[9px] font-black text-zinc-600 uppercase tracking-[0.3em] mt-6">Marketing</div>
+                        <NavItem active={activeTab === 'subscriptions'} onClick={() => setActiveTab('subscriptions')} label="Audience" icon={<UserIcon className="w-4 h-4"/>} />
+                        <NavItem active={activeTab === 'email-marketing'} onClick={() => setActiveTab('email-marketing')} label="Campaigns" icon={<SparklesIcon className="w-4 h-4"/>} />
+                        
+                        <div className="px-4 py-2 text-[9px] font-black text-zinc-600 uppercase tracking-[0.3em] mt-6">System</div>
+                        <NavItem active={activeTab === 'content'} onClick={() => setActiveTab('content')} label="Site Content" icon={<ViewGridSmallIcon className="w-4 h-4"/>} />
+                        <NavItem active={activeTab === 'security'} onClick={() => setActiveTab('security')} label="Settings" icon={<TargetIcon className="w-4 h-4"/>} />
+                    </nav>
+                </div>
+                
+                <div className="mt-auto p-8 border-t border-white/5">
+                    <button 
+                        onClick={logout}
+                        className="w-full py-3 border border-zinc-700 rounded-lg text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black hover:border-white transition-all text-zinc-400"
+                    >
+                        Sign Out
+                    </button>
+                </div>
+            </aside>
+
+            {/* Main Content Area */}
+            <main className="flex-grow p-6 md:p-12 overflow-y-auto min-h-screen">
+                <div className="max-w-[1600px] mx-auto">
+                    {/* Header Toolbar */}
+                    <div className="flex justify-end mb-8 gap-4">
                         <button 
-                            onClick={handleRefresh}
+                            onClick={handleRefresh} 
                             disabled={isDataSyncing}
-                            className="p-3 bg-white border border-gray-100 rounded-full shadow-sm hover:bg-gray-50 transition-all active:rotate-180 duration-500 disabled:opacity-50"
-                            title="Refresh Data"
+                            className="flex items-center gap-2 px-4 py-2 bg-white border border-zinc-200 rounded-full text-[10px] font-black uppercase tracking-widest hover:border-black transition-all disabled:opacity-50"
                         >
-                            <svg className={`w-4 h-4 text-gray-400 ${isDataSyncing ? 'animate-spin' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                            </svg>
-                        </button>
-                        <div className="hidden lg:flex items-center gap-3 px-6 py-2 bg-white border border-gray-100 rounded-full shadow-sm">
-                            <span className={`w-2 h-2 rounded-full ${isDataSyncing ? 'bg-amber-400 animate-pulse' : 'bg-emerald-400'}`}></span>
-                            <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">{isDataSyncing ? 'Syncing...' : 'System Ready'}</span>
-                        </div>
-                        <button 
-                            onClick={logout} 
-                            className="px-8 py-3 bg-red-50 text-red-600 font-black uppercase tracking-[0.2em] text-[10px] rounded-full hover:bg-red-600 hover:text-white transition-all shadow-sm border border-red-100 active:scale-95"
-                        >
-                            Logout
+                            <div className={`w-2 h-2 rounded-full ${isDataSyncing ? 'bg-amber-400 animate-pulse' : 'bg-emerald-400'}`}></div>
+                            {isDataSyncing ? 'Syncing...' : 'System Ready'}
                         </button>
                     </div>
-                </header>
 
-                <div className="flex flex-col lg:flex-row gap-10">
-                    <aside className="lg:w-72 flex-shrink-0">
-                        <nav className="flex flex-col gap-2 sticky top-28">
-                            {mainTabs.map(tab => (
-                                <button 
-                                    key={tab.id}
-                                    onClick={() => setActiveTab(tab.id as any)} 
-                                    className={`group flex items-center justify-between py-5 px-8 rounded-3xl transition-all duration-500 ${
-                                        activeTab === tab.id 
-                                        ? 'bg-black text-white shadow-2xl translate-x-2' 
-                                        : 'bg-white text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 border border-zinc-100'
-                                    }`}
-                                >
-                                    <span className="text-[11px] font-black uppercase tracking-[0.2em]">{tab.label}</span>
-                                    {tab.count !== undefined && (
-                                        <span className={`text-[10px] font-black px-2.5 py-1 rounded-full ${activeTab === tab.id ? 'bg-white/20' : 'bg-zinc-50 text-zinc-400'}`}>
-                                            {tab.count}
-                                        </span>
-                                    )}
-                                </button>
-                            ))}
-                        </nav>
-                    </aside>
-
-                    <main className="flex-grow min-w-0">
-                        <div className="animate-fade-in [animation-duration:800ms]">
-                            {activeTab === 'analytics' && <DashboardAnalytics />}
-                            {activeTab === 'quotes' && <QuoteManagement />}
-                            {activeTab === 'products' && <ProductManagement />}
-                            {activeTab === 'collections' && <CollectionManagement />}
-                            {activeTab === 'subscriptions' && <SubscriptionManagement />}
-                            {activeTab === 'email-marketing' && <EmailMarketing />}
-                            {activeTab === 'security' && <SecurityManagement />}
-                            {activeTab === 'content' && (
-                                <div className="space-y-8">
-                                    <div className="bg-white p-6 rounded-3xl shadow-xl border border-gray-100 overflow-x-auto no-scrollbar">
-                                        <div className="flex items-center gap-2 min-w-max">
-                                            {contentSubTabs.map(tab => (
-                                                <button 
-                                                    key={tab.id}
-                                                    onClick={() => setContentSubTab(tab.id as any)} 
-                                                    className={`px-5 py-3 text-[9px] font-black uppercase tracking-widest rounded-full transition-all border ${
-                                                        contentSubTab === tab.id 
-                                                        ? 'bg-black text-white border-black shadow-lg' 
-                                                        : 'bg-zinc-50 text-gray-400 border-zinc-100 hover:border-zinc-400 hover:text-black'
-                                                    }`}
-                                                >
-                                                    {tab.label}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="animate-fade-in-up [animation-duration:600ms]">
-                                        {contentSubTab === 'faqs' && <FaqManagement />}
-                                        {contentSubTab === 'banners' && <HeroManagement />}
-                                        {contentSubTab === 'page-headers' && <PageBannerManagement />}
-                                        {contentSubTab === 'partners' && <PartnerManagement />}
-                                        {contentSubTab === 'how-we-work' && <HowWeWorkManagement />}
-                                        {contentSubTab === 'materials' && <FabricManagement />}
-                                        {contentSubTab === 'info-cards' && <InfoCardManagement />}
-                                        {contentSubTab === 'featured-video' && <FeaturedVideoManagement />}
-                                        {contentSubTab === 'brand-reviews' && <BrandReviewManagement />}
-                                        {contentSubTab === 'platform-ratings' && <PlatformRatingManagement />}
-                                        {contentSubTab === 'community' && <CommunityManagement />}
-                                        {contentSubTab === 'services' && <ServiceManagement />}
-                                        {contentSubTab === 'signup-popup' && <SubscriptionModalManagement />}
-                                        {contentSubTab === 'feature-section' && <HomeFeatureManagement />}
+                    <div className="animate-fade-in">
+                        {activeTab === 'analytics' && <DashboardAnalytics />}
+                        {activeTab === 'quotes' && <QuoteManagement />}
+                        {activeTab === 'products' && <ProductManagement />}
+                        {activeTab === 'collections' && <CollectionManagement />}
+                        {activeTab === 'subscriptions' && <SubscriptionManagement />}
+                        {activeTab === 'email-marketing' && <EmailMarketing />}
+                        {activeTab === 'security' && <SecurityManagement />}
+                        {activeTab === 'content' && (
+                            <div className="space-y-8">
+                                <div className="bg-white p-2 rounded-xl shadow-sm border border-zinc-200 overflow-x-auto no-scrollbar">
+                                    <div className="flex items-center gap-1 min-w-max">
+                                        {contentSubTabs.map(tab => (
+                                            <button 
+                                                key={tab.id}
+                                                onClick={() => setContentSubTab(tab.id as any)} 
+                                                className={`px-4 py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${
+                                                    contentSubTab === tab.id 
+                                                    ? 'bg-black text-white' 
+                                                    : 'text-zinc-500 hover:bg-zinc-50 hover:text-black'
+                                                }`}
+                                            >
+                                                {tab.label}
+                                            </button>
+                                        ))}
                                     </div>
                                 </div>
-                            )}
-                        </div>
-                    </main>
+                                
+                                <div className="animate-fade-in-up">
+                                    {contentSubTab === 'faqs' && <FaqManagement />}
+                                    {contentSubTab === 'banners' && <HeroManagement />}
+                                    {contentSubTab === 'page-headers' && <PageBannerManagement />}
+                                    {contentSubTab === 'partners' && <PartnerManagement />}
+                                    {contentSubTab === 'how-we-work' && <HowWeWorkManagement />}
+                                    {contentSubTab === 'materials' && <FabricManagement />}
+                                    {contentSubTab === 'info-cards' && <InfoCardManagement />}
+                                    {contentSubTab === 'featured-video' && <FeaturedVideoManagement />}
+                                    {contentSubTab === 'brand-reviews' && <BrandReviewManagement />}
+                                    {contentSubTab === 'platform-ratings' && <PlatformRatingManagement />}
+                                    {contentSubTab === 'community' && <CommunityManagement />}
+                                    {contentSubTab === 'services' && <ServiceManagement />}
+                                    {contentSubTab === 'signup-popup' && <SubscriptionModalManagement />}
+                                    {contentSubTab === 'feature-section' && <HomeFeatureManagement />}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
+            </main>
         </div>
     );
 };

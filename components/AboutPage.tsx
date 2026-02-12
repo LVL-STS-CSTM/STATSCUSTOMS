@@ -102,19 +102,19 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
 
     return (
         <div className="bg-white text-[#3A3A3A] overflow-x-hidden">
-            <PageHeader page="about" fallbackTitle="Our Story" fallbackDescription="Crafting Quality. Championing Local Excellence." />
+            <PageHeader page="about" fallbackTitle="The Narrative" fallbackDescription="Forged in the Philippines. Engineered for the World." />
             
             <section ref={sectionRefs.about} className="py-32 px-4 bg-white">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div className={`transition-all duration-1000 ease-out ${visibility.about ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
                          <div className="flex items-center gap-3 mb-6">
                             <div className="w-10 h-[1px] bg-black"></div>
-                            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black">Our Journey</span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black">The Origin</span>
                         </div>
-                        <h2 className="font-eurostile text-4xl lg:text-5xl text-gray-900 mb-8 uppercase tracking-widest">About Stats</h2>
+                        <h2 className="font-eurostile text-4xl lg:text-5xl text-gray-900 mb-8 uppercase tracking-widest">Technical Heritage</h2>
                         <div className="space-y-6 text-gray-500 leading-relaxed font-light text-lg antialiased">
                             <p>
-                                <strong>STATS</strong> is a proudly Filipino brand that creates custom clothing — crafted for teams, businesses, and everyday people who believe quality shouldn’t come with an outrageous price tag.
+                                <strong>STATS</strong> is a proudly Filipino brand engineering custom apparel for those who demand excellence without the premium markup.
                             </p>
                             <p>
                                 From game-day jerseys to work polos and daily tees, every piece is designed, printed, and sewn by skilled local hands that take pride in every detail. No shortcuts. No overpriced fluff. Just honest, durable apparel that feels right, fits well, and looks even better.
@@ -140,7 +140,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                             <div className="w-16 h-16 rounded-2xl bg-black flex items-center justify-center shadow-lg">
                                 <TargetIcon className="w-8 h-8 text-white"/>
                             </div>
-                            <h2 className="font-eurostile text-2xl text-gray-900 uppercase tracking-widest">Our Mission</h2>
+                            <h2 className="font-eurostile text-2xl text-gray-900 uppercase tracking-widest">Mission Directive</h2>
                         </div>
                         <div className="space-y-4">
                             <p className="text-gray-500 leading-relaxed font-light text-lg antialiased">
@@ -156,7 +156,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                             <div className="w-16 h-16 rounded-2xl bg-black flex items-center justify-center shadow-lg">
                                 <EyeIcon className="w-8 h-8 text-white"/>
                             </div>
-                            <h2 className="font-eurostile text-2xl text-gray-900 uppercase tracking-widest">Our Vision</h2>
+                            <h2 className="font-eurostile text-2xl text-gray-900 uppercase tracking-widest">Future Sight</h2>
                         </div>
                         <div className="space-y-4">
                             <p className="text-gray-500 leading-relaxed font-light text-lg antialiased">
@@ -174,7 +174,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                  <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-24">
                         <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.5em] mb-4 block font-eurostile">What We Stand For</span>
-                        <h2 className="font-eurostile text-4xl lg:text-5xl text-white mb-4 uppercase tracking-widest">Our Values</h2>
+                        <h2 className="font-eurostile text-4xl lg:text-5xl text-white mb-4 uppercase tracking-widest">Core Parameters</h2>
                         <div className="w-24 h-1 bg-white/10 mx-auto mt-8"></div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -189,8 +189,8 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             <div ref={sectionRefs.process} className="py-32 px-4 bg-white overflow-hidden">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-32">
-                         <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.5em] mb-4 block font-eurostile">Our 5-Step Process</span>
-                        <h2 className="font-eurostile text-4xl lg:text-5xl text-[#1A1A1A] mb-4 uppercase tracking-widest">How We Make It Happen</h2>
+                         <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.5em] mb-4 block font-eurostile">Execution Protocol</span>
+                        <h2 className="font-eurostile text-4xl lg:text-5xl text-[#1A1A1A] mb-4 uppercase tracking-widest">Tactical Sequence</h2>
                         <p className="mt-6 text-gray-500 max-w-2xl mx-auto">We’ve simplified everything so you can focus on the excitement of your custom gear. Siguradong diretso sa next level ang branding mo!</p>
                     </div>
                     <div className="relative">

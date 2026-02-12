@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from '../types';
 
 /**
@@ -23,6 +23,10 @@ interface HeroProps {
  */
 const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, buttonText, buttonCollectionLink, onNavigate, isFirst, hideTextOverlay }) => {
     const [hasError, setHasError] = useState(false);
+
+    useEffect(() => {
+        setHasError(false);
+    }, [mediaSrc]);
 
     const heroHeightClass = isFirst ? 'min-h-screen lg:max-h-[1080px]' : 'h-[60vh] min-h-[400px]';
     // Slightly nudged down titles for a more sophisticated, "perfect" scale

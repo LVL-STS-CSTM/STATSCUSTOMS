@@ -75,14 +75,14 @@ const TrackProjectPage: React.FC = () => {
         <div className="bg-white min-h-screen">
             <PageHeader 
                 page="track-project" 
-                fallbackTitle="Track Your Order" 
-                fallbackDescription="Get real-time updates on the progress of your custom apparel." 
+                fallbackTitle="Logistics Tracker" 
+                fallbackDescription="Real-time production status monitoring." 
                 fallbackImage="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg"
             />
 
             <div className="max-w-4xl mx-auto px-4 py-20">
                 <section className="bg-zinc-50 p-10 rounded-[2.5rem] border border-zinc-100 shadow-xl shadow-zinc-200/20">
-                    <h2 className="font-oswald text-2xl uppercase tracking-widest text-zinc-900 mb-8 text-center">Order Lookup</h2>
+                    <h2 className="font-oswald text-2xl uppercase tracking-widest text-zinc-900 mb-8 text-center">Status Recon</h2>
                     <form onSubmit={handleSearch} className="relative max-w-lg mx-auto">
                         <input 
                             type="text" 
@@ -97,7 +97,7 @@ const TrackProjectPage: React.FC = () => {
                             className="absolute right-2 top-2 bottom-2 px-6 bg-black text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-zinc-800 transition-all flex items-center gap-2"
                         >
                             {isLoading ? <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div> : <SearchIcon className="w-4 h-4"/>}
-                            <span>Check Status</span>
+                            <span>Locate Order</span>
                         </button>
                     </form>
                     {error && <p className="text-center mt-6 text-red-500 text-[10px] font-black uppercase tracking-widest animate-pulse">{error}</p>}

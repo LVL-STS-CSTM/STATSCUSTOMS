@@ -1,3 +1,4 @@
+
 import React, { useRef, useState, useEffect } from 'react';
 import { ChatIcon, DesignIcon, ProductionIcon, LogisticsIcon, CloseIcon, ArrowLongRightIcon } from './icons';
 import { useOnScreen } from '../useOnScreen';
@@ -105,9 +106,9 @@ const HowItWorks: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16 md:mb-24">
-                    <span className={`text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] block mb-4 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'}`}>Streamlined Process</span>
-                    <h2 className={`font-oswald text-3xl md:text-6xl text-white mb-6 uppercase tracking-tighter transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>How It Works</h2>
-                    <p className={`text-base md:text-lg text-zinc-400 max-w-2xl mx-auto font-light transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>From concept to doorstep in four simple steps.</p>
+                    <span className={`text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] block mb-4 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'}`}>Operational Protocol</span>
+                    <h2 className={`font-oswald text-3xl md:text-6xl text-white mb-6 uppercase tracking-tighter transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Deployment Workflow</h2>
+                    <p className={`text-base md:text-lg text-zinc-400 max-w-2xl mx-auto font-light transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Precision-engineered execution from design blueprint to final delivery.</p>
                 </div>
 
                 <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">

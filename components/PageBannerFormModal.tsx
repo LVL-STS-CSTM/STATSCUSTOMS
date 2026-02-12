@@ -18,8 +18,8 @@ const emptyBanner: Omit<PageBanner, 'id'> = {
 };
 
 const internalPages: View[] = [
-    'catalogue', 'about', 'partners', 'contact', 'faq', 'services', 
-    'terms-of-service', 'return-policy', 'privacy-policy', 'materials', 'community', 'how-we-work', 'mockup-generator'
+    'browse', 'catalogue', 'about', 'partners', 'contact', 'faq', 'services', 
+    'terms-of-service', 'return-policy', 'privacy-policy', 'materials', 'community', 'how-we-work', 'mockup-generator', 'track-project'
 ];
 
 const PageBannerFormModal: React.FC<PageBannerFormModalProps> = ({ isOpen, onClose, bannerToEdit }) => {

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 
 interface LazyImageProps {
@@ -23,6 +24,12 @@ const LazyImage: React.FC<LazyImageProps> = ({
     const [isLoaded, setIsLoaded] = useState(false);
     const [hasError, setHasError] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+
+    // Reset state when src changes to support dynamic updates (e.g. from admin panel)
+    useEffect(() => {
+        setIsLoaded(false);
+        setHasError(false);
+    }, [src]);
 
     useEffect(() => {
         const observer = new IntersectionObserver(

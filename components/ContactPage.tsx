@@ -48,7 +48,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
     
     return (
         <div className="bg-white min-h-screen">
-            <PageHeader page="contact" fallbackTitle="Get in Touch" fallbackDescription="Have a question? We're here to help you create the perfect custom apparel." />
+            <PageHeader page="contact" fallbackTitle="Comm Channels" fallbackDescription="Direct line to our HQ. Let's engineer your next project." />
             
             <div className="max-w-[1840px] mx-auto px-4 sm:px-6 lg:px-12 py-32">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
@@ -58,9 +58,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                         <div>
                              <div className="flex items-center gap-3 mb-6">
                                 <div className="w-10 h-[1px] bg-black"></div>
-                                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black">Visit Our Studio</span>
+                                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black">Base of Operations</span>
                             </div>
-                            <h2 className="font-eurostile text-4xl lg:text-5xl text-gray-900 uppercase tracking-tighter leading-none mb-8">Our Location</h2>
+                            <h2 className="font-eurostile text-4xl lg:text-5xl text-gray-900 uppercase tracking-tighter leading-none mb-8">Headquarters</h2>
                             <p className="text-gray-500 text-lg font-light leading-relaxed max-w-xl">
                                 We'd love to meet you! Stop by our studio in Muntinlupa to check out our fabrics, see our work in person, and chat about your next project.
                             </p>
@@ -126,9 +126,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                              <header className="mb-12 relative z-10 text-center md:text-left">
                                 <div className="inline-flex items-center gap-3 px-5 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
                                     <TargetIcon className="w-4 h-4 text-white" />
-                                    <span className="text-[9px] font-black text-white uppercase tracking-widest">Connect with our team</span>
+                                    <span className="text-[9px] font-black text-white uppercase tracking-widest">Establish Comms</span>
                                 </div>
-                                <h2 className="font-eurostile text-3xl uppercase tracking-tighter">Tell us about your project</h2>
+                                <h2 className="font-eurostile text-3xl uppercase tracking-tighter">Submit Project Brief</h2>
                              </header>
 
                              {isSubmitted ? (
@@ -167,7 +167,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                                     </div>
 
                                     <div>
-                                        <label className={labelClasses}>How can we help?</label>
+                                        <label className={labelClasses}>Project Specifications</label>
                                         <textarea name="message" rows={4} value={formData.message} onChange={handleInputChange} required className="w-full px-5 py-4 bg-white/5 border border-white/10 text-white placeholder-zinc-700 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white transition-all text-sm resize-none" placeholder="DESCRIBE YOUR PROJECT OR QUESTIONS..."></textarea>
                                     </div>
 
@@ -182,7 +182,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                                             ) : (
                                                 <>
                                                     <SendIcon className="w-4 h-4" />
-                                                    <span>Send Message</span>
+                                                    <span>TRANSMIT INQUIRY</span>
                                                 </>
                                             )}
                                         </button>
