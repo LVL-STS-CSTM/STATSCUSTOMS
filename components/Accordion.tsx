@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 /**
@@ -26,6 +27,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, theme = 'light' 
     return (
         <div className={`py-2 ${isDark ? 'border-b border-gray-800' : 'border-b border-gray-200'}`}>
             <button
+                type="button"
                 onClick={() => setIsOpen(!isOpen)}
                 className={`w-full flex justify-between items-center text-left p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black transition-colors ${
                     isDark

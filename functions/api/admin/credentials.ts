@@ -1,6 +1,7 @@
 
 interface Env {
   STATSCUSTOMSDATA: any;
+  ADMIN_SECRET: string;
 }
 
 const SECURITY_HEADERS = {
@@ -19,20 +20,38 @@ const getAuthToken = (req: Request) => {
   return null;
 };
 
-const isAuthenticated = async (token: string | null, env: Env) => {
-  if (!token) return false;
-  const storedCredsRaw = await env.STATSCUSTOMSDATA.get('credential');
-  if (!storedCredsRaw) return false;
-  const storedCreds = JSON.parse(storedCredsRaw);
-  const expectedToken = `${storedCreds.username}:${storedCreds.password}`;
-  return token === expectedToken;
-};
+// Reuse the JWT verification logic from other endpoints to ensure compatibility with login
+async function verifyToken(token: string, secret: string) {
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return false;
+    
+    const [header, payload, signature] = parts;
+    const message = `${header}.${payload}`;
+    const encoder = new TextEncoder();
+    
+    const key = await crypto.subtle.importKey(
+      "raw",
+      encoder.encode(secret),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["verify"]
+    );
+    
+    const sigArray = Uint8Array.from(atob(signature.replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0));
+    return await crypto.subtle.verify("HMAC", key, sigArray, encoder.encode(message));
+  } catch {
+    return false;
+  }
+}
 
 export const onRequestPost = async (context: { env: Env; request: Request }) => {
   const { env, request } = context;
   const token = getAuthToken(request);
+  // Must match the fallback secret used in login.ts if env var is missing
+  const secret = env.ADMIN_SECRET || "fallback_internal_secret_level_customs";
 
-  if (!(await isAuthenticated(token, env))) {
+  if (!token || !(await verifyToken(token, secret))) {
     return new Response(JSON.stringify({ message: 'Unauthorized' }), { 
         status: 401,
         headers: SECURITY_HEADERS
