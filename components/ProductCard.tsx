@@ -21,7 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <div className="relative w-full aspect-[3/4] lg:aspect-[4/5] overflow-hidden bg-zinc-50 border border-zinc-100 rounded-sm mb-4">
+            <div className="relative w-full aspect-[4/5] overflow-hidden bg-zinc-50 border border-zinc-100 rounded-sm mb-4">
                 {/* Image Stack */}
                 <div className="absolute inset-0 transition-transform duration-1000 ease-out group-hover:scale-105">
                     <img
