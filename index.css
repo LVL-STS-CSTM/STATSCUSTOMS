@@ -1,34 +1,53 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* 
-   IMPORTANT: 
-   1. Ensure a folder named 'fonts' exists in your 'public' directory.
-   2. We have added multiple URL casings below. If the first one fails (due to case sensitivity on servers), 
-      the browser will try the next one.
+   FONT STRATEGY:
+   Linux servers (Vercel/Netlify) are case-sensitive. 
+   We define two font families: one for TitleCase filenames and one for lowercase.
+   Tailwind will attempt to load the first; if it 404s, it falls back to the second.
 */
 
+/* --- Rheiborn Sans Clean (TitleCase Files) --- */
 @font-face {
   font-family: 'Rheiborn Sans Clean';
   src: url('/fonts/RheibornSansClean.woff2') format('woff2'),
-       url('/fonts/rheibornsansclean.woff2') format('woff2'),
        url('/fonts/RheibornSansClean.woff') format('woff'),
+       url('/fonts/RheibornSansClean.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Rheiborn Sans Clean (Lowercase Files - Fallback) --- */
+@font-face {
+  font-family: 'Rheiborn Sans Clean LC';
+  src: url('/fonts/rheibornsansclean.woff2') format('woff2'),
        url('/fonts/rheibornsansclean.woff') format('woff'),
-       url('/fonts/RheibornSansClean.ttf') format('truetype'),
        url('/fonts/rheibornsansclean.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
+/* --- Futura (TitleCase Files) --- */
 @font-face {
   font-family: 'Futura';
   src: url('/fonts/Futura.woff2') format('woff2'),
-       url('/fonts/futura.woff2') format('woff2'),
        url('/fonts/Futura.woff') format('woff'),
+       url('/fonts/Futura.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Futura (Lowercase Files - Fallback) --- */
+@font-face {
+  font-family: 'Futura LC';
+  src: url('/fonts/futura.woff2') format('woff2'),
        url('/fonts/futura.woff') format('woff'),
-       url('/fonts/Futura.ttf') format('truetype'),
        url('/fonts/futura.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
@@ -38,7 +57,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Futura', 'Jost', sans-serif; 
+  font-family: 'Futura', 'Futura LC', 'Jost', sans-serif; 
   background-color: #ffffff;
   color: #111;
   -webkit-font-smoothing: antialiased;
@@ -48,7 +67,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Rheiborn Sans Clean", "Antonio", sans-serif;
+  font-family: "Rheiborn Sans Clean", "Rheiborn Sans Clean LC", "Antonio", sans-serif;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 500;
