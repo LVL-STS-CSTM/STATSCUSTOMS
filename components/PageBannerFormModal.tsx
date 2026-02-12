@@ -25,6 +25,7 @@ const internalPages: View[] = [
 const PageBannerFormModal: React.FC<PageBannerFormModalProps> = ({ isOpen, onClose, bannerToEdit }) => {
     const { pageBanners, updateData } = useData();
     const [formData, setFormData] = useState<PageBanner | Omit<PageBanner, 'id'>>(bannerToEdit || emptyBanner);
+    const [isSaving, setIsSaving] = useState(false);
     
     useEffect(() => {
         setFormData(bannerToEdit || emptyBanner);
@@ -36,21 +37,35 @@ const PageBannerFormModal: React.FC<PageBannerFormModalProps> = ({ isOpen, onClo
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
     
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.title || !formData.imageUrl) {
             alert('Please fill out Title and Image URL.');
             return;
         }
 
-        if (bannerToEdit && 'id' in formData) {
-            const updated = pageBanners.map(b => b.id === (formData as PageBanner).id ? formData as PageBanner : b);
-            updateData('pageBanners', updated);
-        } else {
-            const newBanner = { ...formData, id: `pb-${Date.now()}` };
-            updateData('pageBanners', [...pageBanners, newBanner]);
+        setIsSaving(true);
+        try {
+            let success = false;
+            if (bannerToEdit && 'id' in formData) {
+                const updated = pageBanners.map(b => b.id === (formData as PageBanner).id ? formData as PageBanner : b);
+                success = await updateData('pageBanners', updated);
+            } else {
+                const newBanner = { ...formData, id: `pb-${Date.now()}` };
+                success = await updateData('pageBanners', [...pageBanners, newBanner]);
+            }
+
+            if (success) {
+                onClose();
+            } else {
+                alert('Failed to save banner. Please try again.');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while saving.');
+        } finally {
+            setIsSaving(false);
         }
-        onClose();
     };
 
     const darkInputStyles = "mt-1 block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white sm:text-sm placeholder-gray-400";
@@ -60,7 +75,7 @@ const PageBannerFormModal: React.FC<PageBannerFormModalProps> = ({ isOpen, onClo
             <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
                 <header className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10">
                     <h2 className="text-xl font-semibold">{bannerToEdit ? 'Edit Page Banner' : 'Add Page Banner'}</h2>
-                    <button onClick={onClose}><CloseIcon className="w-6 h-6 text-gray-600 hover:text-black" /></button>
+                    <button onClick={onClose} disabled={isSaving}><CloseIcon className="w-6 h-6 text-gray-600 hover:text-black" /></button>
                 </header>
                 <form onSubmit={handleSubmit} className="overflow-y-auto p-6 space-y-4">
                     <div>
@@ -82,8 +97,10 @@ const PageBannerFormModal: React.FC<PageBannerFormModalProps> = ({ isOpen, onClo
                         <input type="url" name="imageUrl" id="imageUrl" value={formData.imageUrl} onChange={handleInputChange} required className={darkInputStyles} />
                     </div>
                     <footer className="py-4 flex justify-end space-x-3 sticky bottom-0 bg-white z-10 border-t mt-4 -mx-6 px-6">
-                        <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Cancel</button>
-                        <button type="submit" className="px-6 py-2 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f]">Save Banner</button>
+                        <button type="button" onClick={onClose} disabled={isSaving} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 disabled:opacity-50">Cancel</button>
+                        <button type="submit" disabled={isSaving} className="px-6 py-2 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f] disabled:opacity-50 flex items-center gap-2">
+                            {isSaving ? 'Saving...' : 'Save Banner'}
+                        </button>
                     </footer>
                 </form>
             </div>

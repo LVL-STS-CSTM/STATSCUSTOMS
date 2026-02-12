@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { BrandReview } from '../types';
 import { useData } from '../context/DataContext';
@@ -20,9 +21,9 @@ const emptyReview: Omit<BrandReview, 'id'> = {
 const BrandReviewFormModal: React.FC<BrandReviewFormModalProps> = ({ isOpen, onClose, reviewToEdit }) => {
     const { brandReviews, updateData } = useData();
     const [formData, setFormData] = useState<BrandReview | Partial<BrandReview>>(reviewToEdit || emptyReview);
+    const [isSaving, setIsSaving] = useState(false);
     
     useEffect(() => {
-        // When opening the form for a new item, ensure it has all default fields
         const initialData = reviewToEdit 
             ? { ...emptyReview, ...reviewToEdit } 
             : emptyReview;
@@ -44,28 +45,42 @@ const BrandReviewFormModal: React.FC<BrandReviewFormModalProps> = ({ isOpen, onC
         setFormData(prev => ({...prev, rating: newRating }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.author || !formData.quote) {
             alert('Author and Quote fields cannot be empty.');
             return;
         }
 
-        const dataToSave = {
-            ...formData,
-            rating: Number(formData.rating || 5),
-            imageUrl: formData.imageUrl || undefined,
-            isVisible: formData.isVisible ?? true, // Ensure isVisible is a boolean
-        };
+        setIsSaving(true);
+        try {
+            const dataToSave = {
+                ...formData,
+                rating: Number(formData.rating || 5),
+                imageUrl: formData.imageUrl || undefined,
+                isVisible: formData.isVisible ?? true, 
+            };
 
-        if (reviewToEdit && 'id' in dataToSave && dataToSave.id) {
-            const updatedReviews = brandReviews.map(r => r.id === (dataToSave as BrandReview).id ? dataToSave as BrandReview : r);
-            updateData('brandReviews', updatedReviews);
-        } else {
-            const newReview = { ...dataToSave, id: `review-${Date.now()}` } as BrandReview;
-            updateData('brandReviews', [...brandReviews, newReview]);
+            let success = false;
+            if (reviewToEdit && 'id' in dataToSave && dataToSave.id) {
+                const updatedReviews = brandReviews.map(r => r.id === (dataToSave as BrandReview).id ? dataToSave as BrandReview : r);
+                success = await updateData('brandReviews', updatedReviews);
+            } else {
+                const newReview = { ...dataToSave, id: `review-${Date.now()}` } as BrandReview;
+                success = await updateData('brandReviews', [...brandReviews, newReview]);
+            }
+
+            if (success) {
+                onClose();
+            } else {
+                alert('Failed to save review. Please try again.');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while saving.');
+        } finally {
+            setIsSaving(false);
         }
-        onClose();
     };
     
     const darkInputStyles = "mt-1 block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white sm:text-sm placeholder-gray-400";
@@ -75,7 +90,7 @@ const BrandReviewFormModal: React.FC<BrandReviewFormModalProps> = ({ isOpen, onC
             <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
                 <header className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10">
                     <h2 className="text-xl font-semibold">{reviewToEdit && 'id' in reviewToEdit ? 'Edit Review' : 'Add New Review'}</h2>
-                    <button onClick={onClose} aria-label="Close form">
+                    <button onClick={onClose} aria-label="Close form" disabled={isSaving}>
                         <CloseIcon className="w-6 h-6 text-gray-600 hover:text-black" />
                     </button>
                 </header>
@@ -150,11 +165,11 @@ const BrandReviewFormModal: React.FC<BrandReviewFormModalProps> = ({ isOpen, onC
                         </div>
                     </div>
                     <footer className="py-4 flex justify-end space-x-3 sticky bottom-0 bg-white z-10 border-t mt-4 -mx-6 px-6">
-                        <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
+                        <button type="button" onClick={onClose} disabled={isSaving} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 disabled:opacity-50">
                             Cancel
                         </button>
-                        <button type="submit" className="px-6 py-2 bg-black text-white rounded-md hover:bg-gray-800">
-                            Save Review
+                        <button type="submit" disabled={isSaving} className="px-6 py-2 bg-black text-white rounded-md hover:bg-gray-800 disabled:opacity-50 flex items-center gap-2">
+                            {isSaving ? 'Saving...' : 'Save Review'}
                         </button>
                     </footer>
                 </form>

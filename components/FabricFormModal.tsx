@@ -22,6 +22,7 @@ const FabricFormModal: React.FC<MaterialFormModalProps> = ({ isOpen, onClose, ma
     const { materials, updateData } = useData();
     const [formData, setFormData] = useState<Material | Omit<Material, 'id'>>(materialToEdit || emptyMaterial);
     const [featureInput, setFeatureInput] = useState('');
+    const [isSaving, setIsSaving] = useState(false);
     
     useEffect(() => {
         setFormData(materialToEdit || emptyMaterial);
@@ -51,26 +52,40 @@ const FabricFormModal: React.FC<MaterialFormModalProps> = ({ isOpen, onClose, ma
         setFormData(prev => ({ ...prev, features: prev.features.filter(f => f !== featureToRemove) }));
     };
     
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.name || !formData.description || !formData.imageUrl) {
             alert('Please fill out all fields.');
             return;
         }
 
-        const dataToSave = {
-            ...formData,
-            careImageUrl: formData.careImageUrl || undefined
-        };
+        setIsSaving(true);
+        try {
+            const dataToSave = {
+                ...formData,
+                careImageUrl: formData.careImageUrl || undefined
+            };
 
-        if (materialToEdit && 'id' in formData) {
-            const updatedMaterials = materials.map(m => m.id === (dataToSave as Material).id ? dataToSave as Material : m);
-            updateData('materials', updatedMaterials);
-        } else {
-            const newMaterial = { ...dataToSave, id: `fabric-${Date.now()}` };
-            updateData('materials', [...materials, newMaterial]);
+            let success = false;
+            if (materialToEdit && 'id' in formData) {
+                const updatedMaterials = materials.map(m => m.id === (dataToSave as Material).id ? dataToSave as Material : m);
+                success = await updateData('materials', updatedMaterials);
+            } else {
+                const newMaterial = { ...dataToSave, id: `fabric-${Date.now()}` };
+                success = await updateData('materials', [...materials, newMaterial]);
+            }
+
+            if (success) {
+                onClose();
+            } else {
+                alert('Failed to save material. Please try again.');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while saving.');
+        } finally {
+            setIsSaving(false);
         }
-        onClose();
     };
 
     const darkInputStyles = "mt-1 block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white sm:text-sm placeholder-gray-400";
@@ -80,7 +95,7 @@ const FabricFormModal: React.FC<MaterialFormModalProps> = ({ isOpen, onClose, ma
             <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
                 <header className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10">
                     <h2 className="text-xl font-semibold">{materialToEdit ? 'Edit Material' : 'Add New Material'}</h2>
-                    <button onClick={onClose} aria-label="Close form">
+                    <button onClick={onClose} aria-label="Close form" disabled={isSaving}>
                         <CloseIcon className="w-6 h-6 text-gray-600 hover:text-black" />
                     </button>
                 </header>
@@ -162,11 +177,11 @@ const FabricFormModal: React.FC<MaterialFormModalProps> = ({ isOpen, onClose, ma
                         </div>
                     </div>
                     <footer className="py-4 flex justify-end space-x-3 sticky bottom-0 bg-white z-10 border-t mt-4 -mx-6 px-6">
-                        <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
+                        <button type="button" onClick={onClose} disabled={isSaving} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 disabled:opacity-50">
                             Cancel
                         </button>
-                        <button type="submit" className="px-6 py-2 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f]">
-                            Save Material
+                        <button type="submit" disabled={isSaving} className="px-6 py-2 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f] disabled:opacity-50 flex items-center gap-2">
+                            {isSaving ? 'Saving...' : 'Save Material'}
                         </button>
                     </footer>
                 </form>

@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { HeroContent, Product } from '../types';
-// FIX: Use useData hook instead of non-existent hooks
 import { useData } from '../context/DataContext';
 import { CloseIcon, SparklesIcon } from './icons';
 
@@ -25,24 +24,9 @@ const emptyHero: Omit<HeroContent, 'id' | 'displayOrder'> = {
 };
 
 const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEdit, showToast }) => {
-    // FIX: Use useData hook
     const { heroContents, collections, products, updateData } = useData();
-
-    // FIX: Simplified functions as DataContext does not have granular updaters
-    const addHeroContent = (newHero: Omit<HeroContent, 'id' | 'displayOrder'>) => {
-        const newHeroWithId: HeroContent = {
-            ...newHero,
-            id: `hero-${Date.now()}`,
-            displayOrder: heroContents.length,
-        }
-        updateData('heroContents', [...heroContents, newHeroWithId]);
-    }
-    const updateHeroContent = (updatedHero: HeroContent) => {
-        const newHeroes = heroContents.map(h => h.id === updatedHero.id ? updatedHero : h);
-        updateData('heroContents', newHeroes);
-    }
-
     const [formData, setFormData] = useState<HeroContent | Omit<HeroContent, 'id' | 'displayOrder'>>(emptyHero);
+    const [isSaving, setIsSaving] = useState(false);
     
     const categories = useMemo(() => {
         const uniqueCategories = new Set(products.map(p => p.category));
@@ -52,8 +36,8 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
     useEffect(() => {
         if (heroToEdit) {
             setFormData({
-                ...emptyHero, // Provides defaults for all fields, ensuring none are undefined
-                ...heroToEdit, // Overrides with actual data
+                ...emptyHero, 
+                ...heroToEdit,
             });
         } else {
             setFormData(emptyHero);
@@ -72,34 +56,55 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
     };
 
     const handleFeaturedProductsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        // FIX: Add explicit type to the 'option' parameter to resolve type error.
         const selectedIds = Array.from(e.target.selectedOptions, (option: HTMLOptionElement) => option.value);
         setFormData(prev => ({ ...prev, featuredProductIds: selectedIds }));
     };
     
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Relaxed validation: Allow title/description to be empty if just used for admin ref,
-        // but generally we still want a title for the admin list.
+        // Validation
         if (!formData.title || !formData.mediaSrc) {
             alert('Please fill out at least the Title (for Admin reference) and Media URL.');
             return;
         }
         
-        // If there's button text, a link must be selected
         if (formData.buttonText && !formData.buttonCollectionLink) {
             alert('Please select a collection to link the button to, or remove the button text.');
             return;
         }
 
-        if (heroToEdit && 'id' in formData) {
-            updateHeroContent(formData as HeroContent);
-            showToast('Banner updated successfully!');
-        } else {
-            addHeroContent(formData as Omit<HeroContent, 'id' | 'displayOrder'>);
-            showToast('Banner added successfully!');
+        setIsSaving(true);
+        try {
+            let success = false;
+            let actionType = '';
+
+            if (heroToEdit && 'id' in formData) {
+                const updatedHero = formData as HeroContent;
+                const newHeroes = heroContents.map(h => h.id === updatedHero.id ? updatedHero : h);
+                success = await updateData('heroContents', newHeroes);
+                actionType = 'updated';
+            } else {
+                const newHeroWithId: HeroContent = {
+                    ...(formData as Omit<HeroContent, 'id' | 'displayOrder'>),
+                    id: `hero-${Date.now()}`,
+                    displayOrder: heroContents.length,
+                }
+                success = await updateData('heroContents', [...heroContents, newHeroWithId]);
+                actionType = 'added';
+            }
+
+            if (success) {
+                showToast(`Banner ${actionType} successfully!`);
+                onClose();
+            } else {
+                alert('Failed to save banner. Please try again.');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while saving.');
+        } finally {
+            setIsSaving(false);
         }
-        onClose();
     };
     
     const darkInputStyles = "mt-1 block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white sm:text-sm placeholder-gray-400";
@@ -109,7 +114,7 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
             <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
                 <header className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10">
                     <h2 className="text-xl font-semibold">{heroToEdit ? 'Edit Hero Banner' : 'Add New Hero Banner'}</h2>
-                    <button onClick={onClose} aria-label="Close form">
+                    <button onClick={onClose} aria-label="Close form" disabled={isSaving}>
                         <CloseIcon className="w-6 h-6 text-gray-600 hover:text-black" />
                     </button>
                 </header>
@@ -209,7 +214,6 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
                                 >
                                     <option value="">-- No Link --</option>
                                     <optgroup label="Collections (Groups)">
-                                        {/* FIX: collections is Collection[]. Use name for value and id for key. */}
                                         {collections.map(collection => (
                                             <option key={collection.id} value={collection.name}>{collection.name}</option>
                                         ))}
@@ -224,7 +228,6 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
                         </div>
                     )}
                     
-                    {/* Featured Products Section */}
                     <div className="space-y-4 border-t pt-4">
                          <div>
                             <label htmlFor="featuredProductsTitle" className="block text-sm font-medium text-gray-700">Featured Products Section Title (Optional)</label>
@@ -256,11 +259,11 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
                     </div>
 
                     <footer className="py-4 flex justify-end space-x-3 sticky bottom-0 bg-white z-10 border-t mt-4 -mx-6 px-6">
-                        <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
+                        <button type="button" onClick={onClose} disabled={isSaving} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 disabled:opacity-50">
                             Cancel
                         </button>
-                        <button type="submit" className="px-6 py-2 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f]">
-                            Save Banner
+                        <button type="submit" disabled={isSaving} className="px-6 py-2 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f] disabled:opacity-50 flex items-center gap-2">
+                            {isSaving ? 'Saving...' : 'Save Banner'}
                         </button>
                     </footer>
                 </form>

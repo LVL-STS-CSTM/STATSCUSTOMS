@@ -20,6 +20,7 @@ const emptyCollection: Omit<Collection, 'id'> = {
 const CollectionFormModal: React.FC<CollectionFormModalProps> = ({ isOpen, onClose, collectionToEdit }) => {
     const { collections, products, updateData } = useData();
     const [formData, setFormData] = useState<Collection | Omit<Collection, 'id'>>(collectionToEdit || emptyCollection);
+    const [isSaving, setIsSaving] = useState(false);
 
     useEffect(() => {
         if (isOpen) {
@@ -33,7 +34,7 @@ const CollectionFormModal: React.FC<CollectionFormModalProps> = ({ isOpen, onClo
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const name = formData.name.trim();
         const imageUrl = formData.imageUrl.trim();
@@ -43,26 +44,41 @@ const CollectionFormModal: React.FC<CollectionFormModalProps> = ({ isOpen, onClo
             return;
         }
 
-        if (collectionToEdit) {
-            const updatedCollections = collections.map(c => c.id === collectionToEdit.id ? { ...formData, id: c.id } as Collection : c);
-            updateData('collections', updatedCollections);
+        setIsSaving(true);
+        try {
+            let success = false;
 
-            // If name changed, update products linked to this group
-            if (name !== collectionToEdit.name) {
-                const updatedProducts = products.map(p => {
-                    if (p.categoryGroup === collectionToEdit.name) {
-                        return { ...p, categoryGroup: name };
-                    }
-                    return p;
-                });
-                updateData('products', updatedProducts);
+            if (collectionToEdit) {
+                const updatedCollections = collections.map(c => c.id === collectionToEdit.id ? { ...formData, id: c.id } as Collection : c);
+                success = await updateData('collections', updatedCollections);
+
+                // If name changed, update products linked to this group
+                if (success && name !== collectionToEdit.name) {
+                    const updatedProducts = products.map(p => {
+                        if (p.categoryGroup === collectionToEdit.name) {
+                            return { ...p, categoryGroup: name };
+                        }
+                        return p;
+                    });
+                    await updateData('products', updatedProducts);
+                }
+
+            } else {
+                const newCollection = { ...formData, id: `c-${Date.now()}` } as Collection;
+                success = await updateData('collections', [...collections, newCollection]);
             }
 
-        } else {
-            const newCollection = { ...formData, id: `c-${Date.now()}` } as Collection;
-            updateData('collections', [...collections, newCollection]);
+            if (success) {
+                onClose();
+            } else {
+                alert('Failed to save collection. Please try again.');
+            }
+        } catch (error) {
+            console.error('Save error:', error);
+            alert('An unexpected error occurred.');
+        } finally {
+            setIsSaving(false);
         }
-        onClose();
     };
 
     const darkInputStyles = "mt-1 block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white sm:text-sm placeholder-gray-400";
@@ -72,7 +88,7 @@ const CollectionFormModal: React.FC<CollectionFormModalProps> = ({ isOpen, onClo
             <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg" role="dialog" aria-modal="true">
                 <header className="flex items-center justify-between p-4 border-b">
                     <h2 className="text-xl font-semibold">{collectionToEdit ? 'Edit Collection' : 'Add New Collection'}</h2>
-                    <button onClick={onClose} aria-label="Close form">
+                    <button onClick={onClose} aria-label="Close form" disabled={isSaving}>
                         <CloseIcon className="w-6 h-6 text-gray-600 hover:text-black" />
                     </button>
                 </header>
@@ -117,11 +133,12 @@ const CollectionFormModal: React.FC<CollectionFormModalProps> = ({ isOpen, onClo
                         />
                     </div>
                     <footer className="pt-2 flex justify-end space-x-3">
-                        <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
+                        <button type="button" onClick={onClose} disabled={isSaving} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 disabled:opacity-50">
                             Cancel
                         </button>
-                        <button type="submit" className="px-6 py-2 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f]">
-                            Save Collection
+                        <button type="submit" disabled={isSaving} className="px-6 py-2 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f] disabled:opacity-50 flex items-center gap-2">
+                            {isSaving && <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>}
+                            {isSaving ? 'Saving...' : 'Save Collection'}
                         </button>
                     </footer>
                 </form>
