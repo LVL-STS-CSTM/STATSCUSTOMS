@@ -14,10 +14,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onProductClick, lay
     const gridRef = useRef<HTMLElement>(null);
     const isVisible = useOnScreen(gridRef, '0px 0px -100px 0px');
 
-    // Adjusted for "2 per row on mobile" with "reduced spaces" (gap-x-3) to make cards larger.
+    // Adjusted for "2 per row on mobile" with tight spacing to maximize image size
     const gridClasses = layout === 'grid-lg'
-        ? 'grid-cols-2 sm:grid-cols-2 gap-x-3 gap-y-12'
-        : 'grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 gap-y-12 md:gap-x-6 md:gap-y-20';
+        ? 'grid-cols-2 sm:grid-cols-2 gap-x-2 md:gap-x-3 gap-y-8 md:gap-y-12'
+        : 'grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-2 md:gap-x-6 gap-y-8 md:gap-y-20';
 
     // Ensure we don't try to render null products
     const validProducts = (products || []).filter(p => !!p && !!p.id);
@@ -41,7 +41,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onProductClick, lay
 
             {validProducts.length === 0 && (
                 <div className="py-40 text-center">
-                    <p className="text-[10px] font-black text-zinc-300 uppercase tracking-[0.4em]">0 Items Found</p>
+                    <p className="text-[10px] font-bold text-zinc-300 uppercase tracking-[0.4em]">0 Items Found</p>
                 </div>
             )}
         </section>

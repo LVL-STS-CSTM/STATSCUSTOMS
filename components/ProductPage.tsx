@@ -69,12 +69,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
 
     return (
         <div className="bg-white min-h-screen font-sans text-[#333]">
-            <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-8 md:py-12">
+            <div className="max-w-[1400px] mx-auto px-2 md:px-8 py-8 md:py-12">
                 
-                {/* Back Navigation - Matches Image 1 */}
+                {/* Back Navigation */}
                 <button 
                     onClick={() => onNavigate('catalogue')}
-                    className="mb-6 text-sm text-zinc-500 hover:text-black transition-colors flex items-center gap-2"
+                    className="mb-6 px-2 md:px-0 text-sm text-zinc-500 hover:text-black transition-colors flex items-center gap-2"
                 >
                     <span>&larr;</span> Back to Catalogue
                 </button>
@@ -82,7 +82,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
                     
                     {/* LEFT: Image Gallery */}
-                    <div className="lg:col-span-7 flex flex-col-reverse lg:flex-row gap-4 h-fit sticky top-24">
+                    <div className="lg:col-span-7 flex flex-col-reverse lg:flex-row gap-4 h-fit sticky top-24 px-2 md:px-0">
                         {/* Vertical Thumbnails */}
                         <div className="hidden lg:flex flex-col gap-3 w-20 flex-shrink-0">
                             {imagesForDisplay.map((url, idx) => (
@@ -120,7 +120,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                     </div>
 
                     {/* RIGHT: Product Details */}
-                    <div className="lg:col-span-5 flex flex-col h-full pt-2">
+                    <div className="lg:col-span-5 flex flex-col h-full pt-2 px-2 md:px-0">
                         <header className="mb-8">
                             <h1 className="font-heading text-4xl md:text-5xl text-black mb-4 uppercase tracking-tighter leading-[0.9]">{product.name}</h1>
                             <div className="flex items-center justify-between">
@@ -133,7 +133,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                             </div>
                         </header>
 
-                        {/* TABS INTERFACE - Matches Image 2 */}
+                        {/* TABS INTERFACE */}
                         <div className="mb-8">
                             <div className="flex items-center gap-2 border-b border-zinc-100 pb-1 mb-6 overflow-x-auto no-scrollbar">
                                 <button
@@ -208,12 +208,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                                 {activeTab === 'fab-tech' && (
                                     <div className="space-y-6">
                                         <div>
-                                            <h4 className="text-xs font-black uppercase tracking-widest text-black mb-2">Primary Material</h4>
+                                            <h4 className="text-xs font-bold uppercase tracking-widest text-black mb-2">Primary Material</h4>
                                             <p className="text-sm text-zinc-600">{material?.name || 'Premium Technical Fabric'}</p>
                                             <p className="text-xs text-zinc-400 mt-1">{material?.description || 'Engineered for durability and comfort.'}</p>
                                         </div>
                                         <div>
-                                            <h4 className="text-xs font-black uppercase tracking-widest text-black mb-2">Supported Applications</h4>
+                                            <h4 className="text-xs font-bold uppercase tracking-widest text-black mb-2">Supported Applications</h4>
                                             <div className="flex flex-wrap gap-2">
                                                 {(product.supportedPrinting || ['Screen Print', 'Embroidery', 'Heat Transfer']).map(tech => (
                                                     <span key={tech} className="px-3 py-1 bg-zinc-100 text-zinc-600 text-[10px] font-bold uppercase tracking-wider rounded-sm">
@@ -231,11 +231,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                         <div className="mt-auto pt-8 border-t border-zinc-100">
                             <button 
                                 onClick={handleAddToQuote}
-                                className="w-full py-5 bg-black text-white font-black uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 hover:scale-[1.01] active:scale-[0.99] transition-all shadow-xl rounded-lg flex items-center justify-center gap-3"
+                                className="w-full py-5 bg-black text-white font-bold uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 hover:scale-[1.01] active:scale-[0.99] transition-all shadow-xl rounded-lg flex items-center justify-center gap-3"
                             >
-                                <span>Add to Requisition List</span>
-                                <span className="w-px h-3 bg-white/20"></span>
-                                <span className="opacity-60 font-normal">Request Quote</span>
+                                <span>ADD TO REQUISITION LIST</span>
                             </button>
                             <p className="text-center text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-4">
                                 Secure Inquiry • Official Documentation Provided
@@ -248,8 +246,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                 {relatedProducts.length > 0 && (
                     <section className="mt-32 pt-20 border-t border-zinc-100">
                         <div className="text-center mb-16">
-                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 mb-3 block">Complete The Look</span>
-                            <h2 className="font-heading font-black text-3xl md:text-4xl uppercase tracking-tighter">Tactical Loadout</h2>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400 mb-3 block">Complete The Look</span>
+                            <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tighter">Tactical Loadout</h2>
                         </div>
                         <ProductGrid products={relatedProducts} onProductClick={onProductClick} />
                     </section>

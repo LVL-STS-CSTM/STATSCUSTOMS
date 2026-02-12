@@ -44,11 +44,11 @@ const HeroSection: React.FC<{
             <Hero {...hero} onNavigate={onNavigate} isFirst={isFirst} />
             
             {featuredProducts.length > 0 && (
-                <section className="bg-white py-24 px-4 border-b border-zinc-100 last:border-0 relative z-20">
-                    <div className="max-w-[1600px] mx-auto px-4 md:px-8">
-                        <div className="text-center mb-16">
-                            <span className="text-[10px] font-black text-zinc-300 uppercase tracking-[0.5em] block mb-4">Featured Collection</span>
-                            <h2 className="font-eurostile font-black text-3xl lg:text-4xl tracking-tight text-gray-900 uppercase leading-none">
+                <section className="bg-white py-12 md:py-24 px-0 md:px-4 border-b border-zinc-100 last:border-0 relative z-20">
+                    <div className="max-w-[1600px] mx-auto px-2 md:px-8">
+                        <div className="text-center mb-10 md:mb-16">
+                            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em] block mb-4">Featured Collection</span>
+                            <h2 className="font-eurostile font-bold text-2xl md:text-3xl lg:text-4xl tracking-tight text-gray-900 uppercase leading-none">
                                 {hero.featuredProductsTitle || 'Selected Gear'}
                             </h2>
                         </div>
@@ -91,10 +91,6 @@ const HomePage: React.FC<HomePageProps> = ({
                 />
             )}
 
-            <div className="pb-32 lg:pb-48 pt-12">
-                <InfoCards cards={infoCards} onCardClick={onCardClick} />
-            </div>
-            
             <HomeFeatureSection onNavigate={onNavigate} />
 
             {secondaryHeroes.map((hero) => (
@@ -109,10 +105,12 @@ const HomePage: React.FC<HomePageProps> = ({
             ))}
 
             <HowItWorks />
-            
-            {featuredVideoContent?.isVisible && <FeaturedVideo {...featuredVideoContent} />}
-            
+
+            <div className="pb-32 lg:pb-48 pt-12">
+                <InfoCards cards={infoCards} onCardClick={onCardClick} />
+            </div>
             <CustomizationShowcase />
+            {featuredVideoContent?.isVisible && <FeaturedVideo {...featuredVideoContent} />}
             <BrandReviews brandReviews={brandReviews} platformRatings={platformRatings} />
             <div className="bg-zinc-50 py-24 lg:py-32">
                 <FeaturedPartners partners={partners} />
