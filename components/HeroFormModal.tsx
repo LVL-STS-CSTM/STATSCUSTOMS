@@ -21,6 +21,7 @@ const emptyHero: Omit<HeroContent, 'id' | 'displayOrder'> = {
     buttonCollectionLink: '',
     featuredProductsTitle: '',
     featuredProductIds: [],
+    hideTextOverlay: false,
 };
 
 const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEdit, showToast }) => {
@@ -62,7 +63,12 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
     if (!isOpen) return null;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+        const { name, value, type } = e.target;
+        if (type === 'checkbox') {
+             setFormData(prev => ({ ...prev, [name]: (e.target as HTMLInputElement).checked }));
+        } else {
+             setFormData(prev => ({ ...prev, [name]: value }));
+        }
     };
 
     const handleFeaturedProductsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -73,8 +79,10 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
     
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formData.title || !formData.description || !formData.mediaSrc) {
-            alert('Please fill out Title, Description, and Media URL.');
+        // Relaxed validation: Allow title/description to be empty if just used for admin ref,
+        // but generally we still want a title for the admin list.
+        if (!formData.title || !formData.mediaSrc) {
+            alert('Please fill out at least the Title (for Admin reference) and Media URL.');
             return;
         }
         
@@ -106,8 +114,23 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
                     </button>
                 </header>
                 <form onSubmit={handleSubmit} className="overflow-y-auto p-6 space-y-4">
+                    
+                    <div className="flex items-center gap-3 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                        <input 
+                            type="checkbox" 
+                            id="hideTextOverlay" 
+                            name="hideTextOverlay" 
+                            checked={!!formData.hideTextOverlay} 
+                            onChange={handleInputChange} 
+                            className="w-5 h-5 text-black border-gray-300 rounded focus:ring-black accent-black"
+                        />
+                        <label htmlFor="hideTextOverlay" className="text-sm font-bold text-gray-800 select-none">
+                            Hide Text & Button Overlay (Media Only)
+                        </label>
+                    </div>
+
                     <div>
-                        <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+                        <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title {formData.hideTextOverlay && '(Admin Reference Only)'}</label>
                         <input
                             type="text"
                             name="title"
@@ -116,18 +139,18 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
                             onChange={handleInputChange}
                             required
                             autoFocus
+                            placeholder={formData.hideTextOverlay ? "e.g. Summer Campaign Banner" : "Banner Headline"}
                             className={darkInputStyles}
                         />
                     </div>
                      <div>
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+                        <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description {formData.hideTextOverlay && '(Hidden)'}</label>
                         <textarea
                             name="description"
                             id="description"
                             rows={3}
                             value={formData.description}
                             onChange={handleInputChange}
-                            required
                             className={darkInputStyles}
                         />
                     </div>
@@ -161,42 +184,45 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
                             />
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t pt-4">
-                        <div>
-                            <label htmlFor="buttonText" className="block text-sm font-medium text-gray-700">Button Text (Optional)</label>
-                            <input
-                                type="text"
-                                name="buttonText"
-                                id="buttonText"
-                                value={formData.buttonText || ''}
-                                onChange={handleInputChange}
-                                className={darkInputStyles}
-                            />
+                    
+                    {!formData.hideTextOverlay && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t pt-4 animate-fade-in">
+                            <div>
+                                <label htmlFor="buttonText" className="block text-sm font-medium text-gray-700">Button Text (Optional)</label>
+                                <input
+                                    type="text"
+                                    name="buttonText"
+                                    id="buttonText"
+                                    value={formData.buttonText || ''}
+                                    onChange={handleInputChange}
+                                    className={darkInputStyles}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="buttonCollectionLink" className="block text-sm font-medium text-gray-700">Button Links To</label>
+                                <select
+                                    name="buttonCollectionLink"
+                                    id="buttonCollectionLink"
+                                    value={formData.buttonCollectionLink || ''}
+                                    onChange={handleInputChange}
+                                    className={darkInputStyles}
+                                >
+                                    <option value="">-- No Link --</option>
+                                    <optgroup label="Collections (Groups)">
+                                        {/* FIX: collections is Collection[]. Use name for value and id for key. */}
+                                        {collections.map(collection => (
+                                            <option key={collection.id} value={collection.name}>{collection.name}</option>
+                                        ))}
+                                    </optgroup>
+                                    <optgroup label="Specific Categories">
+                                        {categories.map(category => (
+                                            <option key={category} value={category}>{category}</option>
+                                        ))}
+                                    </optgroup>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="buttonCollectionLink" className="block text-sm font-medium text-gray-700">Button Links To</label>
-                            <select
-                                name="buttonCollectionLink"
-                                id="buttonCollectionLink"
-                                value={formData.buttonCollectionLink || ''}
-                                onChange={handleInputChange}
-                                className={darkInputStyles}
-                            >
-                                <option value="">-- No Link --</option>
-                                <optgroup label="Collections (Groups)">
-                                    {/* FIX: collections is Collection[]. Use name for value and id for key. */}
-                                    {collections.map(collection => (
-                                        <option key={collection.id} value={collection.name}>{collection.name}</option>
-                                    ))}
-                                </optgroup>
-                                <optgroup label="Specific Categories">
-                                    {categories.map(category => (
-                                        <option key={category} value={category}>{category}</option>
-                                    ))}
-                                </optgroup>
-                            </select>
-                        </div>
-                    </div>
+                    )}
                     
                     {/* Featured Products Section */}
                     <div className="space-y-4 border-t pt-4">

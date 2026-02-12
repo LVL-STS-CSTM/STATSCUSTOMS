@@ -162,6 +162,7 @@ export interface HeroContent {
     displayOrder: number;
     featuredProductIds?: string[];
     featuredProductsTitle?: string;
+    hideTextOverlay?: boolean;
 }
 
 /**
