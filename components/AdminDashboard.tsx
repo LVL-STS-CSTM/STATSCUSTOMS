@@ -24,7 +24,7 @@ import SecurityManagement from './SecurityManagement';
 import ServiceManagement from './ServiceManagement';
 import SubscriptionModalManagement from './SubscriptionModalManagement';
 import HomeFeatureManagement from './HomeFeatureManagement';
-import { ViewGridSmallIcon, CartIcon, UserIcon, SparklesIcon, TargetIcon, CloseIcon } from './icons';
+import { ViewGridSmallIcon, CartIcon, UserIcon, SparklesIcon, TargetIcon } from './icons';
 
 const STATUSES: QuoteStatus[] = ['New', 'Contacted', 'In Progress', 'Completed', 'Cancelled'];
 
@@ -160,7 +160,7 @@ const QuoteManagement: React.FC = () => {
                                         </div>
                                     </td>
                                 </tr>
-                            ))}
+                            )}
                         </tbody>
                     </table>
                 </div>
@@ -173,8 +173,8 @@ const QuoteManagement: React.FC = () => {
                 />
             )}
         </div>
-    )
-}
+    );
+};
 
 const NavItem: React.FC<{ 
     active: boolean; 

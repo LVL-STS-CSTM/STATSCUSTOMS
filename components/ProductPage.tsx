@@ -5,7 +5,7 @@ import ProductGrid from './ProductGrid';
 import CallToAction from './CallToAction';
 import Accordion from './Accordion';
 import SizeGuideModal from './SizeGuideModal';
-import { ArrowLongRightIcon, RulerIcon } from './icons';
+import { RulerIcon } from './icons';
 
 interface ProductPageProps {
     product: Product;
@@ -110,6 +110,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                     <div className="lg:col-span-4 flex flex-col h-full sticky top-24">
                         <header className="mb-8 border-b border-zinc-100 pb-8">
                             <h1 className="font-eurostile font-bold text-3xl md:text-4xl lg:text-5xl text-black mb-2 uppercase tracking-tight leading-none">{product.name}</h1>
+                            {/* Price removed as requested */}
                             <div className="flex items-center justify-end mt-6">
                                 <button 
                                     onClick={() => setIsSizeGuideOpen(true)}
