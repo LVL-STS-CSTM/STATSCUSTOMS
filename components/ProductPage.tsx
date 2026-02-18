@@ -110,10 +110,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                     <div className="lg:col-span-4 flex flex-col h-full sticky top-24">
                         <header className="mb-8 border-b border-zinc-100 pb-8">
                             <h1 className="font-eurostile font-bold text-3xl md:text-4xl lg:text-5xl text-black mb-2 uppercase tracking-tight leading-none">{product.name}</h1>
-                            <div className="flex items-center justify-between mt-6">
-                                <span className="text-2xl font-bold font-mono">
-                                    ₱{(product.price || 0).toLocaleString()}
-                                </span>
+                            <div className="flex items-center justify-end mt-6">
                                 <button 
                                     onClick={() => setIsSizeGuideOpen(true)}
                                     className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-zinc-600 hover:border-zinc-600 transition-all"
@@ -207,33 +204,33 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
 
                 {/* 3-CARD FEATURE SECTION */}
                 <section className="mt-32 border-t border-zinc-100 pt-16">
-                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400 mb-12">Product Features</h3>
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400 mb-12 text-center">Product Features</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="space-y-6">
+                        <div className="space-y-6 text-center">
                             <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
                                 <img src={featureImages[0] || 'https://placehold.co/600x800'} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Feature 1" />
                             </div>
                             <div>
                                 <h4 className="font-bold text-sm uppercase tracking-widest mb-2">Advanced Textiles</h4>
-                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs">Engineered fabrics selected for maximum breathability and durability in high-stress environments.</p>
+                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto">Engineered fabrics selected for maximum breathability and durability in high-stress environments.</p>
                             </div>
                         </div>
-                        <div className="space-y-6">
+                        <div className="space-y-6 text-center">
                             <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
                                 <img src={featureImages[1] || 'https://placehold.co/600x800'} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Feature 2" />
                             </div>
                             <div>
                                 <h4 className="font-bold text-sm uppercase tracking-widest mb-2">Precision Fit</h4>
-                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs">Anatomical cuts designed to move with the body, reducing drag and increasing comfort range.</p>
+                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto">Anatomical cuts designed to move with the body, reducing drag and increasing comfort range.</p>
                             </div>
                         </div>
-                        <div className="space-y-6">
+                        <div className="space-y-6 text-center">
                             <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
                                 <img src={featureImages[2] || 'https://placehold.co/600x800'} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Feature 3" />
                             </div>
                             <div>
                                 <h4 className="font-bold text-sm uppercase tracking-widest mb-2">Reinforced Detail</h4>
-                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs">Double-stitched seams and premium finishing ensure longevity through repeated use.</p>
+                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto">Double-stitched seams and premium finishing ensure longevity through repeated use.</p>
                             </div>
                         </div>
                     </div>

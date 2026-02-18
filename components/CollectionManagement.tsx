@@ -41,6 +41,10 @@ const CollectionManagement: React.FC = () => {
         }, {} as Record<string, number>);
     }, [products, collections]);
 
+    const sortedCollections = useMemo(() => {
+        return [...collections].sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+    }, [collections]);
+
     return (
         <>
             <div className="bg-[#E0E0E0] shadow-md rounded-lg overflow-hidden">
@@ -64,7 +68,7 @@ const CollectionManagement: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {collections.sort((a,b) => a.displayOrder - b.displayOrder).map((collection) => (
+                            {sortedCollections.map((collection) => (
                                 <tr key={collection.id}>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="w-24 h-14 rounded-md overflow-hidden bg-gray-100 border border-gray-200 shadow-sm">
