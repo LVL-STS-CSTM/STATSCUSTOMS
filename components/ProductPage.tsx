@@ -2,9 +2,9 @@
 import React, { useState, useMemo } from 'react';
 import { Product, Color, Material, View } from '../types';
 import ProductGrid from './ProductGrid';
-import { useQuote } from '../context/CartContext';
 import CallToAction from './CallToAction';
-import LazyImage from './LazyImage';
+import Accordion from './Accordion';
+import { ArrowLongRightIcon } from './icons';
 
 interface ProductPageProps {
     product: Product;
@@ -16,11 +16,7 @@ interface ProductPageProps {
     onProductClick: (product: Product) => void;
 }
 
-type Tab = 'description' | 'size-chart' | 'fab-tech';
-
-const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, onNavigate, showToast, materials, allProducts, onProductClick }) => {
-    const { addToQuote } = useQuote();
-
+const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, onNavigate, materials, allProducts, onProductClick }) => {
     const defaultColor = useMemo(() => {
         if (!product || !product.availableColors) return null;
         const colors = product.availableColors.filter(c => !!c);
@@ -32,7 +28,6 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
 
     const [selectedColor, setSelectedColor] = useState<Color | null>(defaultColor);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
-    const [activeTab, setActiveTab] = useState<Tab>('description');
     
     const imagesForDisplay = useMemo(() => {
         if (!product) return [];
@@ -56,53 +51,31 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
             .slice(0, 4);
     }, [allProducts, product]);
 
-    const handleAddToQuote = () => {
-        const colorToAdd = selectedColor || product.availableColors[0];
-        const defaultSize = product.availableSizes[0]?.name || 'One Size';
-        const sizeQuantities = { [defaultSize]: product.moq || 1 }; 
-
-        addToQuote(product, colorToAdd, sizeQuantities);
-        showToast(`Added ${product.name} to inquiry list.`);
-    };
-
     if (!product) return null;
 
     return (
-        <div className="bg-white min-h-screen font-sans text-[#333]">
-            <div className="max-w-[1400px] mx-auto px-2 md:px-8 py-8 md:py-12">
+        <div className="bg-white min-h-screen font-sans text-[#111]">
+            <div className="max-w-[1600px] mx-auto px-4 md:px-8 py-8 md:py-16">
                 
                 {/* Back Navigation */}
                 <button 
                     onClick={() => onNavigate('catalogue')}
-                    className="mb-6 px-2 md:px-0 text-sm text-zinc-500 hover:text-black transition-colors flex items-center gap-2"
+                    className="mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 hover:text-black transition-colors flex items-center gap-2 group"
                 >
-                    <span>&larr;</span> Back to Catalogue
+                    <span className="group-hover:-translate-x-1 transition-transform">&larr;</span> Back to Catalogue
                 </button>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
                     
-                    {/* LEFT: Image Gallery */}
-                    <div className="lg:col-span-7 flex flex-col-reverse lg:flex-row gap-4 h-fit sticky top-24 px-2 md:px-0">
-                        {/* Vertical Thumbnails */}
-                        <div className="hidden lg:flex flex-col gap-3 w-20 flex-shrink-0">
+                    {/* LEFT: Gallery Section */}
+                    <div className="lg:col-span-8 flex flex-col-reverse lg:flex-row gap-4 h-fit">
+                        {/* Vertical Thumbnails (Desktop) / Horizontal (Mobile) */}
+                        <div className="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-y-auto lg:h-[80vh] no-scrollbar shrink-0">
                             {imagesForDisplay.map((url, idx) => (
                                 <button 
                                     key={idx} 
                                     onClick={() => setActiveImageIndex(idx)}
-                                    className={`w-full aspect-[4/5] border transition-all duration-300 rounded-sm overflow-hidden ${activeImageIndex === idx ? 'border-black ring-1 ring-black opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}`}
-                                >
-                                    <img src={url} alt={`View ${idx}`} className="w-full h-full object-cover" />
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Mobile Horizontal Thumbnails */}
-                        <div className="flex lg:hidden gap-3 overflow-x-auto no-scrollbar pb-2">
-                             {imagesForDisplay.map((url, idx) => (
-                                <button 
-                                    key={idx} 
-                                    onClick={() => setActiveImageIndex(idx)}
-                                    className={`w-16 aspect-[4/5] flex-shrink-0 border transition-all rounded-sm overflow-hidden ${activeImageIndex === idx ? 'border-black ring-1 ring-black' : 'border-transparent opacity-70'}`}
+                                    className={`relative w-20 lg:w-24 aspect-[3/4] shrink-0 border transition-all duration-300 overflow-hidden ${activeImageIndex === idx ? 'border-black opacity-100' : 'border-transparent opacity-50 hover:opacity-80'}`}
                                 >
                                     <img src={url} alt={`View ${idx}`} className="w-full h-full object-cover" />
                                 </button>
@@ -110,144 +83,128 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                         </div>
 
                         {/* Main Image */}
-                        <div className="flex-grow bg-zinc-50 border border-zinc-100 relative overflow-hidden group cursor-zoom-in rounded-sm aspect-[4/5]">
+                        <div className="flex-grow bg-zinc-50 relative overflow-hidden aspect-[3/4] lg:h-[80vh]">
                             <img 
                                 src={imagesForDisplay[activeImageIndex] || 'https://placehold.co/800x1000?text=No+Image'} 
                                 alt={product.name} 
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                className="w-full h-full object-cover"
                             />
                         </div>
                     </div>
 
-                    {/* RIGHT: Product Details */}
-                    <div className="lg:col-span-5 flex flex-col h-full pt-2 px-2 md:px-0">
-                        <header className="mb-8">
-                            <h1 className="font-heading text-4xl md:text-5xl text-black mb-4 uppercase tracking-tighter leading-[0.9]">{product.name}</h1>
-                            <div className="flex items-center justify-between">
+                    {/* RIGHT: Product Info & Details */}
+                    <div className="lg:col-span-4 flex flex-col h-full sticky top-24">
+                        <header className="mb-8 border-b border-zinc-100 pb-8">
+                            <h1 className="font-eurostile font-bold text-3xl md:text-4xl lg:text-5xl text-black mb-2 uppercase tracking-tight leading-none">{product.name}</h1>
+                            <div className="flex items-center justify-between mt-4">
+                                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.3em]">
+                                    {selectedColor?.name || 'Select Color'}
+                                </span>
                                 <span className="text-xl font-bold font-mono">
                                     ₱{(product.price || 0).toLocaleString()}
-                                </span>
-                                <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest bg-zinc-50 px-3 py-1 rounded-full">
-                                    {product.categoryGroup} / {product.category}
                                 </span>
                             </div>
                         </header>
 
-                        {/* TABS INTERFACE */}
-                        <div className="mb-8">
-                            <div className="flex items-center gap-2 border-b border-zinc-100 pb-1 mb-6 overflow-x-auto no-scrollbar">
-                                <button
-                                    onClick={() => setActiveTab('description')}
-                                    className={`px-6 py-2.5 rounded-md text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${
-                                        activeTab === 'description' 
-                                        ? 'bg-black text-white shadow-lg' 
-                                        : 'text-zinc-400 hover:text-black hover:bg-zinc-50'
-                                    }`}
-                                >
-                                    Description
-                                </button>
-                                <button
-                                    onClick={() => setActiveTab('size-chart')}
-                                    className={`px-6 py-2.5 rounded-md text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${
-                                        activeTab === 'size-chart' 
-                                        ? 'bg-black text-white shadow-lg' 
-                                        : 'text-zinc-400 hover:text-black hover:bg-zinc-50'
-                                    }`}
-                                >
-                                    Size Chart
-                                </button>
-                                <button
-                                    onClick={() => setActiveTab('fab-tech')}
-                                    className={`px-6 py-2.5 rounded-md text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${
-                                        activeTab === 'fab-tech' 
-                                        ? 'bg-black text-white shadow-lg' 
-                                        : 'text-zinc-400 hover:text-black hover:bg-zinc-50'
-                                    }`}
-                                >
-                                    Fab-Tech
-                                </button>
-                            </div>
-
-                            {/* Tab Content Area */}
-                            <div className="min-h-[200px] animate-fade-in">
-                                {activeTab === 'description' && (
-                                    <div className="prose prose-sm max-w-none text-zinc-600 leading-relaxed font-light text-base">
-                                        <p>{product.description}</p>
-                                        <p className="mt-4 text-xs text-zinc-400 font-medium uppercase tracking-wider">
-                                            Designed for: {product.gender} • MOQ: {product.moq || 24} Units
-                                        </p>
-                                    </div>
-                                )}
-
-                                {activeTab === 'size-chart' && (
-                                    <div>
-                                        <div className="overflow-x-auto rounded-lg border border-zinc-100">
-                                            <table className="w-full text-sm text-left">
-                                                <thead className="bg-zinc-50 text-xs font-bold uppercase text-zinc-500 tracking-wider">
-                                                    <tr>
-                                                        <th className="px-4 py-3">Size</th>
-                                                        <th className="px-4 py-3">Chest (in)</th>
-                                                        <th className="px-4 py-3">Length (in)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody className="divide-y divide-zinc-50">
-                                                    {product.availableSizes.map(size => (
-                                                        <tr key={size.name} className="hover:bg-zinc-50/50">
-                                                            <td className="px-4 py-3 font-bold text-black">{size.name}</td>
-                                                            <td className="px-4 py-3 font-mono text-zinc-600">{size.width}"</td>
-                                                            <td className="px-4 py-3 font-mono text-zinc-600">{size.length}"</td>
-                                                        </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <p className="text-[10px] text-zinc-400 mt-3 italic">Measurements are approximate guidelines.</p>
-                                    </div>
-                                )}
-
-                                {activeTab === 'fab-tech' && (
-                                    <div className="space-y-6">
-                                        <div>
-                                            <h4 className="text-xs font-bold uppercase tracking-widest text-black mb-2">Primary Material</h4>
-                                            <p className="text-sm text-zinc-600">{material?.name || 'Premium Technical Fabric'}</p>
-                                            <p className="text-xs text-zinc-400 mt-1">{material?.description || 'Engineered for durability and comfort.'}</p>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-xs font-bold uppercase tracking-widest text-black mb-2">Supported Applications</h4>
-                                            <div className="flex flex-wrap gap-2">
-                                                {(product.supportedPrinting || ['Screen Print', 'Embroidery', 'Heat Transfer']).map(tech => (
-                                                    <span key={tech} className="px-3 py-1 bg-zinc-100 text-zinc-600 text-[10px] font-bold uppercase tracking-wider rounded-sm">
-                                                        {tech}
-                                                    </span>
-                                                ))}
+                        {/* Color Selection */}
+                        <div className="mb-10">
+                            <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 mb-4">Color</label>
+                            <div className="flex flex-wrap gap-3">
+                                {product.availableColors.map((color) => {
+                                    const colorImage = product.imageUrls[color.name]?.[0] || imagesForDisplay[0];
+                                    return (
+                                        <button
+                                            key={color.name}
+                                            onClick={() => {
+                                                setSelectedColor(color);
+                                                setActiveImageIndex(0);
+                                            }}
+                                            className={`w-12 h-16 border transition-all duration-300 p-0.5 ${
+                                                selectedColor?.name === color.name 
+                                                ? 'border-black scale-110' 
+                                                : 'border-transparent opacity-60 hover:opacity-100'
+                                            }`}
+                                            title={color.name}
+                                        >
+                                            <div className="w-full h-full bg-zinc-100 relative overflow-hidden">
+                                                <img src={colorImage} alt={color.name} className="w-full h-full object-cover" />
                                             </div>
-                                        </div>
-                                    </div>
-                                )}
+                                        </button>
+                                    );
+                                })}
                             </div>
                         </div>
 
-                        {/* Action Area */}
-                        <div className="mt-auto pt-8 border-t border-zinc-100">
+                        {/* Inquiry / Contact Action */}
+                        <div className="mb-10">
                             <button 
-                                onClick={handleAddToQuote}
-                                className="w-full py-5 bg-black text-white font-bold uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 hover:scale-[1.01] active:scale-[0.99] transition-all shadow-xl rounded-lg flex items-center justify-center gap-3"
+                                onClick={() => onNavigate('contact')}
+                                className="w-full py-5 bg-black text-white font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-zinc-800 transition-all flex items-center justify-center gap-4 group"
                             >
-                                <span>ADD TO REQUISITION LIST</span>
+                                <span>Inquire About This Product</span>
+                                <ArrowLongRightIcon className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
                             </button>
-                            <p className="text-center text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-4">
-                                Secure Inquiry • Official Documentation Provided
+                            <p className="text-center text-[9px] font-bold text-zinc-400 uppercase tracking-widest mt-4">
+                                MOQs apply • Custom branding available
                             </p>
+                        </div>
+
+                        {/* Accordion Details */}
+                        <div className="border-t border-zinc-100">
+                            <Accordion title="DESCRIPTION">
+                                <div className="pb-4 text-sm leading-relaxed text-zinc-600 font-light">
+                                    {product.description}
+                                </div>
+                            </Accordion>
+                            
+                            <Accordion title="DESIGNED FOR">
+                                <div className="pb-4 text-sm leading-relaxed text-zinc-600 font-light">
+                                    <ul className="space-y-2">
+                                        <li className="flex justify-between">
+                                            <span className="font-bold text-black uppercase text-[10px] tracking-widest">Category</span>
+                                            <span>{product.categoryGroup} / {product.category}</span>
+                                        </li>
+                                        <li className="flex justify-between">
+                                            <span className="font-bold text-black uppercase text-[10px] tracking-widest">Fit</span>
+                                            <span>{product.gender}</span>
+                                        </li>
+                                        <li className="flex justify-between">
+                                            <span className="font-bold text-black uppercase text-[10px] tracking-widest">Min Order</span>
+                                            <span>{product.moq || 24} Units</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </Accordion>
+
+                            <Accordion title="FABRIC + TECHNOLOGY">
+                                <div className="pb-4 space-y-4">
+                                    <div>
+                                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-1">Primary Material</h4>
+                                        <p className="text-sm text-zinc-600">{material?.name || 'Premium Technical Fabric'}</p>
+                                        <p className="text-xs text-zinc-400 mt-1">{material?.description || 'Engineered for durability.'}</p>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-2">Features</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {(material?.features || ['Breathable', 'Durable']).map(f => (
+                                                <span key={f} className="px-2 py-1 bg-zinc-100 text-[9px] font-bold uppercase tracking-wider text-zinc-600">
+                                                    {f}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </Accordion>
                         </div>
                     </div>
                 </div>
 
                 {/* RELATED PRODUCTS */}
                 {relatedProducts.length > 0 && (
-                    <section className="mt-32 pt-20 border-t border-zinc-100">
-                        <div className="text-center mb-16">
-                            <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400 mb-3 block">Complete The Look</span>
-                            <h2 className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tighter">Tactical Loadout</h2>
+                    <section className="mt-40 border-t border-zinc-100 pt-20">
+                        <div className="flex justify-between items-end mb-12">
+                            <h2 className="font-eurostile font-bold text-2xl md:text-3xl uppercase tracking-tight">Complete the Kit</h2>
+                            <button onClick={() => onNavigate('catalogue')} className="hidden md:block text-[10px] font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-zinc-600 hover:border-zinc-600 transition-colors">View All</button>
                         </div>
                         <ProductGrid products={relatedProducts} onProductClick={onProductClick} />
                     </section>

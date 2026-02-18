@@ -116,13 +116,15 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
                             
                             {/* Text Content */}
                             <div className="absolute bottom-0 left-0 p-6 md:p-16 text-white max-w-4xl pointer-events-none w-full">
-                                <span className="inline-block px-2 py-1 md:px-3 mb-3 md:mb-4 text-[9px] md:text-[10px] font-black uppercase tracking-widest bg-white text-black rounded-sm">
+                                <span className="inline-block px-3 py-1.5 mb-4 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-sm shadow-sm">
                                     {slide.subtitle}
                                 </span>
-                                <h3 className="font-eurostile text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black uppercase tracking-widest leading-[0.9] mb-3 md:mb-6 drop-shadow-xl break-words">
+                                {/* Minimized Text Size Here */}
+                                <h3 className="font-eurostile text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-widest leading-[0.9] mb-3 md:mb-6 drop-shadow-xl break-words">
                                     {slide.title}
                                 </h3>
-                                <p className="text-xs sm:text-sm md:text-lg font-medium text-white/80 max-w-xl leading-relaxed drop-shadow-md line-clamp-3 md:line-clamp-none">
+                                {/* Minimized Description Size Here */}
+                                <p className="text-[10px] sm:text-xs md:text-sm font-medium text-white/80 max-w-xl leading-relaxed drop-shadow-md line-clamp-3 md:line-clamp-none">
                                     {slide.description}
                                 </p>
                             </div>
@@ -169,13 +171,14 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
                             
                             <div className="absolute bottom-0 left-0 p-6 md:p-20 w-full overflow-y-auto max-h-[60vh] md:max-h-full no-scrollbar">
                                 <div className="max-w-7xl pb-8 md:pb-0">
-                                    <span className="inline-block px-3 py-1 md:px-4 md:py-1.5 mb-4 md:mb-6 text-[10px] md:text-xs font-black uppercase tracking-[0.2em] bg-white text-black rounded-sm">
+                                    <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-6 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-sm shadow-sm">
                                         {selectedSlide.subtitle}
                                     </span>
-                                    <h2 className="font-eurostile text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-widest leading-[0.9] mb-4 md:mb-8 text-white drop-shadow-2xl">
+                                    {/* Minimized Modal Text */}
+                                    <h2 className="font-eurostile text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-widest leading-[0.9] mb-4 md:mb-8 text-white drop-shadow-2xl">
                                         {selectedSlide.title}
                                     </h2>
-                                    <p className="text-sm sm:text-lg md:text-2xl font-medium text-white/90 leading-relaxed max-w-4xl drop-shadow-lg border-l-2 md:border-l-4 border-white pl-4 md:pl-6">
+                                    <p className="text-xs sm:text-sm md:text-lg font-medium text-white/90 leading-relaxed max-w-4xl drop-shadow-lg border-l-2 md:border-l-4 border-white pl-4 md:pl-6">
                                         {selectedSlide.description}
                                     </p>
                                 </div>

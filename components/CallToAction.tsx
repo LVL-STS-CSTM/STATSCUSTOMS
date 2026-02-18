@@ -13,7 +13,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
     const isVisible = useOnScreen(sectionRef);
     
     return (
-        <section ref={sectionRef} className="relative bg-black py-32 md:py-48 overflow-hidden border-t border-white/10 group">
+        <section ref={sectionRef} className="relative bg-black py-24 md:py-32 overflow-hidden border-t border-white/10 group">
             {/* Technical Dashed Grid Background */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]">
                 <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -43,12 +43,14 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
 
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
                 <div className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-                    <h2 className="font-eurostile font-bold text-4xl md:text-6xl lg:text-7xl text-white mb-8 uppercase tracking-widest leading-none drop-shadow-2xl">
+                    {/* Reduced font size */}
+                    <h2 className="font-eurostile font-bold text-3xl md:text-5xl lg:text-6xl text-white mb-8 uppercase tracking-widest leading-none drop-shadow-2xl">
                         Define Your Legacy
                     </h2>
                 </div>
                 
-                <p className={`text-base md:text-lg text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light transition-all duration-1000 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+                {/* Reduced text size */}
+                <p className={`text-sm md:text-base text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light transition-all duration-1000 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                     We don't just manufacture; we engineer identity. Premium craftsmanship, local excellence, and fair pricing. Equip your team with gear that demands respect.
                 </p>
                 
@@ -56,7 +58,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
                     <Button 
                         variant="primary"
                         onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}
-                        className="px-12 py-5 text-xs tracking-[0.3em] shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:bg-white/10 hover:text-white hover:border-white/50"
+                        className="px-10 py-4 text-[10px] tracking-[0.3em] shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:bg-white/10 hover:text-white hover:border-white/50"
                     >
                         INITIATE PROJECT
                     </Button>
