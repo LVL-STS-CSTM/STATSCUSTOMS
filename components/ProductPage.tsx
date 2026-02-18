@@ -4,7 +4,8 @@ import { Product, Color, Material, View } from '../types';
 import ProductGrid from './ProductGrid';
 import CallToAction from './CallToAction';
 import Accordion from './Accordion';
-import { ArrowLongRightIcon } from './icons';
+import SizeGuideModal from './SizeGuideModal';
+import { ArrowLongRightIcon, RulerIcon } from './icons';
 
 interface ProductPageProps {
     product: Product;
@@ -17,6 +18,8 @@ interface ProductPageProps {
 }
 
 const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, onNavigate, materials, allProducts, onProductClick }) => {
+    const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
+
     const defaultColor = useMemo(() => {
         if (!product || !product.availableColors) return null;
         const colors = product.availableColors.filter(c => !!c);
@@ -38,6 +41,17 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
         const allImages = Object.values(imageUrls);
         return allImages.length > 0 ? allImages.flat() : [];
     }, [selectedColor, product]);
+
+    // Derived feature images for the bottom section (use product images or fallbacks)
+    const featureImages = useMemo(() => {
+        const imgs = [...imagesForDisplay];
+        // Ensure we have at least 3 images for the feature section, rotating if necessary
+        while (imgs.length < 3) {
+            imgs.push(...imagesForDisplay);
+            if (imgs.length === 0) break; // Safety break
+        }
+        return imgs.slice(0, 3);
+    }, [imagesForDisplay]);
 
     const material = useMemo(() => {
         if (!product || !materials) return null;
@@ -82,12 +96,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                             ))}
                         </div>
 
-                        {/* Main Image */}
-                        <div className="flex-grow bg-zinc-50 relative overflow-hidden aspect-[3/4] lg:h-[80vh]">
+                        {/* Main Image - Updated to object-contain to prevent zoom/crop */}
+                        <div className="flex-grow bg-zinc-50 relative overflow-hidden aspect-[3/4] lg:h-[80vh] flex items-center justify-center cursor-zoom-in">
                             <img 
                                 src={imagesForDisplay[activeImageIndex] || 'https://placehold.co/800x1000?text=No+Image'} 
                                 alt={product.name} 
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 hover:scale-110"
                             />
                         </div>
                     </div>
@@ -96,19 +110,25 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                     <div className="lg:col-span-4 flex flex-col h-full sticky top-24">
                         <header className="mb-8 border-b border-zinc-100 pb-8">
                             <h1 className="font-eurostile font-bold text-3xl md:text-4xl lg:text-5xl text-black mb-2 uppercase tracking-tight leading-none">{product.name}</h1>
-                            <div className="flex items-center justify-between mt-4">
-                                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.3em]">
-                                    {selectedColor?.name || 'Select Color'}
-                                </span>
-                                <span className="text-xl font-bold font-mono">
+                            <div className="flex items-center justify-between mt-6">
+                                <span className="text-2xl font-bold font-mono">
                                     ₱{(product.price || 0).toLocaleString()}
                                 </span>
+                                <button 
+                                    onClick={() => setIsSizeGuideOpen(true)}
+                                    className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-zinc-600 hover:border-zinc-600 transition-all"
+                                >
+                                    <RulerIcon className="w-4 h-4" /> Size Guide
+                                </button>
                             </div>
                         </header>
 
                         {/* Color Selection */}
                         <div className="mb-10">
-                            <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 mb-4">Color</label>
+                            <div className="flex justify-between items-center mb-4">
+                                <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Color</label>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-black">{selectedColor?.name}</span>
+                            </div>
                             <div className="flex flex-wrap gap-3">
                                 {product.availableColors.map((color) => {
                                     const colorImage = product.imageUrls[color.name]?.[0] || imagesForDisplay[0];
@@ -133,20 +153,6 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                                     );
                                 })}
                             </div>
-                        </div>
-
-                        {/* Inquiry / Contact Action */}
-                        <div className="mb-10">
-                            <button 
-                                onClick={() => onNavigate('contact')}
-                                className="w-full py-5 bg-black text-white font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-zinc-800 transition-all flex items-center justify-center gap-4 group"
-                            >
-                                <span>Inquire About This Product</span>
-                                <ArrowLongRightIcon className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
-                            </button>
-                            <p className="text-center text-[9px] font-bold text-zinc-400 uppercase tracking-widest mt-4">
-                                MOQs apply • Custom branding available
-                            </p>
                         </div>
 
                         {/* Accordion Details */}
@@ -199,9 +205,43 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                     </div>
                 </div>
 
+                {/* 3-CARD FEATURE SECTION */}
+                <section className="mt-32 border-t border-zinc-100 pt-16">
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400 mb-12">Product Features</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="space-y-6">
+                            <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
+                                <img src={featureImages[0] || 'https://placehold.co/600x800'} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Feature 1" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-sm uppercase tracking-widest mb-2">Advanced Textiles</h4>
+                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs">Engineered fabrics selected for maximum breathability and durability in high-stress environments.</p>
+                            </div>
+                        </div>
+                        <div className="space-y-6">
+                            <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
+                                <img src={featureImages[1] || 'https://placehold.co/600x800'} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Feature 2" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-sm uppercase tracking-widest mb-2">Precision Fit</h4>
+                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs">Anatomical cuts designed to move with the body, reducing drag and increasing comfort range.</p>
+                            </div>
+                        </div>
+                        <div className="space-y-6">
+                            <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
+                                <img src={featureImages[2] || 'https://placehold.co/600x800'} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Feature 3" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-sm uppercase tracking-widest mb-2">Reinforced Detail</h4>
+                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs">Double-stitched seams and premium finishing ensure longevity through repeated use.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 {/* RELATED PRODUCTS */}
                 {relatedProducts.length > 0 && (
-                    <section className="mt-40 border-t border-zinc-100 pt-20">
+                    <section className="mt-32 pt-20 border-t border-zinc-100">
                         <div className="flex justify-between items-end mb-12">
                             <h2 className="font-eurostile font-bold text-2xl md:text-3xl uppercase tracking-tight">Complete the Kit</h2>
                             <button onClick={() => onNavigate('catalogue')} className="hidden md:block text-[10px] font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-zinc-600 hover:border-zinc-600 transition-colors">View All</button>
@@ -214,6 +254,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
             <div className="mt-0">
                 <CallToAction onNavigate={onNavigate} />
             </div>
+
+            <SizeGuideModal 
+                isOpen={isSizeGuideOpen} 
+                onClose={() => setIsSizeGuideOpen(false)} 
+                productName={product.name}
+                sizes={product.availableSizes}
+            />
         </div>
     );
 };
