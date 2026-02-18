@@ -1,3 +1,4 @@
+
 import { initialProductsData, initialCollectionsData } from '../../../context/initialProductData';
 import { 
     initialFaqData, 
@@ -14,7 +15,8 @@ import {
     initialServiceData,
     initialCapabilityData,
     initialSubscriptionModalData,
-    initialHomeFeatureData
+    initialHomeFeatureData,
+    initialProductFeatureData
 } from '../../../context/initialContentData';
 
 interface Env {
@@ -40,7 +42,8 @@ const DATA_TO_SEED: Record<string, any> = {
     services: initialServiceData,
     capabilities: initialCapabilityData,
     subscriptionModalContent: initialSubscriptionModalData,
-    homeFeature: initialHomeFeatureData
+    homeFeature: initialHomeFeatureData,
+    productFeatures: initialProductFeatureData
 };
 
 export const onRequestGet = async (context: { env: Env; request: Request }) => {
@@ -110,6 +113,7 @@ export const onRequestGet = async (context: { env: Env; request: Request }) => {
             <div style="font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 40px; border: 1px solid #e5e7eb; border-radius: 24px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
                 <h1 style="color: #10b981; font-size: 24px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;">Database Seeding Successful!</h1>
                 <p style="color: #4b5563; line-height: 1.6;">Successfully synchronized ${count} data keys to your Cloudflare KV store.</p>
+                <p><strong>Keys:</strong> ${keys.join(', ')}</p>
                 <div style="background: #f9fafb; padding: 20px; border-radius: 12px; margin: 24px 0;">
                     <p style="margin: 0; font-size: 14px; color: #6b7280;">Default Credentials:</p>
                     <p style="margin: 8px 0 0 0; font-family: monospace; font-weight: bold; color: #111827;">admin / password</p>

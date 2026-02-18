@@ -1,0 +1,129 @@
+
+import React, { useState, useEffect } from 'react';
+import { ProductFeature } from '../types';
+import { useData } from '../context/DataContext';
+import { CloseIcon } from './icons';
+
+interface ProductFeatureFormModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    featureToEdit: ProductFeature | null;
+}
+
+const emptyFeature: Omit<ProductFeature, 'id' | 'displayOrder'> = {
+    title: '',
+    description: '',
+    imageUrl: '',
+};
+
+const ProductFeatureFormModal: React.FC<ProductFeatureFormModalProps> = ({ isOpen, onClose, featureToEdit }) => {
+    const { productFeatures, updateData } = useData();
+    const [formData, setFormData] = useState<ProductFeature | Omit<ProductFeature, 'id' | 'displayOrder'>>(featureToEdit || emptyFeature);
+    const [isSaving, setIsSaving] = useState(false);
+
+    useEffect(() => {
+        setFormData(featureToEdit || emptyFeature);
+    }, [featureToEdit, isOpen]);
+
+    if (!isOpen) return null;
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!formData.title || !formData.imageUrl) {
+            alert('Title and Image URL are required.');
+            return;
+        }
+
+        setIsSaving(true);
+        try {
+            let success = false;
+            if (featureToEdit) {
+                const updated = productFeatures.map(f => f.id === featureToEdit.id ? { ...formData, id: f.id, displayOrder: f.displayOrder } as ProductFeature : f);
+                success = await updateData('productFeatures', updated);
+            } else {
+                const newFeature = { ...formData, id: `pf-${Date.now()}`, displayOrder: productFeatures.length } as ProductFeature;
+                success = await updateData('productFeatures', [...productFeatures, newFeature]);
+            }
+
+            if (success) {
+                onClose();
+            } else {
+                alert('Failed to save feature. Please try again.');
+            }
+        } catch (error) {
+            console.error('Save error:', error);
+            alert('An error occurred while saving.');
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
+    const darkInputStyles = "mt-1 block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white sm:text-sm placeholder-gray-400";
+    
+    return (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg" role="dialog" aria-modal="true">
+                <header className="flex items-center justify-between p-4 border-b">
+                    <h2 className="text-xl font-semibold">{featureToEdit ? 'Edit Feature' : 'Add Feature'}</h2>
+                    <button onClick={onClose} aria-label="Close form" disabled={isSaving}>
+                        <CloseIcon className="w-6 h-6 text-gray-600 hover:text-black" />
+                    </button>
+                </header>
+                <form onSubmit={handleSubmit} className="p-6 space-y-4">
+                    <div>
+                        <label htmlFor="title" className="block text-sm font-medium text-gray-700">Feature Title</label>
+                        <input
+                            type="text"
+                            name="title"
+                            id="title"
+                            value={formData.title}
+                            onChange={handleInputChange}
+                            required
+                            autoFocus
+                            className={darkInputStyles}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700">Image URL</label>
+                        <input
+                            type="url"
+                            name="imageUrl"
+                            id="imageUrl"
+                            value={formData.imageUrl}
+                            onChange={handleInputChange}
+                            required
+                            placeholder="https://..."
+                            className={darkInputStyles}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea
+                            name="description"
+                            id="description"
+                            value={formData.description}
+                            onChange={handleInputChange}
+                            rows={3}
+                            className={darkInputStyles}
+                            placeholder="Briefly describe the feature..."
+                        />
+                    </div>
+                    <footer className="pt-2 flex justify-end space-x-3">
+                        <button type="button" onClick={onClose} disabled={isSaving} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 disabled:opacity-50">
+                            Cancel
+                        </button>
+                        <button type="submit" disabled={isSaving} className="px-6 py-2 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f] disabled:opacity-50 flex items-center gap-2">
+                            {isSaving ? 'Saving...' : 'Save Feature'}
+                        </button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    );
+};
+
+export default ProductFeatureFormModal;

@@ -6,6 +6,7 @@ import CallToAction from './CallToAction';
 import Accordion from './Accordion';
 import SizeGuideModal from './SizeGuideModal';
 import { RulerIcon } from './icons';
+import { useData } from '../context/DataContext';
 
 interface ProductPageProps {
     product: Product;
@@ -18,6 +19,7 @@ interface ProductPageProps {
 }
 
 const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, onNavigate, materials, allProducts, onProductClick }) => {
+    const { productFeatures } = useData();
     const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
 
     const defaultColor = useMemo(() => {
@@ -41,17 +43,6 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
         const allImages = Object.values(imageUrls);
         return allImages.length > 0 ? allImages.flat() : [];
     }, [selectedColor, product]);
-
-    // Derived feature images for the bottom section (use product images or fallbacks)
-    const featureImages = useMemo(() => {
-        const imgs = [...imagesForDisplay];
-        // Ensure we have at least 3 images for the feature section, rotating if necessary
-        while (imgs.length < 3) {
-            imgs.push(...imagesForDisplay);
-            if (imgs.length === 0) break; // Safety break
-        }
-        return imgs.slice(0, 3);
-    }, [imagesForDisplay]);
 
     const material = useMemo(() => {
         if (!product || !materials) return null;
@@ -207,33 +198,18 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                 <section className="mt-32 border-t border-zinc-100 pt-16">
                     <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400 mb-12 text-center">Product Features</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="space-y-6 text-center">
-                            <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
-                                <img src={featureImages[0] || 'https://placehold.co/600x800'} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Feature 1" />
+                        {productFeatures.sort((a,b) => (a.displayOrder || 0) - (b.displayOrder || 0)).map((feature, idx) => (
+                            <div key={feature.id || idx} className="space-y-6 text-center">
+                                <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
+                                    <img src={feature.imageUrl} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt={feature.title} />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-sm uppercase tracking-widest mb-2">{feature.title}</h4>
+                                    <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto">{feature.description}</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 className="font-bold text-sm uppercase tracking-widest mb-2">Advanced Textiles</h4>
-                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto">Engineered fabrics selected for maximum breathability and durability in high-stress environments.</p>
-                            </div>
-                        </div>
-                        <div className="space-y-6 text-center">
-                            <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
-                                <img src={featureImages[1] || 'https://placehold.co/600x800'} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Feature 2" />
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-sm uppercase tracking-widest mb-2">Precision Fit</h4>
-                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto">Anatomical cuts designed to move with the body, reducing drag and increasing comfort range.</p>
-                            </div>
-                        </div>
-                        <div className="space-y-6 text-center">
-                            <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
-                                <img src={featureImages[2] || 'https://placehold.co/600x800'} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Feature 3" />
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-sm uppercase tracking-widest mb-2">Reinforced Detail</h4>
-                                <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto">Double-stitched seams and premium finishing ensure longevity through repeated use.</p>
-                            </div>
-                        </div>
+                        ))}
+                        {productFeatures.length === 0 && <p className="col-span-3 text-center text-xs text-zinc-400">No features configured.</p>}
                     </div>
                 </section>
 

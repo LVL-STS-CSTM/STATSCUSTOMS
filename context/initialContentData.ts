@@ -1,5 +1,5 @@
 
-import { FaqItem, HeroContent, Partner, HowWeWorkSection, Material, InfoCard, FeaturedVideoContent, BrandReview, PlatformRating, CommunityPost, PageBanner, Service, Capability, SubscriptionModalContent, HomeFeature } from '../types';
+import { FaqItem, HeroContent, Partner, HowWeWorkSection, Material, InfoCard, FeaturedVideoContent, BrandReview, PlatformRating, CommunityPost, PageBanner, Service, Capability, SubscriptionModalContent, HomeFeature, ProductFeature } from '../types';
 
 export const initialFaqData: FaqItem[] = [
     { id: 'faq-1', question: 'What types of custom apparel do you offer?', answer: 'We specialize in high-performance jerseys, technical training wear, corporate essentials, and lifestyle headwear. Every piece is engineered for durability and style.' },
@@ -108,3 +108,27 @@ export const initialHomeFeatureData: HomeFeature = {
     ],
     isVisible: true
 };
+
+export const initialProductFeatureData: ProductFeature[] = [
+    {
+        id: 'feat-1',
+        title: 'Advanced Textiles',
+        description: 'Engineered fabrics selected for maximum breathability and durability in high-stress environments.',
+        imageUrl: 'https://placehold.co/600x800',
+        displayOrder: 0
+    },
+    {
+        id: 'feat-2',
+        title: 'Precision Fit',
+        description: 'Anatomical cuts designed to move with the body, reducing drag and increasing comfort range.',
+        imageUrl: 'https://placehold.co/600x800',
+        displayOrder: 1
+    },
+    {
+        id: 'feat-3',
+        title: 'Reinforced Detail',
+        description: 'Double-stitched seams and premium finishing ensure longevity through repeated use.',
+        imageUrl: 'https://placehold.co/600x800',
+        displayOrder: 2
+    }
+];

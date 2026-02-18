@@ -1,5 +1,6 @@
+
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
-import { Product, FaqItem, HeroContent, Partner, HowWeWorkSection, Material, InfoCard, FeaturedVideoContent, BrandReview, PlatformRating, CommunityPost, PageBanner, Collection, Service, Capability, SubscriptionModalContent, HomeFeature } from '../types';
+import { Product, FaqItem, HeroContent, Partner, HowWeWorkSection, Material, InfoCard, FeaturedVideoContent, BrandReview, PlatformRating, CommunityPost, PageBanner, Collection, Service, Capability, SubscriptionModalContent, HomeFeature, ProductFeature } from '../types';
 import { initialProductsData, initialCollectionsData } from './initialProductData';
 import { 
     initialFaqData, 
@@ -16,7 +17,8 @@ import {
     initialServiceData,
     initialCapabilityData,
     initialSubscriptionModalData,
-    initialHomeFeatureData
+    initialHomeFeatureData,
+    initialProductFeatureData
 } from './initialContentData';
 
 interface DataContextType {
@@ -37,6 +39,7 @@ interface DataContextType {
     capabilities: Capability[];
     subscriptionModalContent: SubscriptionModalContent;
     homeFeature: HomeFeature;
+    productFeatures: ProductFeature[];
     isLoading: boolean;
     error: string | null;
     updateData: <T>(key: string, data: T) => Promise<boolean>;
@@ -49,7 +52,7 @@ const dataKeys = [
     'products', 'collections', 'faqs', 'heroContents', 'partners',
     'howWeWorkSections', 'materials', 'infoCards', 'featuredVideoContent',
     'brandReviews', 'platformRatings', 'communityPosts', 'pageBanners',
-    'services', 'capabilities', 'subscriptionModalContent', 'homeFeature'
+    'services', 'capabilities', 'subscriptionModalContent', 'homeFeature', 'productFeatures'
 ];
 
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -71,6 +74,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         capabilities: initialCapabilityData,
         subscriptionModalContent: initialSubscriptionModalData,
         homeFeature: initialHomeFeatureData,
+        productFeatures: initialProductFeatureData,
     });
     
     const [isLoading, setIsLoading] = useState(true);
@@ -157,6 +161,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         capabilities: data.capabilities || [],
         subscriptionModalContent: data.subscriptionModalContent || initialSubscriptionModalData,
         homeFeature: data.homeFeature || initialHomeFeatureData,
+        productFeatures: data.productFeatures || initialProductFeatureData,
         isLoading,
         error,
         updateData,

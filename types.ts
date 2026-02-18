@@ -128,6 +128,18 @@ export interface HomeFeature {
 }
 
 /**
+ * @interface ProductFeature
+ * @description Represents the selling point cards on the product details page.
+ */
+export interface ProductFeature {
+    id: string;
+    title: string;
+    description: string;
+    imageUrl: string;
+    displayOrder: number;
+}
+
+/**
  * @interface Partner
  * @description Represents a partner company with a name and logo.
  */

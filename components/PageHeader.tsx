@@ -8,15 +8,18 @@ interface PageHeaderProps {
     fallbackTitle?: string;
     fallbackDescription?: string;
     fallbackImage?: string;
+    forceTitle?: string;
+    forceDescription?: string;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ page, fallbackTitle, fallbackDescription, fallbackImage }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ page, fallbackTitle, fallbackDescription, fallbackImage, forceTitle, forceDescription }) => {
     const { pageBanners } = useData();
     const banner = pageBanners.find(b => b.page === page);
     const [scrollPos, setScrollPos] = useState(0);
 
-    const title = banner?.title || fallbackTitle || '';
-    const description = banner?.description || fallbackDescription || '';
+    // Logic: Use force override first, then database banner, then fallback.
+    const title = forceTitle || banner?.title || fallbackTitle || '';
+    const description = forceDescription || banner?.description || fallbackDescription || '';
     const imageUrl = banner?.imageUrl || fallbackImage || 'https://images.pexels.com/photos/8365691/pexels-photo-8365691.jpeg';
 
     useEffect(() => {

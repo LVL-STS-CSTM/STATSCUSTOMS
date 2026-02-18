@@ -122,7 +122,9 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
         <div className="bg-white min-h-screen">
             <PageHeader 
                 page="catalogue" 
-                fallbackTitle={initialFilter?.value || "The Collection"} 
+                forceTitle={initialFilter?.value}
+                forceDescription={initialFilter ? `Viewing filtered results for ${initialFilter.value}` : undefined}
+                fallbackTitle="The Collection" 
                 fallbackDescription={`Handcrafted quality. Currently showing ${filteredProducts.length} items.`}
             />
 

@@ -24,7 +24,8 @@ import SecurityManagement from './SecurityManagement';
 import ServiceManagement from './ServiceManagement';
 import SubscriptionModalManagement from './SubscriptionModalManagement';
 import HomeFeatureManagement from './HomeFeatureManagement';
-import { ViewGridSmallIcon, CartIcon, UserIcon, SparklesIcon, TargetIcon } from './icons';
+import ProductFeatureManagement from './ProductFeatureManagement';
+import { ViewGridSmallIcon, CartIcon, UserIcon, SparklesIcon, TargetIcon, CloseIcon } from './icons';
 
 const STATUSES: QuoteStatus[] = ['New', 'Contacted', 'In Progress', 'Completed', 'Cancelled'];
 
@@ -201,8 +202,9 @@ const NavItem: React.FC<{
 const AdminDashboard: React.FC = () => {
     const { logout, subscriptions, submittedQuotes, fetchAdminData } = useAdmin();
     const { fetchData, isLoading: isDataSyncing } = useData();
-    const [activeTab, setActiveTab] = useState<'analytics' | 'quotes' | 'products' | 'collections' | 'subscriptions' | 'email-marketing' | 'content' | 'security'>('analytics');
-    const [contentSubTab, setContentSubTab] = useState<'banners' | 'feature-section' | 'page-headers' | 'info-cards' | 'featured-video' | 'services' | 'materials' | 'how-we-work' | 'partners' | 'brand-reviews' | 'platform-ratings' | 'faqs' | 'community' | 'signup-popup'>('banners');
+    const [activeTab, setActiveTab] = useState<'analytics' | 'quotes' | 'products' | 'collections' | 'subscriptions' | 'email-marketing' | 'content' | 'pages' | 'security'>('analytics');
+    const [contentSubTab, setContentSubTab] = useState<'banners' | 'feature-section' | 'product-features' | 'info-cards' | 'featured-video' | 'signup-popup'>('banners');
+    const [pageSubTab, setPageSubTab] = useState<'partners' | 'how-we-work' | 'materials' | 'services' | 'brand-reviews' | 'platform-ratings' | 'faqs' | 'community' | 'page-headers'>('partners');
 
     const handleRefresh = async () => {
         await Promise.all([fetchAdminData(), fetchData()]);
@@ -210,19 +212,24 @@ const AdminDashboard: React.FC = () => {
 
     const contentSubTabs = [
         { id: 'banners', label: 'Hero Banners' },
-        { id: 'feature-section', label: 'Feature Carousel' },
-        { id: 'page-headers', label: 'Page Headers' },
+        { id: 'feature-section', label: 'Home Feature' },
+        { id: 'product-features', label: 'Product Features' },
         { id: 'info-cards', label: 'Info Cards' },
         { id: 'featured-video', label: 'Video Section' },
         { id: 'signup-popup', label: 'Newsletter Popup' },
-        { id: 'services', label: 'Services' },
-        { id: 'materials', label: 'Materials' },
-        { id: 'how-we-work', label: 'Process Steps' },
+    ];
+
+    const pageSubTabs = [
         { id: 'partners', label: 'Partners' },
+        { id: 'how-we-work', label: 'Process Steps' },
+        { id: 'materials', label: 'Materials' },
+        { id: 'services', label: 'Services' },
         { id: 'brand-reviews', label: 'Reviews' },
         { id: 'platform-ratings', label: 'Ratings' },
         { id: 'faqs', label: 'FAQs' },
         { id: 'community', label: 'Community' },
+        // Moved here from general content
+        { id: 'page-headers', label: 'Page Headers' },
     ];
 
     return (
@@ -258,6 +265,14 @@ const AdminDashboard: React.FC = () => {
                         </div>
 
                         <div>
+                            <div className="px-5 py-2 text-[9px] font-black text-zinc-600 uppercase tracking-[0.3em] mb-2">Content</div>
+                            <div className="space-y-1">
+                                <NavItem active={activeTab === 'content'} onClick={() => setActiveTab('content')} label="Site Content" icon={<SparklesIcon className="w-4 h-4"/>} />
+                                <NavItem active={activeTab === 'pages'} onClick={() => setActiveTab('pages')} label="Page Content" icon={<ViewGridSmallIcon className="w-4 h-4"/>} />
+                            </div>
+                        </div>
+
+                        <div>
                             <div className="px-5 py-2 text-[9px] font-black text-zinc-600 uppercase tracking-[0.3em] mb-2">Growth</div>
                             <div className="space-y-1">
                                 <NavItem active={activeTab === 'subscriptions'} onClick={() => setActiveTab('subscriptions')} label="Audience" icon={<UserIcon className="w-4 h-4"/>} />
@@ -268,7 +283,6 @@ const AdminDashboard: React.FC = () => {
                         <div>
                             <div className="px-5 py-2 text-[9px] font-black text-zinc-600 uppercase tracking-[0.3em] mb-2">System</div>
                             <div className="space-y-1">
-                                <NavItem active={activeTab === 'content'} onClick={() => setActiveTab('content')} label="Site Content" icon={<ViewGridSmallIcon className="w-4 h-4"/>} />
                                 <NavItem active={activeTab === 'security'} onClick={() => setActiveTab('security')} label="Settings" icon={<TargetIcon className="w-4 h-4"/>} />
                             </div>
                         </div>
@@ -319,6 +333,8 @@ const AdminDashboard: React.FC = () => {
                         {activeTab === 'subscriptions' && <SubscriptionManagement />}
                         {activeTab === 'email-marketing' && <EmailMarketing />}
                         {activeTab === 'security' && <SecurityManagement />}
+                        
+                        {/* Site Content Tab */}
                         {activeTab === 'content' && (
                             <div className="space-y-8">
                                 <div className="bg-white p-4 rounded-xl shadow-sm border border-zinc-200 overflow-x-auto no-scrollbar sticky top-0 z-10">
@@ -340,20 +356,47 @@ const AdminDashboard: React.FC = () => {
                                 </div>
                                 
                                 <div className="animate-fade-in-up">
-                                    {contentSubTab === 'faqs' && <FaqManagement />}
                                     {contentSubTab === 'banners' && <HeroManagement />}
-                                    {contentSubTab === 'page-headers' && <PageBannerManagement />}
-                                    {contentSubTab === 'partners' && <PartnerManagement />}
-                                    {contentSubTab === 'how-we-work' && <HowWeWorkManagement />}
-                                    {contentSubTab === 'materials' && <FabricManagement />}
                                     {contentSubTab === 'info-cards' && <InfoCardManagement />}
                                     {contentSubTab === 'featured-video' && <FeaturedVideoManagement />}
-                                    {contentSubTab === 'brand-reviews' && <BrandReviewManagement />}
-                                    {contentSubTab === 'platform-ratings' && <PlatformRatingManagement />}
-                                    {contentSubTab === 'community' && <CommunityManagement />}
-                                    {contentSubTab === 'services' && <ServiceManagement />}
                                     {contentSubTab === 'signup-popup' && <SubscriptionModalManagement />}
                                     {contentSubTab === 'feature-section' && <HomeFeatureManagement />}
+                                    {contentSubTab === 'product-features' && <ProductFeatureManagement />}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Pages Content Tab */}
+                        {activeTab === 'pages' && (
+                            <div className="space-y-8">
+                                <div className="bg-white p-4 rounded-xl shadow-sm border border-zinc-200 overflow-x-auto no-scrollbar sticky top-0 z-10">
+                                    <div className="flex items-center gap-2 min-w-max">
+                                        {pageSubTabs.map(tab => (
+                                            <button 
+                                                key={tab.id}
+                                                onClick={() => setPageSubTab(tab.id as any)} 
+                                                className={`px-5 py-2.5 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all border ${
+                                                    pageSubTab === tab.id 
+                                                    ? 'bg-black text-white border-black shadow-md' 
+                                                    : 'bg-white text-zinc-500 border-transparent hover:bg-zinc-50 hover:border-zinc-200 hover:text-black'
+                                                }`}
+                                            >
+                                                {tab.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                                
+                                <div className="animate-fade-in-up">
+                                    {pageSubTab === 'page-headers' && <PageBannerManagement />}
+                                    {pageSubTab === 'faqs' && <FaqManagement />}
+                                    {pageSubTab === 'partners' && <PartnerManagement />}
+                                    {pageSubTab === 'how-we-work' && <HowWeWorkManagement />}
+                                    {pageSubTab === 'materials' && <FabricManagement />}
+                                    {pageSubTab === 'brand-reviews' && <BrandReviewManagement />}
+                                    {pageSubTab === 'platform-ratings' && <PlatformRatingManagement />}
+                                    {pageSubTab === 'community' && <CommunityManagement />}
+                                    {pageSubTab === 'services' && <ServiceManagement />}
                                 </div>
                             </div>
                         )}
