@@ -195,7 +195,7 @@ const AppContent: React.FC = () => {
 
     return (
         <ErrorBoundary>
-            <div className="font-sans min-h-screen flex flex-col bg-white selection:bg-black selection:text-white">
+            <div className="font-sans min-h-screen flex flex-col bg-white selection:bg-black selection:text-white overflow-x-hidden w-full">
                 {isSplashVisible && <SplashScreen isFadingOut={!isAppLoading && !isDataLoading} />}
                 {toastMessage && <Toast message={toastMessage} onClose={() => setToastMessage('')} />}
 

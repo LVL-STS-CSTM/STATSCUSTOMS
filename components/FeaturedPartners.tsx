@@ -16,8 +16,8 @@ const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
     }
 
     return (
-        <section ref={ref} className="bg-gray-100 py-16 md:py-24 overflow-hidden">
-            <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out mb-16 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+        <section ref={ref} className="bg-gray-100 py-16 md:py-24 overflow-hidden group relative w-full">
+            <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                 <div className="text-center">
                     <h2 className="font-oswald text-3xl md:text-4xl tracking-widest text-gray-900 mb-4 uppercase">
                         Strategic Alliances
@@ -28,17 +28,23 @@ const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
                 </div>
             </div>
             
-            {/* Marquee Container */}
-            <div className="w-full relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-                <div className="flex w-max animate-scroll hover:[animation-play-state:paused]">
-                    {/* Render 4 sets to ensure seamless infinite scroll even on ultra-wide screens with few items */}
-                    {[...Array(4)].map((_, i) => (
-                        <div key={i} className="flex items-center gap-12 md:gap-24 px-6 md:px-12 shrink-0">
-                            {partners.map((partner) => (
-                                <PartnerItem key={`${i}-${partner.id}`} partner={partner} />
-                            ))}
+            {/* Carousel Container */}
+            <div className="relative w-full overflow-hidden">
+                {/* Scrollable Area */}
+                <div 
+                    className="flex overflow-x-auto gap-8 md:gap-16 pb-8 px-4 md:px-12 no-scrollbar snap-x snap-mandatory scroll-smooth items-center w-full"
+                >
+                    {/* Spacer for left padding on mobile */}
+                    <div className="shrink-0 w-4 md:w-0"></div>
+                    
+                    {partners.map((partner) => (
+                        <div key={partner.id} className="snap-center shrink-0 w-[140px] md:w-[180px] flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100">
+                            <PartnerItem partner={partner} />
                         </div>
                     ))}
+                    
+                    {/* Spacer for right padding on mobile */}
+                    <div className="shrink-0 w-4 md:w-0"></div>
                 </div>
             </div>
         </section>
@@ -50,21 +56,20 @@ const PartnerItem: React.FC<{ partner: Partner }> = ({ partner }) => {
 
     if (error) {
         return (
-            <span className="text-lg md:text-xl font-black text-gray-300 uppercase tracking-widest whitespace-nowrap select-none">
+            <span className="text-sm md:text-base font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap select-none">
                 {partner.name}
             </span>
         );
     }
 
     return (
-        <div className="relative group">
-            <img 
-                src={partner.logoUrl} 
-                alt={`${partner.name} logo`} 
-                className="h-10 md:h-14 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                onError={() => setError(true)}
-            />
-        </div>
+        <img 
+            src={partner.logoUrl} 
+            alt={`${partner.name} logo`} 
+            className="w-full h-auto max-h-16 md:max-h-20 object-contain"
+            onError={() => setError(true)}
+            draggable={false}
+        />
     );
 };
 

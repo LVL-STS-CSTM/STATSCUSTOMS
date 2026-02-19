@@ -15,7 +15,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
     return (
         <section ref={sectionRef} className="relative bg-black py-24 md:py-32 overflow-hidden border-t border-white/10 group">
             {/* Technical Dashed Grid Background */}
-            <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.15]">
+            <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.25]">
                 <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <pattern id="technical-grid" width="80" height="80" patternUnits="userSpaceOnUse">
@@ -28,14 +28,14 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
 
             {/* Corner Crop Marks (L-Shapes) */}
             <div className="absolute inset-0 z-10 pointer-events-none">
-                <div className="absolute top-8 left-8 w-8 h-8 border-t-[1px] border-l-[1px] border-white/40"></div>
-                <div className="absolute top-8 right-8 w-8 h-8 border-t-[1px] border-r-[1px] border-white/40"></div>
-                <div className="absolute bottom-8 left-8 w-8 h-8 border-b-[1px] border-l-[1px] border-white/40"></div>
-                <div className="absolute bottom-8 right-8 w-8 h-8 border-b-[1px] border-r-[1px] border-white/40"></div>
+                <div className="absolute top-8 left-8 w-8 h-8 border-t-[1px] border-l-[1px] border-white/60"></div>
+                <div className="absolute top-8 right-8 w-8 h-8 border-t-[1px] border-r-[1px] border-white/60"></div>
+                <div className="absolute bottom-8 left-8 w-8 h-8 border-b-[1px] border-l-[1px] border-white/60"></div>
+                <div className="absolute bottom-8 right-8 w-8 h-8 border-b-[1px] border-r-[1px] border-white/60"></div>
             </div>
 
             {/* Central Crosshairs (Decorative) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl h-full pointer-events-none opacity-10">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl h-full pointer-events-none opacity-30">
                 <div className="absolute top-0 bottom-0 left-1/4 w-[1px] border-l border-dashed border-white"></div>
                 <div className="absolute top-0 bottom-0 right-1/4 w-[1px] border-r border-dashed border-white"></div>
                 <div className="absolute left-0 right-0 top-1/2 h-[1px] border-t border-dashed border-white"></div>

@@ -80,7 +80,7 @@ const HomePage: React.FC<HomePageProps> = ({
     const secondaryHeroes = sortedHeroes.slice(1);
 
     return (
-        <div className="animate-fade-in bg-white w-full overflow-hidden">
+        <div className="animate-fade-in bg-white w-full overflow-x-hidden">
             {homeHero && (
                 <HeroSection 
                     hero={homeHero} 
