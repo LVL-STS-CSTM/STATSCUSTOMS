@@ -88,14 +88,14 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                                 <div className="relative h-full flex items-center" onMouseEnter={() => { setIsMegaMenuOpen(true); setIsExploreMenuOpen(false); }}>
                                     <button
                                         onClick={() => handleNavClick('browse', null)}
-                                        className={`flex items-center space-x-1.5 text-[11px] font-eurostile font-bold uppercase tracking-[0.25em] transition-colors duration-300 ${view === 'browse' ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                                        className={`flex items-center space-x-1.5 text-[11px] font-eurostile font-bold uppercase tracking-[0.3em] transition-colors duration-300 ${view === 'browse' ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
                                     >
                                         <span>Catalogue</span>
                                         <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform duration-500 ${isMegaMenuOpen ? 'rotate-180' : ''}`} />
                                     </button>
                                 </div>
                                 <div className="relative h-full flex items-center" onMouseEnter={() => { setIsExploreMenuOpen(true); setIsMegaMenuOpen(false); }}>
-                                    <button className="flex items-center space-x-1.5 text-[11px] font-eurostile font-bold uppercase tracking-[0.25em] text-gray-400 hover:text-white transition-colors duration-300">
+                                    <button className="flex items-center space-x-1.5 text-[11px] font-eurostile font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors duration-300">
                                         <span>Explore</span>
                                         <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform duration-500 ${isExploreMenuOpen ? 'rotate-180' : ''}`} />
                                     </button>

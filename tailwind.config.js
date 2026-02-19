@@ -18,12 +18,12 @@ export default {
       },
       fontWeight: {
         'light': '300',
-        'normal': '300',
-        'medium': '400',
-        'semibold': '500',
-        'bold': '500',
-        'extrabold': '600',
-        'black': '600', 
+        'normal': '400',
+        'medium': '500',
+        'semibold': '600',
+        'bold': '700',
+        'extrabold': '800',
+        'black': '900', 
       },
       colors: {
         brand: {

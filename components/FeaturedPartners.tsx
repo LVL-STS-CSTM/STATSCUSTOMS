@@ -19,10 +19,10 @@ const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
         <section ref={ref} className="bg-gray-100 py-16 md:py-24 overflow-hidden group relative w-full">
             <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                 <div className="text-center">
-                    <h2 className="font-oswald text-3xl md:text-4xl tracking-widest text-gray-900 mb-4 uppercase">
+                    <h2 className="font-oswald text-3xl md:text-4xl tracking-[0.3em] text-zinc-900 mb-6 uppercase">
                         Strategic Alliances
                     </h2>
-                    <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                    <p className="text-sm md:text-base text-zinc-500 leading-relaxed max-w-2xl mx-auto uppercase tracking-widest">
                         Powering the visual identity of elite organizations, from agile startups to global icons.
                     </p>
                 </div>
@@ -32,7 +32,7 @@ const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
             <div className="relative w-full overflow-hidden">
                 {/* Scrollable Area */}
                 <div 
-                    className="flex overflow-x-auto gap-8 md:gap-16 pb-8 px-4 md:px-12 no-scrollbar snap-x snap-mandatory scroll-smooth items-center w-full"
+                    className="flex overflow-x-auto overflow-y-hidden gap-8 md:gap-16 pb-4 px-4 md:px-12 no-scrollbar snap-x snap-mandatory scroll-smooth items-center w-full"
                 >
                     {/* Spacer for left padding on mobile */}
                     <div className="shrink-0 w-4 md:w-0"></div>
