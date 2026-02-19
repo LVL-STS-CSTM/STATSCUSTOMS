@@ -188,26 +188,6 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                                             ))}
                                         </div>
                                     </div>
-                                    
-                                    {/* Dynamic Product Features */}
-                                    {product.features && product.features.length > 0 && (
-                                        <div className="pt-4 border-t border-zinc-100 mt-4">
-                                            <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-3">Specific Tech Specs</h4>
-                                            <div className="grid grid-cols-1 gap-3">
-                                                {product.features.map((feature, idx) => (
-                                                    <div key={idx} className="flex items-center gap-3">
-                                                        {feature.imageUrl && (
-                                                            <img src={feature.imageUrl} alt={feature.name} className="w-8 h-8 object-cover rounded bg-zinc-50" />
-                                                        )}
-                                                        <div>
-                                                            <span className="block text-[9px] font-bold uppercase tracking-wider text-black">{feature.name}</span>
-                                                            <span className="block text-[9px] text-zinc-500">{feature.value}</span>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
                                 </div>
                             </Accordion>
                         </div>
@@ -218,18 +198,22 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                 <section className="mt-32 border-t border-zinc-100 pt-16">
                     <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400 mb-12 text-center">Product Features</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {productFeatures.sort((a,b) => (a.displayOrder || 0) - (b.displayOrder || 0)).map((feature, idx) => (
-                            <div key={feature.id || idx} className="space-y-6 text-center">
+                        {(product.features && product.features.length > 0 ? product.features : productFeatures.sort((a,b) => (a.displayOrder || 0) - (b.displayOrder || 0))).map((feature, idx) => (
+                            <div key={idx} className="space-y-6 text-center">
                                 <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
-                                    <img src={feature.imageUrl} className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt={feature.title} />
+                                    <img 
+                                        src={feature.imageUrl} 
+                                        className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" 
+                                        alt={(feature as any).name || (feature as any).title} 
+                                    />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-sm uppercase tracking-widest mb-2">{feature.title}</h4>
-                                    <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto">{feature.description}</p>
+                                    <h4 className="font-bold text-sm uppercase tracking-widest mb-2">{(feature as any).name || (feature as any).title}</h4>
+                                    <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto">{(feature as any).value || (feature as any).description}</p>
                                 </div>
                             </div>
                         ))}
-                        {productFeatures.length === 0 && <p className="col-span-3 text-center text-xs text-zinc-400">No features configured.</p>}
+                        {(!product.features || product.features.length === 0) && productFeatures.length === 0 && <p className="col-span-3 text-center text-xs text-zinc-400">No features configured.</p>}
                     </div>
                 </section>
 

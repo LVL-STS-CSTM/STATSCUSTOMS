@@ -24,7 +24,6 @@ import SecurityManagement from './SecurityManagement';
 import ServiceManagement from './ServiceManagement';
 import SubscriptionModalManagement from './SubscriptionModalManagement';
 import HomeFeatureManagement from './HomeFeatureManagement';
-import ProductFeatureManagement from './ProductFeatureManagement';
 import { ViewGridSmallIcon, CartIcon, UserIcon, SparklesIcon, TargetIcon, CloseIcon } from './icons';
 
 const STATUSES: QuoteStatus[] = ['New', 'Contacted', 'In Progress', 'Completed', 'Cancelled'];
@@ -213,7 +212,6 @@ const AdminDashboard: React.FC = () => {
     const contentSubTabs = [
         { id: 'banners', label: 'Hero Banners' },
         { id: 'feature-section', label: 'Home Feature' },
-        { id: 'product-features', label: 'Product Features' },
         { id: 'info-cards', label: 'Info Cards' },
         { id: 'featured-video', label: 'Video Section' },
         { id: 'signup-popup', label: 'Newsletter Popup' },
@@ -361,7 +359,6 @@ const AdminDashboard: React.FC = () => {
                                     {contentSubTab === 'featured-video' && <FeaturedVideoManagement />}
                                     {contentSubTab === 'signup-popup' && <SubscriptionModalManagement />}
                                     {contentSubTab === 'feature-section' && <HomeFeatureManagement />}
-                                    {contentSubTab === 'product-features' && <ProductFeatureManagement />}
                                 </div>
                             </div>
                         )}
