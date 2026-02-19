@@ -57,7 +57,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
                 <div className={`transition-all duration-1000 ease-out delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                     <Button 
                         variant="primary"
-                        onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => { e.preventDefault(); onNavigate('contact'); }}
                         className="px-10 py-4 text-[10px] tracking-[0.3em] shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:bg-white/10 hover:text-white hover:border-white/50"
                     >
                         INITIATE PROJECT

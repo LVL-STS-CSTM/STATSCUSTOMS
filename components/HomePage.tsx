@@ -28,8 +28,8 @@ interface HomePageProps {
 const HeroSection: React.FC<{ 
     hero: HeroContent, 
     allProducts: Product[], 
-    onNavigate: any, 
-    onProductClick: any, 
+    onNavigate: (page: View, value?: string | null) => void, 
+    onProductClick: (product: Product) => void, 
     isFirst: boolean 
 }> = ({ hero, allProducts, onNavigate, onProductClick, isFirst }) => {
     const featuredProducts = useMemo(() => {

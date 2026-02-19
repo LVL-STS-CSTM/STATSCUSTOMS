@@ -43,6 +43,13 @@ export interface Product {
     // NEW FIELDS FOR v2.1
     leadTimeWeeks?: number;   // For custom products
     supportedPrinting?: string[]; // e.g. ["Sublimation", "Embroidery"]
+    features?: ProductFeatureItem[];
+}
+
+export interface ProductFeatureItem {
+    name: string;
+    imageUrl: string;
+    value: string;
 }
 
 /**

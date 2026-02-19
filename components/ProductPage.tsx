@@ -188,6 +188,26 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                                             ))}
                                         </div>
                                     </div>
+                                    
+                                    {/* Dynamic Product Features */}
+                                    {product.features && product.features.length > 0 && (
+                                        <div className="pt-4 border-t border-zinc-100 mt-4">
+                                            <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-3">Specific Tech Specs</h4>
+                                            <div className="grid grid-cols-1 gap-3">
+                                                {product.features.map((feature, idx) => (
+                                                    <div key={idx} className="flex items-center gap-3">
+                                                        {feature.imageUrl && (
+                                                            <img src={feature.imageUrl} alt={feature.name} className="w-8 h-8 object-cover rounded bg-zinc-50" />
+                                                        )}
+                                                        <div>
+                                                            <span className="block text-[9px] font-bold uppercase tracking-wider text-black">{feature.name}</span>
+                                                            <span className="block text-[9px] text-zinc-500">{feature.value}</span>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </Accordion>
                         </div>

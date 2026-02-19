@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Product, Color } from '../types';
+import { Product, Color, ProductFeatureItem } from '../types';
 import { useData } from '../context/DataContext';
 import { CloseIcon, PlusIcon, TrashIcon } from './icons';
 import Accordion from './Accordion';
@@ -24,7 +24,8 @@ const emptyProduct: Omit<Product, 'id'> = {
     gender: 'Unisex',
     displayOrder: 0,
     leadTimeWeeks: 2,
-    supportedPrinting: []
+    supportedPrinting: [],
+    features: []
 };
 
 const PRINT_METHODS = ["Heat Transfer", "Embroidery", "Sublimation", "DTF Print", "Silk Screen"];
@@ -47,6 +48,7 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
     const [manualId, setManualId] = useState('');
     const [newColor, setNewColor] = useState({ name: '', hex: '#000000' });
     const [newSize, setNewSize] = useState({ name: '', width: 0, length: 0 });
+    const [newFeature, setNewFeature] = useState<ProductFeatureItem>({ name: '', value: '', imageUrl: '' });
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [isSaving, setIsSaving] = useState(false);
 
@@ -130,6 +132,23 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
         setFormData(prev => ({
             ...prev,
             availableSizes: prev.availableSizes.filter((_, i) => i !== index)
+        }));
+    };
+
+    const handleAddFeature = () => {
+        if (newFeature.name && newFeature.value) {
+            setFormData(prev => ({
+                ...prev,
+                features: [...(prev.features || []), newFeature]
+            }));
+            setNewFeature({ name: '', value: '', imageUrl: '' });
+        }
+    };
+
+    const handleRemoveFeature = (index: number) => {
+        setFormData(prev => ({
+            ...prev,
+            features: (prev.features || []).filter((_, i) => i !== index)
         }));
     };
 
@@ -407,6 +426,67 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
                                         ))}
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Features */}
+                    <section>
+                        <SectionHeader number="05" title="Product Features" />
+                        <div className="bg-zinc-50 p-6 rounded-2xl border border-zinc-100 space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-white rounded-xl border border-zinc-100 items-end">
+                                <div>
+                                    <label className={labelClasses}>Feature Name</label>
+                                    <input 
+                                        value={newFeature.name} 
+                                        onChange={e => setNewFeature(f => ({ ...f, name: e.target.value }))} 
+                                        placeholder="e.g. Moisture Wicking" 
+                                        className={inputClasses} 
+                                    />
+                                </div>
+                                <div>
+                                    <label className={labelClasses}>Value / Description</label>
+                                    <input 
+                                        value={newFeature.value} 
+                                        onChange={e => setNewFeature(f => ({ ...f, value: e.target.value }))} 
+                                        placeholder="e.g. Keeps you dry" 
+                                        className={inputClasses} 
+                                    />
+                                </div>
+                                <div>
+                                    <label className={labelClasses}>Icon / Image URL</label>
+                                    <input 
+                                        value={newFeature.imageUrl} 
+                                        onChange={e => setNewFeature(f => ({ ...f, imageUrl: e.target.value }))} 
+                                        placeholder="https://..." 
+                                        className={inputClasses} 
+                                    />
+                                </div>
+                                <button type="button" onClick={handleAddFeature} className="md:col-span-3 h-[42px] bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-zinc-800 transition-colors w-full">
+                                    Add Feature
+                                </button>
+                            </div>
+
+                            <div className="space-y-3">
+                                {(formData.features || []).map((feature, index) => (
+                                    <div key={index} className="flex items-center justify-between p-4 bg-white border border-zinc-200 rounded-lg">
+                                        <div className="flex items-center gap-4">
+                                            {feature.imageUrl && (
+                                                <img src={feature.imageUrl} alt={feature.name} className="w-10 h-10 object-cover rounded-md bg-zinc-100" />
+                                            )}
+                                            <div>
+                                                <h4 className="text-xs font-bold uppercase">{feature.name}</h4>
+                                                <p className="text-[10px] text-zinc-500">{feature.value}</p>
+                                            </div>
+                                        </div>
+                                        <button type="button" onClick={() => handleRemoveFeature(index)} className="text-zinc-400 hover:text-red-500 p-2">
+                                            <TrashIcon className="w-4 h-4"/>
+                                        </button>
+                                    </div>
+                                ))}
+                                {(!formData.features || formData.features.length === 0) && (
+                                    <p className="text-center text-xs text-zinc-400 py-4">No specific features added.</p>
+                                )}
                             </div>
                         </div>
                     </section>
