@@ -98,7 +98,7 @@ export type View = 'home' | 'product' | 'catalogue' | 'browse' | 'about' | 'part
  */
 export interface PageBanner {
     id: string;
-    page: View;
+    page: string; // Changed from View to string to support specific category names (e.g., 'Accessories')
     title: string;
     description: string;
     imageUrl: string;

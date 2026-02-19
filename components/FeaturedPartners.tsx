@@ -29,7 +29,7 @@ const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
             </div>
             
             {/* Marquee Container */}
-            <div className="w-full relative [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <div className="w-full relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
                 <div className="flex w-max animate-scroll hover:[animation-play-state:paused]">
                     {/* Render 4 sets to ensure seamless infinite scroll even on ultra-wide screens with few items */}
                     {[...Array(4)].map((_, i) => (

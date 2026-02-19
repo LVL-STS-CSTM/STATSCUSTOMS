@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { PageBanner, View } from '../types';
 import { useData } from '../context/DataContext';
 import { CloseIcon } from './icons';
@@ -23,10 +23,16 @@ const internalPages: View[] = [
 ];
 
 const PageBannerFormModal: React.FC<PageBannerFormModalProps> = ({ isOpen, onClose, bannerToEdit }) => {
-    const { pageBanners, updateData } = useData();
+    const { pageBanners, updateData, collections, products } = useData();
     const [formData, setFormData] = useState<PageBanner | Omit<PageBanner, 'id'>>(bannerToEdit || emptyBanner);
     const [isSaving, setIsSaving] = useState(false);
     
+    // Derive unique categories from products
+    const categories = useMemo(() => {
+        const unique = new Set(products.map(p => p.category));
+        return Array.from(unique).sort();
+    }, [products]);
+
     useEffect(() => {
         setFormData(bannerToEdit || emptyBanner);
     }, [bannerToEdit, isOpen]);
@@ -79,10 +85,24 @@ const PageBannerFormModal: React.FC<PageBannerFormModalProps> = ({ isOpen, onClo
                 </header>
                 <form onSubmit={handleSubmit} className="overflow-y-auto p-6 space-y-4">
                     <div>
-                        <label htmlFor="page" className="block text-sm font-medium text-gray-700">Assign to Page</label>
+                        <label htmlFor="page" className="block text-sm font-medium text-gray-700">Assign to Page / Category</label>
                         <select name="page" id="page" value={formData.page} onChange={handleInputChange} required className={darkInputStyles}>
-                            {internalPages.map(p => <option key={p} value={p}>{p.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</option>)}
+                            <optgroup label="Core Pages">
+                                {internalPages.map(p => <option key={p} value={p}>{p.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</option>)}
+                            </optgroup>
+                            <optgroup label="Collections">
+                                {collections.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
+                            </optgroup>
+                            <optgroup label="Categories">
+                                {categories.map(c => <option key={c} value={c}>{c}</option>)}
+                            </optgroup>
+                            <optgroup label="Gender">
+                                <option value="Men">Men</option>
+                                <option value="Women">Women</option>
+                                <option value="Unisex">Unisex</option>
+                            </optgroup>
                         </select>
+                        <p className="text-[10px] text-gray-400 mt-1">Select a category to override the default "Master Inventory" banner.</p>
                     </div>
                     <div>
                         <label htmlFor="title" className="block text-sm font-medium text-gray-700">Banner Title</label>

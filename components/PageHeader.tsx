@@ -14,13 +14,25 @@ interface PageHeaderProps {
 
 const PageHeader: React.FC<PageHeaderProps> = ({ page, fallbackTitle, fallbackDescription, fallbackImage, forceTitle, forceDescription }) => {
     const { pageBanners } = useData();
-    const banner = pageBanners.find(b => b.page === page);
     const [scrollPos, setScrollPos] = useState(0);
 
-    // Logic: Use force override first, then database banner, then fallback.
-    const title = forceTitle || banner?.title || fallbackTitle || '';
-    const description = forceDescription || banner?.description || fallbackDescription || '';
-    const imageUrl = banner?.imageUrl || fallbackImage || 'https://images.pexels.com/photos/8365691/pexels-photo-8365691.jpeg';
+    // LOGIC:
+    // 1. Look for a banner that explicitly matches the category name (forceTitle) first.
+    // 2. Look for a banner that matches the page ID (e.g. 'catalogue').
+    const specificBanner = forceTitle ? pageBanners.find(b => b.page === forceTitle) : null;
+    const genericBanner = pageBanners.find(b => b.page === page);
+    
+    const activeBanner = specificBanner || genericBanner;
+
+    // Title Priority: Specific Banner Title -> Force Title (Category Name) -> Generic Banner Title -> Fallback
+    const title = specificBanner?.title || forceTitle || genericBanner?.title || fallbackTitle || '';
+    
+    // Description Priority: Specific Banner Desc -> Force Desc (Dynamic "Viewing...") -> Generic Banner Desc -> Fallback
+    // Note: If a user created a specific banner for "Accessories", we prioritize that description over the auto-generated "Viewing filtered results..."
+    const description = specificBanner?.description || forceDescription || genericBanner?.description || fallbackDescription || '';
+    
+    // Image Priority: Active Banner Image -> Fallback -> Default
+    const imageUrl = activeBanner?.imageUrl || fallbackImage || 'https://images.pexels.com/photos/8365691/pexels-photo-8365691.jpeg';
 
     useEffect(() => {
         const handleScroll = () => {
