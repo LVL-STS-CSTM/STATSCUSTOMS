@@ -60,7 +60,8 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
 
     return (
         <section className="bg-black py-0">
-            <div className="max-w-[1840px] mx-auto relative group">
+            <div className="max-w-[100%] mx-auto relative group">
+
                 
                 {/* Navigation Buttons - Simple & Centered - Hidden on Mobile */}
                 <button 
@@ -84,7 +85,8 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
                 {/* Carousel - Full Width Single Frame */}
                 <div 
                     ref={scrollContainerRef}
-                    className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth rounded-none"
+                    className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth rounded-none overflow-y-hidden"
+                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                     {slides.map((slide) => (
                         <div 
