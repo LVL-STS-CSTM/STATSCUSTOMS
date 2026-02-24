@@ -88,7 +88,7 @@ const QuoteItemRow: React.FC<{item: QuoteItem}> = ({ item }) => {
     const imageUrl = imagesForColor[0] || Object.values(imageUrls).flat()[0] || 'https://placehold.co/100x120?text=No+Image';
 
     return (
-        <li className="flex gap-5 p-4 bg-zinc-50 rounded-2xl group transition-all hover:bg-white hover:shadow-xl border border-transparent hover:border-zinc-100">
+        <li className="flex gap-5 p-4 bg-white rounded-2xl group transition-all hover:shadow-xl border border-transparent hover:border-zinc-100">
             <div className="w-20 h-24 flex-shrink-0 rounded-xl overflow-hidden border border-zinc-200">
                 <LazyImage src={imageUrl} alt={item.product.name || 'Product'} aspectRatio="aspect-square" />
             </div>

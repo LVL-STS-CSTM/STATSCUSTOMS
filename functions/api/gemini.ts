@@ -33,7 +33,7 @@ export const onRequestPost = async (context: { env: Env; request: Request }) => 
           `ID: ${p.id}, Name: ${p.name}, Category: ${p.category}, Price: ${p.price ? `$${p.price}` : 'N/A'}`
       ).join('\n');
 
-      const systemInstruction = `You are a technical product advisor for STATS CUSTOMS. 
+      const systemInstruction = `You are a technical product advisor for STATS CUSTOM. 
       Catalogue Data:
       ${productContext}
       

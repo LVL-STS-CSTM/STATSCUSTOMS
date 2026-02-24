@@ -57,10 +57,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <li>
                 <button onClick={(e) => handleNavClick(e, 'privacy-policy')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">PRIVACY POLICY</button>
             </li>
-            {/* Hidden Admin Access - Preserved for functionality */}
-            <li className="h-4 opacity-0">
-                <button onClick={(e) => handleNavClick(e, 'admin')} className="w-full h-full cursor-default">Admin</button>
-            </li>
           </ul>
         </div>
 

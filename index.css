@@ -84,6 +84,11 @@ body {
   position: relative;
 }
 
+.dark body {
+  background-color: #09090b;
+  color: #f4f4f5;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Rheiborn Sans Clean", "Rheiborn Sans Clean LC", "Antonio", sans-serif;
   letter-spacing: 0.08em;

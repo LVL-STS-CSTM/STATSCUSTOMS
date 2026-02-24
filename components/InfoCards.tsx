@@ -61,7 +61,7 @@ const InfoCards: React.FC<InfoCardsProps> = ({ cards, onCardClick }) => {
                     >
                         <button 
                             onClick={() => handleInteraction(card)}
-                            className="relative group aspect-square md:aspect-[4/5] lg:aspect-[3/4] overflow-hidden bg-cover bg-center text-white flex items-center justify-center text-center w-full rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300"
+                            className="relative group aspect-square md:aspect-[4/5] lg:aspect-[3/4] overflow-hidden bg-cover bg-center text-white flex items-center justify-center text-center w-full rounded-none shadow-md hover:shadow-2xl transition-all duration-300"
                             style={{ backgroundImage: `url(${card.imageUrl})` }}
                             aria-label={(card.title || '').replace('\n', ' ')}
                         >
@@ -77,7 +77,7 @@ const InfoCards: React.FC<InfoCardsProps> = ({ cards, onCardClick }) => {
                                     </h2>
                                 </div>
                                 {(card.description || card.linkType === 'modal') && (
-                                    <span className="mt-6 text-[10px] font-black uppercase tracking-[0.3em] opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 bg-black/50 px-4 py-2 rounded-full backdrop-blur-md">
+                                    <span className="mt-6 text-[10px] font-black uppercase tracking-[0.3em] opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 bg-black/50 px-4 py-2 rounded-none backdrop-blur-md">
                                         View Details
                                     </span>
                                 )}
@@ -94,12 +94,12 @@ const InfoCards: React.FC<InfoCardsProps> = ({ cards, onCardClick }) => {
                     onClick={() => setSelectedCard(null)}
                 >
                     <div 
-                        className="relative w-full h-full md:max-w-[85vw] md:max-h-[90vh] bg-zinc-900 md:rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row group border-0 md:border border-white/10"
+                        className="relative w-full h-full md:max-w-[85vw] md:max-h-[90vh] bg-zinc-900 md:rounded-none overflow-hidden shadow-2xl flex flex-col md:flex-row group border-0 md:border border-white/10"
                         onClick={e => e.stopPropagation()}
                     >
                         <button 
                             onClick={() => setSelectedCard(null)} 
-                            className="absolute top-6 right-6 z-50 w-10 h-10 md:w-12 md:h-12 bg-black/40 text-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all backdrop-blur-md border border-white/10 active:scale-95"
+                            className="absolute top-6 right-6 z-50 w-10 h-10 md:w-12 md:h-12 bg-black/40 text-white rounded-none flex items-center justify-center hover:bg-white hover:text-black transition-all backdrop-blur-md border border-white/10 active:scale-95"
                         >
                             <CloseIcon className="w-5 h-5 md:w-6 md:h-6" />
                         </button>
@@ -128,7 +128,7 @@ const InfoCards: React.FC<InfoCardsProps> = ({ cards, onCardClick }) => {
                                     
                                     <button 
                                         onClick={handleProceed}
-                                        className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-xs font-black uppercase tracking-[0.2em] hover:bg-zinc-200 transition-all shadow-xl active:scale-95 group/btn"
+                                        className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-none text-xs font-black uppercase tracking-[0.2em] hover:bg-zinc-200 transition-all shadow-xl active:scale-95 group/btn"
                                     >
                                         <span>Proceed</span>
                                         <ArrowLongRightIcon className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-2" />

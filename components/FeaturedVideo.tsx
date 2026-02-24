@@ -46,7 +46,7 @@ const FeaturedVideo: React.FC<FeaturedVideoProps> = ({ title, description, youtu
                     </p>
                 </div>
                 {embedUrl ? (
-                    <div className="relative shadow-2xl rounded-lg overflow-hidden" style={{ paddingTop: '56.25%' }}>
+                    <div className="relative shadow-2xl rounded-none overflow-hidden" style={{ paddingTop: '56.25%' }}>
                         <iframe
                             className="absolute top-0 left-0 w-full h-full"
                             src={embedUrl}
@@ -57,7 +57,7 @@ const FeaturedVideo: React.FC<FeaturedVideoProps> = ({ title, description, youtu
                         ></iframe>
                     </div>
                 ) : (
-                     <div className="relative shadow-2xl rounded-lg overflow-hidden bg-gray-200" style={{ paddingTop: '56.25%' }}>
+                     <div className="relative shadow-2xl rounded-none overflow-hidden bg-gray-200" style={{ paddingTop: '56.25%' }}>
                         <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-center text-red-600 p-4">
                             <h3 className="font-bold text-lg">Invalid YouTube URL</h3>
                             <p className="text-sm">Please check the URL in the admin dashboard.</p>

@@ -94,7 +94,7 @@ const BrandReviews: React.FC<BrandReviewsProps> = ({ brandReviews, platformRatin
                                     href={rating.url} 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="bg-white p-6 rounded-lg shadow-md flex items-center gap-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-200 h-full"
+                                    className="bg-white p-6 rounded-none shadow-md flex items-center gap-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-200 h-full"
                                 >
                                     <div className="flex-shrink-0">
                                         {rating.platform === 'Google' && <GoogleGIcon className="w-12 h-12" />}
@@ -134,9 +134,9 @@ const BrandReviews: React.FC<BrandReviewsProps> = ({ brandReviews, platformRatin
                                     className="absolute inset-0 transition-opacity duration-700 ease-in-out"
                                     style={{ opacity: index === currentIndex ? 1 : 0, zIndex: index === currentIndex ? 10 : 0 }}
                                 >
-                                    <div className="bg-gray-50 p-8 md:p-12 rounded-lg text-center flex flex-col items-center border border-gray-100 h-full shadow-lg">
+                                    <div className="bg-gray-50 p-8 md:p-12 rounded-none text-center flex flex-col items-center border border-gray-100 h-full shadow-lg">
                                         <img
-                                            className="w-20 h-20 rounded-full mb-6 object-cover shadow-md"
+                                            className="w-20 h-20 rounded-none mb-6 object-cover shadow-md"
                                             src={review.imageUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(review.author)}&background=random`}
                                             alt={`A custom product reviewed by ${review.author}`}
                                         />
@@ -155,10 +155,10 @@ const BrandReviews: React.FC<BrandReviewsProps> = ({ brandReviews, platformRatin
                         </div>
                         {visibleReviews.length > 1 && (
                             <>
-                                <button onClick={goToPrevious} className="absolute top-1/2 -translate-y-1/2 left-0 -translate-x-12 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-all z-20 hidden md:block">
+                                <button onClick={goToPrevious} className="absolute top-1/2 -translate-y-1/2 left-0 -translate-x-12 bg-white rounded-none p-2 shadow-md hover:bg-gray-100 transition-all z-20 hidden md:block">
                                     <ChevronLeftIcon />
                                 </button>
-                                <button onClick={goToNext} className="absolute top-1/2 -translate-y-1/2 right-0 translate-x-12 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-all z-20 hidden md:block">
+                                <button onClick={goToNext} className="absolute top-1/2 -translate-y-1/2 right-0 translate-x-12 bg-white rounded-none p-2 shadow-md hover:bg-gray-100 transition-all z-20 hidden md:block">
                                     <ChevronRightIcon />
                                 </button>
                                 <div className="flex justify-center mt-6 space-x-2">
@@ -166,7 +166,7 @@ const BrandReviews: React.FC<BrandReviewsProps> = ({ brandReviews, platformRatin
                                         <button
                                             key={slideIndex}
                                             onClick={() => goToSlide(slideIndex)}
-                                            className={`h-2 w-2 rounded-full transition-colors ${currentIndex === slideIndex ? 'bg-black' : 'bg-gray-300 hover:bg-gray-400'}`}
+                                            className={`h-2 w-2 rounded-none transition-colors ${currentIndex === slideIndex ? 'bg-black' : 'bg-gray-300 hover:bg-gray-400'}`}
                                             aria-label={`Go to slide ${slideIndex + 1}`}
                                         />
                                     ))}

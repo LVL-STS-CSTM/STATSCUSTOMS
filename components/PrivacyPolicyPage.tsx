@@ -17,7 +17,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 </h1>
                 <div className="text-base">
                     <P>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</P>
-                    <P>STATS CUSTOMS APPAREL ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.</P>
+                    <P>STATS CUSTOM APPAREL ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.</P>
 
                     <H2>1. COLLECTION OF YOUR INFORMATION</H2>
                     <P>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</P>
@@ -51,7 +51,7 @@ const PrivacyPolicyPage: React.FC = () => {
 
                     <H2>7. CONTACT US</H2>
                     <P>If you have questions or comments about this Privacy Policy, please contact us at:</P>
-                    <P>STATS CUSTOMS APPAREL<br />
+                    <P>STATS CUSTOM APPAREL<br />
                     Email: <a href="mailto:contact@statscustoms.ph" className="text-blue-600 hover:underline">contact@statscustoms.ph</a>
                     </P>
                 </div>

@@ -44,9 +44,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
         return allImages.length > 0 ? allImages.flat() : [];
     }, [selectedColor, product]);
 
-    const material = useMemo(() => {
-        if (!product || !materials) return null;
-        return materials.find(m => m.id === product.materialId);
+    const selectedMaterials = useMemo(() => {
+        if (!product || !materials) return [];
+        const ids = product.materialIds || (product.materialId ? [product.materialId] : []);
+        if (ids.length === 0) return [];
+        return materials.filter(m => ids.includes(m.id));
     }, [product, materials]);
 
     const relatedProducts = useMemo(() => {
@@ -88,7 +90,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                         </div>
 
                         {/* Main Image - Updated to object-contain to prevent zoom/crop */}
-                        <div className="flex-grow bg-zinc-50 relative overflow-hidden aspect-[3/4] lg:h-[80vh] flex items-center justify-center cursor-zoom-in">
+                        <div className="flex-grow bg-white relative overflow-hidden aspect-[3/4] lg:h-[80vh] flex items-center justify-center cursor-zoom-in">
                             <img 
                                 src={imagesForDisplay[activeImageIndex] || 'https://placehold.co/800x1000?text=No+Image'} 
                                 alt={product.name} 
@@ -135,7 +137,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                                             }`}
                                             title={color.name}
                                         >
-                                            <div className="w-full h-full bg-zinc-100 relative overflow-hidden">
+                                            <div className="w-full h-full bg-white relative overflow-hidden">
                                                 <img src={colorImage} alt={color.name} className="w-full h-full object-cover" />
                                             </div>
                                         </button>
@@ -172,22 +174,27 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                             </Accordion>
 
                             <Accordion title="FABRIC + TECHNOLOGY">
-                                <div className="pb-4 space-y-4">
-                                    <div>
-                                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-1">Primary Material</h4>
-                                        <p className="text-sm text-zinc-600">{material?.name || 'Premium Technical Fabric'}</p>
-                                        <p className="text-xs text-zinc-400 mt-1">{material?.description || 'Engineered for durability.'}</p>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-2">Features</h4>
-                                        <div className="flex flex-wrap gap-2">
-                                            {(material?.features || ['Breathable', 'Durable']).map(f => (
-                                                <span key={f} className="px-2 py-1 bg-zinc-100 text-[9px] font-bold uppercase tracking-wider text-zinc-600">
-                                                    {f}
-                                                </span>
-                                            ))}
+                                <div className="pb-4 space-y-6">
+                                    {selectedMaterials.length > 0 ? (
+                                        selectedMaterials.map((m, idx) => (
+                                            <div key={m.id} className={idx > 0 ? "pt-4 border-t border-zinc-50" : ""}>
+                                                <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-1">{m.name}</h4>
+                                                <p className="text-xs text-zinc-400 mt-1">{m.description}</p>
+                                                <div className="flex flex-wrap gap-2 mt-3">
+                                                    {m.features.map(f => (
+                                                        <span key={f} className="px-2 py-1 bg-zinc-100 text-[9px] font-bold uppercase tracking-wider text-zinc-600">
+                                                            {f}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div>
+                                            <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-1">Premium Technical Fabric</h4>
+                                            <p className="text-xs text-zinc-400 mt-1">Engineered for durability and performance.</p>
                                         </div>
-                                    </div>
+                                    )}
                                 </div>
                             </Accordion>
                         </div>
@@ -200,7 +207,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {(product.features && product.features.length > 0 ? product.features : productFeatures.sort((a,b) => (a.displayOrder || 0) - (b.displayOrder || 0))).map((feature, idx) => (
                             <div key={idx} className="space-y-6 text-center">
-                                <div className="aspect-[3/4] bg-zinc-50 w-full overflow-hidden">
+                                <div className="aspect-[3/4] bg-white w-full overflow-hidden">
                                     <img 
                                         src={feature.imageUrl} 
                                         className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" 

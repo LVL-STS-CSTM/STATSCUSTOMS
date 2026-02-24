@@ -51,7 +51,7 @@ const CustomizationShowcase: React.FC = () => {
                         
                         <div className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                             <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.6em] block mb-6 flex items-center gap-3">
-                                <span className="w-2 h-2 bg-black rounded-full"></span>
+                                <span className="w-2 h-2 bg-black rounded-none"></span>
                                 Expertise & Hardware
                             </span>
                             <h2 className="font-eurostile font-black text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.8] tracking-tight">

@@ -113,7 +113,7 @@ const QuoteDetailModal: React.FC<QuoteDetailModalProps> = ({ isOpen, onClose, qu
 
                                 return (
                                 <div key={index} className="flex gap-6 p-4 border border-zinc-100 rounded-3xl bg-white hover:border-zinc-200 transition-colors">
-                                    <img src={imageUrl} alt="" className="w-20 h-24 object-cover rounded-2xl bg-gray-100 flex-shrink-0" />
+                                    <img src={imageUrl} alt="" className="w-20 h-24 object-cover rounded-2xl bg-white flex-shrink-0" />
                                     <div className="flex-1">
                                         <h4 className="text-sm font-black uppercase text-gray-900 mb-2">{item.product.name}</h4>
                                         <div className="flex gap-4 mb-3">
@@ -129,7 +129,7 @@ const QuoteDetailModal: React.FC<QuoteDetailModalProps> = ({ isOpen, onClose, qu
                                         </div>
                                         <div className="flex flex-wrap gap-1.5">
                                             {Object.entries(item.sizeQuantities || {}).map(([size, qty]) => (
-                                                <span key={size} className="text-[8px] bg-zinc-50 border border-zinc-100 px-2 py-0.5 rounded-lg font-black uppercase">
+                                                <span key={size} className="text-[8px] bg-white border border-zinc-100 px-2 py-0.5 rounded-lg font-black uppercase">
                                                     {size}: {qty}
                                                 </span>
                                             ))}

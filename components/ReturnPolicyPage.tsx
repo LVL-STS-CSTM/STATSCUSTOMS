@@ -14,7 +14,7 @@ const ReturnPolicyPage: React.FC = () => {
                     Returns & Exchange Policy
                 </h1>
                 <div className="text-base">
-                    <P>At STATS CUSTOMS APPAREL, we are committed to providing quality products and excellent customer service. This policy outlines the conditions for returns and exchanges, ensuring a seamless process for our customers.</P>
+                    <P>At STATS CUSTOM APPAREL, we are committed to providing quality products and excellent customer service. This policy outlines the conditions for returns and exchanges, ensuring a seamless process for our customers.</P>
 
                     <H2>1. Conditions for Returns and Exchanges</H2>
                     <P>You may request a return or exchange for the following valid reasons:</P>

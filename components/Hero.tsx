@@ -82,7 +82,7 @@ const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, bu
                             <div className="animate-fade-in-up [animation-delay:300ms]">
                                 <button 
                                     onClick={() => onNavigate('catalogue', buttonCollectionLink)}
-                                    className="group relative px-10 py-4 bg-white/5 backdrop-blur-2xl border border-white/20 rounded-full overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/10 hover:border-white/40 active:scale-95"
+                                    className="group relative px-10 py-4 bg-white/5 backdrop-blur-2xl border border-white/20 rounded-none overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:bg-white/10 hover:border-white/40 active:scale-95"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out skew-x-[-20deg] pointer-events-none"></div>
                                     

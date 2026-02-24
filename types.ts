@@ -34,7 +34,8 @@ export interface Product {
     categoryGroup: string; 
     gender: 'Men' | 'Women' | 'Unisex';
     displayOrder: number;
-    materialId?: string;
+    materialIds?: string[];
+    materialId?: string; // Deprecated: use materialIds
     moq?: number;
     price?: number; 
     priceTiers?: { minQty: number; discount: number }[]; 
@@ -118,6 +119,8 @@ export interface PageBanner {
 export interface HomeFeatureTab {
     label: string;
     imageUrl: string;
+    description?: string;
+    subtitle?: string;
 }
 
 /**

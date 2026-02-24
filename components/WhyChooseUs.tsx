@@ -81,7 +81,7 @@ const WhyChooseUs: React.FC = () => {
                         The Stats Advantage
                     </span>
                     <h2 className={`font-oswald text-3xl md:text-5xl lg:text-6xl text-gray-900 mb-6 uppercase tracking-widest leading-none transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                        Why Choose<br/>Stats Customs?
+                        Why Choose<br/>Stats Custom?
                     </h2>
                     <p className={`text-base md:text-lg text-gray-500 max-w-2xl mx-auto font-light transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                         Your trusted partner for premium, locally-crafted custom apparel. We don't just print shirts; we engineer brand identities.

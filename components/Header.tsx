@@ -99,13 +99,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                                         <span>Explore</span>
                                         <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform duration-500 ${isExploreMenuOpen ? 'rotate-180' : ''}`} />
                                     </button>
-                                    <div className={`absolute top-full left-0 mt-0 pt-2 min-w-[200px] bg-white shadow-2xl rounded-b-xl border border-gray-100 transition-all duration-500 ease-in-out z-50 ${isExploreMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'}`}>
+                                    <div className={`absolute top-full left-0 mt-0 pt-2 min-w-[200px] bg-white dark:bg-zinc-900 shadow-2xl rounded-b-xl border border-gray-100 dark:border-zinc-800 transition-all duration-500 ease-in-out z-50 ${isExploreMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'}`}>
                                         <div className="py-3">
                                             {exploreLinks.map(link => (
                                                 <button
                                                     key={link.label}
                                                     onClick={() => handleNavClick(link.view)}
-                                                    className={`flex items-center justify-between w-full text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest transition-colors ${view === link.view ? 'bg-zinc-50 text-black' : 'text-zinc-500 hover:bg-zinc-50 hover:text-black'}`}
+                                                    className={`flex items-center justify-between w-full text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest transition-colors ${view === link.view ? 'bg-zinc-50 dark:bg-zinc-800 text-black dark:text-white' : 'text-zinc-500 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-black dark:hover:text-white'}`}
                                                 >
                                                     {link.label}
                                                 </button>
@@ -149,20 +149,20 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                     </div>
 
                     {/* Mega Menu */}
-                    <div className={`absolute top-full left-0 right-0 bg-white shadow-3xl border-t border-zinc-100 transition-all duration-700 ease-in-out ${isMegaMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-10'}`} onMouseLeave={() => setIsMegaMenuOpen(false)}>
+                    <div className={`absolute top-full left-0 right-0 bg-white dark:bg-zinc-900 shadow-3xl border-t border-zinc-100 dark:border-zinc-800 transition-all duration-700 ease-in-out ${isMegaMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-10'}`} onMouseLeave={() => setIsMegaMenuOpen(false)}>
                         <div className="max-w-screen-2xl mx-auto px-12 py-16 grid grid-cols-6 gap-12">
                            {productCategories.map(group => (
                                <div key={group.groupName} className="space-y-8">
                                    <button 
                                        onClick={() => handleNavClick('catalogue', group.groupName)} 
-                                       className={`font-eurostile text-xs uppercase tracking-[0.4em] mb-4 hover:text-black transition-colors ${catalogueFilter?.value === group.groupName ? 'text-black border-b border-black pb-1' : 'text-zinc-400'}`}
+                                       className={`font-eurostile text-xs uppercase tracking-[0.4em] mb-4 hover:text-black dark:hover:text-white transition-colors ${catalogueFilter?.value === group.groupName ? 'text-black dark:text-white border-b border-black dark:border-white pb-1' : 'text-zinc-400'}`}
                                    >
                                        {group.groupName}
                                    </button>
                                    <ul className="space-y-4">
                                        {group.categories.map(category => (
                                            <li key={category}>
-                                               <button onClick={() => handleNavClick('catalogue', category)} className={`text-[10px] uppercase tracking-widest font-medium hover:text-black transition-colors ${catalogueFilter?.value === category ? 'text-black font-bold' : 'text-zinc-500'}`}>{category}</button>
+                                               <button onClick={() => handleNavClick('catalogue', category)} className={`text-[10px] uppercase tracking-widest font-medium hover:text-black dark:hover:text-white transition-colors ${catalogueFilter?.value === category ? 'text-black dark:text-white font-bold' : 'text-zinc-500'}`}>{category}</button>
                                            </li>
                                        ))}
                                    </ul>
@@ -173,7 +173,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                                 <ul className="space-y-4">
                                     {['Men', 'Women', 'Unisex'].map(gender => (
                                         <li key={gender}>
-                                            <button onClick={() => handleNavClick('catalogue', gender)} className={`text-[10px] uppercase tracking-widest font-medium hover:text-black transition-colors ${catalogueFilter?.value === gender ? 'text-black font-bold' : 'text-zinc-500'}`}>{gender}</button>
+                                            <button onClick={() => handleNavClick('catalogue', gender)} className={`text-[10px] uppercase tracking-widest font-medium hover:text-black dark:hover:text-white transition-colors ${catalogueFilter?.value === gender ? 'text-black dark:text-white font-bold' : 'text-zinc-500'}`}>{gender}</button>
                                         </li>
                                     ))}
                                 </ul>
@@ -186,26 +186,26 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
             {/* Mobile Menu */}
             <div className={`fixed inset-0 z-[50] md:hidden ${isMobileMenuOpen ? '' : 'pointer-events-none'}`}>
                 <div className={`fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-700 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`} onClick={() => setIsMobileMenuOpen(false)}></div>
-                <div className={`fixed top-0 left-0 h-full w-full max-w-[300px] bg-white shadow-3xl z-50 transform transition-transform duration-700 ease-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                <div className={`fixed top-0 left-0 h-full w-full max-w-[300px] bg-white dark:bg-zinc-900 shadow-3xl z-50 transform transition-transform duration-700 ease-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                     <div className="flex flex-col h-full">
-                        <header className="flex items-center justify-between p-8 border-b border-zinc-50">
+                        <header className="flex items-center justify-between p-8 border-b border-zinc-50 dark:border-zinc-800">
                             <h2 className="font-eurostile font-bold text-[10px] uppercase tracking-[0.4em] text-zinc-400">Navigation</h2>
                             <IconButton onClick={() => setIsMobileMenuOpen(false)} ariaLabel="Close menu"><CloseIcon className="w-5 h-5" /></IconButton>
                         </header>
                         <nav className="flex-1 overflow-y-auto p-8 space-y-2 no-scrollbar">
-                             <button onClick={() => handleNavClick('browse', null)} className="flex items-center justify-center w-full p-5 rounded-xl bg-zinc-900 text-white font-bold uppercase tracking-[0.3em] text-[10px] transition-all active:scale-95 shadow-xl mb-10">Full Catalogue</button>
+                             <button onClick={() => handleNavClick('browse', null)} className="flex items-center justify-center w-full p-5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-black font-bold uppercase tracking-[0.3em] text-[10px] transition-all active:scale-95 shadow-xl mb-10">Full Catalogue</button>
                              <div className="space-y-10">
                                 {productCategories.map(group => (
                                     <div key={group.groupName} className="space-y-6">
                                         <button 
                                             onClick={() => handleNavClick('catalogue', group.groupName)} 
-                                            className="w-full text-left text-[9px] font-bold uppercase tracking-[0.5em] text-zinc-300"
+                                            className="w-full text-left text-[9px] font-bold uppercase tracking-[0.5em] text-zinc-300 dark:text-zinc-500"
                                         >
                                             {group.groupName}
                                         </button>
                                         <div className="grid grid-cols-1 gap-4">
                                             {group.categories.map(category => (
-                                                <button key={category} onClick={() => handleNavClick('catalogue', category)} className="w-full text-left text-[11px] font-medium uppercase tracking-widest text-zinc-600 hover:text-black">{category}</button>
+                                                <button key={category} onClick={() => handleNavClick('catalogue', category)} className="w-full text-left text-[11px] font-medium uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white">{category}</button>
                                             ))}
                                         </div>
                                     </div>

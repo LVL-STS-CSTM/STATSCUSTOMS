@@ -102,7 +102,7 @@ app.post('/api/gemini', async (req: Request, res: Response) => {
                 `ID: ${p.id}, Name: ${p.name}, Category: ${p.category}, Price: ${p.price ? `$${p.price}` : 'N/A'}`
             ).join('\n');
 
-            const systemInstruction = `You are a technical product advisor for STATS CUSTOMS. 
+            const systemInstruction = `You are a technical product advisor for STATS CUSTOM. 
             Catalogue Data:
             ${productContext}
             

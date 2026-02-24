@@ -25,6 +25,7 @@ const emptyProduct: Omit<Product, 'id'> = {
     displayOrder: 0,
     leadTimeWeeks: 2,
     supportedPrinting: [],
+    materialIds: [],
     features: []
 };
 
@@ -43,7 +44,7 @@ const ErrorMessage: React.FC<{ message?: string }> = ({ message }) => {
 };
 
 const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, productToEdit }) => {
-    const { products, collections, updateData } = useData();
+    const { products, collections, materials, updateData } = useData();
     const [formData, setFormData] = useState<Product | Omit<Product, 'id'>>(productToEdit || emptyProduct);
     const [manualId, setManualId] = useState('');
     const [newColor, setNewColor] = useState({ name: '', hex: '#000000' });
@@ -93,6 +94,17 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
                 return { ...prev, supportedPrinting: current.filter(m => m !== method) };
             } else {
                 return { ...prev, supportedPrinting: [...current, method] };
+            }
+        });
+    };
+
+    const toggleFabric = (fabricId: string) => {
+        setFormData(prev => {
+            const current = prev.materialIds || [];
+            if (current.includes(fabricId)) {
+                return { ...prev, materialIds: current.filter(id => id !== fabricId) };
+            } else {
+                return { ...prev, materialIds: [...current, fabricId] };
             }
         });
     };
@@ -296,19 +308,37 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
                             </div>
                         </div>
 
-                        <div className="mt-6">
-                            <label className={labelClasses}>Printing Methods</label>
-                            <div className="flex flex-wrap gap-2 mt-2">
-                                {PRINT_METHODS.map(m => (
-                                    <button 
-                                        key={m} 
-                                        type="button"
-                                        onClick={() => togglePrintingMethod(m)}
-                                        className={`px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-widest border transition-all ${formData.supportedPrinting?.includes(m) ? 'bg-black text-white border-black' : 'bg-white text-zinc-400 border-zinc-200 hover:border-zinc-300'}`}
-                                    >
-                                        {m}
-                                    </button>
-                                ))}
+                        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <label className={labelClasses}>Printing Methods</label>
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {PRINT_METHODS.map(m => (
+                                        <button 
+                                            key={m} 
+                                            type="button"
+                                            onClick={() => togglePrintingMethod(m)}
+                                            className={`px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-widest border transition-all ${formData.supportedPrinting?.includes(m) ? 'bg-black text-white border-black' : 'bg-white text-zinc-400 border-zinc-200 hover:border-zinc-300'}`}
+                                        >
+                                            {m}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div>
+                                <label className={labelClasses}>Available Fabrics (FabTech)</label>
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {materials.map(m => (
+                                        <button 
+                                            key={m.id} 
+                                            type="button"
+                                            onClick={() => toggleFabric(m.id)}
+                                            className={`px-4 py-2 rounded-lg text-[9px] font-black uppercase tracking-widest border transition-all ${formData.materialIds?.includes(m.id) ? 'bg-black text-white border-black' : 'bg-white text-zinc-400 border-zinc-200 hover:border-zinc-300'}`}
+                                        >
+                                            {m.name}
+                                        </button>
+                                    ))}
+                                    {materials.length === 0 && <p className="text-[10px] text-zinc-400 italic">No fabrics configured in Materials section.</p>}
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -472,7 +502,7 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
                                     <div key={index} className="flex items-center justify-between p-4 bg-white border border-zinc-200 rounded-lg">
                                         <div className="flex items-center gap-4">
                                             {feature.imageUrl && (
-                                                <img src={feature.imageUrl} alt={feature.name} className="w-10 h-10 object-cover rounded-md bg-zinc-100" />
+                                                <img src={feature.imageUrl} alt={feature.name} className="w-10 h-10 object-cover rounded-md bg-white" />
                                             )}
                                             <div>
                                                 <h4 className="text-xs font-bold uppercase">{feature.name}</h4>

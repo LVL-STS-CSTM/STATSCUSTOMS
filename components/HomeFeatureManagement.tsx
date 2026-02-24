@@ -8,6 +8,8 @@ const HomeFeatureManagement: React.FC = () => {
     const { homeFeature, updateData } = useData();
     const [formData, setFormData] = useState<HomeFeature>(homeFeature);
     const [newTabLabel, setNewTabLabel] = useState('');
+    const [newTabSubtitle, setNewTabSubtitle] = useState('');
+    const [newTabDescription, setNewTabDescription] = useState('');
     const [newTabImage, setNewTabImage] = useState('');
     const [toast, setToast] = useState({ show: false, message: '' });
 
@@ -33,10 +35,14 @@ const HomeFeatureManagement: React.FC = () => {
         if (newTabLabel.trim() && newTabImage.trim()) {
             const newTab: HomeFeatureTab = {
                 label: newTabLabel.trim(),
-                imageUrl: newTabImage.trim()
+                imageUrl: newTabImage.trim(),
+                subtitle: newTabSubtitle.trim(),
+                description: newTabDescription.trim()
             };
             setFormData(prev => ({ ...prev, tabs: [...prev.tabs, newTab] }));
             setNewTabLabel('');
+            setNewTabSubtitle('');
+            setNewTabDescription('');
             setNewTabImage('');
         } else {
             alert('Please enter both a label and an image URL for the slide.');
@@ -154,6 +160,19 @@ const HomeFeatureManagement: React.FC = () => {
                                         placeholder="Slide Title (e.g. Custom Bags)"
                                     />
                                     <input 
+                                        value={newTabSubtitle}
+                                        onChange={(e) => setNewTabSubtitle(e.target.value)}
+                                        className={inputClasses} 
+                                        placeholder="Subtitle (e.g. Professional Grade)"
+                                    />
+                                    <textarea 
+                                        value={newTabDescription}
+                                        onChange={(e) => setNewTabDescription(e.target.value)}
+                                        className={inputClasses} 
+                                        rows={2}
+                                        placeholder="Description..."
+                                    />
+                                    <input 
                                         value={newTabImage}
                                         onChange={(e) => setNewTabImage(e.target.value)}
                                         className={inputClasses} 
@@ -183,7 +202,7 @@ const HomeFeatureManagement: React.FC = () => {
                                         </button>
                                         
                                         <div className="flex gap-4">
-                                            <div className="w-20 h-20 bg-zinc-100 rounded-lg overflow-hidden shrink-0 border border-zinc-200">
+                                            <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shrink-0 border border-zinc-200">
                                                 <img src={tab.imageUrl} alt={tab.label} className="w-full h-full object-cover" />
                                             </div>
                                             <div className="flex-grow space-y-2">
@@ -194,9 +213,22 @@ const HomeFeatureManagement: React.FC = () => {
                                                     placeholder="Slide Label"
                                                 />
                                                 <input 
+                                                    value={tab.subtitle || ''}
+                                                    onChange={(e) => handleTabChange(idx, 'subtitle', e.target.value)}
+                                                    className="w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[10px]"
+                                                    placeholder="Subtitle"
+                                                />
+                                                <textarea 
+                                                    value={tab.description || ''}
+                                                    onChange={(e) => handleTabChange(idx, 'description', e.target.value)}
+                                                    className="w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[10px]"
+                                                    rows={2}
+                                                    placeholder="Description"
+                                                />
+                                                <input 
                                                     value={tab.imageUrl}
                                                     onChange={(e) => handleTabChange(idx, 'imageUrl', e.target.value)}
-                                                    className="w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-xs text-gray-500"
+                                                    className="w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[10px] text-gray-500"
                                                     placeholder="Image URL"
                                                 />
                                             </div>

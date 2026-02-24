@@ -20,7 +20,7 @@ export type ButtonProps = CommonProps & (ButtonSpecificProps | AnchorSpecificPro
  */
 const Button: React.FC<ButtonProps> = ({ children, className = '', variant = 'solid', ...props }) => {
     // Defines the core layout and interaction styles of the button.
-    const baseClasses = "inline-flex items-center justify-center py-3 px-8 text-xs md:text-sm uppercase font-bold tracking-[0.2em] rounded-md transition-all duration-300 ease-out active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-center font-oswald";
+    const baseClasses = "inline-flex items-center justify-center py-3 px-8 text-xs md:text-sm uppercase font-bold tracking-[0.2em] rounded-none transition-all duration-300 ease-out active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-center font-oswald";
     
     // Defines styles for different visual variants.
     const primaryClasses = "bg-white/10 text-white border border-white/20 backdrop-blur-md hover:bg-white hover:text-black"; // Transparent/Glass

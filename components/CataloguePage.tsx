@@ -194,7 +194,7 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
 
                         {filteredProducts.length === 0 && (
                             <div className="py-40 text-center space-y-6">
-                                <div className="w-16 h-16 bg-zinc-50 rounded-full flex items-center justify-center mx-auto border border-zinc-100">
+                                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto border border-zinc-100">
                                     <CloseIcon className="w-6 h-6 text-zinc-300" />
                                 </div>
                                 <div className="space-y-2">

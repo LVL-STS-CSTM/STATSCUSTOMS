@@ -52,11 +52,11 @@ const LazyImage: React.FC<LazyImageProps> = ({
     return (
         <div 
             ref={containerRef}
-            className={`relative overflow-hidden bg-zinc-50 ${aspectRatio} ${className}`}
+            className={`relative overflow-hidden bg-white ${aspectRatio} ${className}`}
         >
             {/* Modular Shimmer Placeholder */}
             {!isLoaded && (
-                <div className="absolute inset-0 z-10 bg-zinc-100 flex items-center justify-center">
+                <div className="absolute inset-0 z-10 bg-white flex items-center justify-center">
                     <div className="w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-[scroll_1.5s_infinite] transition-transform"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-10">
                          <img src="https://i.imgur.com/OIYeMvS.png" alt="" className="w-8 h-8 grayscale" />
@@ -79,7 +79,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
                     className={`
                         w-full h-full 
                         transition-all duration-[800ms] cubic-bezier(0.2, 1, 0.2, 1)
-                        ${objectFit === 'cover' ? 'object-cover' : 'object-contain'}
+                        ${objectFit === 'cover' ? 'object-cover object-center' : 'object-contain object-center'}
                         ${isLoaded ? 'opacity-100 scale-100 translate-y-0 grayscale-0' : 'opacity-0 scale-[1.02] translate-y-2 grayscale-[50%] blur-sm'}
                     `}
                 />

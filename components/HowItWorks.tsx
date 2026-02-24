@@ -120,19 +120,19 @@ const HowItWorks: React.FC = () => {
                     {steps.map((step, index) => (
                         <div 
                             key={step.title}
-                            className={`group relative flex flex-col items-center text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} bg-white/0 p-4 md:p-0 rounded-2xl md:rounded-none cursor-pointer`}
+                            className={`group relative flex flex-col items-center text-center transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} bg-white/0 p-4 md:p-0 rounded-none md:rounded-none cursor-pointer`}
                             style={{ transitionDelay: `${index * 200}ms` }}
                             onClick={() => setSelectedIndex(index)}
                         >
                             <div className="relative mb-6 md:mb-8 pointer-events-none">
-                                <div className="w-20 h-20 md:w-24 md:h-24 rounded-[2rem] bg-[#111] border border-white/10 shadow-2xl flex items-center justify-center text-white z-10 group-hover:border-white/40 group-hover:scale-110 transition-all duration-500 relative overflow-hidden isolate backdrop-blur-sm">
+                                <div className="w-20 h-20 md:w-24 md:h-24 rounded-none bg-[#111] border border-white/10 shadow-2xl flex items-center justify-center text-white z-10 group-hover:border-white/40 group-hover:scale-110 transition-all duration-500 relative overflow-hidden isolate backdrop-blur-sm">
                                     <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-300 z-0"></div>
                                     <img src={step.imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10 grayscale" />
                                     <div className="transition-transform duration-300 z-10 group-hover:scale-110">
                                         {step.icon}
                                     </div>
                                 </div>
-                                <div className="absolute -top-2 -right-2 md:-top-3 md:-right-3 w-6 h-6 md:w-8 md:h-8 bg-white text-black rounded-full flex items-center justify-center text-[10px] font-black shadow-lg transform group-hover:scale-125 transition-transform duration-300 border-2 border-[#0A0A0A] z-20">
+                                <div className="absolute -top-2 -right-2 md:-top-3 md:-right-3 w-6 h-6 md:w-8 md:h-8 bg-white text-black rounded-none flex items-center justify-center text-[10px] font-black shadow-lg transform group-hover:scale-125 transition-transform duration-300 border-2 border-[#0A0A0A] z-20">
                                     {index + 1}
                                 </div>
                             </div>
@@ -150,7 +150,7 @@ const HowItWorks: React.FC = () => {
                     onClick={() => setSelectedIndex(null)}
                 >
                     <div 
-                        className="relative w-full h-full md:max-w-[85vw] md:max-h-[90vh] bg-[#0A0A0A] md:rounded-[2rem] overflow-hidden shadow-2xl flex flex-col md:flex-row group border-0 md:border border-white/5"
+                        className="relative w-full h-full md:max-w-[85vw] md:max-h-[90vh] bg-[#0A0A0A] md:rounded-none overflow-hidden shadow-2xl flex flex-col md:flex-row group border-0 md:border border-white/5"
                         onClick={e => e.stopPropagation()}
                         onTouchStart={onTouchStart}
                         onTouchMove={onTouchMove}
@@ -168,14 +168,14 @@ const HowItWorks: React.FC = () => {
                         </div>
 
                         {/* Navigation Arrows */}
-                        <button onClick={handlePrev} className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/5 hover:bg-white text-white hover:text-black rounded-full items-center justify-center backdrop-blur-md border border-white/10 transition-all active:scale-95">
+                        <button onClick={handlePrev} className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/5 hover:bg-white text-white hover:text-black rounded-none items-center justify-center backdrop-blur-md border border-white/10 transition-all active:scale-95">
                             <ArrowLongRightIcon className="w-6 h-6 rotate-180" />
                         </button>
-                        <button onClick={handleNext} className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/5 hover:bg-white text-white hover:text-black rounded-full items-center justify-center backdrop-blur-md border border-white/10 transition-all active:scale-95">
+                        <button onClick={handleNext} className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/5 hover:bg-white text-white hover:text-black rounded-none items-center justify-center backdrop-blur-md border border-white/10 transition-all active:scale-95">
                             <ArrowLongRightIcon className="w-6 h-6" />
                         </button>
 
-                        <button onClick={() => setSelectedIndex(null)} className="absolute top-6 right-6 z-40 w-10 h-10 md:w-12 md:h-12 bg-white/5 text-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all backdrop-blur-md border border-white/10 active:scale-95" aria-label="Close">
+                        <button onClick={() => setSelectedIndex(null)} className="absolute top-6 right-6 z-40 w-10 h-10 md:w-12 md:h-12 bg-white/5 text-white rounded-none flex items-center justify-center hover:bg-white hover:text-black transition-all backdrop-blur-md border border-white/10 active:scale-95" aria-label="Close">
                             <CloseIcon className="w-5 h-5 md:w-6 md:h-6" />
                         </button>
 
@@ -183,14 +183,14 @@ const HowItWorks: React.FC = () => {
                         <div className="relative z-20 flex flex-col justify-end w-full h-full p-8 md:p-16 lg:p-24 pointer-events-none">
                             <div className="max-w-4xl pointer-events-auto">
                                 <div className="flex items-center gap-4 mb-6 md:mb-8">
-                                    <div className="w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                                    <div className="w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-none flex items-center justify-center text-white shadow-lg">
                                         <div className="transform scale-75 md:scale-100">{activeStep.icon}</div>
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">Process</span>
                                         <div className="flex gap-1 mt-1">
                                             {steps.map((_, i) => (
-                                                <div key={i} className={`h-1 rounded-full transition-all duration-300 ${i === selectedIndex ? 'w-8 bg-white' : 'w-2 bg-white/20'}`} />
+                                                <div key={i} className={`h-1 rounded-none transition-all duration-300 ${i === selectedIndex ? 'w-8 bg-white' : 'w-2 bg-white/20'}`} />
                                             ))}
                                         </div>
                                     </div>

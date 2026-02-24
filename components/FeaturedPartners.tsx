@@ -9,11 +9,38 @@ interface FeaturedPartnersProps {
 
 const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
     const ref = useRef<HTMLDivElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
     const isVisible = useOnScreen(ref);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
 
     if (!partners || partners.length === 0) {
         return null;
     }
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if (!scrollRef.current) return;
+        setIsDragging(true);
+        setStartX(e.pageX - scrollRef.current.offsetLeft);
+        setScrollLeft(scrollRef.current.scrollLeft);
+    };
+
+    const handleMouseLeave = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging || !scrollRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - scrollRef.current.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed
+        scrollRef.current.scrollLeft = scrollLeft - walk;
+    };
 
     return (
         <section ref={ref} className="bg-gray-100 py-16 md:py-24 overflow-hidden group relative w-full">
@@ -29,22 +56,20 @@ const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
             </div>
             
             {/* Carousel Container */}
-            <div className="relative w-full overflow-hidden">
-                {/* Scrollable Area */}
+            <div className="relative w-full overflow-hidden py-4">
                 <div 
-                    className="flex overflow-x-auto overflow-y-hidden gap-8 md:gap-16 pb-4 px-4 md:px-12 no-scrollbar snap-x snap-mandatory scroll-smooth items-center w-full"
+                    ref={scrollRef}
+                    className={`flex overflow-x-auto snap-x snap-mandatory no-scrollbar cursor-grab active:cursor-grabbing gap-12 md:gap-24 items-center px-12 select-none`}
+                    onMouseDown={handleMouseDown}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseUp={handleMouseUp}
+                    onMouseMove={handleMouseMove}
                 >
-                    {/* Spacer for left padding on mobile */}
-                    <div className="shrink-0 w-4 md:w-0"></div>
-                    
                     {partners.map((partner) => (
-                        <div key={partner.id} className="snap-center shrink-0 w-[140px] md:w-[180px] flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100">
+                        <div key={partner.id} className="shrink-0 w-[120px] md:w-[160px] flex items-center justify-center grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500 snap-center">
                             <PartnerItem partner={partner} />
                         </div>
                     ))}
-                    
-                    {/* Spacer for right padding on mobile */}
-                    <div className="shrink-0 w-4 md:w-0"></div>
                 </div>
             </div>
         </section>
