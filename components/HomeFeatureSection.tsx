@@ -59,7 +59,7 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
     }, []);
 
     return (
-        <section className="bg-white py-0 md:py-8 lg:py-16">
+        <section className="bg-black py-0">
             <div className="max-w-[1840px] mx-auto relative group">
                 
                 {/* Navigation Buttons - Simple & Centered - Hidden on Mobile */}

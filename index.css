@@ -61,11 +61,11 @@
 html, body, #root, * {
   -ms-overflow-style: none !important;  /* IE and Edge */
   scrollbar-width: none !important;  /* Firefox */
+  overflow-x: hidden !important;
 }
 
 html { 
   scroll-behavior: smooth; 
-  overflow-x: hidden;
   width: 100%;
   max-width: 100%;
 }
@@ -78,10 +78,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-weight: 300;
   letter-spacing: 0.015em;
-  overflow-x: hidden;
   width: 100%;
   max-width: 100%;
-  position: relative;
 }
 
 .dark body {
