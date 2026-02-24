@@ -44,11 +44,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
         return allImages.length > 0 ? allImages.flat() : [];
     }, [selectedColor, product]);
 
-    const selectedMaterials = useMemo(() => {
-        if (!product || !materials) return [];
-        const ids = product.materialIds || (product.materialId ? [product.materialId] : []);
-        if (ids.length === 0) return [];
-        return materials.filter(m => ids.includes(m.id));
+    const material = useMemo(() => {
+        if (!product || !materials) return null;
+        return materials.find(m => m.id === product.materialId);
     }, [product, materials]);
 
     const relatedProducts = useMemo(() => {
@@ -174,27 +172,22 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                             </Accordion>
 
                             <Accordion title="FABRIC + TECHNOLOGY">
-                                <div className="pb-4 space-y-6">
-                                    {selectedMaterials.length > 0 ? (
-                                        selectedMaterials.map((m, idx) => (
-                                            <div key={m.id} className={idx > 0 ? "pt-4 border-t border-zinc-50" : ""}>
-                                                <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-1">{m.name}</h4>
-                                                <p className="text-xs text-zinc-400 mt-1">{m.description}</p>
-                                                <div className="flex flex-wrap gap-2 mt-3">
-                                                    {m.features.map(f => (
-                                                        <span key={f} className="px-2 py-1 bg-zinc-100 text-[9px] font-bold uppercase tracking-wider text-zinc-600">
-                                                            {f}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <div>
-                                            <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-1">Premium Technical Fabric</h4>
-                                            <p className="text-xs text-zinc-400 mt-1">Engineered for durability and performance.</p>
+                                <div className="pb-4 space-y-4">
+                                    <div>
+                                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-1">Primary Material</h4>
+                                        <p className="text-sm text-zinc-600">{material?.name || 'Premium Technical Fabric'}</p>
+                                        <p className="text-xs text-zinc-400 mt-1">{material?.description || 'Engineered for durability.'}</p>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-black mb-2">Features</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {(material?.features || ['Breathable', 'Durable']).map(f => (
+                                                <span key={f} className="px-2 py-1 bg-zinc-100 text-[9px] font-bold uppercase tracking-wider text-zinc-600">
+                                                    {f}
+                                                </span>
+                                            ))}
                                         </div>
-                                    )}
+                                    </div>
                                 </div>
                             </Accordion>
                         </div>

@@ -34,8 +34,7 @@ export interface Product {
     categoryGroup: string; 
     gender: 'Men' | 'Women' | 'Unisex';
     displayOrder: number;
-    materialIds?: string[];
-    materialId?: string; // Deprecated: use materialIds
+    materialId?: string;
     moq?: number;
     price?: number; 
     priceTiers?: { minQty: number; discount: number }[]; 
