@@ -4,7 +4,6 @@ import { View, Product, InfoCard } from './types';
 import { QuoteProvider } from './context/CartContext';
 import { AdminProvider, useAdmin } from './context/AdminContext';
 import { DataProvider, useData } from './context/DataContext';
-import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
@@ -196,7 +195,7 @@ const AppContent: React.FC = () => {
 
     return (
         <ErrorBoundary>
-            <div className="font-sans min-h-screen flex flex-col bg-white dark:bg-zinc-950 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-300 overflow-x-hidden w-full">
+            <div className="font-sans min-h-screen flex flex-col bg-white selection:bg-black selection:text-white overflow-x-hidden w-full">
                 {isSplashVisible && <SplashScreen isFadingOut={!isAppLoading && !isDataLoading} />}
                 {toastMessage && <Toast message={toastMessage} onClose={() => setToastMessage('')} />}
 
@@ -235,15 +234,13 @@ const AppContent: React.FC = () => {
 };
 
 const App: React.FC = () => (
-    <ThemeProvider>
-        <DataProvider>
-            <AdminProvider>
-                <QuoteProvider>
-                    <AppContent />
-                </QuoteProvider>
-            </AdminProvider>
-        </DataProvider>
-    </ThemeProvider>
+    <DataProvider>
+        <AdminProvider>
+            <QuoteProvider>
+                <AppContent />
+            </QuoteProvider>
+        </AdminProvider>
+    </DataProvider>
 );
 
 export default App;
