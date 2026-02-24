@@ -44,11 +44,11 @@ const HeroSection: React.FC<{
             <Hero {...hero} onNavigate={onNavigate} isFirst={isFirst} />
             
             {featuredProducts.length > 0 && (
-                <section className="bg-white py-16 md:py-32 px-0 md:px-4 border-b border-zinc-100 last:border-0 relative z-20">
+                <section className="bg-white dark:bg-zinc-950 py-16 md:py-32 px-0 md:px-4 border-b border-zinc-100 dark:border-zinc-900 last:border-0 relative z-20 transition-colors duration-300">
                     <div className="max-w-[1600px] mx-auto px-4 md:px-8">
                         <div className="text-center mb-16 md:mb-24">
                             <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em] block mb-6">Featured Collection</span>
-                            <h2 className="font-eurostile font-bold text-3xl md:text-4xl lg:text-5xl tracking-[0.1em] text-zinc-900 uppercase leading-none">
+                            <h2 className="font-eurostile font-bold text-3xl md:text-4xl lg:text-5xl tracking-[0.1em] text-zinc-900 dark:text-white uppercase leading-none">
                                 {hero.featuredProductsTitle || 'Selected Gear'}
                             </h2>
                         </div>
@@ -80,7 +80,7 @@ const HomePage: React.FC<HomePageProps> = ({
     const secondaryHeroes = sortedHeroes.slice(1);
 
     return (
-        <div className="animate-fade-in bg-white w-full overflow-x-hidden">
+        <div className="animate-fade-in bg-white dark:bg-zinc-950 w-full overflow-x-hidden transition-colors duration-300">
             {homeHero && (
                 <HeroSection 
                     hero={homeHero} 
@@ -106,13 +106,13 @@ const HomePage: React.FC<HomePageProps> = ({
 
             <HowItWorks />
 
-            <div className="bg-zinc-100 pb-32 lg:pb-48 pt-12">
+            <div className="bg-zinc-100 dark:bg-zinc-900 pb-32 lg:pb-48 pt-12 transition-colors duration-300">
                 <InfoCards cards={infoCards} onCardClick={onCardClick} />
             </div>
             <CustomizationShowcase />
             {featuredVideoContent?.isVisible && <FeaturedVideo {...featuredVideoContent} />}
             <BrandReviews brandReviews={brandReviews} platformRatings={platformRatings} />
-            <div className="bg-zinc-50 py-24 lg:py-32">
+            <div className="bg-zinc-50 dark:bg-zinc-900/50 py-24 lg:py-32 transition-colors duration-300">
                 <FeaturedPartners partners={partners} />
             </div>
             <CallToAction onNavigate={onNavigate} />

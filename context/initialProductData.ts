@@ -31,7 +31,7 @@ export const initialProductsData: Product[] = ([
         category: 'Custom Jerseys',
         categoryGroup: 'Performance',
         gender: 'Men',
-        materialId: 'fabric-1',
+        materialIds: ['fabric-1'],
         moq: 12,
         mockupImageUrl: 'https://images.pexels.com/photos/11115895/pexels-photo-11115895.jpeg',
         mockupArea: { top: 25, left: 25, width: 50, height: 40 }
@@ -57,7 +57,7 @@ export const initialProductsData: Product[] = ([
         category: 'Base Layers',
         categoryGroup: 'Performance',
         gender: 'Unisex',
-        materialId: 'fabric-1',
+        materialIds: ['fabric-1'],
         moq: 12
     },
     {
@@ -81,7 +81,7 @@ export const initialProductsData: Product[] = ([
         category: 'Bottoms',
         categoryGroup: 'Performance',
         gender: 'Men',
-        materialId: 'fabric-1',
+        materialIds: ['fabric-1'],
         moq: 20
     },
     {
@@ -105,7 +105,7 @@ export const initialProductsData: Product[] = ([
         category: 'Custom Jerseys',
         categoryGroup: 'Performance',
         gender: 'Unisex',
-        materialId: 'fabric-2',
+        materialIds: ['fabric-2'],
         moq: 12
     },
 
@@ -155,7 +155,7 @@ export const initialProductsData: Product[] = ([
         category: 'Outerwear',
         categoryGroup: 'Apparel',
         gender: 'Unisex',
-        materialId: 'fabric-3',
+        materialIds: ['fabric-3'],
         moq: 15
     },
 

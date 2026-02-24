@@ -13,7 +13,7 @@ const SortIcon: React.FC<{ direction?: 'asc' | 'desc' }> = ({ direction }) => {
 type SortableKeys = 'id' | 'name' | 'category' | 'categoryGroup' | 'gender';
 
 const ProductManagement: React.FC = () => {
-    const { products, updateData } = useData();
+    const { products, materials, updateData } = useData();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [productToEdit, setProductToEdit] = useState<Product | null>(null);
 
@@ -186,6 +186,7 @@ const ProductManagement: React.FC = () => {
                                 <th className="px-6 py-4 text-left text-[9px] font-black text-zinc-400 uppercase tracking-[0.2em] cursor-pointer hover:text-black select-none" onClick={() => requestSort('categoryGroup')}>
                                     Group <SortIcon direction={sortConfig?.key === 'categoryGroup' ? sortConfig.direction : undefined} />
                                 </th>
+                                <th className="px-6 py-4 text-left text-[9px] font-black text-zinc-400 uppercase tracking-[0.2em]">Fabrics</th>
                                 <th className="px-6 py-4 text-center text-[9px] font-black text-zinc-400 uppercase tracking-[0.2em]">Tag</th>
                                 <th className="px-6 py-4 text-right text-[9px] font-black text-zinc-400 uppercase tracking-[0.2em]">Actions</th>
                             </tr>
@@ -208,6 +209,19 @@ const ProductManagement: React.FC = () => {
                                     <td className="px-6 py-4 whitespace-nowrap text-xs font-black uppercase text-zinc-900 tracking-tight">{product.name}</td>
                                     <td className="px-6 py-4 whitespace-nowrap text-[10px] font-bold uppercase text-zinc-500 tracking-widest">{product.category}</td>
                                     <td className="px-6 py-4 whitespace-nowrap text-[10px] font-bold uppercase text-zinc-500 tracking-widest">{product.categoryGroup}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="flex flex-wrap gap-1">
+                                            {(product.materialIds || []).map(mid => {
+                                                const mat = materials.find(m => m.id === mid);
+                                                return mat ? (
+                                                    <span key={mid} className="px-1.5 py-0.5 bg-zinc-100 text-zinc-600 text-[8px] font-bold uppercase rounded border border-zinc-200">
+                                                        {mat.name}
+                                                    </span>
+                                                ) : null;
+                                            })}
+                                            {(!product.materialIds || product.materialIds.length === 0) && <span className="text-[8px] text-zinc-300 italic uppercase">None</span>}
+                                        </div>
+                                    </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-center">
                                         {product.isBestseller && <span className="px-2 py-0.5 bg-black text-white text-[8px] font-black uppercase rounded tracking-wider">Top Seller</span>}
                                     </td>
