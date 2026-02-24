@@ -70,6 +70,7 @@ export const initialPageBannerData: PageBanner[] = [
     { id: 'pb-catalogue', page: 'catalogue', title: 'MASTER INVENTORY', description: 'Explore our full spectrum of specialized gear.', imageUrl: 'https://images.pexels.com/photos/1036856/pexels-photo-1036856.jpeg' },
     { id: 'pb-about', page: 'about', title: 'THE NARRATIVE', description: 'A legacy of quality. A future of local excellence.', imageUrl: 'https://images.pexels.com/photos/8365691/pexels-photo-8365691.jpeg' },
     { id: 'pb-services', page: 'services', title: 'EXPERT SOLUTIONS', description: 'Strategic B2B apparel systems for global-ready brands.', imageUrl: 'https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg' },
+    { id: 'pb-contact', page: 'contact', title: 'Muntinlupa HQ', description: 'Flagship Store', imageUrl: 'https://player.cloudinary.com/embed/?cloud_name=dvodalpcz&public_id=Website_Location_lgjgbf' },
 ];
 
 export const initialServiceData: Service[] = [

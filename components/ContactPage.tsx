@@ -2,13 +2,23 @@
 import React, { useState } from 'react';
 import { SendIcon } from './icons';
 import Button from './Button';
-
+import { useData } from '../context/DataContext';
 
 interface ContactPageProps {
     showToast: (message: string) => void;
 }
 
 const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
+    const { pageBanners } = useData();
+    const banner = pageBanners.find(b => b.page === 'contact') || {
+        title: 'Muntinlupa HQ',
+        description: 'Flagship Store',
+        imageUrl: '/store_video.mp4'
+    };
+
+    const isCloudinaryEmbed = banner.imageUrl.includes('player.cloudinary.com/embed');
+    const isVideo = banner.imageUrl.toLowerCase().endsWith('.mp4') || banner.imageUrl.toLowerCase().endsWith('.webm');
+
     const address = 'Block 3 Lot 4, Daang Hari Road, Ayala Alabang, Muntinlupa, 1776 Metro Manila, Philippines';
     const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
     const mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15456.45260190539!2d121.01255532599602!3d14.42065097623344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1e0287a2589%3A0x6758da4f78310153!2sDaang%20Hari%20Rd%2C%20Ayala%20Alabang%2C%20Muntinlupa%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1678886400000!5m2!1sen!2sph`;
@@ -50,11 +60,23 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
         <div className="bg-white min-h-screen">
             {/* Video Banner Section */}
             <div className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden bg-black">
-                <video src="/store_video.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-80"></video>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div className="absolute inset-0 flex flex-col items-center justify-end text-white pb-16 md:pb-24 px-4">
-                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] mb-4">Flagship Store</span>
-                    <h1 className="font-eurostile text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter text-center leading-none drop-shadow-2xl">Muntinlupa HQ</h1>
+                {isCloudinaryEmbed ? (
+                    <iframe
+                        src={`${banner.imageUrl}&autoplay=true&loop=true&muted=true&controls=false`}
+                        className="absolute inset-0 w-full h-full object-cover opacity-80 pointer-events-none"
+                        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                        allowFullScreen
+                        frameBorder="0"
+                    ></iframe>
+                ) : isVideo ? (
+                    <video src={banner.imageUrl} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-80"></video>
+                ) : (
+                    <img src={banner.imageUrl} alt={banner.title} className="absolute inset-0 w-full h-full object-cover opacity-80" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+                <div className="absolute inset-0 flex flex-col items-center justify-end text-white pb-16 md:pb-24 px-4 pointer-events-none">
+                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] mb-4">{banner.description}</span>
+                    <h1 className="font-eurostile text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter text-center leading-none drop-shadow-2xl">{banner.title}</h1>
                 </div>
             </div>
 
