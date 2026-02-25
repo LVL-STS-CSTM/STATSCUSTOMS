@@ -92,7 +92,10 @@ export const initialCapabilityData: Capability[] = [
 export const initialSubscriptionModalData: SubscriptionModalContent = {
     title: 'Join The Inner Circle',
     description: 'Get exclusive access to new arrivals, special offers, and behind-the-scenes content.',
-    imageUrl: 'https://images.pexels.com/photos/7679883/pexels-photo-7679883.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    imageUrl: 'https://images.pexels.com/photos/7679883/pexels-photo-7679883.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    actionType: 'subscribe',
+    buttonText: 'Join Now',
+    redirectUrl: ''
 };
 
 export const initialHomeFeatureData: HomeFeature = {

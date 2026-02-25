@@ -28,8 +28,36 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
+    <style>
+      @font-face {
+        font-family: 'Rheiborn Sans Clean';
+        src: url('/fonts/RheibornSansClean.ttf') format('truetype');
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Futura';
+        src: url('/fonts/Futura.ttf') format('truetype');
+        font-weight: 400;
+        font-display: swap;
+      }
+    </style>
+
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Futura', 'Futura LC', 'Jost', 'sans-serif'],
+              eurostile: ['"Rheiborn Sans Clean"', '"Rheiborn Sans Clean LC"', 'Antonio', 'sans-serif'],
+              oswald: ['"Rheiborn Sans Clean"', '"Rheiborn Sans Clean LC"', 'Antonio', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
 <script type="importmap">
 {
   "imports": {

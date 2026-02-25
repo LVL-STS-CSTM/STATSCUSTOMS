@@ -35,6 +35,24 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, onClose, 
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        
+        if (subscriptionModalContent.actionType === 'redirect') {
+            try {
+                localStorage.setItem('subscriptionModalDismissed', 'true');
+            } catch (e) {
+                console.error("Failed to save to localStorage", e);
+            }
+            onClose();
+            
+            const url = subscriptionModalContent.redirectUrl || '/';
+            if (url.startsWith('http')) {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            } else {
+                window.location.href = url;
+            }
+            return;
+        }
+
         if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) {
             setError('Please enter a valid email address.');
             return;
@@ -102,27 +120,31 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, onClose, 
                             <h2 className="text-3xl font-oswald uppercase tracking-wider text-gray-900 text-center">{subscriptionModalContent.title}</h2>
                             <p className="text-gray-600 text-center mt-3 mb-6 uppercase tracking-widest text-[10px] font-bold">{subscriptionModalContent.description}</p>
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                <div>
-                                    <label htmlFor="subscription-email" className="sr-only">Email Address</label>
-                                    <div className="relative">
-                                         <MailIcon className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
-                                         <input
-                                            type="email"
-                                            id="subscription-email"
-                                            value={email}
-                                            onChange={(e) => { setEmail(e.target.value); if(error) setError(''); }}
-                                            required
-                                            autoFocus
-                                            placeholder="EMAIL@EXAMPLE.COM"
-                                            className={`w-full pl-12 pr-4 py-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 sm:text-sm font-bold uppercase tracking-widest ${error ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:ring-black focus:border-black'}`}
-                                        />
+                                {subscriptionModalContent.actionType !== 'redirect' && (
+                                    <div>
+                                        <label htmlFor="subscription-email" className="sr-only">Email Address</label>
+                                        <div className="relative">
+                                             <MailIcon className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                             <input
+                                                type="email"
+                                                id="subscription-email"
+                                                value={email}
+                                                onChange={(e) => { setEmail(e.target.value); if(error) setError(''); }}
+                                                required
+                                                autoFocus
+                                                placeholder="EMAIL@EXAMPLE.COM"
+                                                className={`w-full pl-12 pr-4 py-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 sm:text-sm font-bold uppercase tracking-widest ${error ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:ring-black focus:border-black'}`}
+                                            />
+                                        </div>
+                                        {error && <p className="text-red-500 text-[9px] font-black mt-1 uppercase">{error}</p>}
                                     </div>
-                                    {error && <p className="text-red-500 text-[9px] font-black mt-1 uppercase">{error}</p>}
-                                </div>
+                                )}
                                 <button type="submit" className="w-full py-4 bg-black text-white rounded-xl hover:bg-zinc-800 font-black uppercase tracking-[0.2em] text-[10px] transition-all shadow-xl" disabled={isLoading}>
-                                    {isLoading ? 'Sending...' : 'Join Now'}
+                                    {isLoading ? 'Processing...' : (subscriptionModalContent.buttonText || 'Join Now')}
                                 </button>
-                                <p className="text-[9px] font-bold text-gray-400 text-center uppercase tracking-widest mt-4">We respect your privacy. Unsubscribe at any time.</p>
+                                {subscriptionModalContent.actionType !== 'redirect' && (
+                                    <p className="text-[9px] font-bold text-gray-400 text-center uppercase tracking-widest mt-4">We respect your privacy. Unsubscribe at any time.</p>
+                                )}
                             </form>
                         </div>
                     )}

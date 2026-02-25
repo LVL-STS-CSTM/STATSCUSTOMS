@@ -85,6 +85,43 @@ const SubscriptionModalManagement: React.FC = () => {
                                     required 
                                 />
                             </div>
+                            <div>
+                                <label className={labelClasses}>Action Type</label>
+                                <select 
+                                    name="actionType" 
+                                    value={formData.actionType || 'subscribe'} 
+                                    onChange={(e) => setFormData(prev => ({ ...prev, actionType: e.target.value as any }))}
+                                    className={inputClasses}
+                                >
+                                    <option value="subscribe">Email Subscription</option>
+                                    <option value="redirect">Site Redirect</option>
+                                </select>
+                            </div>
+                            {formData.actionType === 'redirect' && (
+                                <div>
+                                    <label className={labelClasses}>Redirect URL</label>
+                                    <input 
+                                        name="redirectUrl" 
+                                        type="text" 
+                                        value={formData.redirectUrl || ''} 
+                                        onChange={handleInputChange} 
+                                        className={inputClasses} 
+                                        placeholder="/about or https://example.com"
+                                        required 
+                                    />
+                                </div>
+                            )}
+                            <div>
+                                <label className={labelClasses}>Button Text</label>
+                                <input 
+                                    name="buttonText" 
+                                    type="text" 
+                                    value={formData.buttonText || ''} 
+                                    onChange={handleInputChange} 
+                                    className={inputClasses} 
+                                    placeholder="e.g. Join Now"
+                                />
+                            </div>
                         </div>
 
                         <div className="bg-zinc-50 p-6 rounded-3xl border border-zinc-100 flex flex-col items-center justify-center">

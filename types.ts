@@ -319,10 +319,15 @@ export interface CommunityPost {
     isVisible: boolean;
 }
 
+export type PopupActionType = 'subscribe' | 'redirect';
+
 export interface SubscriptionModalContent {
     title: string;
     description: string;
     imageUrl: string;
+    actionType?: PopupActionType;
+    redirectUrl?: string;
+    buttonText?: string;
 }
 
 export interface Message {
