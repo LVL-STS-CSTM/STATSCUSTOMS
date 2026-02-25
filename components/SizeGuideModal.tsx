@@ -26,9 +26,9 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({ isOpen, onClose, produc
                             <span className="p-2 bg-black text-white rounded-lg">
                                 <RulerIcon className="w-4 h-4" />
                             </span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">Size Guide</span>
+                            <span className="text-[10px] font-space-grotesk font-black uppercase tracking-[0.3em] text-zinc-400">Size Guide</span>
                         </div>
-                        <h2 className="font-eurostile text-2xl uppercase tracking-tighter text-gray-900 leading-none max-w-md">{productName}</h2>
+                        <h2 className="font-rheiborn text-2xl uppercase tracking-tighter text-gray-900 leading-none max-w-md">{productName}</h2>
                     </div>
                     <button onClick={onClose} className="p-2 hover:bg-zinc-100 rounded-full transition-colors">
                         <CloseIcon className="w-6 h-6 text-zinc-400 hover:text-black" />
@@ -37,12 +37,12 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({ isOpen, onClose, produc
 
                 <div className="p-8">
                     {sizes.length === 0 ? (
-                        <p className="text-center text-zinc-400 text-sm">No size chart available for this item.</p>
+                        <p className="text-center text-zinc-400 text-sm font-futura">No size chart available for this item.</p>
                     ) : (
                         <>
                             <div className="overflow-x-auto rounded-xl border border-zinc-200 scrollbar-thin">
                                 <table className="w-full text-sm text-left whitespace-nowrap">
-                                    <thead className="bg-zinc-50 text-zinc-500 font-bold uppercase text-[10px] tracking-widest border-b border-zinc-200">
+                                    <thead className="bg-zinc-50 text-zinc-500 font-space-grotesk font-bold uppercase text-[10px] tracking-widest border-b border-zinc-200">
                                         <tr>
                                             <th className="px-6 py-4 md:px-8">Size Label</th>
                                             <th className="px-6 py-4 md:px-8">Chest Width (in)</th>
@@ -52,9 +52,9 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({ isOpen, onClose, produc
                                     <tbody className="divide-y divide-zinc-100">
                                         {sizes.map((size) => (
                                             <tr key={size.name} className="hover:bg-zinc-50/50 transition-colors">
-                                                <td className="px-6 py-4 md:px-8 font-black uppercase text-zinc-900 text-base">{size.name}</td>
-                                                <td className="px-6 py-4 md:px-8 text-zinc-600 font-mono text-base">{size.width}"</td>
-                                                <td className="px-6 py-4 md:px-8 text-zinc-600 font-mono text-base">{size.length}"</td>
+                                                <td className="px-6 py-4 md:px-8 font-space-grotesk font-black uppercase text-zinc-900 text-base">{size.name}</td>
+                                                <td className="px-6 py-4 md:px-8 text-zinc-600 font-space-grotesk text-base">{size.width}"</td>
+                                                <td className="px-6 py-4 md:px-8 text-zinc-600 font-space-grotesk text-base">{size.length}"</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -62,12 +62,12 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({ isOpen, onClose, produc
                             </div>
                             <div className="mt-8 p-6 bg-zinc-50 rounded-2xl border border-zinc-100 text-xs text-zinc-500 leading-relaxed flex flex-col md:flex-row gap-6">
                                 <div className="flex-1">
-                                    <p className="mb-2"><strong className="text-zinc-900 uppercase tracking-wider block mb-1">Width Measurement</strong></p>
-                                    <p>Measure across the chest, 1 inch below the armhole, with the garment laying flat.</p>
+                                    <p className="mb-2"><strong className="text-zinc-900 font-space-grotesk uppercase tracking-wider block mb-1">Width Measurement</strong></p>
+                                    <p className="font-futura">Measure across the chest, 1 inch below the armhole, with the garment laying flat.</p>
                                 </div>
                                 <div className="flex-1">
-                                    <p className="mb-2"><strong className="text-zinc-900 uppercase tracking-wider block mb-1">Length Measurement</strong></p>
-                                    <p>Measure from the highest point of the shoulder down to the bottom hem.</p>
+                                    <p className="mb-2"><strong className="text-zinc-900 font-space-grotesk uppercase tracking-wider block mb-1">Length Measurement</strong></p>
+                                    <p className="font-futura">Measure from the highest point of the shoulder down to the bottom hem.</p>
                                 </div>
                             </div>
                         </>

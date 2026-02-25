@@ -71,13 +71,13 @@ const InfoCards: React.FC<InfoCardsProps> = ({ cards, onCardClick }) => {
                             <div className="relative z-10 p-6 flex flex-col items-center justify-center h-full w-full">
                                 <div className="border border-white/30 px-6 py-4 backdrop-blur-sm rounded-none transform transition-transform duration-500 group-hover:scale-105 group-hover:border-white/60">
                                     <h2 
-                                        className="font-oswald text-2xl md:text-3xl lg:text-4xl tracking-widest uppercase whitespace-pre-line leading-tight drop-shadow-lg"
+                                        className="font-rheiborn text-2xl md:text-3xl lg:text-4xl tracking-widest uppercase whitespace-pre-line leading-tight drop-shadow-lg"
                                     >
                                         {card.title}
                                     </h2>
                                 </div>
                                 {(card.description || card.linkType === 'modal') && (
-                                    <span className="mt-6 text-[10px] font-black uppercase tracking-[0.3em] opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 bg-black/50 px-4 py-2 rounded-none backdrop-blur-md">
+                                    <span className="mt-6 text-[10px] font-space-grotesk font-black uppercase tracking-[0.3em] opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 bg-black/50 px-4 py-2 rounded-none backdrop-blur-md">
                                         View Details
                                     </span>
                                 )}
@@ -119,16 +119,16 @@ const InfoCards: React.FC<InfoCardsProps> = ({ cards, onCardClick }) => {
                             <div className="max-w-2xl pointer-events-auto">
                                 <div className="mb-6 md:mb-8">
                                     <div className="w-16 h-1 bg-white/50 mb-6"></div>
-                                    <h3 className="font-eurostile text-4xl sm:text-5xl md:text-7xl uppercase tracking-tighter mb-6 text-white drop-shadow-2xl leading-[0.9] whitespace-pre-line">
+                                    <h3 className="font-rheiborn text-4xl sm:text-5xl md:text-7xl uppercase tracking-tighter mb-6 text-white drop-shadow-2xl leading-[0.9] whitespace-pre-line">
                                         {selectedCard.title}
                                     </h3>
-                                    <p className="text-base sm:text-lg md:text-xl font-light text-white/90 leading-relaxed drop-shadow-lg border-l-2 border-white/30 pl-6 mb-8">
+                                    <p className="text-base sm:text-lg md:text-xl font-futura font-light text-white/90 leading-relaxed drop-shadow-lg border-l-2 border-white/30 pl-6 mb-8">
                                         {selectedCard.description}
                                     </p>
                                     
                                     <button 
                                         onClick={handleProceed}
-                                        className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-none text-xs font-black uppercase tracking-[0.2em] hover:bg-zinc-200 transition-all shadow-xl active:scale-95 group/btn"
+                                        className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-none text-xs font-space-grotesk font-black uppercase tracking-[0.2em] hover:bg-zinc-200 transition-all shadow-xl active:scale-95 group/btn"
                                     >
                                         <span>Proceed</span>
                                         <ArrowLongRightIcon className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-2" />

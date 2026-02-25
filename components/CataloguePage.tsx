@@ -15,7 +15,7 @@ interface CataloguePageProps {
 
 const FilterSection: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
     <div className="border-b border-zinc-100 pb-8 mb-8 last:border-0 last:pb-0 last:mb-0">
-        <h3 className="font-eurostile font-bold text-[10px] uppercase tracking-[0.3em] text-zinc-900 mb-6">{title}</h3>
+        <h3 className="font-rheiborn font-bold text-[10px] uppercase tracking-[0.3em] text-zinc-900 mb-6">{title}</h3>
         <div className="space-y-3">
             {children}
         </div>
@@ -27,7 +27,7 @@ const FilterLink: React.FC<{ active: boolean; onClick: () => void; label: string
         onClick={onClick}
         className={`flex items-center justify-between w-full text-left group transition-all ${active ? 'text-black' : 'text-zinc-400 hover:text-zinc-600'}`}
     >
-        <span className={`text-[11px] font-bold uppercase tracking-widest ${active ? 'underline underline-offset-8 decoration-2' : ''}`}>
+        <span className={`text-[11px] font-bold uppercase tracking-widest font-space-grotesk ${active ? 'underline underline-offset-8 decoration-2' : ''}`}>
             {label}
         </span>
         {count !== undefined && (
@@ -198,7 +198,7 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                                     <CloseIcon className="w-6 h-6 text-zinc-300" />
                                 </div>
                                 <div className="space-y-2">
-                                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em]">No products found</p>
+                                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em] font-futura">No products found</p>
                                     <button onClick={clearAll} className="text-[10px] font-bold uppercase underline underline-offset-8 tracking-widest hover:text-black transition-colors">View All Products</button>
                                 </div>
                             </div>
@@ -221,7 +221,7 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
             {/* Mobile Filter Drawer */}
             <div className={`fixed inset-0 z-[60] lg:hidden transition-all duration-500 ${isMobileFilterOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsMobileFilterOpen(false)}></div>
-                <div className={`absolute bottom-0 left-0 right-0 bg-white rounded-t-[2.5rem] max-h-[90vh] flex flex-col transition-transform duration-500 ease-out ${isMobileFilterOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+                <div className={`absolute bottom-0 left-0 right-0 bg-white rounded-t-[2.5rem] max-h-[90vh] flex flex-col transition-transform duration-500 ease-out overflow-hidden ${isMobileFilterOpen ? 'translate-y-0' : 'translate-y-full'}`}>
                     <header className="flex items-center justify-between p-8 border-b border-zinc-100">
                         <h2 className="font-eurostile font-bold text-sm uppercase tracking-[0.3em]">Filter Collection</h2>
                         <button onClick={() => setIsMobileFilterOpen(false)} className="p-2">

@@ -20,9 +20,9 @@ const HowWeWorkPage: React.FC = () => {
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2 space-y-6">
-                                <span className="text-[10px] font-bold text-black uppercase tracking-[0.4em]">Step 0{index + 1}</span>
-                                <h3 className="font-oswald text-4xl text-gray-900 uppercase tracking-widest">{section.title}</h3>
-                                <p className="text-gray-500 leading-loose text-lg font-light antialiased">{section.description}</p>
+                                <span className="text-[10px] font-bold text-black uppercase tracking-[0.4em] font-space-grotesk">Step 0{index + 1}</span>
+                                <h3 className="font-rheiborn text-4xl text-gray-900 uppercase tracking-widest">{section.title}</h3>
+                                <p className="text-gray-500 leading-loose text-lg font-futura font-light antialiased">{section.description}</p>
                             </div>
                         </div>
                     ))}

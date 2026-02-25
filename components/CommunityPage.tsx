@@ -30,11 +30,11 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onNavigate }) => {
                                 
                                 {/* Content Overlay */}
                                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                                    <p className="text-sm font-light italic leading-relaxed mb-4">"{post.caption}"</p>
+                                    <p className="text-sm font-light italic leading-relaxed mb-4 font-futura">"{post.caption}"</p>
                                     <div className="flex items-center justify-between border-t border-white/20 pt-4">
                                         <div className="flex flex-col">
-                                            <span className="text-xs font-bold uppercase tracking-widest">{post.author}</span>
-                                            <span className="text-[10px] text-white/60 font-medium">{post.source}</span>
+                                            <span className="text-xs font-bold uppercase tracking-widest font-space-grotesk">{post.author}</span>
+                                            <span className="text-[10px] text-white/60 font-medium font-space-grotesk">{post.source}</span>
                                         </div>
                                         {tagged && (
                                             <button 
@@ -53,7 +53,7 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onNavigate }) => {
                 
                 {visiblePosts.length === 0 && (
                     <div className="text-center py-40">
-                        <p className="font-oswald text-gray-400 uppercase tracking-widest text-xl">Our community is growing. Stay tuned.</p>
+                        <p className="font-rheiborn text-gray-400 uppercase tracking-widest text-xl">Our community is growing. Stay tuned.</p>
                     </div>
                 )}
             </div>

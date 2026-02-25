@@ -73,8 +73,8 @@ const QuoteManagement: React.FC = () => {
         <div className="space-y-8">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 border-b border-zinc-200 pb-6">
                 <div>
-                    <h2 className="text-2xl font-eurostile font-black uppercase tracking-widest text-zinc-900">Inquiries & Orders</h2>
-                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mt-1">Manage customer requests and production flow</p>
+                    <h2 className="text-2xl font-rheiborn font-black uppercase tracking-widest text-zinc-900">Inquiries & Orders</h2>
+                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mt-1 font-futura">Manage customer requests and production flow</p>
                 </div>
                 <div className="flex bg-zinc-100 p-1 rounded-lg border border-zinc-200">
                     {[
@@ -94,7 +94,7 @@ const QuoteManagement: React.FC = () => {
             </div>
 
             <div className="bg-white shadow-sm rounded-xl border border-zinc-200 overflow-hidden">
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto no-scrollbar">
                     <table className="min-w-full divide-y divide-zinc-100">
                         <thead className="bg-zinc-50/50">
                             <tr>
@@ -299,7 +299,7 @@ const AdminDashboard: React.FC = () => {
             </aside>
 
             {/* Main Content Area */}
-            <main className="flex-grow p-6 md:p-12 overflow-y-auto min-h-screen">
+            <main className="flex-grow p-6 md:p-12 overflow-y-auto no-scrollbar min-h-screen">
                 <div className="max-w-[1600px] mx-auto">
                     {/* Header Toolbar */}
                     <div className="flex justify-between items-center mb-8 bg-white p-4 rounded-2xl shadow-sm border border-zinc-100">

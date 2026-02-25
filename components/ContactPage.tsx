@@ -11,7 +11,7 @@ interface ContactPageProps {
 const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
     const { pageBanners } = useData();
     const banner = pageBanners.find(b => b.page === 'contact') || {
-        title: 'Muntinlupa HQ',
+        title: 'Parañaque HQ',
         description: 'Flagship Store',
         imageUrl: '/store_video.mp4'
     };
@@ -19,9 +19,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
     const isCloudinaryEmbed = banner.imageUrl.includes('player.cloudinary.com/embed');
     const isVideo = banner.imageUrl.toLowerCase().endsWith('.mp4') || banner.imageUrl.toLowerCase().endsWith('.webm');
 
-    const address = 'Block 3 Lot 4, Daang Hari Road, Ayala Alabang, Muntinlupa, 1776 Metro Manila, Philippines';
+    const address = '306 El Grande Ave, Parañaque, 1740 Metro Manila';
     const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
-    const mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15456.45260190539!2d121.01255532599602!3d14.42065097623344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d1e0287a2589%3A0x6758da4f78310153!2sDaang%20Hari%20Rd%2C%20Ayala%20Alabang%2C%20Muntinlupa%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1678886400000!5m2!1sen!2sph`;
+    const mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.610530438676!2d121.01255532599602!3d14.42065097623344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397ce5633333333%3A0x3333333333333333!2s306%20El%20Grande%20Ave%2C%20Para%C3%B1aque%2C%201740%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1678886400000!5m2!1sen!2sph`;
 
     const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '', phone: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -75,8 +75,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
                 <div className="absolute inset-0 flex flex-col items-center justify-end text-white pb-16 md:pb-24 px-4 pointer-events-none">
-                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] mb-4">{banner.description}</span>
-                    <h1 className="font-eurostile text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter text-center leading-none drop-shadow-2xl">{banner.title}</h1>
+                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] mb-4 font-futura">{banner.description}</span>
+                    <h1 className="font-rheiborn text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter text-center leading-none drop-shadow-2xl">{banner.title}</h1>
                 </div>
             </div>
 
@@ -84,57 +84,74 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 mb-24">
                     {/* Left: Info */}
                     <div className="space-y-12">
-                        <div>
-                            <h2 className="font-eurostile text-3xl md:text-4xl uppercase tracking-tighter mb-6">Location</h2>
-                            <p className="text-sm md:text-base font-bold uppercase tracking-widest text-zinc-900 leading-relaxed max-w-md">
-                                Block 3 Lot 4, Daang Hari Road<br/>
-                                Ayala Alabang, Muntinlupa<br/>
-                                1776 Metro Manila, Philippines
-                            </p>
-                            <Button href={googleMapsUrl} variant="light" target="_blank" rel="noopener noreferrer" className="mt-8 text-[10px] py-3 px-8 rounded-none border-black text-black hover:bg-black hover:text-white">
-                                Get Directions
-                            </Button>
-                        </div>
-
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
                             <div>
-                                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Opening Hours</h3>
-                                <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900">
-                                    <li className="flex justify-between"><span>Mon - Fri</span><span>9:00 AM - 6:00 PM</span></li>
-                                    <li className="flex justify-between text-zinc-400"><span>Sat - Sun</span><span>Closed</span></li>
-                                </ul>
+                                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Location</h3>
+                                <p className="text-sm font-bold uppercase tracking-widest text-zinc-900 leading-relaxed font-space-grotesk">
+                                    306 El Grande Ave<br/>
+                                    Parañaque<br/>
+                                    1740 Metro Manila
+                                </p>
+                                <Button href={googleMapsUrl} variant="light" target="_blank" rel="noopener noreferrer" className="mt-6 text-[10px] py-3 px-6 rounded-none border-black text-black hover:bg-black hover:text-white w-full sm:w-auto">
+                                    Get Directions
+                                </Button>
                             </div>
+
                             <div>
-                                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Contact</h3>
-                                <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900">
-                                    <li><a href="tel:+63021234567" className="hover:text-zinc-500 transition-colors">+63 (02) 123 4567</a></li>
-                                    <li><a href="mailto:CONTACT@STATSCUSTOMS.PH" className="hover:text-zinc-500 transition-colors break-all">CONTACT@STATSCUSTOMS.PH</a></li>
+                                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Opening Hours</h3>
+                                <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900 font-space-grotesk">
+                                    <li className="flex justify-between gap-4"><span>Mon</span><span>8:00 AM - 5:00 PM</span></li>
+                                    <li className="flex justify-between gap-4"><span>Tue</span><span>8:00 AM - 5:00 PM</span></li>
+                                    <li className="flex justify-between gap-4"><span>Wed</span><span>8:00 AM - 5:00 PM</span></li>
+                                    <li className="flex justify-between gap-4"><span>Thu</span><span>8:00 AM - 5:00 PM</span></li>
+                                    <li className="flex justify-between gap-4"><span>Fri</span><span>8:00 AM - 5:00 PM</span></li>
+                                    <li className="flex justify-between gap-4"><span>Sat</span><span>10:00 AM - 4:00 PM</span></li>
+                                    <li className="flex justify-between gap-4 text-zinc-400"><span>Sun</span><span>Closed</span></li>
                                 </ul>
                             </div>
+                        </div>
+
+                        <div>
+                            <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Contact</h3>
+                            <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900 font-space-grotesk">
+                                <li><a href="tel:+639183028818" className="hover:text-zinc-500 transition-colors block">(+63) 918 302 8818</a></li> <li><a href="tel:+639457895304" className="hover:text-zinc-500 transition-colors block">(+63) 945 789 5304</a></li>
+                                <li><a href="mailto:CONTACT@STATSCUSTOMS.PH" className="hover:text-zinc-500 transition-colors break-all block mt-2">CONTACT@STATSCUSTOMS.PH</a></li>
+                            </ul>
                         </div>
                     </div>
 
                     {/* Right: Map */}
-                    <div className="h-[400px] md:h-full min-h-[400px] bg-zinc-100 relative">
-                        <iframe src={mapEmbedUrl} width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" title="Location Map" className="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700"></iframe>
+                    <div className="h-[400px] md:h-full min-h-[400px] bg-zinc-100 relative group/map overflow-hidden">
+                        <iframe src={mapEmbedUrl} width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" title="Location Map" className="absolute inset-0 w-full h-full grayscale group-hover/map:grayscale-0 transition-all duration-700"></iframe>
+                        
+                        {/* Custom Pinpoint Overlay */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10 -mt-8">
+                            <div className="relative flex flex-col items-center">
+                                <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center shadow-2xl border-4 border-white relative z-20 transition-transform duration-500 group-hover/map:scale-110">
+                                     <img src="https://i.imgur.com/OIYeMvS.png" alt="Stats Custom" className="w-12 h-12 object-contain" />
+                                </div>
+                                <div className="w-6 h-6 bg-black rotate-45 -mt-3 border-r-2 border-b-2 border-white z-10"></div>
+                                <div className="w-24 h-4 bg-black/30 blur-md rounded-[100%] mt-4 opacity-50 group-hover/map:opacity-80 transition-opacity duration-500"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 {/* Store Images Gallery */}
                 <div className="mb-24">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <img src="https://picsum.photos/seed/store1/1200/800" alt="Store Interior 1" className="w-full aspect-[4/3] object-cover" referrerPolicy="no-referrer" />
-                        <img src="https://picsum.photos/seed/store2/1200/800" alt="Store Interior 2" className="w-full aspect-[4/3] object-cover" referrerPolicy="no-referrer" />
-                        <img src="https://picsum.photos/seed/store3/1200/800" alt="Store Interior 3" className="w-full aspect-[4/3] object-cover" referrerPolicy="no-referrer" />
-                        <img src="https://picsum.photos/seed/store4/1200/800" alt="Store Interior 4" className="w-full aspect-[4/3] object-cover" referrerPolicy="no-referrer" />
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <img src="https://picsum.photos/seed/store1/1200/800" alt="Store Interior 1" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
+                        <img src="https://picsum.photos/seed/store2/1200/800" alt="Store Interior 2" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
+                        <img src="https://picsum.photos/seed/store3/1200/800" alt="Store Interior 3" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
+                        <img src="https://picsum.photos/seed/store4/1200/800" alt="Store Interior 4" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
                     </div>
                 </div>
 
                 {/* Form Section */}
                 <div className="max-w-3xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="font-eurostile text-3xl md:text-4xl uppercase tracking-tighter mb-4">Submit Project Brief</h2>
-                        <p className="text-sm text-zinc-500 uppercase tracking-widest">Get in touch with our team to start your custom apparel project.</p>
+                        <h2 className="font-rheiborn text-3xl md:text-4xl uppercase tracking-tighter mb-4">Submit Project Brief</h2>
+                        <p className="text-sm text-zinc-500 uppercase tracking-widest font-futura">Get in touch with our team to start your custom apparel project.</p>
                     </div>
                     
                     {isSubmitted ? (
@@ -143,8 +160,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                                 <SendIcon className="w-8 h-8 text-white" />
                             </div>
                             <div>
-                                <h3 className="font-eurostile text-2xl uppercase tracking-widest text-black">Message Sent</h3>
-                                <p className="text-zinc-500 mt-4 text-sm font-light uppercase tracking-widest">We've received your inquiry. One of our specialists will get back to you within 24 hours.</p>
+                                <h3 className="font-rheiborn text-2xl uppercase tracking-widest text-black">Message Sent</h3>
+                                <p className="text-zinc-500 mt-4 text-sm font-light uppercase tracking-widest font-futura">We've received your inquiry. One of our specialists will get back to you within 24 hours.</p>
                             </div>
                             <button onClick={() => setIsSubmitted(false)} className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 hover:text-black transition-colors">Send Another Message</button>
                         </div>

@@ -67,7 +67,7 @@ const ServiceFormModal: React.FC<ServiceFormModalProps> = ({ isOpen, onClose, se
         <div className="fixed inset-0 bg-black/80 z-[70] flex items-center justify-center p-4 backdrop-blur-sm">
             <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
                 <header className="flex items-center justify-between p-6 border-b border-gray-100">
-                    <h2 className="text-xl font-oswald uppercase tracking-widest">{serviceToEdit ? 'Edit Service block' : 'Add Service block'}</h2>
+                    <h2 className="text-xl font-rheiborn uppercase tracking-widest">{serviceToEdit ? 'Edit Service block' : 'Add Service block'}</h2>
                     <button onClick={onClose}><CloseIcon className="w-6 h-6 text-gray-400 hover:text-black" /></button>
                 </header>
 

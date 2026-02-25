@@ -24,7 +24,7 @@ const SubscriptionManagement: React.FC = () => {
             <div className="bg-white shadow-xl rounded-[2.5rem] border border-gray-100 overflow-hidden">
                 <header className="px-10 py-10 border-b border-gray-50 flex flex-col sm:flex-row sm:items-center justify-between gap-6 bg-zinc-50/30">
                     <div>
-                        <h2 className="text-xl font-oswald uppercase tracking-widest text-gray-900 leading-none">Audience Management</h2>
+                        <h2 className="text-xl font-rheiborn uppercase tracking-widest text-gray-900 leading-none">Audience Management</h2>
                         <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-2">Registered newsletter subscribers</p>
                     </div>
                     <button 

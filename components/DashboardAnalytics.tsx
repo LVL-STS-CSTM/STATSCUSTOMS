@@ -33,7 +33,7 @@ const StatCard: React.FC<{
         
         <div>
             <h3 className={`text-[10px] font-black uppercase tracking-[0.3em] mb-2 ${alert ? 'text-zinc-400' : 'text-zinc-400'}`}>{title}</h3>
-            <p className="text-5xl font-eurostile font-black tracking-tighter leading-none mb-4">{value}</p>
+            <p className="text-5xl font-rheiborn font-black tracking-tighter leading-none mb-4">{value}</p>
             <p className={`text-[10px] font-bold uppercase tracking-widest ${alert ? 'text-zinc-500' : 'text-zinc-400'}`}>{description}</p>
         </div>
         

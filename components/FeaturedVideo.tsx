@@ -38,7 +38,7 @@ const FeaturedVideo: React.FC<FeaturedVideoProps> = ({ title, description, youtu
         >
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center">
-                    <h2 className="font-oswald text-3xl md:text-4xl tracking-widest text-gray-900 mb-4 uppercase">
+                    <h2 className="font-rheiborn text-3xl md:text-4xl tracking-widest text-gray-900 mb-4 uppercase">
                         {title}
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-10 max-w-3xl mx-auto">

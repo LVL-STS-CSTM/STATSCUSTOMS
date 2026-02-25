@@ -47,8 +47,8 @@ const HeroSection: React.FC<{
                 <section className="bg-white py-16 md:py-32 px-0 md:px-4 border-b border-zinc-100 last:border-0 relative z-20 transition-colors duration-300">
                     <div className="max-w-[1600px] mx-auto px-4 md:px-8">
                         <div className="text-center mb-16 md:mb-24">
-                            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em] block mb-6">Featured Collection</span>
-                            <h2 className="font-eurostile font-bold text-3xl md:text-4xl lg:text-5xl tracking-[0.1em] text-zinc-900 uppercase leading-none">
+                            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em] block mb-6 font-space-grotesk">Featured Collection</span>
+                            <h2 className="font-rheiborn font-bold text-3xl md:text-4xl lg:text-5xl tracking-[0.1em] text-zinc-900 uppercase leading-none">
                                 {hero.featuredProductsTitle || 'Selected Gear'}
                             </h2>
                         </div>
@@ -112,7 +112,7 @@ const HomePage: React.FC<HomePageProps> = ({
             <CustomizationShowcase />
             {featuredVideoContent?.isVisible && <FeaturedVideo {...featuredVideoContent} />}
             <BrandReviews brandReviews={brandReviews} platformRatings={platformRatings} />
-            <div className="bg-zinc-50 py-24 lg:py-32 transition-colors duration-300">
+            <div className="bg-zinc-50 py-24 lg:py-32 transition-colors duration-300 overflow-hidden">
                 <FeaturedPartners partners={partners} />
             </div>
             <CallToAction onNavigate={onNavigate} />

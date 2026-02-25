@@ -1,218 +1,288 @@
 
 import React, { useRef } from 'react';
-import { View } from '../types';
+import { View, Partner } from '../types';
 import Button from './Button';
-import { ChatIcon, BriefcaseIcon, DesignIcon, ProductionIcon, LogisticsIcon, TargetIcon, EyeIcon, SampleTestingIcon, SustainabilityIcon, SparklesIcon } from './icons';
 import { useOnScreen } from '../useOnScreen';
-import PageHeader from './PageHeader';
 import LazyImage from './LazyImage';
-
-const ProcessStep: React.FC<{
-    icon: React.ReactNode;
-    step: number;
-    title: string;
-    description: string;
-    isVisible: boolean;
-    delay: number;
-    isLast: boolean;
-}> = ({ icon, step, title, description, isVisible, delay, isLast }) => (
-    <div className="relative pl-32 pb-24 last:pb-0 group">
-        {!isLast && (
-            <div className="absolute left-[40px] top-[80px] bottom-0 w-[2px] overflow-hidden">
-                <div 
-                    className={`w-full h-full bg-zinc-200 origin-top transition-transform duration-[1500ms] cubic-bezier(0.4, 0, 0.2, 1)`}
-                    style={{ 
-                        transform: isVisible ? 'scaleY(1)' : 'scaleY(0)',
-                        transitionDelay: `${delay + 600}ms`
-                    }}
-                ></div>
-            </div>
-        )}
-
-        <div 
-            className={`absolute left-0 top-0 w-20 h-20 rounded-full bg-white text-[#3A3A3A] flex items-center justify-center border-4 border-zinc-100 shadow-xl z-10 transition-all duration-700 ease-out ${
-                isVisible ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 -rotate-12'
-            }`}
-            style={{ transitionDelay: `${delay}ms` }}
-        >
-            <div className={`transition-transform duration-500 ${isVisible ? 'scale-100' : 'scale-0'}`} style={{ transitionDelay: `${delay + 300}ms` }}>
-                {icon}
-            </div>
-            
-            <div className={`absolute -right-2 -top-2 w-8 h-8 rounded-full bg-black text-white text-[10px] font-black flex items-center justify-center transition-all duration-500 shadow-lg ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`} style={{ transitionDelay: `${delay + 400}ms` }}>
-                {step}
-            </div>
-        </div>
-
-        <div 
-            className={`transition-all duration-1000 cubic-bezier(0.2, 1, 0.2, 1) ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}
-            style={{ transitionDelay: `${delay + 200}ms` }}
-        >
-            <div className="flex flex-col">
-                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.5em] mb-2 block font-eurostile">Step 0{step}</span>
-                <h4 className="font-eurostile text-2xl text-[#1A1A1A] uppercase tracking-widest mb-4 leading-tight">{title}</h4>
-                <div className="w-12 h-0.5 bg-black/10 mb-4"></div>
-                <p className="text-gray-500 leading-relaxed font-light max-w-xl antialiased">{description}</p>
-            </div>
-        </div>
-    </div>
-);
-
-const ValueCard: React.FC<{ icon: React.ReactNode; title: string; children: React.ReactNode; delay: number; isVisible: boolean }> = ({ icon, title, children, delay, isVisible }) => (
-    <div 
-        className={`bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 text-white transition-all duration-700 ease-out hover:bg-white/10 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-        style={{ transitionDelay: `${delay}ms` }}
-    >
-        <div className="w-12 h-12 rounded-xl bg-white/10 text-white flex items-center justify-center mb-6">
-            {icon}
-        </div>
-        <h4 className="font-eurostile text-base text-white mb-3 uppercase tracking-widest">{title}</h4>
-        <p className="text-sm text-gray-400 leading-relaxed font-light">{children}</p>
-    </div>
-);
+import FeaturedPartners from './FeaturedPartners';
+import { SampleTestingIcon, ProductionIcon, SustainabilityIcon } from './icons';
 
 interface AboutPageProps {
     onNavigate: (page: View, value?: string | null, color?: string | null) => void;
+    partners: Partner[];
 }
 
-const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
+const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
     const sectionRefs = {
-        about: useRef<HTMLDivElement>(null),
-        missionVision: useRef<HTMLDivElement>(null),
-        values: useRef<HTMLDivElement>(null),
-        process: useRef<HTMLDivElement>(null),
+        who: useRef<HTMLDivElement>(null),
+        what: useRef<HTMLDivElement>(null),
+        how: useRef<HTMLDivElement>(null),
+        why: useRef<HTMLDivElement>(null),
         cta: useRef<HTMLDivElement>(null),
     };
     
     const visibility = {
-        about: useOnScreen(sectionRefs.about),
-        missionVision: useOnScreen(sectionRefs.missionVision),
-        values: useOnScreen(sectionRefs.values),
-        process: useOnScreen(sectionRefs.process),
+        who: useOnScreen(sectionRefs.who),
+        what: useOnScreen(sectionRefs.what),
+        how: useOnScreen(sectionRefs.how),
+        why: useOnScreen(sectionRefs.why),
         cta: useOnScreen(sectionRefs.cta),
     };
-    
-    const processSteps = [
-        { icon: <ChatIcon className="w-8 h-8"/>, title: "Let's Talk", description: "Connect with us! Reach out through our contact number, social media, or email us at contact@statscustoms.ph. Just send over your initial idea and we’ll assist you from there. No design yet? No problem—we'll handle the creative work for you!" },
-        { icon: <BriefcaseIcon className="w-8 h-8"/>, title: "Free Quotation", description: "After a quick chat about your order (quantities, materials, design complexity), we'll send over a detailed quote. Don't worry about hidden charges! Our rates are always fair and transparent." },
-        { icon: <DesignIcon className="w-8 h-8"/>, title: "Custom Design", description: "Our team will be assisting you every step of the way. We'll create a dedicated group chat to iron out all the specifics like design, fabric choice, and colors. We'll share proposed designs for your final approval." },
-        { icon: <ProductionIcon className="w-8 h-8"/>, title: "Expert Production", description: "Time to bring it to life! A 50% downpayment kicks off production. Lead time is typically 2–3 weeks. Once your order is ready, settle the remaining balance before we ship it out." },
-        { icon: <LogisticsIcon className="w-8 h-8"/>, title: "Careful Delivery", description: "We'll ship your goods via courier and send you the tracking details right away! Need to check on your order? You can reach us via email, social media, or give us a call." }
-    ];
 
     return (
-        <div className="bg-white text-[#3A3A3A] overflow-x-hidden">
-            <PageHeader page="about" fallbackTitle="The Narrative" fallbackDescription="Forged in the Philippines. Engineered for the World." />
+        <div className="bg-white text-[#3A3A3A]">
+            {/* Full Banner Hero */}
+            <section className="relative h-[calc(100dvh-3.5rem)] min-h-[600px] bg-black text-white flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <img 
+                        src="https://images.pexels.com/photos/8365691/pexels-photo-8365691.jpeg" 
+                        alt="About Stats" 
+                        className="absolute inset-0 w-full h-full object-cover opacity-60"
+                    />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10"></div>
+                <div className="relative z-20 px-6 text-center max-w-5xl">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.6em] text-white/60 mb-6 block animate-fade-in">Established in the Philippines</span>
+                    <h1 className="font-rheiborn font-medium text-4xl md:text-6xl lg:text-7xl tracking-tighter uppercase leading-[0.85] animate-fade-in-up drop-shadow-2xl">
+                        The Narrative
+                    </h1>
+                    <p className="mt-8 text-[10px] md:text-xs max-w-2xl mx-auto text-white/60 font-light leading-relaxed uppercase tracking-[0.4em] animate-fade-in-up [animation-delay:200ms]">
+                        Forged in the Philippines. Engineered for the World.
+                    </p>
+                </div>
+            </section>
             
-            <section ref={sectionRefs.about} className="py-32 px-4 bg-white">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                    <div className={`transition-all duration-1000 ease-out ${visibility.about ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+            {/* Who We Are */}
+            <section ref={sectionRefs.who} className="py-32 px-6 bg-white relative overflow-hidden">
+                {/* Subtle Technical Grid for Light Section */}
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ 
+                    backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
+                    backgroundSize: '40px 40px'
+                }}></div>
+                <div className="absolute top-10 left-10 w-4 h-4 border-t border-l border-black/10"></div>
+                <div className="absolute top-10 right-10 w-4 h-4 border-t border-r border-black/10"></div>
+                <div className="absolute bottom-10 left-10 w-4 h-4 border-b border-l border-black/10"></div>
+                <div className="absolute bottom-10 right-10 w-4 h-4 border-b border-r border-black/10"></div>
+
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
+                    <div className={`transition-all duration-1000 ease-out ${visibility.who ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
                          <div className="flex items-center gap-3 mb-6">
                             <div className="w-10 h-[1px] bg-black"></div>
-                            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black">The Origin</span>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black">Who We Are</span>
                         </div>
-                        <h2 className="font-eurostile text-4xl lg:text-5xl text-gray-900 mb-8 uppercase tracking-widest">Technical Heritage</h2>
-                        <div className="space-y-6 text-gray-500 leading-relaxed font-light text-lg antialiased">
-                            <p>
-                                <strong>STATS</strong> is a proudly Filipino brand engineering custom apparel for those who demand excellence without the premium markup.
-                            </p>
-                            <p>
-                                From game-day jerseys to work polos and daily tees, every piece is designed, printed, and sewn by skilled local hands that take pride in every detail. No shortcuts. No overpriced fluff. Just honest, durable apparel that feels right, fits well, and looks even better.
-                            </p>
-                            <p>
-                                We carry the spirit of Filipino craftsmanship in every stitch as we believe locals can lead, and we’re here to prove it. From our design studio to the production floor, we obsess over the details that define professional apparel.
-                            </p>
+                        <div className="relative p-8 border border-black/5">
+                            {/* Inner Corner Markers for Text Box */}
+                            <div className="absolute top-0 left-0 w-1.5 h-1.5 bg-black/20"></div>
+                            <div className="absolute bottom-0 right-0 w-1.5 h-1.5 bg-black/20"></div>
+                            
+                            <h2 className="font-rheiborn text-4xl lg:text-7xl text-gray-900 mb-10 uppercase tracking-tighter leading-none">
+                                Technical Sportswear<br/>Pridefully Filipino
+                            </h2>
+                            <div className="space-y-8 text-zinc-600 leading-relaxed font-light text-lg antialiased">
+                                <p>
+                                    <strong>STATS Technical Sportswear</strong> is a prideful Filipino brand that produces high-performance technical sportswear, specifically designed for our tropical climate.
+                                </p>
+                                <p>
+                                    We strive to set the industry standards for sportswear, focusing on fabric selection, construction, adaptability, and performance. We view apparel not merely as pieces of clothing, but as tools that amplify the wearer to consistently perform at their optimum level every time they use our products.
+                                </p>
+                                <p>
+                                    Whether you're working out, playing your sport, or simply going about your daily activities—STATS wants to provide you with the perfect gear to help you confidently tackle any situation.
+                                </p>
+                                <p>
+                                    Our products are constructed from advanced tech-fabrics that are smooth, lightweight, moisture-wicking, durable, and with high shape retention—paired with advanced cuts and construction techniques; these products are engineered for various high-performance activities, as the brand name implies: <strong>Season Condition, Tropical, Athletics, Training, and Sports.</strong>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div className={`transition-all duration-1000 ease-out delay-200 ${visibility.about ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-                        <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border-[12px] border-zinc-50 relative">
-                            <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
-                            <LazyImage src="https://images.pexels.com/photos/5699865/pexels-photo-5699865.jpeg" alt="Fabric quality" aspectRatio="aspect-square" />
+                    <div className={`transition-all duration-1000 ease-out delay-200 ${visibility.who ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+                        <div className="relative aspect-[4/5] overflow-hidden rounded-none shadow-2xl group">
+                            <LazyImage src="https://images.pexels.com/photos/5699865/pexels-photo-5699865.jpeg" alt="Technical fabrics" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            {/* Simple Black Overlay */}
+                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+                            <div className="absolute inset-0 border-[20px] border-white/10 pointer-events-none"></div>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <section ref={sectionRefs.missionVision} className="py-24 px-4 bg-zinc-50">
-                 <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div className={`bg-white p-12 rounded-[2.5rem] shadow-xl shadow-zinc-200/50 flex flex-col transition-all duration-1000 ease-out ${visibility.missionVision ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <div className="flex items-center gap-6 mb-8">
-                            <div className="w-16 h-16 rounded-2xl bg-black flex items-center justify-center shadow-lg">
-                                <TargetIcon className="w-8 h-8 text-white"/>
+            {/* What We Do */}
+            <section ref={sectionRefs.what} className="py-32 px-6 bg-zinc-950 text-white relative overflow-hidden">
+                {/* Technical Blueprint Graphic Background - Updated */}
+                <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+                    {/* Visible Dot Grid */}
+                    <div className="absolute inset-0" style={{ 
+                        backgroundImage: `radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)`,
+                        backgroundSize: '40px 40px'
+                    }}></div>
+                    
+                    {/* Corner Markers (L-shapes) */}
+                    <div className="absolute top-8 left-8 w-6 h-6 border-t border-l border-white/30"></div>
+                    <div className="absolute top-8 right-8 w-6 h-6 border-t border-r border-white/30"></div>
+                    <div className="absolute bottom-8 left-8 w-6 h-6 border-b border-l border-white/30"></div>
+                    <div className="absolute bottom-8 right-8 w-6 h-6 border-b border-r border-white/30"></div>
+                </div>
+
+                <div className="max-w-5xl mx-auto text-center relative z-10">
+                    <div className={`transition-all duration-1000 ease-out ${visibility.what ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500 mb-8 block">What We Do</span>
+                        <h2 className="font-rheiborn text-4xl lg:text-8xl text-white mb-12 uppercase tracking-tighter leading-none drop-shadow-2xl">
+                            Crafting Premium<br/>Performance
+                        </h2>
+                        <div className="space-y-8 text-zinc-400 leading-relaxed font-light text-xl antialiased max-w-4xl mx-auto font-futura">
+                            <p>
+                                We craft premium technical sportswear designed for those who live in the zone—where focus, purpose, and performance converge.
+                            </p>
+                            <p>
+                                Inspired by the Filipino spirit of resilience and relentless drive, we create gear that equips athletes, dreamers, and doers to push beyond limits and embrace the grind.
+                            </p>
+                            <p>
+                                Every piece is a testament to our uncompromising attention to detail and rigorous quality standards, blending advanced innovation with the artistry of Filipino craftsmanship. From the precision of every stitch to the performance of every fabric, we ensure that our sportswear not only meets but exceeds the demands of an active, dynamic lifestyle.
+                            </p>
+                            <div className="pt-12">
+                                <p className="text-white font-rheiborn text-2xl md:text-3xl uppercase tracking-widest border-y border-white/10 py-8">
+                                    Balance Between Pressure & Ability
+                                </p>
                             </div>
-                            <h2 className="font-eurostile text-2xl text-gray-900 uppercase tracking-widest">Mission Directive</h2>
-                        </div>
-                        <div className="space-y-4">
-                            <p className="text-gray-500 leading-relaxed font-light text-lg antialiased">
-                                To empower Filipinos by making high-quality, custom apparel accessible — because looking good, feeling proud, and representing who you are shouldn’t come at a high cost.
-                            </p>
-                            <p className="text-gray-500 leading-relaxed font-light text-lg antialiased">
-                                At STATS, we believe excellence doesn’t have to be expensive. Through honest pricing, skilled local craftsmanship, and thoughtful design, we make clothing every Filipino can wear with pride.
-                            </p>
-                        </div>
-                    </div>
-                     <div className={`bg-white p-12 rounded-[2.5rem] shadow-xl shadow-zinc-200/50 flex flex-col transition-all duration-1000 ease-out delay-300 ${visibility.missionVision ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <div className="flex items-center gap-6 mb-8">
-                            <div className="w-16 h-16 rounded-2xl bg-black flex items-center justify-center shadow-lg">
-                                <EyeIcon className="w-8 h-8 text-white"/>
-                            </div>
-                            <h2 className="font-eurostile text-2xl text-gray-900 uppercase tracking-widest">Future Sight</h2>
-                        </div>
-                        <div className="space-y-4">
-                            <p className="text-gray-500 leading-relaxed font-light text-lg antialiased">
-                                To become the most trusted Filipino-made custom apparel brand—where quality, affordability, and national pride meet.
-                            </p>
-                            <p className="text-gray-500 leading-relaxed font-light text-lg antialiased">
-                                We envision a future where every team, big or small, can wear high quality uniforms that reflect their spirit, without breaking the bank. By championing local artisans and ethical pricing, we aim to redefine the game — through every piece we create, and every Filipino we proudly represent.
-                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section ref={sectionRefs.values} className="py-32 px-4 bg-[#0F0F0F]">
-                 <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-24">
-                        <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.5em] mb-4 block font-eurostile">What We Stand For</span>
-                        <h2 className="font-eurostile text-4xl lg:text-5xl text-white mb-4 uppercase tracking-widest">Core Parameters</h2>
-                        <div className="w-24 h-1 bg-white/10 mx-auto mt-8"></div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <ValueCard icon={<SampleTestingIcon className="w-6 h-6"/>} title="Excellence" delay={0} isVisible={visibility.values}>We obsess over every single detail to ensure you get the best.</ValueCard>
-                        <ValueCard icon={<BriefcaseIcon className="w-6 h-6"/>} title="Partnership" delay={150} isVisible={visibility.values}>Your vision is our mission. We grow when you grow.</ValueCard>
-                        <ValueCard icon={<SustainabilityIcon className="w-6 h-6"/>} title="Integrity" delay={300} isVisible={visibility.values}>Transparent pricing and ethical local manufacturing practices.</ValueCard>
-                        <ValueCard icon={<SparklesIcon className="w-6 h-6"/>} title="Innovation" delay={450} isVisible={visibility.values}>Constantly evolving our materials and printing techniques.</ValueCard>
-                    </div>
-                </div>
-            </section>
+            {/* How We Work */}
+            <section ref={sectionRefs.how} className="py-32 px-6 bg-white relative">
+                {/* Subtle Technical Grid for Light Section */}
+                <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ 
+                    backgroundImage: 'radial-gradient(#000 1px, transparent 1px)',
+                    backgroundSize: '30px 30px'
+                }}></div>
 
-            <div ref={sectionRefs.process} className="py-32 px-4 bg-white overflow-hidden">
-                <div className="max-w-4xl mx-auto">
-                    <div className="text-center mb-32">
-                         <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.5em] mb-4 block font-eurostile">Execution Protocol</span>
-                        <h2 className="font-eurostile text-4xl lg:text-5xl text-[#1A1A1A] mb-4 uppercase tracking-widest">Tactical Sequence</h2>
-                        <p className="mt-6 text-gray-500 max-w-2xl mx-auto">We’ve simplified everything so you can focus on the excitement of your custom gear. Siguradong diretso sa next level ang branding mo!</p>
+                <div className="max-w-7xl mx-auto relative z-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-32">
+                        <div className={`transition-all duration-1000 ease-out ${visibility.how ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="w-10 h-[1px] bg-black"></div>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black">How We Work</span>
+                            </div>
+                            <h2 className="font-rheiborn text-4xl lg:text-6xl text-gray-900 mb-10 uppercase tracking-tighter leading-none">Engineered by Athletes<br/>for Athletes</h2>
+                            <div className="space-y-8 text-zinc-600 leading-relaxed font-light text-lg antialiased">
+                                <p>
+                                    Every STATS Technical Sportswear design is rooted in years of experience as athletes and individuals who live and breathe an active lifestyle. Our team knows what it takes to perform at the highest level because we’ve been there—pushing limits, testing boundaries, and understanding the nuances of movement.
+                                </p>
+                                <p>
+                                    This firsthand knowledge shapes every piece we create, ensuring that only the most essential features are included. We strip away the unnecessary, focusing on what truly matters: performance, comfort, and durability. Every stitch, seam, and detail is intentional, designed to support and enhance the way you move.
+                                </p>
+                                <p className="text-black font-semibold">
+                                    At STATS, our sportswear isn’t just made for athletes—it’s made by those who understand the grind, the passion, and the pursuit of excellence.
+                                </p>
+                            </div>
+                        </div>
+                        <div className={`grid grid-cols-1 gap-8 transition-all duration-1000 ease-out delay-300 ${visibility.how ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+                            <div className="bg-zinc-50 p-10 border-l-4 border-black relative group">
+                                {/* Corner Boxes for Cards */}
+                                <div className="absolute top-0 right-0 w-2 h-2 bg-black opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="flex items-center gap-4 mb-4">
+                                    <SampleTestingIcon className="w-8 h-8"/>
+                                    <h3 className="font-rheiborn text-xl uppercase tracking-wider">Sample Testing</h3>
+                                </div>
+                                <p className="text-zinc-600 font-light">Designs are finalized, then engineered in-house. Every prototype goes through rigorous fit, function, and durability trials.</p>
+                            </div>
+                            <div className="bg-zinc-50 p-10 border-l-4 border-black relative group">
+                                <div className="absolute top-0 right-0 w-2 h-2 bg-black opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="flex items-center gap-4 mb-4">
+                                    <ProductionIcon className="w-8 h-8"/>
+                                    <h3 className="font-rheiborn text-xl uppercase tracking-wider">Small Batch Production</h3>
+                                </div>
+                                <p className="text-zinc-600 font-light">Producing in small batches ensures tighter quality control, less waste, and gear that’s fresh, focused, and built for purpose.</p>
+                            </div>
+                            <div className="bg-zinc-50 p-10 border-l-4 border-black relative group">
+                                <div className="absolute top-0 right-0 w-2 h-2 bg-black opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="flex items-center gap-4 mb-4">
+                                    <SustainabilityIcon className="w-8 h-8"/>
+                                    <h3 className="font-rheiborn text-xl uppercase tracking-wider">Sustainability Statement</h3>
+                                </div>
+                                <p className="text-zinc-600 font-light">From small-batch production to using recycled fabrics for our hang tags, every step is intentional. We donate fabric cutouts to local sewing shops—minimizing waste and maximizing impact.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="relative">
-                        {processSteps.map((step, index) => (
-                             <ProcessStep 
-                                key={index} 
-                                {...step} 
-                                step={index + 1}
-                                isVisible={visibility.process} 
-                                delay={index * 200} 
-                                isLast={index === processSteps.length - 1}
-                             />
+
+                    {/* Additional Gallery Images */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
+                        {[
+                            { src: "https://images.pexels.com/photos/4753928/pexels-photo-4753928.jpeg", alt: "Production" },
+                            { src: "https://images.pexels.com/photos/3839432/pexels-photo-3839432.jpeg", alt: "Design" },
+                            { src: "https://images.pexels.com/photos/5490338/pexels-photo-5490338.jpeg", alt: "Quality" }
+                        ].map((img, i) => (
+                            <div key={i} className="aspect-[4/5] overflow-hidden relative group">
+                                <LazyImage src={img.src} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                                {/* Corner Markers for Images */}
+                                <div className="absolute top-4 left-4 w-3 h-3 border-t border-l border-white/60 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="absolute bottom-4 right-4 w-3 h-3 border-b border-r border-white/60 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </div>
                         ))}
                     </div>
                 </div>
+            </section>
+
+            {/* Why We Do It */}
+            <section ref={sectionRefs.why} className="py-32 px-6 bg-[#0A0A0A] text-white relative overflow-hidden">
+                {/* Blueprint Pattern - Updated */}
+                <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+                    {/* Visible Dot Grid */}
+                    <div className="absolute inset-0" style={{ 
+                        backgroundImage: `radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)`,
+                        backgroundSize: '50px 50px'
+                    }}></div>
+                    
+                    {/* Corner Markers */}
+                    <div className="absolute top-12 left-12 w-8 h-8 border-t border-l border-white/30"></div>
+                    <div className="absolute top-12 right-12 w-8 h-8 border-t border-r border-white/30"></div>
+                    <div className="absolute bottom-12 left-12 w-8 h-8 border-b border-l border-white/30"></div>
+                    <div className="absolute bottom-12 right-12 w-8 h-8 border-b border-r border-white/30"></div>
+                </div>
+                <div className="max-w-5xl mx-auto relative z-10">
+                    <div className={`transition-all duration-1000 ease-out ${visibility.why ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <div className="text-center mb-20">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500 mb-6 block">Why We Do It</span>
+                            <h2 className="font-rheiborn text-5xl lg:text-8xl text-white mb-12 uppercase tracking-tighter leading-none">Homegrown<br/>Excellence</h2>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-zinc-400 leading-relaxed font-light text-lg antialiased font-futura">
+                            <div className="space-y-6">
+                                <p>
+                                    We are driven by a singular mission: to prove that the best technical sportswear in the world can be proudly made right here in the Philippines. We do it because we believe in the untapped potential of Filipino talent, craftsmanship, and innovation.
+                                </p>
+                                <p>
+                                    Every stitch, every fabric, and every design is a testament to our commitment to elevating local excellence to global standards.
+                                </p>
+                            </div>
+                            <div className="space-y-6">
+                                <p>
+                                    We create because we want to inspire pride—not just in our products, but in the hands and hearts that craft them. For us, it’s about more than sportswear; it’s about showcasing the resilience, creativity, and relentless drive of the Filipino spirit.
+                                </p>
+                                <p>
+                                    We exist to equip athletes, dreamers, and doers with gear that not only performs but also tells a story of homegrown passion and precision.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="mt-20 p-12 bg-white text-black text-center">
+                            <p className="font-rheiborn text-2xl md:text-3xl lg:text-4xl uppercase tracking-tight leading-tight">
+                                We produce the best locally made technical sportswear because this is how sportswear <span className="font-bold">SHOULD BE</span>—crafted with purpose, built to perform, and designed to inspire greatness in every step of the journey.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Partners Section */}
+            <div className="bg-zinc-50 py-24 lg:py-32 transition-colors duration-300 overflow-hidden">
+                <FeaturedPartners partners={partners} />
             </div>
 
-            <section ref={sectionRefs.cta} className={`py-32 px-4 bg-zinc-50 transition-all duration-1000 ease-out ${visibility.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {/* CTA */}
+            <section ref={sectionRefs.cta} className={`py-32 px-6 bg-white transition-all duration-1000 ease-out ${visibility.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <div className="max-w-5xl mx-auto text-center">
-                    <h2 className="font-eurostile text-4xl md:text-6xl text-gray-900 mb-12 uppercase tracking-widest leading-none">Ready to Level Up Your<br/>Team's Identity?</h2>
-                    <Button variant="solid" onClick={() => onNavigate('catalogue')} className="px-16 py-6 text-lg rounded-2xl shadow-2xl shadow-black/10 hover:scale-105 active:scale-95 transition-all">
-                        Browse Our Full Collection
+                    <h2 className="font-rheiborn text-4xl md:text-6xl text-gray-900 mb-12 uppercase tracking-tighter leading-none">Ready to Experience<br/>Technical Excellence?</h2>
+                    <Button variant="solid" onClick={() => onNavigate('catalogue')} className="px-16 py-6 text-lg rounded-none shadow-2xl shadow-black/10 hover:scale-105 active:scale-95 transition-all uppercase tracking-widest font-bold">
+                        Browse Collection
                     </Button>
                 </div>
             </section>

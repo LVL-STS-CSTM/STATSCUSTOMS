@@ -8,24 +8,28 @@ const steps = [
         icon: <ChatIcon className="w-8 h-8" />, 
         title: "Consultation", 
         description: "Share your vision. We provide a transparent, detailed quote tailored to your needs.",
+        details: "Our process begins with a deep dive into your project's goals. Whether you need performance wear for a team or branded merchandise for an event, we assess your needs to recommend the best fabrics and printing methods. We provide a comprehensive quote with no hidden fees, outlining costs, timelines, and deliverables so you can make informed decisions.",
         imageUrl: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     { 
         icon: <DesignIcon className="w-8 h-8" />, 
         title: "Design & Mockup", 
         description: "Our designers create digital proofs, refining every detail until it matches your vision perfectly.",
+        details: "Visualizing your product is key. Our in-house design team transforms your concepts into professional digital mockups. We handle everything from logo placement to complex pattern creation. You'll receive detailed proofs for approval, allowing for adjustments to colors, sizing, and artwork placement to guarantee the final product matches your vision exactly.",
         imageUrl: "https://images.pexels.com/photos/1765033/pexels-photo-1765033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
     },
     { 
         icon: <ProductionIcon className="w-8 h-8" />, 
         title: "Production", 
         description: "Expert craftsmen bring your design to life using premium materials and precision equipment.",
+        details: "Once the design is approved, we move to production using our advanced manufacturing facilities. We employ cutting-edge techniques like sublimation, screen printing, and embroidery. Our craftsmen pay close attention to detail, from precise cutting and sewing to the final finishing touches, ensuring retail-quality durability and aesthetics.",
         imageUrl: "https://images.pexels.com/photos/823707/pexels-photo-823707.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     { 
         icon: <LogisticsIcon className="w-8 h-8" />, 
         title: "Delivery", 
         description: "Rigorous quality checks before we package and ship your order safely to your doorstep.",
+        details: "Quality assurance is our priority. Every item undergoes a rigorous inspection to check for consistency and defects. We then professionally package your order for protection during transit. We partner with reliable logistics providers to ensure your custom apparel arrives on time and in perfect condition, ready for distribution.",
         imageUrl: "https://images.pexels.com/photos/4393668/pexels-photo-4393668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     }
 ];
@@ -106,9 +110,9 @@ const HowItWorks: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16 md:mb-24">
-                    <span className={`text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] block mb-4 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'}`}>Operational Protocol</span>
-                    <h2 className={`font-oswald text-3xl md:text-6xl text-white mb-6 uppercase tracking-tighter transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Deployment Workflow</h2>
-                    <p className={`text-base md:text-lg text-zinc-400 max-w-2xl mx-auto font-light transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Precision-engineered execution from design blueprint to final delivery.</p>
+                    <span className={`text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] block mb-4 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'} font-space-grotesk`}>Operational Protocol</span>
+                    <h2 className={`font-rheiborn text-3xl md:text-6xl text-white mb-6 uppercase tracking-tighter transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Deployment Workflow</h2>
+                    <p className={`text-base md:text-lg text-zinc-400 max-w-2xl mx-auto font-futura font-light transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Precision-engineered execution from design blueprint to final delivery.</p>
                 </div>
 
                 <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
@@ -136,8 +140,8 @@ const HowItWorks: React.FC = () => {
                                     {index + 1}
                                 </div>
                             </div>
-                            <h3 className="font-oswald text-lg md:text-xl text-white uppercase tracking-wide mb-2 md:mb-3 group-hover:text-zinc-300 transition-colors bg-transparent px-2 relative z-10">{step.title}</h3>
-                            <p className="text-sm text-zinc-500 leading-relaxed font-light group-hover:text-zinc-400 transition-colors px-2 md:px-4 bg-transparent relative z-10">{step.description}</p>
+                            <h3 className="font-rheiborn text-lg md:text-xl text-white uppercase tracking-wide mb-2 md:mb-3 group-hover:text-zinc-300 transition-colors bg-transparent px-2 relative z-10">{step.title}</h3>
+                            <p className="text-sm text-zinc-500 leading-relaxed font-futura font-light group-hover:text-zinc-400 transition-colors px-2 md:px-4 bg-transparent relative z-10">{step.description}</p>
                         </div>
                     ))}
                 </div>
@@ -187,23 +191,26 @@ const HowItWorks: React.FC = () => {
                                         <div className="transform scale-75 md:scale-100">{activeStep.icon}</div>
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">Process</span>
+                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 font-space-grotesk">Process</span>
                                         <div className="flex gap-1 mt-1">
                                             {steps.map((_, i) => (
                                                 <div key={i} className={`h-1 rounded-none transition-all duration-300 ${i === selectedIndex ? 'w-8 bg-white' : 'w-2 bg-white/20'}`} />
                                             ))}
                                         </div>
                                     </div>
-                                    <span className="text-4xl md:text-6xl font-black text-white/5 font-eurostile ml-auto select-none">
+                                    <span className="text-4xl md:text-6xl font-black text-white/5 font-rheiborn ml-auto select-none">
                                         0{(selectedIndex || 0) + 1}
                                     </span>
                                 </div>
                                 <h3 className="font-eurostile text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter mb-6 text-white drop-shadow-2xl leading-[0.9]">
                                     {activeStep.title}
                                 </h3>
-                                <p className="text-base sm:text-lg md:text-2xl font-medium text-zinc-300 leading-relaxed drop-shadow-lg border-l-4 border-white pl-6">
+                                <p className="text-base sm:text-lg md:text-2xl font-futura font-medium text-zinc-300 leading-relaxed drop-shadow-lg border-l-4 border-white pl-6">
                                     {activeStep.description}
                                 </p>
+                                <div className="mt-8 pl-6 text-zinc-400 text-sm md:text-base max-w-2xl leading-relaxed font-futura">
+                                    {activeStep.details}
+                                </div>
                             </div>
                         </div>
                     </div>

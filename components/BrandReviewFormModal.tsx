@@ -89,7 +89,7 @@ const BrandReviewFormModal: React.FC<BrandReviewFormModalProps> = ({ isOpen, onC
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
                 <header className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10">
-                    <h2 className="text-xl font-semibold">{reviewToEdit && 'id' in reviewToEdit ? 'Edit Review' : 'Add New Review'}</h2>
+                    <h2 className="text-xl font-rheiborn uppercase tracking-widest">{reviewToEdit && 'id' in reviewToEdit ? 'Edit Review' : 'Add New Review'}</h2>
                     <button onClick={onClose} aria-label="Close form" disabled={isSaving}>
                         <CloseIcon className="w-6 h-6 text-gray-600 hover:text-black" />
                     </button>

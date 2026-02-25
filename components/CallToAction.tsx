@@ -44,13 +44,13 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
                 <div className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                     {/* Reduced font size */}
-                    <h2 className="font-eurostile font-bold text-3xl md:text-5xl lg:text-6xl text-white mb-8 uppercase tracking-widest leading-none drop-shadow-2xl">
+                    <h2 className="font-rheiborn font-bold text-3xl md:text-5xl lg:text-6xl text-white mb-8 uppercase tracking-widest leading-none drop-shadow-2xl">
                         Define Your Legacy
                     </h2>
                 </div>
                 
                 {/* Reduced text size */}
-                <p className={`text-sm md:text-base text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light transition-all duration-1000 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+                <p className={`text-sm md:text-base text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed font-futura font-light transition-all duration-1000 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                     We don't just manufacture; we engineer identity. Premium craftsmanship, local excellence, and fair pricing. Equip your team with gear that demands respect.
                 </p>
                 

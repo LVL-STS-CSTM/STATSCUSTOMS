@@ -43,7 +43,7 @@ const SubscriptionModalManagement: React.FC = () => {
             
             <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-gray-100">
                 <header className="mb-8">
-                    <h3 className="text-xl font-oswald uppercase tracking-widest text-gray-900">Newsletter Popup Settings</h3>
+                    <h3 className="text-xl font-rheiborn uppercase tracking-widest text-gray-900">Newsletter Popup Settings</h3>
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Update the message and image of your newsletter signup.</p>
                 </header>
 

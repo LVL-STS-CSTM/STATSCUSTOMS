@@ -50,12 +50,12 @@ const CategoryLandingPage: React.FC<CategoryLandingPageProps> = ({ onNavigate })
                             <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end items-center text-center z-10">
                                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700 ease-out">
                                     {/* Subtitle / Description */}
-                                    <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/60 mb-4 block">
+                                    <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/60 mb-4 block font-futura">
                                         The {collection.name} Collection
                                     </span>
                                     
                                     {/* Main Title - Big & Bold */}
-                                    <h3 className="font-eurostile text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-widest text-white mb-10 leading-[0.85]">
+                                    <h3 className="font-rheiborn text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-widest text-white mb-10 leading-[0.85]">
                                         {collection.name}
                                     </h3>
                                     

@@ -88,7 +88,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                                 <div className="relative h-full flex items-center" onMouseEnter={() => { setIsMegaMenuOpen(true); setIsExploreMenuOpen(false); }}>
                                     <button
                                         onClick={() => handleNavClick('browse', null)}
-                                        className={`flex items-center space-x-1.5 text-[11px] font-eurostile font-bold uppercase tracking-[0.3em] transition-colors duration-300 ${view === 'browse' ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
+                                        className={`flex items-center space-x-1.5 text-[11px] font-oswald font-bold uppercase tracking-[0.3em] transition-colors duration-300 ${view === 'browse' ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
                                     >
                                         <span>Catalogue</span>
                                         <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform duration-500 ${isMegaMenuOpen ? 'rotate-180' : ''}`} />
@@ -113,7 +113,16 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                                         </div>
                                     </div>
                                 </div>
-                            </nav>
+
+
+
+
+
+
+
+
+
+                         </nav>
                             <div className="md:hidden">
                                 <IconButton onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} ariaLabel="Menu" theme="dark">
                                     <MenuIcon className="w-7 h-7" />
@@ -194,7 +203,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                         </header>
                         <nav className="flex-1 overflow-y-auto p-8 space-y-2 no-scrollbar">
                              <button onClick={() => handleNavClick('browse', null)} className="flex items-center justify-center w-full p-5 rounded-xl bg-zinc-900 text-white font-bold uppercase tracking-[0.3em] text-[10px] transition-all active:scale-95 shadow-xl mb-10">Full Catalogue</button>
-                             <div className="space-y-10">
+                             <div className="space-y-10 mb-10">
                                 {productCategories.map(group => (
                                     <div key={group.groupName} className="space-y-6">
                                         <button 
@@ -210,6 +219,21 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                                         </div>
                                     </div>
                                 ))}
+                             </div>
+                             {/* Explore Links for Mobile */}
+                             <div className="space-y-6 mt-10">
+                                 <h3 className="w-full text-left text-[9px] font-bold uppercase tracking-[0.5em] text-zinc-300">Explore</h3>
+                                 <div className="grid grid-cols-1 gap-4">
+                                     {exploreLinks.map(link => (
+                                         <button
+                                             key={link.label}
+                                             onClick={() => handleNavClick(link.view)}
+                                             className={`w-full text-left text-[11px] font-medium uppercase tracking-widest ${view === link.view ? 'text-black font-bold' : 'text-zinc-600 hover:text-black'}`}
+                                         >
+                                             {link.label}
+                                         </button>
+                                     ))}
+                                 </div>
                              </div>
                         </nav>
                     </div>

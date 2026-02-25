@@ -35,8 +35,8 @@ const CapabilityCard: React.FC<{ capability: Capability; delay: number; }> = ({ 
                 <div className="w-16 h-16 rounded-2xl bg-zinc-50 text-zinc-900 flex items-center justify-center mb-8 transition-all duration-500 group-hover:bg-white group-hover:text-black group-hover:rotate-6">
                     {Icon}
                 </div>
-                <h4 className="font-oswald text-2xl text-gray-900 uppercase tracking-widest mb-4 group-hover:text-white transition-colors">{capability.title}</h4>
-                <p className="text-sm text-gray-500 leading-relaxed group-hover:text-gray-400 transition-colors font-light">{capability.description}</p>
+                <h4 className="font-rheiborn text-2xl text-gray-900 uppercase tracking-widest mb-4 group-hover:text-white transition-colors">{capability.title}</h4>
+                <p className="text-sm text-gray-500 leading-relaxed group-hover:text-gray-400 transition-colors font-futura font-light">{capability.description}</p>
             </div>
         </div>
     );
@@ -57,9 +57,9 @@ const ServicesPage: React.FC<ServicePageProps> = ({ onNavigate }) => {
             
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
                 <div className="text-center mb-20">
-                    <span className="text-[10px] font-black text-zinc-900 uppercase tracking-[0.4em] block mb-4">Full-Spectrum Branding</span>
-                    <h2 className="font-oswald text-4xl lg:text-5xl text-gray-900 uppercase tracking-widest">Visual Architecture</h2>
-                    <p className="mt-8 text-gray-500 text-lg max-w-3xl mx-auto leading-relaxed">
+                    <span className="text-[10px] font-space-grotesk font-black text-zinc-900 uppercase tracking-[0.4em] block mb-4">Full-Spectrum Branding</span>
+                    <h2 className="font-rheiborn text-4xl lg:text-5xl text-gray-900 uppercase tracking-widest">Visual Architecture</h2>
+                    <p className="mt-8 text-gray-500 text-lg max-w-3xl mx-auto leading-relaxed font-futura">
                         A comprehensive suite of creative services to ensure brand dominance. From logo engineering to large-format visual deployment, we are your tactical partner for merch, print, and all the details in between.
                     </p>
                 </div>
@@ -80,17 +80,17 @@ const ServicesPage: React.FC<ServicePageProps> = ({ onNavigate }) => {
                         <div className="relative z-10 space-y-8">
                             <div className="inline-flex items-center gap-3 px-6 py-2 bg-white/5 border border-white/10 rounded-full">
                                 <SparklesIcon className="w-4 h-4 text-white" />
-                                <span className="text-[10px] font-black text-white uppercase tracking-widest">Initialize Brief</span>
+                                <span className="text-[10px] font-space-grotesk font-black text-white uppercase tracking-widest">Initialize Brief</span>
                             </div>
-                            <h2 className="font-oswald text-4xl md:text-6xl text-white uppercase tracking-widest leading-none">Ready to Deploy<br/>Your Identity?</h2>
-                            <p className="text-gray-400 text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                            <h2 className="font-rheiborn text-4xl md:text-6xl text-white uppercase tracking-widest leading-none">Ready to Deploy<br/>Your Identity?</h2>
+                            <p className="text-gray-400 text-lg max-w-2xl mx-auto font-futura font-light leading-relaxed">
                                 Join our network of industry-leading partners. From initial design strategy to global delivery, our team is equipped to handle your most complex requirements.
                             </p>
                             <div className="pt-8">
                                 <Button 
                                     variant="solid" 
                                     onClick={() => onNavigate('contact')} 
-                                    className="bg-white text-black hover:bg-zinc-100 hover:scale-105 transition-all px-16 py-6 text-lg rounded-2xl shadow-2xl"
+                                    className="bg-white text-black hover:bg-zinc-100 hover:scale-105 transition-all px-16 py-6 text-lg font-space-grotesk rounded-2xl shadow-2xl"
                                 >
                                     START PROJECT
                                 </Button>

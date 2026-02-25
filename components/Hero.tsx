@@ -70,11 +70,11 @@ const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, bu
             {!hideTextOverlay && (
                 <div className={`relative z-10 w-full max-w-screen-2xl mx-auto ${paddingClass}`}>
                     <div className="max-w-xl text-white">
-                        <h1 className={`font-eurostile font-bold ${titleSize} tracking-[0.2em] mb-4 uppercase leading-[1.15] drop-shadow-2xl animate-fade-in-up [animation-delay:100ms] whitespace-pre-line`}>
+                        <h1 className={`font-rheiborn font-bold ${titleSize} tracking-[0.2em] mb-4 uppercase leading-[1.15] drop-shadow-2xl animate-fade-in-up [animation-delay:100ms] whitespace-pre-line`}>
                             {title}
                         </h1>
                         
-                        <p className={`${descriptionSize} leading-relaxed mb-10 text-white/70 font-medium max-w-sm uppercase tracking-[0.3em] animate-fade-in-up [animation-delay:200ms] whitespace-pre-line antialiased`}>
+                        <p className={`${descriptionSize} leading-relaxed mb-10 text-white/70 font-futura max-w-sm uppercase tracking-[0.3em] animate-fade-in-up [animation-delay:200ms] whitespace-pre-line antialiased`}>
                             {description}
                         </p>
                         
@@ -86,7 +86,7 @@ const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, bu
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out skew-x-[-20deg] pointer-events-none"></div>
                                     
-                                    <span className="relative z-10 text-white text-[10px] font-bold uppercase tracking-[0.3em] group-hover:tracking-[0.4em] transition-all duration-500">
+                                    <span className="relative z-10 text-white text-[10px] font-bold uppercase tracking-[0.3em] group-hover:tracking-[0.4em] transition-all duration-500 font-space-grotesk">
                                         {buttonText}
                                     </span>
                                 </button>

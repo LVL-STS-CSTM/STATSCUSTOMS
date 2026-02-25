@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <button onClick={(e) => handleNavClick(e, 'how-we-work')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">HOW WE WORK</button>
             </li>
             <li>
-                <button onClick={(e) => handleNavClick(e, 'about')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">WHO WE ARE</button>
+                <button onClick={(e) => handleNavClick(e, 'about')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">ABOUT US</button>
             </li>
             <li>
                 <button onClick={(e) => handleNavClick(e, 'community')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">COMMUNITY</button>
@@ -86,10 +86,13 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
       </div>
       </footer>
-    <div className="bg-brand-black text-center py-6 font-sans text-zinc-500 text-[10px] border-t border-zinc-800 uppercase tracking-widest">
-        <p>
-        Copyright &copy; 2026 - <b className="text-white">STATSPH</b>
-        </p>
+    <div className="bg-brand-black py-6 font-sans text-zinc-500 text-[10px] border-t border-zinc-800 uppercase tracking-widest">
+        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center">
+            <p>
+            Copyright &copy; 2026 - <b className="text-white">STATSPH</b>
+            </p>
+            <button onClick={(e) => handleNavClick(e, 'about')} className="mt-2 md:mt-0 hover:text-white transition-colors font-bold">About Us</button>
+        </div>
     </div>
   </div>
   );

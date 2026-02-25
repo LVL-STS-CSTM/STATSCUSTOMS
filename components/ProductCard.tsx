@@ -43,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
                 {/* Overlays */}
                 <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
                     {product.isBestseller && (
-                        <span className="text-[8px] md:text-[9px] font-bold tracking-wider text-black bg-white/90 px-1.5 py-0.5 md:px-2 md:py-1 uppercase backdrop-blur-sm shadow-sm rounded-sm transition-colors">
+                        <span className="text-[8px] md:text-[9px] font-space-grotesk font-bold tracking-wider text-black bg-white/90 px-1.5 py-0.5 md:px-2 md:py-1 uppercase backdrop-blur-sm shadow-sm rounded-sm transition-colors">
                             Bestseller
                         </span>
                     )}
@@ -52,7 +52,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
             
             {/* Label */}
             <div className="text-center px-1 flex-grow flex flex-col justify-start">
-                <h3 className="text-[10px] md:text-sm font-eurostile font-bold uppercase tracking-wider text-zinc-900 group-hover:text-black transition-colors leading-snug break-words">
+                <h3 className="text-[10px] md:text-sm font-rheiborn font-bold uppercase tracking-wider text-zinc-900 group-hover:text-black transition-colors leading-snug break-words">
                     {product.name}
                 </h3>
                 <div className="mt-2 md:mt-3 w-0 h-[1px] bg-black mx-auto transition-all duration-500 group-hover:w-8 opacity-20"></div>

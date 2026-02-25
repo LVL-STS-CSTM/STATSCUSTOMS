@@ -1,16 +1,16 @@
 
 import React from 'react';
 
-const H2: React.FC<{children: React.ReactNode}> = ({ children }) => <h2 className="font-heading text-2xl text-gray-800 mt-8 mb-4 uppercase">{children}</h2>;
-const P: React.FC<{children: React.ReactNode}> = ({ children }) => <p className="mb-4 text-gray-700 leading-relaxed">{children}</p>;
-const UL: React.FC<{children: React.ReactNode}> = ({ children }) => <ul className="list-disc pl-6 mb-4 space-y-2 text-gray-700">{children}</ul>;
+const H2: React.FC<{children: React.ReactNode}> = ({ children }) => <h2 className="font-rheiborn text-2xl text-gray-800 mt-8 mb-4 uppercase">{children}</h2>;
+const P: React.FC<{children: React.ReactNode}> = ({ children }) => <p className="mb-4 text-gray-700 leading-relaxed font-futura">{children}</p>;
+const UL: React.FC<{children: React.ReactNode}> = ({ children }) => <ul className="list-disc pl-6 mb-4 space-y-2 text-gray-700 font-futura">{children}</ul>;
 const LI: React.FC<{children: React.ReactNode}> = ({ children }) => <li>{children}</li>;
 
 const ReturnPolicyPage: React.FC = () => {
     return (
         <div className="bg-[#E0E0E0]">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <h1 className="font-heading text-3xl md:text-4xl tracking-tight text-gray-900 mb-6 uppercase">
+                <h1 className="font-rheiborn text-3xl md:text-4xl tracking-tight text-gray-900 mb-6 uppercase">
                     Returns & Exchange Policy
                 </h1>
                 <div className="text-base">
@@ -42,7 +42,7 @@ const ReturnPolicyPage: React.FC = () => {
 
                     <H2>4. Process for Returns and Exchanges</H2>
                     <P><strong>Initiate a Request:</strong> Contact our Customer Service Team via email at <a href="mailto:contact@statscustoms.ph" className="text-blue-600 hover:underline">contact@statscustoms.ph</a> within the specified timeline and provide the following details:</P>
-                    <div className="my-4 p-4 border rounded-md bg-gray-50 text-sm space-y-1">
+                    <div className="my-4 p-4 border rounded-md bg-gray-50 text-sm space-y-1 font-futura">
                         <p><strong>Subject:</strong> RETURN & EXCHANGE</p>
                         <p><strong>Request Type:</strong> [e.g., product inquiry, order update, refund, etc.]</p>
                         <p><strong>Order Form:</strong> [Attach or reference your order form]</p>

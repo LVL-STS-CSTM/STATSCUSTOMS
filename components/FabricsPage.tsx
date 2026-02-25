@@ -20,13 +20,13 @@ const MaterialSection: React.FC<{ material: Material; index: number; openCareMod
                 </div>
                 <div className="w-full lg:w-1/2 space-y-6">
                     <div>
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">Our Fabric</span>
-                        <h3 className="font-oswald text-3xl lg:text-4xl text-gray-900 mt-2 uppercase tracking-widest">{material.name}</h3>
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] font-space-grotesk">Our Fabric</span>
+                        <h3 className="font-rheiborn text-3xl lg:text-4xl text-gray-900 mt-2 uppercase tracking-widest">{material.name}</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                        {material.features.map(f => <span key={f} className="bg-white text-gray-700 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-gray-100 shadow-sm">{f}</span>)}
+                        {material.features.map(f => <span key={f} className="bg-white text-gray-700 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-gray-100 shadow-sm font-space-grotesk">{f}</span>)}
                     </div>
-                    <p className="text-gray-600 leading-loose text-lg font-light antialiased">{material.description}</p>
+                    <p className="text-gray-600 leading-loose text-lg font-futura font-light antialiased">{material.description}</p>
                     <button 
                         onClick={() => openCareModal(material.careImageUrl)} 
                         className="inline-block border-b-2 border-black pb-1 text-xs font-bold uppercase tracking-widest hover:text-indigo-600 hover:border-indigo-600 transition-all"

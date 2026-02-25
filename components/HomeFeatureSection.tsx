@@ -60,26 +60,26 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
 
     return (
         <section className="bg-black py-0">
-            <div className="max-w-[100%] mx-auto relative group">
+            <div className="max-w-[100%] mx-auto relative group overflow-hidden">
 
                 
                 {/* Navigation Buttons - Simple & Centered - Hidden on Mobile */}
                 <button 
                     onClick={() => scroll('left')} 
-                    className={`hidden md:block absolute top-1/2 -translate-y-1/2 left-4 z-20 p-4 bg-white text-black rounded-none transition-all duration-300 shadow-md hover:scale-110 disabled:opacity-0 disabled:pointer-events-none ${activeIndex === 0 ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`}
+                    className={`hidden md:block absolute top-1/2 -translate-y-1/2 left-4 z-20 text-white transition-all duration-300 hover:scale-125 disabled:opacity-0 disabled:pointer-events-none drop-shadow-lg ${activeIndex === 0 ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`}
                     disabled={activeIndex === 0}
                     aria-label="Previous slide"
                 >
-                    <ArrowLongRightIcon className="w-5 h-5 rotate-180" />
+                    <ArrowLongRightIcon className="w-8 h-8 rotate-180" />
                 </button>
 
                 <button 
                     onClick={() => scroll('right')} 
-                    className={`hidden md:block absolute top-1/2 -translate-y-1/2 right-4 z-20 p-4 bg-white text-black rounded-none transition-all duration-300 shadow-md hover:scale-110 disabled:opacity-0 disabled:pointer-events-none ${activeIndex === slides.length - 1 ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`}
+                    className={`hidden md:block absolute top-1/2 -translate-y-1/2 right-4 z-20 text-white transition-all duration-300 hover:scale-125 disabled:opacity-0 disabled:pointer-events-none drop-shadow-lg ${activeIndex === slides.length - 1 ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`}
                     disabled={activeIndex === slides.length - 1}
                     aria-label="Next slide"
                 >
-                    <ArrowLongRightIcon className="w-5 h-5" />
+                    <ArrowLongRightIcon className="w-8 h-8" />
                 </button>
 
                 {/* Carousel - Full Width Single Frame */}
@@ -109,7 +109,7 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
                                     {slide.subtitle}
                                 </span>
                                 {/* Minimized Text Size Here */}
-                                <h3 className="font-eurostile text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-widest leading-[0.9] mb-3 md:mb-6 drop-shadow-xl break-words">
+                                <h3 className="font-rheiborn text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-widest leading-[0.9] mb-3 md:mb-6 drop-shadow-xl break-words">
                                     {slide.title}
                                 </h3>
                                 {/* Minimized Description Size Here */}

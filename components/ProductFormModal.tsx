@@ -34,7 +34,7 @@ const PRINT_METHODS = ["Heat Transfer", "Embroidery", "Sublimation", "DTF Print"
 const SectionHeader: React.FC<{number: string, title: string}> = ({number, title}) => (
     <div className="flex items-center gap-3 mb-6 pt-6 border-t border-gray-100 first:pt-0 first:border-0">
         <span className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center font-bold text-[10px]">{number}</span>
-        <h3 className="font-eurostile text-lg uppercase tracking-widest text-gray-900">{title}</h3>
+        <h3 className="font-rheiborn text-lg uppercase tracking-widest text-gray-900">{title}</h3>
     </div>
 );
 

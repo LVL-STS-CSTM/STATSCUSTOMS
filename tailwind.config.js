@@ -8,13 +8,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // Body Font: Prioritize Futura (TitleCase), then Futura LC (Lowercase), then Jost
-        sans: ['Futura', '"Futura LC"', 'Jost', 'sans-serif'],
-        
-        // Display/Heading Fonts: Prioritize Rheiborn (TitleCase), then Rheiborn LC (Lowercase), then Antonio
-        eurostile: ['"Rheiborn Sans Clean"', '"Rheiborn Sans Clean LC"', 'Antonio', 'sans-serif'],
-        oswald: ['"Rheiborn Sans Clean"', '"Rheiborn Sans Clean LC"', 'Antonio', 'sans-serif'],
-        heading: ['"Rheiborn Sans Clean"', '"Rheiborn Sans Clean LC"', 'Antonio', 'sans-serif'],
+        // Use CSS variables defined in index.css for a single source of truth
+        sans: ['var(--font-futura)'],
+        rheiborn: ['var(--font-rheiborn)'],
+        space: ['var(--font-space)'],
       },
       fontWeight: {
         'light': '300',

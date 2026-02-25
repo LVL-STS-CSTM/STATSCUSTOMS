@@ -30,9 +30,9 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, onCheckout }) 
         <>
             <div className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={onClose} />
             <div className={`fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform transition-all duration-500 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                <div className="flex flex-col h-full">
+                <div className="flex flex-col h-full overflow-hidden">
                     <header className="flex items-center justify-between p-6 border-b border-gray-100">
-                        <h2 className="font-oswald text-xl uppercase tracking-widest">{title}</h2>
+                        <h2 className="font-rheiborn text-xl uppercase tracking-widest">{title}</h2>
                         <button onClick={onClose}><CloseIcon className="w-6 h-6 text-gray-400 hover:text-black transition-colors" /></button>
                     </header>
                     
@@ -40,7 +40,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, onCheckout }) 
                         {quoteItems.length === 0 ? (
                             <div className="text-center py-20 text-gray-400">
                                 <SparklesIcon className="w-12 h-12 mx-auto mb-4 opacity-20" />
-                                <p className="font-oswald uppercase tracking-widest">Your list is empty</p>
+                                <p className="font-rheiborn uppercase tracking-widest">Your list is empty</p>
                                 <button onClick={onClose} className="mt-4 text-xs font-black uppercase underline tracking-widest text-black">Browse Catalogue</button>
                             </div>
                         ) : (
@@ -55,7 +55,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, onCheckout }) 
                             <div className="flex justify-between items-end mb-2">
                                 <div className="flex flex-col">
                                     <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Estimated Total</span>
-                                    <span className="text-2xl font-oswald font-black text-black">₱{totalEstimate.toLocaleString()}</span>
+                                    <span className="text-2xl font-rheiborn font-black text-black">₱{totalEstimate.toLocaleString()}</span>
                                 </div>
                             </div>
                             <Button 
@@ -100,7 +100,7 @@ const QuoteItemRow: React.FC<{item: QuoteItem}> = ({ item }) => {
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full" style={{backgroundColor: item.selectedColor.hex}}></span>
-                        <p className="text-[10px] text-zinc-400 font-black uppercase tracking-widest">{item.selectedColor.name} • {totalQty} pcs</p>
+                        <p className="text-[10px] text-zinc-400 font-black uppercase tracking-widest font-futura">{item.selectedColor.name} • {totalQty} pcs</p>
                     </div>
                 </div>
                 <div className="flex items-end justify-between">

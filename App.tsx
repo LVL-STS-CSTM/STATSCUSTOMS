@@ -173,8 +173,8 @@ const AppContent: React.FC = () => {
                         allProducts={allProducts} 
                         onProductClick={handleProductClick} 
                     />
-                ) : <div className="text-center py-20 font-oswald text-xl uppercase tracking-widest">Product Not Found</div>;
-            case 'about': return <Suspense fallback={<LoadingFallback />}><AboutPage onNavigate={handleNavigate} /></Suspense>;
+                ) : <div className="text-center py-20 font-rheiborn text-xl uppercase tracking-widest">Product Not Found</div>;
+            case 'about': return <Suspense fallback={<LoadingFallback />}><AboutPage onNavigate={handleNavigate} partners={partners} /></Suspense>;
             case 'partners': return <Suspense fallback={<LoadingFallback />}><PartnersPage onNavigate={handleNavigate} /></Suspense>;
             case 'faq': return <Suspense fallback={<LoadingFallback />}><FaqPage faqData={faqData} /></Suspense>;
             case 'contact': return <Suspense fallback={<LoadingFallback />}><ContactPage showToast={setToastMessage} /></Suspense>;
@@ -189,13 +189,13 @@ const AppContent: React.FC = () => {
             case 'return-policy': return <Suspense fallback={<LoadingFallback />}><ReturnPolicyPage /></Suspense>;
             case 'privacy-policy': return <Suspense fallback={<LoadingFallback />}><PrivacyPolicyPage /></Suspense>;
             case 'checkout': return <Suspense fallback={<LoadingFallback />}><CheckoutPage onNavigate={handleNavigate} showToast={setToastMessage} /></Suspense>;
-            default: return <div className="text-center py-20 font-oswald text-xl uppercase tracking-widest">Page Not Found</div>;
+            default: return <div className="text-center py-20 font-rheiborn text-xl uppercase tracking-widest">Page Not Found</div>;
         }
     };
 
     return (
         <ErrorBoundary>
-            <div className="font-sans min-h-screen flex flex-col bg-white selection:bg-black selection:text-white transition-colors duration-300">
+            <div className="font-sans min-h-screen flex flex-col bg-white selection:bg-black selection:text-white transition-colors duration-300 overflow-x-hidden">
                 {isSplashVisible && <SplashScreen isFadingOut={!isAppLoading && !isDataLoading} />}
                 {toastMessage && <Toast message={toastMessage} onClose={() => setToastMessage('')} />}
 
@@ -209,7 +209,7 @@ const AppContent: React.FC = () => {
                     isScrolled={isScrolled} 
                 />
 
-                <main className={`flex-grow transition-opacity duration-700 ${isAppLoading || isDataLoading ? 'opacity-0' : 'opacity-100'} ${view === 'home' || view === 'checkout' ? 'pt-0' : 'pt-14'}`}>
+                <main className={`flex-grow overflow-x-hidden transition-opacity duration-700 ${isAppLoading || isDataLoading ? 'opacity-0' : 'opacity-100'} ${view === 'home' || view === 'checkout' ? 'pt-0' : 'pt-14 lg:pt-20'}`}>
                     {renderView()}
                 </main>
 

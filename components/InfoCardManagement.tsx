@@ -218,7 +218,7 @@ const InfoCardManagement: React.FC = () => {
             
             {infoCards.length === 0 && (
                 <div className="text-center py-20 text-gray-400">
-                    <p className="font-oswald uppercase tracking-widest mb-4">No info cards displayed.</p>
+                    <p className="font-rheiborn uppercase tracking-widest mb-4">No info cards displayed.</p>
                     <button onClick={handleAddCard} className="text-sm underline hover:text-black">Create your first card</button>
                 </div>
             )}
