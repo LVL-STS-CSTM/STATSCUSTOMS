@@ -16,8 +16,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onProductClick, lay
 
     // Adjusted for "2 per row on mobile" with tight spacing to maximize image size
     const gridClasses = layout === 'grid-lg'
-        ? 'grid-cols-2 sm:grid-cols-2 gap-x-2 md:gap-x-3 gap-y-8 md:gap-y-12'
-        : 'grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-2 md:gap-x-6 gap-y-8 md:gap-y-20';
+        ? 'grid-cols-2 sm:grid-cols-2 gap-x-2 md:gap-x-3 gap-y-6 md:gap-y-12'
+        : 'grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-2 md:gap-x-6 gap-y-6 md:gap-y-16';
 
     // Ensure we don't try to render null products
     const validProducts = (products || []).filter(p => !!p && !!p.id);

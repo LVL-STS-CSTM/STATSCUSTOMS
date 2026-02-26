@@ -124,7 +124,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
 
                          </nav>
                             <div className="md:hidden">
-                                <IconButton onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} ariaLabel="Menu" theme="dark">
+                                <IconButton onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} ariaLabel="Menu" theme="dark" className="p-2 -mr-2">
                                     <MenuIcon className="w-7 h-7" />
                                 </IconButton>
                             </div>

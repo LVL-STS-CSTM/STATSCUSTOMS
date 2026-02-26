@@ -28,13 +28,13 @@ const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, bu
         setHasError(false);
     }, [mediaSrc]);
 
-    const heroHeightClass = isFirst ? 'min-h-screen lg:max-h-[1080px]' : 'h-[60vh] min-h-[400px]';
+    const heroHeightClass = isFirst ? 'min-h-[100dvh] lg:max-h-[1080px]' : 'h-[50vh] min-h-[400px]';
     // Slightly nudged down titles for a more sophisticated, "perfect" scale
-    const titleSize = isFirst ? 'text-xl md:text-2xl lg:text-3xl' : 'text-lg md:text-xl lg:text-2xl';
-    const descriptionSize = 'text-[9px] md:text-[10px]';
+    const titleSize = isFirst ? 'text-3xl md:text-4xl lg:text-6xl' : 'text-2xl md:text-3xl lg:text-4xl';
+    const descriptionSize = 'text-[10px] md:text-xs';
     
     const alignmentClass = 'flex items-end justify-start text-left';
-    const paddingClass = 'pb-12 md:pb-24 pl-6 md:pl-12';
+    const paddingClass = 'pb-16 md:pb-24 px-4 md:pl-12';
 
     return (
         <section className={`relative w-full ${heroHeightClass} overflow-hidden ${alignmentClass} bg-neutral-900 group`}>
