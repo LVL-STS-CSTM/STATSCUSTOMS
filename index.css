@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -26,12 +26,14 @@
   font-display: swap;
 }
 
-/* Rheiborn — headings and titles only */
+/* Bebas Neue / Rheiborn — headings and titles only */
 h1, h2, h3, h4, h5, h6,
 .font-eurostile,
 .font-oswald,
 .font-heading {
-  font-family: 'Rheiborn Sans Clean', sans-serif !important;
+  font-family: 'Bebas Neue', 'Rheiborn Sans Clean', sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 /* Futura — body copy and descriptions only */

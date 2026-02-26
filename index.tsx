@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import './index.css';
 
 // Find the root DOM element where the React app will be mounted.
 const rootElement = document.getElementById('root');
