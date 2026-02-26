@@ -1,14 +1,14 @@
 
 import express, { Request, Response } from 'express';
-import { createServer as createViteServer } from 'vite';
+
 import fs from 'fs';
 import path from 'path';
 import { GoogleGenAI } from '@google/genai';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-
 const app = express();
-const PORT = 3000;
+
+const PORT = 3001;
 const DATA_FILE = path.resolve(process.cwd(), 'data.json');
 
 // Middleware
@@ -158,22 +158,8 @@ app.post('/api/admin/login', (req: Request, res: Response) => {
 });
 
 
-// --- Vite Middleware (Must be last) ---
-async function startServer() {
-    if (process.env.NODE_ENV !== 'production') {
-        const vite = await createViteServer({
-            server: { middlewareMode: true },
-            appType: 'spa',
-        });
-        app.use(vite.middlewares);
-    } else {
-        // Production static serving (if needed)
-        app.use(express.static('dist'));
-    }
 
-    app.listen(PORT, '0.0.0.0', () => {
-        console.log(`Server running on http://localhost:${PORT}`);
-    });
-}
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
 
-startServer();
