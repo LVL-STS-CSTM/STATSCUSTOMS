@@ -78,7 +78,7 @@ const ServiceManagement: React.FC = () => {
             <section className="bg-white p-8 rounded-[2rem] shadow-xl border border-gray-100">
                 <header className="flex justify-between items-center mb-8">
                     <div>
-                        <h3 className="text-xl font-rheiborn uppercase tracking-widest text-gray-900">Major Solutions</h3>
+                        <h3 className="text-xl font-eurostile uppercase tracking-widest text-gray-900">Major Solutions</h3>
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Manage large visual blocks on services page</p>
                     </div>
                     <button onClick={handleAddService} className="flex items-center gap-2 px-4 py-2 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-zinc-800 transition-all">
@@ -119,7 +119,7 @@ const ServiceManagement: React.FC = () => {
             <section className="bg-white p-8 rounded-[2rem] shadow-xl border border-gray-100">
                 <header className="flex justify-between items-center mb-8">
                     <div>
-                        <h3 className="text-xl font-rheiborn uppercase tracking-widest text-gray-900">Technical Capabilities</h3>
+                        <h3 className="text-xl font-eurostile uppercase tracking-widest text-gray-900">Technical Capabilities</h3>
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Manage secondary capability cards</p>
                     </div>
                     <button onClick={handleAddCap} className="flex items-center gap-2 px-4 py-2 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-zinc-800 transition-all">

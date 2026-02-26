@@ -69,7 +69,7 @@ const DashboardAnalytics: React.FC = () => {
     return (
         <div className="space-y-10">
             <div>
-                <h2 className="text-3xl font-eurostile font-black uppercase tracking-widest text-zinc-900 mb-2">Performance Overview</h2>
+                <h2 className="text-3xl font-rheiborn font-black uppercase tracking-widest text-zinc-900 mb-2">Performance Overview</h2>
                 <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Real-time business metrics</p>
             </div>
 
@@ -108,7 +108,7 @@ const DashboardAnalytics: React.FC = () => {
             <div className="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm">
                 <header className="px-8 py-8 border-b border-zinc-100 flex items-center justify-between bg-zinc-50/50">
                     <div>
-                        <h2 className="text-lg font-eurostile font-black uppercase tracking-widest text-zinc-900">Recent Activity Feed</h2>
+                        <h2 className="text-lg font-rheiborn font-black uppercase tracking-widest text-zinc-900">Recent Activity Feed</h2>
                         <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest mt-1">Latest system events</p>
                     </div>
                     <button className="text-[9px] font-black uppercase tracking-widest text-zinc-400 hover:text-black transition-colors">

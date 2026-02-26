@@ -57,7 +57,7 @@ const ServicesPage: React.FC<ServicePageProps> = ({ onNavigate }) => {
             
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
                 <div className="text-center mb-20">
-                    <span className="text-[10px] font-space-grotesk font-black text-zinc-900 uppercase tracking-[0.4em] block mb-4">Full-Spectrum Branding</span>
+                    <span className="text-[10px] font-rheiborn font-black text-zinc-900 uppercase tracking-[0.4em] block mb-4">Full-Spectrum Branding</span>
                     <h2 className="font-rheiborn text-4xl lg:text-5xl text-gray-900 uppercase tracking-widest">Visual Architecture</h2>
                     <p className="mt-8 text-gray-500 text-lg max-w-3xl mx-auto leading-relaxed font-futura">
                         A comprehensive suite of creative services to ensure brand dominance. From logo engineering to large-format visual deployment, we are your tactical partner for merch, print, and all the details in between.
@@ -80,7 +80,7 @@ const ServicesPage: React.FC<ServicePageProps> = ({ onNavigate }) => {
                         <div className="relative z-10 space-y-8">
                             <div className="inline-flex items-center gap-3 px-6 py-2 bg-white/5 border border-white/10 rounded-full">
                                 <SparklesIcon className="w-4 h-4 text-white" />
-                                <span className="text-[10px] font-space-grotesk font-black text-white uppercase tracking-widest">Initialize Brief</span>
+                                <span className="text-[10px] font-rheiborn font-black text-white uppercase tracking-widest">Initialize Brief</span>
                             </div>
                             <h2 className="font-rheiborn text-4xl md:text-6xl text-white uppercase tracking-widest leading-none">Ready to Deploy<br/>Your Identity?</h2>
                             <p className="text-gray-400 text-lg max-w-2xl mx-auto font-futura font-light leading-relaxed">
@@ -90,7 +90,7 @@ const ServicesPage: React.FC<ServicePageProps> = ({ onNavigate }) => {
                                 <Button 
                                     variant="solid" 
                                     onClick={() => onNavigate('contact')} 
-                                    className="bg-white text-black hover:bg-zinc-100 hover:scale-105 transition-all px-16 py-6 text-lg font-space-grotesk rounded-2xl shadow-2xl"
+                                    className="bg-white text-black hover:bg-zinc-100 hover:scale-105 transition-all px-16 py-6 text-lg font-rheiborn rounded-2xl shadow-2xl"
                                 >
                                     START PROJECT
                                 </Button>

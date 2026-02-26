@@ -132,7 +132,7 @@ const ProductManagement: React.FC = () => {
         <>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                 <div>
-                    <h2 className="text-2xl font-rheiborn font-black uppercase tracking-widest">Inventory</h2>
+                    <h2 className="text-2xl font-eurostile font-black uppercase tracking-widest">Inventory</h2>
                     <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mt-1">Manage catalogue items</p>
                 </div>
                 <div className="flex items-center gap-4 w-full md:w-auto">

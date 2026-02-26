@@ -27,7 +27,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     
-    const labelClasses = "block text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 ml-2 mb-1";
+    const labelClasses = "block text-[10px] font-rheiborn font-black uppercase tracking-[0.4em] text-zinc-400 ml-2 mb-1";
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -86,8 +86,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                     <div className="space-y-12">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
                             <div>
-                                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Location</h3>
-                                <p className="text-sm font-bold uppercase tracking-widest text-zinc-900 leading-relaxed font-space-grotesk">
+                                <h3 className="text-[10px] font-rheiborn font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Location</h3>
+                                <p className="text-sm font-bold uppercase tracking-widest text-zinc-900 leading-relaxed font-rheiborn">
                                     306 El Grande Ave<br/>
                                     Parañaque<br/>
                                     1740 Metro Manila
@@ -98,8 +98,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                             </div>
 
                             <div>
-                                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Opening Hours</h3>
-                                <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900 font-space-grotesk">
+                                <h3 className="text-[10px] font-rheiborn font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Opening Hours</h3>
+                                <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900 font-rheiborn">
                                     <li className="flex justify-between gap-4"><span>Mon</span><span>8:00 AM - 5:00 PM</span></li>
                                     <li className="flex justify-between gap-4"><span>Tue</span><span>8:00 AM - 5:00 PM</span></li>
                                     <li className="flex justify-between gap-4"><span>Wed</span><span>8:00 AM - 5:00 PM</span></li>
@@ -112,8 +112,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                         </div>
 
                         <div>
-                            <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Contact</h3>
-                            <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900 font-space-grotesk">
+                            <h3 className="text-[10px] font-rheiborn font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Contact</h3>
+                            <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900 font-rheiborn">
                                 <li><a href="tel:+639183028818" className="hover:text-zinc-500 transition-colors block">(+63) 918 302 8818</a></li> <li><a href="tel:+639457895304" className="hover:text-zinc-500 transition-colors block">(+63) 945 789 5304</a></li>
                                 <li><a href="mailto:CONTACT@STATSCUSTOMS.PH" className="hover:text-zinc-500 transition-colors break-all block mt-2">CONTACT@STATSCUSTOMS.PH</a></li>
                             </ul>

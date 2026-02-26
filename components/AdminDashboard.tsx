@@ -240,7 +240,7 @@ const AdminDashboard: React.FC = () => {
                             <img src="https://i.imgur.com/OIYeMvS.png" alt="Stats" className="w-6 h-6 object-contain" />
                         </div>
                         <div>
-                            <h1 className="font-eurostile font-black text-lg uppercase tracking-widest leading-none">Command Center</h1>
+                            <h1 className="font-rheiborn font-black text-lg uppercase tracking-widest leading-none">Command Center</h1>
                             <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Admin v2.1</span>
                         </div>
                     </div>

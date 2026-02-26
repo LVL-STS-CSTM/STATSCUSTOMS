@@ -36,7 +36,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, children, theme = 'light' 
                 }`}
                 aria-expanded={isOpen}
             >
-                <span className={`flex-1 pr-2 uppercase tracking-wider text-sm font-semibold font-rheiborn ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>{title}</span>
+                <span className={`flex-1 pr-2 uppercase tracking-wider text-sm font-semibold font-eurostile ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>{title}</span>
                 <svg
                     className={`w-5 h-5 transform transition-transform duration-300 ${isDark ? 'text-gray-400' : 'text-gray-500'} ${isOpen ? 'rotate-180' : ''}`}
                     fill="none"

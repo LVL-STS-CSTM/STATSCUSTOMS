@@ -44,7 +44,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
                 <div className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                     {/* Reduced font size */}
-                    <h2 className="font-rheiborn font-bold text-3xl md:text-5xl lg:text-6xl text-white mb-8 uppercase tracking-widest leading-none drop-shadow-2xl">
+                    <h2 className="font-eurostile font-bold text-3xl md:text-5xl lg:text-6xl text-white mb-8 uppercase tracking-widest leading-none drop-shadow-2xl">
                         Define Your Legacy
                     </h2>
                 </div>

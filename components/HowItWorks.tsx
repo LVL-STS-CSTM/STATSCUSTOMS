@@ -110,7 +110,7 @@ const HowItWorks: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16 md:mb-24">
-                    <span className={`text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] block mb-4 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'} font-space-grotesk`}>Operational Protocol</span>
+                    <span className={`text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] block mb-4 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'} font-rheiborn`}>Operational Protocol</span>
                     <h2 className={`font-rheiborn text-3xl md:text-6xl text-white mb-6 uppercase tracking-tighter transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Deployment Workflow</h2>
                     <p className={`text-base md:text-lg text-zinc-400 max-w-2xl mx-auto font-futura font-light transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Precision-engineered execution from design blueprint to final delivery.</p>
                 </div>
@@ -191,7 +191,7 @@ const HowItWorks: React.FC = () => {
                                         <div className="transform scale-75 md:scale-100">{activeStep.icon}</div>
                                     </div>
                                     <div className="flex flex-col">
-                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 font-space-grotesk">Process</span>
+                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 font-rheiborn">Process</span>
                                         <div className="flex gap-1 mt-1">
                                             {steps.map((_, i) => (
                                                 <div key={i} className={`h-1 rounded-none transition-all duration-300 ${i === selectedIndex ? 'w-8 bg-white' : 'w-2 bg-white/20'}`} />
@@ -202,7 +202,7 @@ const HowItWorks: React.FC = () => {
                                         0{(selectedIndex || 0) + 1}
                                     </span>
                                 </div>
-                                <h3 className="font-eurostile text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter mb-6 text-white drop-shadow-2xl leading-[0.9]">
+                                <h3 className="font-rheiborn text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter mb-6 text-white drop-shadow-2xl leading-[0.9]">
                                     {activeStep.title}
                                 </h3>
                                 <p className="text-base sm:text-lg md:text-2xl font-futura font-medium text-zinc-300 leading-relaxed drop-shadow-lg border-l-4 border-white pl-6">

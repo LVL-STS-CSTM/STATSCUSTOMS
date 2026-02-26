@@ -46,7 +46,7 @@ const PartnersPage: React.FC<PartnersPageProps> = ({ onNavigate }) => {
                 
                 {/* Call-to-action section at the bottom of the page. */}
                 <div className="text-center mt-20">
-                     <h2 className="font-eurostile text-2xl text-gray-800 mb-4 uppercase">Join Our Growing List of Partners</h2>
+                     <h2 className="font-rheiborn text-2xl text-gray-800 mb-4 uppercase">Join Our Growing List of Partners</h2>
                     <p className="text-gray-600 mb-6 max-w-2xl mx-auto font-futura">
                         Ready to elevate your brand with premium custom apparel? Let's create something exceptional together.
                     </p>

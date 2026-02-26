@@ -122,7 +122,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate, showToast }) =>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                 </div>
-                <h1 className="font-rheiborn font-black text-3xl uppercase tracking-widest text-gray-900 mb-4">
+                <h1 className="font-eurostile font-black text-3xl uppercase tracking-widest text-gray-900 mb-4">
                     Requisition Submitted
                 </h1>
                 <p className="text-zinc-500 text-sm max-w-md mx-auto leading-relaxed uppercase tracking-widest font-futura font-medium mb-12">
@@ -163,7 +163,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate, showToast }) =>
                         </div>
 
                         <section className="space-y-8">
-                            <h2 className="font-rheiborn font-black text-xl uppercase tracking-widest">Contact Information</h2>
+                            <h2 className="font-eurostile font-black text-xl uppercase tracking-widest">Contact Information</h2>
                             <div className="space-y-4">
                                 <div>
                                     <label className={labelClasses}>Email Address</label>
@@ -179,7 +179,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate, showToast }) =>
                         </section>
 
                         <section className="space-y-8">
-                            <h2 className="font-rheiborn font-black text-xl uppercase tracking-widest">Shipping Details</h2>
+                            <h2 className="font-eurostile font-black text-xl uppercase tracking-widest">Shipping Details</h2>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label className={labelClasses}>First Name</label>
@@ -235,7 +235,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate, showToast }) =>
                         </section>
 
                         <section className="space-y-8">
-                            <h2 className="font-rheiborn font-black text-xl uppercase tracking-widest">Payment Method</h2>
+                            <h2 className="font-eurostile font-black text-xl uppercase tracking-widest">Payment Method</h2>
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                 {['BDO', 'Gcash', 'BPI'].map(method => (
                                     <button 
@@ -273,7 +273,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate, showToast }) =>
                 <div className="lg:col-span-5 bg-zinc-50 px-6 py-12 lg:px-20 lg:py-24">
                     <div className="lg:sticky lg:top-12 space-y-12">
                         <header>
-                            <h2 className="font-rheiborn font-black text-xl uppercase tracking-widest mb-1">
+                            <h2 className="font-eurostile font-black text-xl uppercase tracking-widest mb-1">
                                 Project Summary
                             </h2>
                             <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest font-futura">({quoteItems.length}) Items Selected</p>
@@ -323,7 +323,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate, showToast }) =>
                                 <span className="font-mono text-zinc-900">₱{subtotal.toLocaleString()}</span>
                             </div>
                             <div className="flex justify-between items-center pt-4 border-t border-zinc-200">
-                                <span className="font-rheiborn font-black text-xl uppercase tracking-tighter">
+                                <span className="font-eurostile font-black text-xl uppercase tracking-tighter">
                                     Estimated Total
                                 </span>
                                 <span className="font-mono font-black text-2xl">₱{subtotal.toLocaleString()}</span>

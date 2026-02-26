@@ -81,7 +81,7 @@ const HomeFeatureManagement: React.FC = () => {
             <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-gray-100">
                 <header className="mb-8 flex justify-between items-start">
                     <div>
-                        <h3 className="text-xl font-rheiborn uppercase tracking-widest text-gray-900">Homepage Feature Section</h3>
+                        <h3 className="text-xl font-eurostile uppercase tracking-widest text-gray-900">Homepage Feature Section</h3>
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Manage the horizontal scrolling showcase</p>
                     </div>
                     <div className="flex items-center gap-3">

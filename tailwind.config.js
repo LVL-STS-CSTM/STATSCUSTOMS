@@ -11,7 +11,6 @@ export default {
         // Use CSS variables defined in index.css for a single source of truth
         sans: ['var(--font-futura)'],
         rheiborn: ['var(--font-rheiborn)'],
-        space: ['var(--font-space)'],
       },
       fontWeight: {
         'light': '300',

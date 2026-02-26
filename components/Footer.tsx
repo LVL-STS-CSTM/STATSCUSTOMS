@@ -21,7 +21,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       <div className="flex justify-between flex-wrap max-w-7xl mx-auto gap-8">
         {/* About Section */}
         <div className="flex-1 min-w-[160px]">
-          <h4 className="text-white mb-8 font-oswald font-bold uppercase text-lg tracking-[0.3em]">ABOUT</h4>
+          <h4 className="text-white mb-8 font-rheiborn font-bold uppercase text-lg tracking-[0.3em]">ABOUT</h4>
           <ul className="list-none p-0 m-0 text-xs text-zinc-400 space-y-4 font-sans">
             <li>
                 <button onClick={(e) => handleNavClick(e, 'services')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">WHAT WE DO</button>
@@ -43,7 +43,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Services Section */}
         <div className="flex-1 min-w-[160px]">
-          <h4 className="text-white mb-8 font-oswald font-bold uppercase text-lg tracking-[0.3em]">SERVICES</h4>
+          <h4 className="text-white mb-8 font-rheiborn font-bold uppercase text-lg tracking-[0.3em]">SERVICES</h4>
           <ul className="list-none p-0 m-0 text-xs text-zinc-400 space-y-4 font-sans">
             <li>
                 <button onClick={(e) => handleNavClick(e, 'faq')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">FAQS</button>
@@ -62,7 +62,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Connect Section */}
         <div className="flex-1 min-w-[160px]">
-          <h4 className="text-white mb-8 font-oswald font-bold uppercase text-lg tracking-[0.3em]">CONNECT</h4>
+          <h4 className="text-white mb-8 font-rheiborn font-bold uppercase text-lg tracking-[0.3em]">CONNECT</h4>
           <div className="flex gap-6 my-2.5">
             <a href="https://www.facebook.com/statsph" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-zinc-400 hover:text-white transition-colors">
               <FaFacebookF className="w-5 h-5" />

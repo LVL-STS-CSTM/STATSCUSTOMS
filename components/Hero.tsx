@@ -86,7 +86,7 @@ const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, bu
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out skew-x-[-20deg] pointer-events-none"></div>
                                     
-                                    <span className="relative z-10 text-white text-[10px] font-bold uppercase tracking-[0.3em] group-hover:tracking-[0.4em] transition-all duration-500 font-space-grotesk">
+                                    <span className="relative z-10 text-white text-[10px] font-bold uppercase tracking-[0.3em] group-hover:tracking-[0.4em] transition-all duration-500 font-rheiborn">
                                         {buttonText}
                                     </span>
                                 </button>

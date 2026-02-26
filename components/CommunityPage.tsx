@@ -33,8 +33,8 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ onNavigate }) => {
                                     <p className="text-sm font-light italic leading-relaxed mb-4 font-futura">"{post.caption}"</p>
                                     <div className="flex items-center justify-between border-t border-white/20 pt-4">
                                         <div className="flex flex-col">
-                                            <span className="text-xs font-bold uppercase tracking-widest font-space-grotesk">{post.author}</span>
-                                            <span className="text-[10px] text-white/60 font-medium font-space-grotesk">{post.source}</span>
+                                            <span className="text-xs font-bold uppercase tracking-widest font-rheiborn">{post.author}</span>
+                                            <span className="text-[10px] text-white/60 font-medium font-futura">{post.source}</span>
                                         </div>
                                         {tagged && (
                                             <button 

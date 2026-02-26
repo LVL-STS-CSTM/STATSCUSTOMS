@@ -41,7 +41,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onProductClick, lay
 
             {validProducts.length === 0 && (
                 <div className="py-40 text-center">
-                    <p className="text-[10px] font-space-grotesk font-bold text-zinc-300 uppercase tracking-[0.4em]">0 Items Found</p>
+                    <p className="text-[10px] font-rheiborn font-bold text-zinc-300 uppercase tracking-[0.4em]">0 Items Found</p>
                 </div>
             )}
         </section>

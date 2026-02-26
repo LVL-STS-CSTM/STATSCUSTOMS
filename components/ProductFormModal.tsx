@@ -224,7 +224,7 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
             <div className="bg-white rounded-[2rem] shadow-2xl w-full max-w-4xl max-h-[95vh] flex flex-col overflow-hidden">
                 <header className="flex items-center justify-between px-8 py-6 border-b border-zinc-100 bg-white z-10">
                     <div>
-                        <h2 className="text-xl font-eurostile font-black uppercase tracking-widest text-black">{productToEdit ? 'Edit Product' : 'Add New Product'}</h2>
+                        <h2 className="text-xl font-rheiborn font-black uppercase tracking-widest text-black">{productToEdit ? 'Edit Product' : 'Add New Product'}</h2>
                         <p className="text-[9px] text-zinc-400 font-bold uppercase tracking-widest mt-1">Catalogue Item Configuration</p>
                     </div>
                     <button onClick={onClose} className="w-10 h-10 rounded-full bg-zinc-50 hover:bg-zinc-100 flex items-center justify-center transition-all group">

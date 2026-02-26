@@ -60,7 +60,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ page, fallbackTitle, fallbackDe
             
             <div className="relative z-20 px-6 max-w-6xl">
                 {/* Reduced from text-2xl/3xl/4xl to text-xl/2xl/3xl */}
-                <h1 className="font-rheiborn font-bold text-xl md:text-2xl lg:text-3xl tracking-widest uppercase leading-[0.95] animate-fade-in-up [animation-delay:200ms] drop-shadow-2xl">
+                <h1 className="font-eurostile font-bold text-xl md:text-2xl lg:text-3xl tracking-widest uppercase leading-[0.95] animate-fade-in-up [animation-delay:200ms] drop-shadow-2xl">
                     {title}
                 </h1>
                 {description && (

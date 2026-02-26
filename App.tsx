@@ -173,7 +173,7 @@ const AppContent: React.FC = () => {
                         allProducts={allProducts} 
                         onProductClick={handleProductClick} 
                     />
-                ) : <div className="text-center py-20 font-rheiborn text-xl uppercase tracking-widest">Product Not Found</div>;
+                ) : <div className="text-center py-20 font-eurostile text-xl uppercase tracking-widest">Product Not Found</div>;
             case 'about': return <Suspense fallback={<LoadingFallback />}><AboutPage onNavigate={handleNavigate} partners={partners} /></Suspense>;
             case 'partners': return <Suspense fallback={<LoadingFallback />}><PartnersPage onNavigate={handleNavigate} /></Suspense>;
             case 'faq': return <Suspense fallback={<LoadingFallback />}><FaqPage faqData={faqData} /></Suspense>;
@@ -189,7 +189,7 @@ const AppContent: React.FC = () => {
             case 'return-policy': return <Suspense fallback={<LoadingFallback />}><ReturnPolicyPage /></Suspense>;
             case 'privacy-policy': return <Suspense fallback={<LoadingFallback />}><PrivacyPolicyPage /></Suspense>;
             case 'checkout': return <Suspense fallback={<LoadingFallback />}><CheckoutPage onNavigate={handleNavigate} showToast={setToastMessage} /></Suspense>;
-            default: return <div className="text-center py-20 font-rheiborn text-xl uppercase tracking-widest">Page Not Found</div>;
+            default: return <div className="text-center py-20 font-eurostile text-xl uppercase tracking-widest">Page Not Found</div>;
         }
     };
 

@@ -6,7 +6,7 @@
    Tailwind will attempt to load the first; if it 404s, it falls back to the second.
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap');
 
 /* --- Rheiborn Sans Clean (TitleCase Files) --- */
 @font-face {
@@ -47,7 +47,6 @@
 @theme {
   --font-rheiborn: "Rheiborn Sans Clean", "Rheiborn Sans Clean LC", "Antonio", sans-serif;
   --font-futura: "Futura", "Futura LC", "Jost", sans-serif;
-  --font-space: "Space Grotesk", sans-serif;
 }
 
 /* Global Scrollbar Hiding Strategy */

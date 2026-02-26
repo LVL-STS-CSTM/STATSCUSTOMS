@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Reusable styling components for consistency
-const H2: React.FC<{children: React.ReactNode}> = ({ children }) => <h2 className="font-rheiborn text-2xl text-gray-800 mt-8 mb-4 uppercase">{children}</h2>;
+const H2: React.FC<{children: React.ReactNode}> = ({ children }) => <h2 className="font-eurostile text-2xl text-gray-800 mt-8 mb-4 uppercase">{children}</h2>;
 const P: React.FC<{children: React.ReactNode}> = ({ children }) => <p className="mb-4 text-gray-700 leading-relaxed font-futura">{children}</p>;
 const UL: React.FC<{children: React.ReactNode}> = ({ children }) => <ul className="list-disc pl-6 mb-4 space-y-2 text-gray-700 font-futura">{children}</ul>;
 const LI: React.FC<{children: React.ReactNode}> = ({ children }) => <li>{children}</li>;
@@ -12,7 +12,7 @@ const PrivacyPolicyPage: React.FC = () => {
     return (
         <div className="bg-[#E0E0E0]">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <h1 className="font-rheiborn text-3xl md:text-4xl tracking-tight text-gray-900 mb-6 uppercase">
+                <h1 className="font-eurostile text-3xl md:text-4xl tracking-tight text-gray-900 mb-6 uppercase">
                     Privacy Policy
                 </h1>
                 <div className="text-base">

@@ -55,7 +55,7 @@ const CategoryLandingPage: React.FC<CategoryLandingPageProps> = ({ onNavigate })
                                     </span>
                                     
                                     {/* Main Title - Big & Bold */}
-                                    <h3 className="font-rheiborn text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-widest text-white mb-10 leading-[0.85]">
+                                    <h3 className="font-eurostile text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-widest text-white mb-10 leading-[0.85]">
                                         {collection.name}
                                     </h3>
                                     

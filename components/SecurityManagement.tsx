@@ -116,7 +116,7 @@ const SecurityManagement: React.FC = () => {
                                 <TargetIcon className="w-5 h-5 text-white" />
                             </div>
                             <div>
-                                <h2 className="text-xl font-rheiborn font-black uppercase tracking-widest text-gray-900">Admin Login</h2>
+                                <h2 className="text-xl font-eurostile font-black uppercase tracking-widest text-gray-900">Admin Login</h2>
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Change your login details</p>
                             </div>
                         </div>
@@ -156,7 +156,7 @@ const SecurityManagement: React.FC = () => {
                 <section className="bg-zinc-900 p-10 rounded-[2.5rem] shadow-2xl text-white">
                     <header className="flex justify-between items-center mb-10">
                         <div>
-                            <h2 className="text-xl font-rheiborn font-black uppercase tracking-widest">Admin Activity</h2>
+                            <h2 className="text-xl font-eurostile font-black uppercase tracking-widest">Admin Activity</h2>
                             <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-1">Recent system changes</p>
                         </div>
                     </header>

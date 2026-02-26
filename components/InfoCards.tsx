@@ -77,7 +77,7 @@ const InfoCards: React.FC<InfoCardsProps> = ({ cards, onCardClick }) => {
                                     </h2>
                                 </div>
                                 {(card.description || card.linkType === 'modal') && (
-                                    <span className="mt-6 text-[10px] font-space-grotesk font-black uppercase tracking-[0.3em] opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 bg-black/50 px-4 py-2 rounded-none backdrop-blur-md">
+                                    <span className="mt-6 text-[10px] font-rheiborn font-black uppercase tracking-[0.3em] opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100 bg-black/50 px-4 py-2 rounded-none backdrop-blur-md">
                                         View Details
                                     </span>
                                 )}
@@ -128,7 +128,7 @@ const InfoCards: React.FC<InfoCardsProps> = ({ cards, onCardClick }) => {
                                     
                                     <button 
                                         onClick={handleProceed}
-                                        className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-none text-xs font-space-grotesk font-black uppercase tracking-[0.2em] hover:bg-zinc-200 transition-all shadow-xl active:scale-95 group/btn"
+                                        className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-none text-xs font-rheiborn font-black uppercase tracking-[0.2em] hover:bg-zinc-200 transition-all shadow-xl active:scale-95 group/btn"
                                     >
                                         <span>Proceed</span>
                                         <ArrowLongRightIcon className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-2" />

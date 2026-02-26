@@ -132,11 +132,11 @@ const SearchModal: React.FC<SearchModalProps> = ({
         if (searchTerm.trim() && !hasResults) {
             return (
                 <div className="p-8 text-center text-gray-500">
-                    <h3 className="text-lg font-space-grotesk font-semibold text-gray-800">No results found for "{searchTerm}"</h3>
+                    <h3 className="text-lg font-rheiborn font-semibold text-gray-800">No results found for "{searchTerm}"</h3>
                     <p className="mt-2 font-futura">Try a different search term or browse our full collection.</p>
                     <button 
                         onClick={() => onNavigate('catalogue')}
-                        className="mt-4 px-4 py-2 bg-black text-white text-sm font-space-grotesk font-semibold rounded-md hover:bg-gray-800"
+                        className="mt-4 px-4 py-2 bg-black text-white text-sm font-rheiborn font-semibold rounded-md hover:bg-gray-800"
                     >
                         View Full Catalogue
                     </button>
@@ -149,7 +149,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
                 <div className="divide-y divide-gray-100">
                     {results.products.length > 0 && (
                         <div className="p-4">
-                            <h3 className="text-xs font-space-grotesk font-semibold uppercase text-gray-500 mb-2">Products</h3>
+                            <h3 className="text-xs font-rheiborn font-semibold uppercase text-gray-500 mb-2">Products</h3>
                             <ul className="space-y-2">
                                 {results.products.map(({ data: p }) => {
                                     const allImages = Object.values(p.imageUrls || {}).flat();
@@ -173,7 +173,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
                     )}
                     {results.categories.length > 0 && (
                          <div className="p-4">
-                            <h3 className="text-xs font-space-grotesk font-semibold uppercase text-gray-500 mb-2">Categories</h3>
+                            <h3 className="text-xs font-rheiborn font-semibold uppercase text-gray-500 mb-2">Categories</h3>
                             <ul className="space-y-1">
                                 {results.categories.map(({ data: c }) => (
                                     <li key={c.name}>
@@ -187,7 +187,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
                     )}
                      {results.help.length > 0 && (
                          <div className="p-4">
-                            <h3 className="text-xs font-space-grotesk font-semibold uppercase text-gray-500 mb-2">Help & Info</h3>
+                            <h3 className="text-xs font-rheiborn font-semibold uppercase text-gray-500 mb-2">Help & Info</h3>
                             <ul className="space-y-1">
                                 {results.help.map((item) => {
                                     const key = item.type + '-' + item.data.id;
@@ -210,13 +210,13 @@ const SearchModal: React.FC<SearchModalProps> = ({
 
         return ( // Default view when search is empty
             <div className="p-6">
-                <h3 className="font-space-grotesk font-semibold text-gray-700 mb-3">Quick Searches</h3>
+                <h3 className="font-rheiborn font-semibold text-gray-700 mb-3">Quick Searches</h3>
                 <div className="flex flex-wrap gap-2">
                     {quickSearches.map(term => (
                         <button 
                             key={term} 
                             onClick={() => setSearchTerm(term)}
-                            className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-space-grotesk hover:bg-gray-200"
+                            className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-futura hover:bg-gray-200"
                         >
                             {term}
                         </button>

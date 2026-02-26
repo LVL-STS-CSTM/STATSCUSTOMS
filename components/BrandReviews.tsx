@@ -74,7 +74,7 @@ const BrandReviews: React.FC<BrandReviewsProps> = ({ brandReviews, platformRatin
         <section ref={ref} className="bg-white py-16 md:py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`text-center transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                    <h2 className="font-rheiborn text-3xl md:text-4xl tracking-tight text-gray-900 mb-4 uppercase">
+                    <h2 className="font-eurostile text-3xl md:text-4xl tracking-tight text-gray-900 mb-4 uppercase">
                         Trusted by Industry Leaders
                     </h2>
                     <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto font-futura">
@@ -104,7 +104,7 @@ const BrandReviews: React.FC<BrandReviewsProps> = ({ brandReviews, platformRatin
                                         {rating.platform === 'LinkedIn' && <LinkedinIcon className="w-12 h-12 text-[#0077b5]" />}
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-rheiborn uppercase tracking-wider">{rating.platform}</h3>
+                                        <h3 className="text-xl font-eurostile uppercase tracking-wider">{rating.platform}</h3>
                                         <div className="flex items-center gap-2 mt-1">
                                             <span className="text-lg font-bold text-gray-800">{rating.rating.toFixed(1)}</span>
                                             <div className="flex items-center">

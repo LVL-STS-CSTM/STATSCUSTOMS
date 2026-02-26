@@ -43,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onProductClick }) =>
                 {/* Overlays */}
                 <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
                     {product.isBestseller && (
-                        <span className="text-[8px] md:text-[9px] font-space-grotesk font-bold tracking-wider text-black bg-white/90 px-1.5 py-0.5 md:px-2 md:py-1 uppercase backdrop-blur-sm shadow-sm rounded-sm transition-colors">
+                        <span className="text-[8px] md:text-[9px] font-futura font-bold tracking-wider text-black bg-white/90 px-1.5 py-0.5 md:px-2 md:py-1 uppercase backdrop-blur-sm shadow-sm rounded-sm transition-colors">
                             Bestseller
                         </span>
                     )}

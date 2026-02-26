@@ -55,7 +55,7 @@ const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description:
                     {icon}
                 </div>
                 
-                <h3 className="font-rheiborn text-lg md:text-xl text-gray-900 group-hover:text-white uppercase tracking-wide mb-4 group-hover:tracking-widest transition-all duration-300 z-20">{title}</h3>
+                <h3 className="font-eurostile text-lg md:text-xl text-gray-900 group-hover:text-white uppercase tracking-wide mb-4 group-hover:tracking-widest transition-all duration-300 z-20">{title}</h3>
                 
                 <div className="w-8 h-0.5 bg-zinc-200 mb-4 group-hover:w-16 group-hover:bg-white transition-all duration-500 z-20"></div>
                 
@@ -80,7 +80,7 @@ const WhyChooseUs: React.FC = () => {
                     <span className={`inline-block py-1 px-3 rounded-full bg-white border border-zinc-200 text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] mb-6 shadow-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                         The Stats Advantage
                     </span>
-                    <h2 className={`font-rheiborn text-3xl md:text-5xl lg:text-6xl text-gray-900 mb-6 uppercase tracking-widest leading-none transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                    <h2 className={`font-eurostile text-3xl md:text-5xl lg:text-6xl text-gray-900 mb-6 uppercase tracking-widest leading-none transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                         Why Choose<br/>Stats Custom?
                     </h2>
                     <p className={`text-base md:text-lg text-gray-500 max-w-2xl mx-auto font-light transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>

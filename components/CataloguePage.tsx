@@ -27,7 +27,7 @@ const FilterLink: React.FC<{ active: boolean; onClick: () => void; label: string
         onClick={onClick}
         className={`flex items-center justify-between w-full text-left group transition-all ${active ? 'text-black' : 'text-zinc-400 hover:text-zinc-600'}`}
     >
-        <span className={`text-[11px] font-bold uppercase tracking-widest font-space-grotesk ${active ? 'underline underline-offset-8 decoration-2' : ''}`}>
+        <span className={`text-[11px] font-bold uppercase tracking-widest font-rheiborn ${active ? 'underline underline-offset-8 decoration-2' : ''}`}>
             {label}
         </span>
         {count !== undefined && (
@@ -137,7 +137,7 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                             <div className="flex items-center justify-between mb-10 pb-4 border-b-2 border-black">
                                 <div className="flex items-center gap-2">
                                     <FilterIcon className="w-4 h-4" />
-                                    <h2 className="font-eurostile font-bold text-xs uppercase tracking-widest">Filters</h2>
+                                    <h2 className="font-rheiborn font-bold text-xs uppercase tracking-widest">Filters</h2>
                                 </div>
                                 {initialFilter && (
                                     <button onClick={clearAll} className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 hover:text-black transition-colors">
@@ -163,7 +163,7 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                                     {isSidebarVisible ? 'Hide Filters' : 'Show Filters'}
                                 </button>
                                 <div className="hidden lg:block h-4 w-[1px] bg-zinc-100"></div>
-                                <h1 className="font-eurostile font-bold text-xs uppercase tracking-[0.4em] text-zinc-900">
+                                <h1 className="font-rheiborn font-bold text-xs uppercase tracking-[0.4em] text-zinc-900">
                                     Browse All
                                     <span className="text-zinc-300 ml-4 font-mono">[{filteredProducts.length}]</span>
                                 </h1>
@@ -223,7 +223,7 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                 <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsMobileFilterOpen(false)}></div>
                 <div className={`absolute bottom-0 left-0 right-0 bg-white rounded-t-[2.5rem] max-h-[90vh] flex flex-col transition-transform duration-500 ease-out overflow-hidden ${isMobileFilterOpen ? 'translate-y-0' : 'translate-y-full'}`}>
                     <header className="flex items-center justify-between p-8 border-b border-zinc-100">
-                        <h2 className="font-eurostile font-bold text-sm uppercase tracking-[0.3em]">Filter Collection</h2>
+                        <h2 className="font-rheiborn font-bold text-sm uppercase tracking-[0.3em]">Filter Collection</h2>
                         <button onClick={() => setIsMobileFilterOpen(false)} className="p-2">
                             <CloseIcon className="w-7 h-7" />
                         </button>
