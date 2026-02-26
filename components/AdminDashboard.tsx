@@ -110,7 +110,7 @@ const QuoteManagement: React.FC = () => {
                                 <tr key={quote.id} className="hover:bg-zinc-50 transition-colors group">
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex flex-col">
-                                            <span className="text-xs font-mono font-bold text-zinc-900 group-hover:text-black">{quote.id}</span>
+                                            <span className="text-xs font-grotesk font-bold text-zinc-900 group-hover:text-black">{quote.id}</span>
                                             <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-wide">{new Date(quote.submissionDate).toLocaleDateString()}</span>
                                         </div>
                                     </td>

@@ -130,7 +130,7 @@ const DashboardAnalytics: React.FC = () => {
                                 <tr key={quote.id} className="hover:bg-zinc-50 transition-colors group">
                                     <td className="px-8 py-5 whitespace-nowrap">
                                         <div className="flex flex-col">
-                                            <span className="text-xs font-mono font-bold text-zinc-900">{new Date(quote.submissionDate).toLocaleDateString()}</span>
+                                            <span className="text-xs font-grotesk font-bold text-zinc-900">{new Date(quote.submissionDate).toLocaleDateString()}</span>
                                             <span className="text-[9px] text-zinc-400 font-bold">{new Date(quote.submissionDate).toLocaleTimeString()}</span>
                                         </div>
                                     </td>

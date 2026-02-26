@@ -67,7 +67,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                 {/* Back Navigation */}
                 <button 
                     onClick={() => onNavigate('catalogue')}
-                    className="mb-8 text-[10px] font-rheiborn font-bold uppercase tracking-[0.2em] text-zinc-400 hover:text-black transition-colors flex items-center gap-2 group"
+                    className="mb-8 text-[10px] font-grotesk font-bold uppercase tracking-[0.2em] text-zinc-400 hover:text-black transition-colors flex items-center gap-2 group"
                 >
                     <span className="group-hover:-translate-x-1 transition-transform">&larr;</span> Back to Catalogue
                 </button>
@@ -102,12 +102,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                     {/* RIGHT: Product Info & Details */}
                     <div className="lg:col-span-4 flex flex-col h-full lg:sticky lg:top-24">
                         <header className="mb-8 border-b border-zinc-100 pb-8">
-                            <h1 className="font-rheiborn font-bold text-3xl md:text-4xl lg:text-5xl text-black mb-2 uppercase tracking-tight leading-none">{product.name}</h1>
+                            <h1 className="font-eurostile font-bold text-3xl md:text-4xl lg:text-5xl text-black mb-2 uppercase tracking-tight leading-none">{product.name}</h1>
                             {/* Price removed as requested */}
                             <div className="flex items-center justify-end mt-6">
                                 <button 
                                     onClick={() => setIsSizeGuideOpen(true)}
-                                    className="flex items-center gap-2 text-[9px] font-rheiborn font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-zinc-600 hover:border-zinc-600 transition-all"
+                                    className="flex items-center gap-2 text-[9px] font-grotesk font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-zinc-600 hover:border-zinc-600 transition-all"
                                 >
                                     <RulerIcon className="w-4 h-4" /> Size Guide
                                 </button>
@@ -117,8 +117,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                         {/* Color Selection */}
                         <div className="mb-10">
                             <div className="flex justify-between items-center mb-4">
-                                <label className="block text-[10px] font-rheiborn font-bold uppercase tracking-[0.2em] text-zinc-400">Color</label>
-                                <span className="text-[10px] font-rheiborn font-bold uppercase tracking-[0.2em] text-black">{selectedColor?.name}</span>
+                                <label className="block text-[10px] font-grotesk font-bold uppercase tracking-[0.2em] text-zinc-400">Color</label>
+                                <span className="text-[10px] font-grotesk font-bold uppercase tracking-[0.2em] text-black">{selectedColor?.name}</span>
                             </div>
                             <div className="flex flex-wrap gap-3">
                                 {product.availableColors.map((color) => {
@@ -149,24 +149,24 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                         {/* Accordion Details */}
                         <div className="border-t border-zinc-100">
                             <Accordion title="DESCRIPTION">
-                                <div className="pb-4 text-sm leading-relaxed text-zinc-600 font-futura font-light">
+                                <div className="pb-4 text-sm leading-relaxed text-zinc-600 font-futura">
                                     {product.description}
                                 </div>
                             </Accordion>
                             
                             <Accordion title="DESIGNED FOR">
-                                <div className="pb-4 text-sm leading-relaxed text-zinc-600 font-futura font-light">
+                                <div className="pb-4 text-sm leading-relaxed text-zinc-600 font-futura">
                                     <ul className="space-y-2">
                                         <li className="flex justify-between">
-                                            <span className="font-rheiborn font-bold text-black uppercase text-[10px] tracking-widest">Category</span>
+                                            <span className="font-grotesk font-bold text-black uppercase text-[10px] tracking-widest">Category</span>
                                             <span>{product.categoryGroup} / {product.category}</span>
                                         </li>
                                         <li className="flex justify-between">
-                                            <span className="font-rheiborn font-bold text-black uppercase text-[10px] tracking-widest">Fit</span>
+                                            <span className="font-grotesk font-bold text-black uppercase text-[10px] tracking-widest">Fit</span>
                                             <span>{product.gender}</span>
                                         </li>
                                         <li className="flex justify-between">
-                                            <span className="font-rheiborn font-bold text-black uppercase text-[10px] tracking-widest">Min Order</span>
+                                            <span className="font-grotesk font-bold text-black uppercase text-[10px] tracking-widest">Min Order</span>
                                             <span>{product.moq || 24} Units</span>
                                         </li>
                                     </ul>
@@ -178,11 +178,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                                     {selectedMaterials.length > 0 ? (
                                         selectedMaterials.map((m, idx) => (
                                             <div key={m.id} className={idx > 0 ? "pt-4 border-t border-zinc-50" : ""}>
-                                                <h4 className="text-[10px] font-rheiborn font-bold uppercase tracking-widest text-black mb-1">{m.name}</h4>
+                                                <h4 className="text-[10px] font-grotesk font-bold uppercase tracking-widest text-black mb-1">{m.name}</h4>
                                                 <p className="text-xs text-zinc-400 mt-1 font-futura">{m.description}</p>
                                                 <div className="flex flex-wrap gap-2 mt-3">
                                                     {m.features.map(f => (
-                                                        <span key={f} className="px-2 py-1 bg-zinc-100 text-[9px] font-rheiborn font-bold uppercase tracking-wider text-zinc-600">
+                                                        <span key={f} className="px-2 py-1 bg-zinc-100 text-[9px] font-grotesk font-bold uppercase tracking-wider text-zinc-600">
                                                             {f}
                                                         </span>
                                                     ))}
@@ -191,7 +191,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                                         ))
                                     ) : (
                                         <div>
-                                            <h4 className="text-[10px] font-rheiborn font-bold uppercase tracking-widest text-black mb-1">Premium Technical Fabric</h4>
+                                            <h4 className="text-[10px] font-grotesk font-bold uppercase tracking-widest text-black mb-1">Premium Technical Fabric</h4>
                                             <p className="text-xs text-zinc-400 mt-1 font-futura">Engineered for durability and performance.</p>
                                         </div>
                                     )}
@@ -203,7 +203,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
 
                 {/* 3-CARD FEATURE SECTION */}
                 <section className="mt-16 lg:mt-32 border-t border-zinc-100 pt-12 lg:pt-16">
-                    <h3 className="text-[10px] font-rheiborn font-bold uppercase tracking-[0.4em] text-zinc-400 mb-8 lg:mb-12 text-center">Product Features</h3>
+                    <h3 className="text-[10px] font-grotesk font-bold uppercase tracking-[0.4em] text-zinc-400 mb-8 lg:mb-12 text-center">Product Features</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {(product.features && product.features.length > 0 ? product.features : productFeatures.sort((a,b) => (a.displayOrder || 0) - (b.displayOrder || 0))).map((feature, idx) => (
                             <div key={idx} className="space-y-6 text-center">
@@ -215,7 +215,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                                     />
                                 </div>
                                 <div>
-                                    <h4 className="font-rheiborn font-bold text-sm uppercase tracking-widest mb-2">{(feature as any).name || (feature as any).title}</h4>
+                                    <h4 className="font-eurostile font-bold text-sm uppercase tracking-widest mb-2">{(feature as any).name || (feature as any).title}</h4>
                                     <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto font-futura">{(feature as any).value || (feature as any).description}</p>
                                 </div>
                             </div>
@@ -228,8 +228,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                 {relatedProducts.length > 0 && (
                     <section className="mt-16 lg:mt-32 pt-12 lg:pt-20 border-t border-zinc-100">
                         <div className="flex justify-between items-end mb-8 lg:mb-12">
-                            <h2 className="font-rheiborn font-bold text-2xl md:text-3xl uppercase tracking-tight">Complete the Kit</h2>
-                            <button onClick={() => onNavigate('catalogue')} className="hidden md:block text-[10px] font-rheiborn font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-zinc-600 hover:border-zinc-600 transition-colors">View All</button>
+                            <h2 className="font-eurostile font-bold text-2xl md:text-3xl uppercase tracking-tight">Complete the Kit</h2>
+                            <button onClick={() => onNavigate('catalogue')} className="hidden md:block text-[10px] font-grotesk font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-zinc-600 hover:border-zinc-600 transition-colors">View All</button>
                         </div>
                         <ProductGrid products={relatedProducts} onProductClick={onProductClick} />
                     </section>

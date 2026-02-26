@@ -243,7 +243,7 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
                                     type="text"
                                     value={productToEdit ? productToEdit.id : manualId}
                                     onChange={(e) => setManualId(e.target.value)}
-                                    className={`${inputClasses} font-mono ${productToEdit ? 'bg-zinc-100 text-zinc-400 cursor-not-allowed' : ''}`}
+                                    className={`${inputClasses} font-grotesk ${productToEdit ? 'bg-zinc-100 text-zinc-400 cursor-not-allowed' : ''}`}
                                     placeholder="e.g. JER-001"
                                     disabled={!!productToEdit}
                                 />
@@ -357,7 +357,7 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
                                     <label className={labelClasses}>Hex Code</label>
                                     <div className="flex items-center gap-2 h-[42px] px-2 bg-zinc-50 border border-zinc-200 rounded-lg">
                                         <input type="color" value={newColor.hex} onChange={e => setNewColor(c => ({ ...c, hex: e.target.value }))} className="w-8 h-8 border-0 p-0 cursor-pointer bg-transparent" />
-                                        <span className="text-xs font-mono text-zinc-500">{newColor.hex}</span>
+                                        <span className="text-xs font-grotesk text-zinc-500">{newColor.hex}</span>
                                     </div>
                                 </div>
                                 <button type="button" onClick={handleAddColor} className="h-[42px] px-6 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-zinc-800 transition-colors">
@@ -447,8 +447,8 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
                                         {formData.availableSizes.map((size, index) => (
                                             <tr key={index}>
                                                 <td className="px-4 py-2 text-xs font-bold">{size.name}</td>
-                                                <td className="px-4 py-2 text-xs font-mono">{size.width}"</td>
-                                                <td className="px-4 py-2 text-xs font-mono">{size.length}"</td>
+                                                <td className="px-4 py-2 text-xs font-grotesk">{size.width}"</td>
+                                                <td className="px-4 py-2 text-xs font-grotesk">{size.length}"</td>
                                                 <td className="px-4 py-2 text-right">
                                                     <button type="button" onClick={() => handleRemoveSize(index)} className="text-zinc-400 hover:text-red-500"><TrashIcon className="w-3.5 h-3.5"/></button>
                                                 </td>

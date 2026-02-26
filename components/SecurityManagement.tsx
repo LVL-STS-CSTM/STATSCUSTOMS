@@ -102,7 +102,7 @@ const SecurityManagement: React.FC = () => {
                                 <span className="text-[10px] font-bold uppercase">{item.status ? 'Online' : 'Error'}</span>
                             </div>
                         ) : (
-                            <span className="text-[10px] font-mono font-black text-indigo-600">{item.value}</span>
+                            <span className="text-[10px] font-grotesk font-black text-indigo-600">{item.value}</span>
                         )}
                     </div>
                 ))}
@@ -116,7 +116,7 @@ const SecurityManagement: React.FC = () => {
                                 <TargetIcon className="w-5 h-5 text-white" />
                             </div>
                             <div>
-                                <h2 className="text-xl font-eurostile font-black uppercase tracking-widest text-gray-900">Admin Login</h2>
+                                <h2 className="text-xl font-rheiborn font-black uppercase tracking-widest text-gray-900">Admin Login</h2>
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Change your login details</p>
                             </div>
                         </div>
@@ -156,7 +156,7 @@ const SecurityManagement: React.FC = () => {
                 <section className="bg-zinc-900 p-10 rounded-[2.5rem] shadow-2xl text-white">
                     <header className="flex justify-between items-center mb-10">
                         <div>
-                            <h2 className="text-xl font-eurostile font-black uppercase tracking-widest">Admin Activity</h2>
+                            <h2 className="text-xl font-rheiborn font-black uppercase tracking-widest">Admin Activity</h2>
                             <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-1">Recent system changes</p>
                         </div>
                     </header>
@@ -168,7 +168,7 @@ const SecurityManagement: React.FC = () => {
                                 <div className="flex-grow min-w-0">
                                     <div className="flex justify-between items-start mb-2">
                                         <span className={`text-[9px] font-black uppercase tracking-widest ${log.severity === 'high' ? 'text-amber-400' : 'text-zinc-400'}`}>{log.event}</span>
-                                        <span className="text-[8px] font-mono text-zinc-600 shrink-0">{new Date(log.timestamp).toLocaleTimeString()}</span>
+                                        <span className="text-[8px] font-grotesk text-zinc-600 shrink-0">{new Date(log.timestamp).toLocaleTimeString()}</span>
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <span className="text-[10px] font-black text-white truncate">{log.user}</span>

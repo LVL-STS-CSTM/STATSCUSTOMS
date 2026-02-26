@@ -1,14 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* 
-   FONT STRATEGY:
-   Linux servers (Vercel/Netlify) are case-sensitive. 
-   We define two font families: one for TitleCase filenames and one for lowercase.
-   Tailwind will attempt to load the first; if it 404s, it falls back to the second.
-*/
-
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap');
-
-/* --- Rheiborn Sans Clean (TitleCase Files) --- */
 @font-face {
   font-family: 'Rheiborn Sans Clean';
   src: url('/fonts/RheibornSansClean.ttf') format('truetype');
@@ -17,37 +10,47 @@
   font-display: swap;
 }
 
-/* --- Rheiborn Sans Clean (Lowercase Files - Fallback) --- */
-@font-face {
-  font-family: 'Rheiborn Sans Clean LC';
-  src: url('/fonts/RheibornSansClean.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* --- Futura (TitleCase Files) --- */
 @font-face {
   font-family: 'Futura';
-  src: url('/fonts/Futura.ttf') format('truetype');
+  src: url('/fonts/futura medium bt.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
-/* --- Futura (Lowercase Files - Fallback) --- */
 @font-face {
-  font-family: 'Futura LC';
-  src: url('/fonts/Futura.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'Futura';
+  src: url('/fonts/Futura Heavy font.ttf') format('truetype');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
-@theme {
-  --font-rheiborn: "Rheiborn Sans Clean", "Rheiborn Sans Clean LC", "Antonio", sans-serif;
-  --font-futura: "Futura", "Futura LC", "Jost", sans-serif;
+/* Rheiborn — headings and titles only */
+h1, h2, h3, h4, h5, h6,
+.font-eurostile,
+.font-oswald,
+.font-heading {
+  font-family: 'Rheiborn Sans Clean', sans-serif !important;
 }
+
+/* Futura — body copy and descriptions only */
+p, li, blockquote,
+.font-futura {
+  font-family: 'Futura', 'Space Grotesk', sans-serif !important;
+}
+
+/* Space Grotesk — all UI, labels, buttons, nav */
+body,
+button, input, textarea, select,
+label, caption, small, span, a,
+nav, footer {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* Everything else inherits */
+* { font-family: inherit; }
+
 
 /* Global Scrollbar Hiding Strategy */
 
@@ -68,7 +71,6 @@ html {
 }
 
 body {
-  font-family: var(--font-futura);
   background-color: #ffffff;
   color: #111;
   -webkit-font-smoothing: antialiased;
@@ -82,13 +84,6 @@ body {
 .dark body {
   background-color: #09090b;
   color: #f4f4f5;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-rheiborn);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 500;
 }
 
 .no-scrollbar::-webkit-scrollbar { 

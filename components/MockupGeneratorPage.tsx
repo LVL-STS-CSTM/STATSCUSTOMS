@@ -85,7 +85,7 @@ const MockupGeneratorPage: React.FC = () => {
                             <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
                             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">Design Studio</span>
                         </div>
-                        <h1 className="font-eurostile text-3xl uppercase tracking-widest">Mockup Builder</h1>
+                        <h1 className="font-rheiborn text-3xl uppercase tracking-widest">Mockup Builder</h1>
                         <p className="text-xs text-white/40 mt-1 font-medium">Create and preview your custom gear.</p>
                     </header>
 
@@ -181,7 +181,7 @@ const MockupGeneratorPage: React.FC = () => {
                             <div className="relative group">
                                 <canvas ref={canvasRef} className="w-full h-auto" />
                                 <div className="absolute top-6 left-6 flex flex-col gap-1">
-                                    <span className="text-[10px] font-mono text-zinc-300 bg-black/80 px-2 py-1 rounded">Model: {selectedProduct.name}</span>
+                                    <span className="text-[10px] font-grotesk text-zinc-300 bg-black/80 px-2 py-1 rounded">Model: {selectedProduct.name}</span>
                                 </div>
                             </div>
                         ) : (
@@ -190,7 +190,7 @@ const MockupGeneratorPage: React.FC = () => {
                                     <DesignIcon className="w-8 h-8 text-white/20" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="font-eurostile text-xl uppercase tracking-widest text-white/60">Ready to design?</h3>
+                                    <h3 className="font-rheiborn text-xl uppercase tracking-widest text-white/60">Ready to design?</h3>
                                     <p className="text-xs text-white/30 uppercase tracking-widest font-bold">Pick a product from the list to get started</p>
                                 </div>
                             </div>

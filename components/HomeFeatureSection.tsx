@@ -59,7 +59,7 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
     }, []);
 
     return (
-        <section className="bg-black py-0">
+        <section className="bg-black py-0 font-grotesk">
             <div className="max-w-[100%] mx-auto relative group overflow-hidden">
 
                 
@@ -105,7 +105,7 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
                             
                             {/* Text Content */}
                             <div className="absolute bottom-0 left-0 p-6 md:p-16 text-white max-w-4xl pointer-events-none w-full flex flex-col items-center text-center md:items-start md:text-left">
-                                <span className="inline-block px-3 py-1.5 mb-4 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-none shadow-sm">
+                                <span className="inline-block px-3 py-1.5 mb-4 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-none shadow-sm font-grotesk">
                                     {slide.subtitle}
                                 </span>
                                 {/* Minimized Text Size Here */}
@@ -113,7 +113,7 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
                                     {slide.title}
                                 </h3>
                                 {/* Minimized Description Size Here */}
-                                <p className="text-[10px] sm:text-xs md:text-sm font-medium text-white/80 max-w-xl leading-relaxed drop-shadow-md line-clamp-3 md:line-clamp-none">
+                                <p className="text-[10px] sm:text-xs md:text-sm font-medium text-white/80 max-w-xl leading-relaxed drop-shadow-md line-clamp-3 md:line-clamp-none font-futura">
                                     {slide.description}
                                 </p>
                             </div>

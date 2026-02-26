@@ -21,8 +21,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       <div className="flex justify-between flex-wrap max-w-7xl mx-auto gap-8">
         {/* About Section */}
         <div className="flex-1 min-w-[160px]">
-          <h4 className="text-white mb-8 font-rheiborn font-bold uppercase text-lg tracking-[0.3em]">ABOUT</h4>
-          <ul className="list-none p-0 m-0 text-xs text-zinc-400 space-y-4 font-sans">
+          <h4 className="text-white mb-8 font-eurostile font-bold uppercase text-lg tracking-[0.3em]">ABOUT</h4>
+          <ul className="list-none p-0 m-0 text-xs text-zinc-400 space-y-4 font-grotesk">
             <li>
                 <button onClick={(e) => handleNavClick(e, 'services')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">WHAT WE DO</button>
             </li>
@@ -43,8 +43,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Services Section */}
         <div className="flex-1 min-w-[160px]">
-          <h4 className="text-white mb-8 font-rheiborn font-bold uppercase text-lg tracking-[0.3em]">SERVICES</h4>
-          <ul className="list-none p-0 m-0 text-xs text-zinc-400 space-y-4 font-sans">
+          <h4 className="text-white mb-8 font-eurostile font-bold uppercase text-lg tracking-[0.3em]">SERVICES</h4>
+          <ul className="list-none p-0 m-0 text-xs text-zinc-400 space-y-4 font-grotesk">
             <li>
                 <button onClick={(e) => handleNavClick(e, 'faq')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">FAQS</button>
             </li>
@@ -62,7 +62,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Connect Section */}
         <div className="flex-1 min-w-[160px]">
-          <h4 className="text-white mb-8 font-rheiborn font-bold uppercase text-lg tracking-[0.3em]">CONNECT</h4>
+          <h4 className="text-white mb-8 font-eurostile font-bold uppercase text-lg tracking-[0.3em]">CONNECT</h4>
           <div className="flex gap-6 my-2.5">
             <a href="https://www.facebook.com/statsph" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-zinc-400 hover:text-white transition-colors">
               <FaFacebookF className="w-5 h-5" />
@@ -86,7 +86,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
       </div>
       </footer>
-    <div className="bg-brand-black py-6 font-sans text-zinc-500 text-[10px] border-t border-zinc-800 uppercase tracking-widest">
+    <div className="bg-brand-black py-6 font-grotesk text-zinc-500 text-[10px] border-t border-zinc-800 uppercase tracking-widest">
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center">
             <p>
             Copyright &copy; 2026 - <b className="text-white">STATSPH</b>

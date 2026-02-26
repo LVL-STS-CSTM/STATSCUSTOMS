@@ -88,14 +88,14 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                                 <div className="relative h-full flex items-center" onMouseEnter={() => { setIsMegaMenuOpen(true); setIsExploreMenuOpen(false); }}>
                                     <button
                                         onClick={() => handleNavClick('browse', null)}
-                                        className={`flex items-center space-x-1.5 text-[11px] font-rheiborn font-bold uppercase tracking-[0.3em] transition-colors duration-300 ${view === 'browse' ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
+                                        className={`flex items-center space-x-1.5 text-[11px] font-grotesk font-bold uppercase tracking-[0.3em] transition-colors duration-300 ${view === 'browse' ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
                                     >
                                         <span>Catalogue</span>
                                         <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform duration-500 ${isMegaMenuOpen ? 'rotate-180' : ''}`} />
                                     </button>
                                 </div>
                                 <div className="relative h-full flex items-center" onMouseEnter={() => { setIsExploreMenuOpen(true); setIsMegaMenuOpen(false); }}>
-                                    <button className="flex items-center space-x-1.5 text-[11px] font-rheiborn font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors duration-300">
+                                    <button className="flex items-center space-x-1.5 text-[11px] font-grotesk font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors duration-300">
                                         <span>Explore</span>
                                         <ChevronDownIcon className={`w-3.5 h-3.5 transition-transform duration-500 ${isExploreMenuOpen ? 'rotate-180' : ''}`} />
                                     </button>
@@ -198,7 +198,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                 <div className={`fixed top-0 left-0 h-full w-full max-w-[300px] bg-white shadow-3xl z-50 transform transition-transform duration-700 ease-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                     <div className="flex flex-col h-full">
                         <header className="flex items-center justify-between p-8 border-b border-zinc-50">
-                            <h2 className="font-rheiborn font-bold text-[10px] uppercase tracking-[0.4em] text-zinc-400">Navigation</h2>
+                            <h2 className="font-grotesk font-bold text-[10px] uppercase tracking-[0.4em] text-zinc-400">Navigation</h2>
                             <IconButton onClick={() => setIsMobileMenuOpen(false)} ariaLabel="Close menu"><CloseIcon className="w-5 h-5" /></IconButton>
                         </header>
                         <nav className="flex-1 overflow-y-auto p-8 space-y-2 no-scrollbar">

@@ -30,7 +30,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
     };
 
     return (
-        <div className="bg-white text-[#3A3A3A]">
+        <div className="bg-white text-[#3A3A3A] font-grotesk">
             {/* Full Banner Hero */}
             <section className="relative h-[calc(100dvh-3.5rem)] min-h-[600px] bg-black text-white flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
@@ -42,11 +42,11 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10"></div>
                 <div className="relative z-20 px-6 text-center max-w-5xl">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.6em] text-white/60 mb-6 block animate-fade-in">Established in the Philippines</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.6em] text-white/60 mb-6 block animate-fade-in font-grotesk">Established in the Philippines</span>
                     <h1 className="font-eurostile font-medium text-4xl md:text-6xl lg:text-7xl tracking-tighter uppercase leading-[0.85] animate-fade-in-up drop-shadow-2xl">
                         The Narrative
                     </h1>
-                    <p className="mt-8 text-[10px] md:text-xs max-w-2xl mx-auto text-white/60 font-light leading-relaxed uppercase tracking-[0.4em] animate-fade-in-up [animation-delay:200ms]">
+                    <p className="mt-8 text-[10px] md:text-xs max-w-2xl mx-auto text-white/60 font-light leading-relaxed uppercase tracking-[0.4em] animate-fade-in-up [animation-delay:200ms] font-grotesk">
                         Forged in the Philippines. Engineered for the World.
                     </p>
                 </div>
@@ -68,7 +68,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                     <div className={`transition-all duration-1000 ease-out ${visibility.who ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
                          <div className="flex items-center gap-3 mb-6">
                             <div className="w-10 h-[1px] bg-black"></div>
-                            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black">Who We Are</span>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black font-grotesk">Who We Are</span>
                         </div>
                         <div className="relative p-8 border border-black/5">
                             {/* Inner Corner Markers for Text Box */}
@@ -78,7 +78,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                             <h2 className="font-eurostile text-4xl lg:text-7xl text-gray-900 mb-10 uppercase tracking-tighter leading-none">
                                 Technical Sportswear<br/>Pridefully Filipino
                             </h2>
-                            <div className="space-y-8 text-zinc-600 leading-relaxed font-light text-lg antialiased">
+                            <div className="space-y-8 text-zinc-600 leading-relaxed font-light text-lg antialiased font-futura">
                                 <p>
                                     <strong>STATS Technical Sportswear</strong> is a prideful Filipino brand that produces high-performance technical sportswear, specifically designed for our tropical climate.
                                 </p>
@@ -124,7 +124,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
 
                 <div className="max-w-5xl mx-auto text-center relative z-10">
                     <div className={`transition-all duration-1000 ease-out ${visibility.what ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500 mb-8 block">What We Do</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500 mb-8 block font-grotesk">What We Do</span>
                         <h2 className="font-eurostile text-4xl lg:text-8xl text-white mb-12 uppercase tracking-tighter leading-none drop-shadow-2xl">
                             Crafting Premium<br/>Performance
                         </h2>
@@ -161,10 +161,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                         <div className={`transition-all duration-1000 ease-out ${visibility.how ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="w-10 h-[1px] bg-black"></div>
-                                <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black">How We Work</span>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black font-grotesk">How We Work</span>
                             </div>
                             <h2 className="font-eurostile text-4xl lg:text-6xl text-gray-900 mb-10 uppercase tracking-tighter leading-none">Engineered by Athletes<br/>for Athletes</h2>
-                            <div className="space-y-8 text-zinc-600 leading-relaxed font-light text-lg antialiased">
+                            <div className="space-y-8 text-zinc-600 leading-relaxed font-light text-lg antialiased font-futura">
                                 <p>
                                     Every STATS Technical Sportswear design is rooted in years of experience as athletes and individuals who live and breathe an active lifestyle. Our team knows what it takes to perform at the highest level because we’ve been there—pushing limits, testing boundaries, and understanding the nuances of movement.
                                 </p>
@@ -184,7 +184,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                                     <SampleTestingIcon className="w-8 h-8"/>
                                     <h3 className="font-eurostile text-xl uppercase tracking-wider">Sample Testing</h3>
                                 </div>
-                                <p className="text-zinc-600 font-light">Designs are finalized, then engineered in-house. Every prototype goes through rigorous fit, function, and durability trials.</p>
+                                <p className="text-zinc-600 font-light font-futura">Designs are finalized, then engineered in-house. Every prototype goes through rigorous fit, function, and durability trials.</p>
                             </div>
                             <div className="bg-zinc-50 p-10 border-l-4 border-black relative group">
                                 <div className="absolute top-0 right-0 w-2 h-2 bg-black opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -192,7 +192,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                                     <ProductionIcon className="w-8 h-8"/>
                                     <h3 className="font-eurostile text-xl uppercase tracking-wider">Small Batch Production</h3>
                                 </div>
-                                <p className="text-zinc-600 font-light">Producing in small batches ensures tighter quality control, less waste, and gear that’s fresh, focused, and built for purpose.</p>
+                                <p className="text-zinc-600 font-light font-futura">Producing in small batches ensures tighter quality control, less waste, and gear that’s fresh, focused, and built for purpose.</p>
                             </div>
                             <div className="bg-zinc-50 p-10 border-l-4 border-black relative group">
                                 <div className="absolute top-0 right-0 w-2 h-2 bg-black opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -200,7 +200,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                                     <SustainabilityIcon className="w-8 h-8"/>
                                     <h3 className="font-eurostile text-xl uppercase tracking-wider">Sustainability Statement</h3>
                                 </div>
-                                <p className="text-zinc-600 font-light">From small-batch production to using recycled fabrics for our hang tags, every step is intentional. We donate fabric cutouts to local sewing shops—minimizing waste and maximizing impact.</p>
+                                <p className="text-zinc-600 font-light font-futura">From small-batch production to using recycled fabrics for our hang tags, every step is intentional. We donate fabric cutouts to local sewing shops—minimizing waste and maximizing impact.</p>
                             </div>
                         </div>
                     </div>
@@ -242,7 +242,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                 <div className="max-w-5xl mx-auto relative z-10">
                     <div className={`transition-all duration-1000 ease-out ${visibility.why ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <div className="text-center mb-20">
-                            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500 mb-6 block">Why We Do It</span>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500 mb-6 block font-grotesk">Why We Do It</span>
                             <h2 className="font-eurostile text-5xl lg:text-8xl text-white mb-12 uppercase tracking-tighter leading-none">Homegrown<br/>Excellence</h2>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-zinc-400 leading-relaxed font-light text-lg antialiased font-futura">
@@ -281,7 +281,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
             <section ref={sectionRefs.cta} className={`py-32 px-6 bg-white transition-all duration-1000 ease-out ${visibility.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <div className="max-w-5xl mx-auto text-center">
                     <h2 className="font-eurostile text-4xl md:text-6xl text-gray-900 mb-12 uppercase tracking-tighter leading-none">Ready to Experience<br/>Technical Excellence?</h2>
-                    <Button variant="solid" onClick={() => onNavigate('catalogue')} className="px-16 py-6 text-lg rounded-none shadow-2xl shadow-black/10 hover:scale-105 active:scale-95 transition-all uppercase tracking-widest font-bold">
+                    <Button variant="solid" onClick={() => onNavigate('catalogue')} className="px-16 py-6 text-lg rounded-none shadow-2xl shadow-black/10 hover:scale-105 active:scale-95 transition-all uppercase tracking-widest font-bold font-grotesk">
                         Browse Collection
                     </Button>
                 </div>

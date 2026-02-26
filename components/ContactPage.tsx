@@ -27,7 +27,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     
-    const labelClasses = "block text-[10px] font-rheiborn font-black uppercase tracking-[0.4em] text-zinc-400 ml-2 mb-1";
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -57,7 +56,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
     };
     
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-white min-h-screen font-grotesk">
             {/* Video Banner Section */}
             <div className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden bg-black">
                 {isCloudinaryEmbed ? (
@@ -75,8 +74,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
                 <div className="absolute inset-0 flex flex-col items-center justify-end text-white pb-16 md:pb-24 px-4 pointer-events-none">
-                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] mb-4 font-futura">{banner.description}</span>
-                    <h1 className="font-rheiborn text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter text-center leading-none drop-shadow-2xl">{banner.title}</h1>
+                    <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] mb-4 font-grotesk">{banner.description}</span>
+                    <h1 className="font-eurostile text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter text-center leading-none drop-shadow-2xl">{banner.title}</h1>
                 </div>
             </div>
 
@@ -86,8 +85,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                     <div className="space-y-12">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
                             <div>
-                                <h3 className="text-[10px] font-rheiborn font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Location</h3>
-                                <p className="text-sm font-bold uppercase tracking-widest text-zinc-900 leading-relaxed font-rheiborn">
+                                <h3 className="text-[10px] font-eurostile font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Location</h3>
+                                <p className="text-sm font-bold uppercase tracking-widest text-zinc-900 leading-relaxed font-grotesk">
                                     306 El Grande Ave<br/>
                                     Parañaque<br/>
                                     1740 Metro Manila
@@ -98,8 +97,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                             </div>
 
                             <div>
-                                <h3 className="text-[10px] font-rheiborn font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Opening Hours</h3>
-                                <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900 font-rheiborn">
+                                <h3 className="text-[10px] font-eurostile font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Opening Hours</h3>
+                                <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900 font-grotesk">
                                     <li className="flex justify-between gap-4"><span>Mon</span><span>8:00 AM - 5:00 PM</span></li>
                                     <li className="flex justify-between gap-4"><span>Tue</span><span>8:00 AM - 5:00 PM</span></li>
                                     <li className="flex justify-between gap-4"><span>Wed</span><span>8:00 AM - 5:00 PM</span></li>
@@ -112,8 +111,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                         </div>
 
                         <div>
-                            <h3 className="text-[10px] font-rheiborn font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Contact</h3>
-                            <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900 font-rheiborn">
+                            <h3 className="text-[10px] font-eurostile font-black uppercase tracking-[0.3em] text-zinc-400 mb-4">Contact</h3>
+                            <ul className="space-y-2 text-sm font-bold uppercase tracking-widest text-zinc-900 font-grotesk">
                                 <li><a href="tel:+639183028818" className="hover:text-zinc-500 transition-colors block">(+63) 918 302 8818</a></li> <li><a href="tel:+639457895304" className="hover:text-zinc-500 transition-colors block">(+63) 945 789 5304</a></li>
                                 <li><a href="mailto:CONTACT@STATSCUSTOMS.PH" className="hover:text-zinc-500 transition-colors break-all block mt-2">CONTACT@STATSCUSTOMS.PH</a></li>
                             </ul>
@@ -150,7 +149,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                 {/* Form Section */}
                 <div className="max-w-3xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="font-rheiborn text-3xl md:text-4xl uppercase tracking-tighter mb-4">Submit Project Brief</h2>
+                        <h2 className="font-eurostile text-3xl md:text-4xl uppercase tracking-tighter mb-4">Submit Project Brief</h2>
                         <p className="text-sm text-zinc-500 uppercase tracking-widest font-futura">Get in touch with our team to start your custom apparel project.</p>
                     </div>
                     
@@ -169,28 +168,28 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div>
-                                    <label className={labelClasses}>Full Name</label>
+                                    <label className="block text-[10px] font-grotesk font-black uppercase tracking-[0.4em] text-zinc-400 ml-2 mb-1">Full Name</label>
                                     <input name="name" value={formData.name} onChange={handleInputChange} required className="w-full px-5 py-4 bg-zinc-50 border border-zinc-200 text-black placeholder-zinc-400 rounded-none focus:outline-none focus:border-black transition-all text-sm" placeholder="YOUR NAME" />
                                 </div>
                                 <div>
-                                    <label className={labelClasses}>Email Address</label>
+                                    <label className="block text-[10px] font-grotesk font-black uppercase tracking-[0.4em] text-zinc-400 ml-2 mb-1">Email Address</label>
                                     <input name="email" type="email" value={formData.email} onChange={handleInputChange} required className="w-full px-5 py-4 bg-zinc-50 border border-zinc-200 text-black placeholder-zinc-400 rounded-none focus:outline-none focus:border-black transition-all text-sm" placeholder="EMAIL@EXAMPLE.COM" />
                                 </div>
                             </div>
                             
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div>
-                                    <label className={labelClasses}>Contact Number</label>
+                                    <label className="block text-[10px] font-grotesk font-black uppercase tracking-[0.4em] text-zinc-400 ml-2 mb-1">Contact Number</label>
                                     <input name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full px-5 py-4 bg-zinc-50 border border-zinc-200 text-black placeholder-zinc-400 rounded-none focus:outline-none focus:border-black transition-all text-sm" placeholder="MOBILE OR LANDLINE" />
                                 </div>
                                 <div>
-                                    <label className={labelClasses}>Company (Optional)</label>
+                                    <label className="block text-[10px] font-grotesk font-black uppercase tracking-[0.4em] text-zinc-400 ml-2 mb-1">Company (Optional)</label>
                                     <input name="company" value={formData.company} onChange={handleInputChange} className="w-full px-5 py-4 bg-zinc-50 border border-zinc-200 text-black placeholder-zinc-400 rounded-none focus:outline-none focus:border-black transition-all text-sm" placeholder="BUSINESS NAME" />
                                 </div>
                             </div>
 
                             <div>
-                                <label className={labelClasses}>Project Specifications</label>
+                                <label className="block text-[10px] font-grotesk font-black uppercase tracking-[0.4em] text-zinc-400 ml-2 mb-1">Project Specifications</label>
                                 <textarea name="message" rows={4} value={formData.message} onChange={handleInputChange} required className="w-full px-5 py-4 bg-zinc-50 border border-zinc-200 text-black placeholder-zinc-400 rounded-none focus:outline-none focus:border-black transition-all text-sm resize-none" placeholder="DESCRIBE YOUR PROJECT OR QUESTIONS..."></textarea>
                             </div>
 
@@ -198,7 +197,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                                 <button 
                                     type="submit" 
                                     disabled={isSubmitting}
-                                    className="w-full py-5 bg-black text-white font-bold uppercase tracking-[0.3em] text-[11px] rounded-none hover:bg-zinc-800 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+                                    className="w-full py-5 bg-black text-white font-bold uppercase tracking-[0.3em] text-[11px] rounded-none hover:bg-zinc-800 transition-all flex items-center justify-center gap-3 disabled:opacity-50 font-grotesk"
                                 >
                                     {isSubmitting ? (
                                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>

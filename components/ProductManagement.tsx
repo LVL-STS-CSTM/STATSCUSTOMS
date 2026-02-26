@@ -132,7 +132,7 @@ const ProductManagement: React.FC = () => {
         <>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                 <div>
-                    <h2 className="text-2xl font-eurostile font-black uppercase tracking-widest">Inventory</h2>
+                    <h2 className="text-2xl font-rheiborn font-black uppercase tracking-widest">Inventory</h2>
                     <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mt-1">Manage catalogue items</p>
                 </div>
                 <div className="flex items-center gap-4 w-full md:w-auto">
@@ -205,7 +205,7 @@ const ProductManagement: React.FC = () => {
                                     <td className="px-3 py-4 whitespace-nowrap text-zinc-300 text-center">
                                         {isReorderingMode ? <DragHandleIcon className="w-4 h-4 inline-block group-hover:text-zinc-500"/> : index + 1}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-[10px] font-mono font-bold text-zinc-500">{product.id}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-[10px] font-grotesk font-bold text-zinc-500">{product.id}</td>
                                     <td className="px-6 py-4 whitespace-nowrap text-xs font-black uppercase text-zinc-900 tracking-tight">{product.name}</td>
                                     <td className="px-6 py-4 whitespace-nowrap text-[10px] font-bold uppercase text-zinc-500 tracking-widest">{product.category}</td>
                                     <td className="px-6 py-4 whitespace-nowrap text-[10px] font-bold uppercase text-zinc-500 tracking-widest">{product.categoryGroup}</td>
