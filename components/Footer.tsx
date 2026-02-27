@@ -88,7 +88,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <p>
             Copyright &copy; 2026 - <b className="text-white">STATSPH</b>
             </p>
-            <button onClick={(e) => handleNavClick(e, 'about')} className="mt-2 md:mt-0 hover:text-white transition-colors font-bold">About Us</button>
         </div>
     </div>
   </div>

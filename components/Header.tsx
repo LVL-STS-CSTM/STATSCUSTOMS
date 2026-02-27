@@ -61,8 +61,6 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
         { label: 'Contact Us', view: 'contact' as View },
         { label: 'Our Process', view: 'our-process' as View },
         { label: 'Our Materials', view: 'materials' as View },
-        { label: 'Our Partners', view: 'partners' as View },
-        { label: 'The Team', view: 'the-team' as View },
     ].sort((a, b) => a.label.localeCompare(b.label)), []);
 
     useEffect(() => {

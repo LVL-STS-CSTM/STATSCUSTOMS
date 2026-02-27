@@ -202,27 +202,28 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                 </div>
 
                 {/* 3-CARD FEATURE SECTION */}
-                <section className="mt-12 lg:mt-20 border-t border-zinc-100 pt-8 lg:pt-12">
-                    <h3 className="text-[10px] font-grotesk font-bold uppercase tracking-[0.4em] text-zinc-400 mb-6 lg:mb-8 text-center">Product Features</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {(product.features && product.features.length > 0 ? product.features : productFeatures.sort((a,b) => (a.displayOrder || 0) - (b.displayOrder || 0))).map((feature, idx) => (
-                            <div key={idx} className="space-y-6 text-center">
-                                <div className="aspect-[3/4] bg-white w-full overflow-hidden">
-                                    <img 
-                                        src={feature.imageUrl} 
-                                        className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" 
-                                        alt={(feature as any).name || (feature as any).title} 
-                                    />
+                {product.features && product.features.length > 0 && (
+                    <section className="mt-12 lg:mt-20 border-t border-zinc-100 pt-8 lg:pt-12">
+                        <h3 className="text-[10px] font-grotesk font-bold uppercase tracking-[0.4em] text-zinc-400 mb-6 lg:mb-8 text-center">Product Features</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {product.features.map((feature, idx) => (
+                                <div key={idx} className="space-y-6 text-center">
+                                    <div className="aspect-[3/4] bg-white w-full overflow-hidden">
+                                        <img 
+                                            src={feature.imageUrl} 
+                                            className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" 
+                                            alt={(feature as any).name || (feature as any).title} 
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-eurostile font-bold text-sm uppercase tracking-widest mb-2">{(feature as any).name || (feature as any).title}</h4>
+                                        <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto font-futura">{(feature as any).value || (feature as any).description}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 className="font-eurostile font-bold text-sm uppercase tracking-widest mb-2">{(feature as any).name || (feature as any).title}</h4>
-                                    <p className="text-xs text-zinc-500 leading-relaxed max-w-xs mx-auto font-futura">{(feature as any).value || (feature as any).description}</p>
-                                </div>
-                            </div>
-                        ))}
-                        {(!product.features || product.features.length === 0) && productFeatures.length === 0 && <p className="col-span-3 text-center text-xs text-zinc-400 font-futura">No features configured.</p>}
-                    </div>
-                </section>
+                            ))}
+                        </div>
+                    </section>
+                )}
 
                 {/* RELATED PRODUCTS */}
                 {relatedProducts.length > 0 && (
