@@ -55,7 +55,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, onCheckout }) 
                             <div className="flex justify-between items-end mb-2">
                                 <div className="flex flex-col">
                                     <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Estimated Total</span>
-                                    <span className="text-2xl font-eurostile font-black text-black">₱{totalEstimate.toLocaleString()}</span>
+                                    <span className="text-lg font-eurostile font-black text-black">₱{totalEstimate.toLocaleString()}</span>
                                 </div>
                             </div>
                             <Button 

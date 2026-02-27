@@ -79,7 +79,7 @@ const SectionEditor: React.FC<{
 /**
  * @description The main management component for editing the "How We Work" page content.
  */
-const HowWeWorkManagement: React.FC = () => {
+const OurProcessManagement: React.FC = () => {
     const { howWeWorkSections } = useData();
     const [toast, setToast] = useState({ show: false, message: '' });
 
@@ -108,4 +108,4 @@ const HowWeWorkManagement: React.FC = () => {
     );
 };
 
-export default HowWeWorkManagement;
+export default OurProcessManagement;

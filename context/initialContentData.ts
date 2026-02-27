@@ -31,8 +31,8 @@ export const initialPartnerData: Partner[] = [
 ];
 
 export const initialHowWeWorkData: HowWeWorkSection[] = [
-    { id: 'sample-testing', title: 'TECHNICAL R&D', description: 'Every textile batch undergoes rigorous tension and colorfastness testing to ensure it survives the intensity of your pursuit.', imageUrl: 'https://images.pexels.com/photos/3910065/pexels-photo-3910065.jpeg' },
-    { id: 'small-batch', title: 'CRAFTED IN-HOUSE', description: 'Our hybrid facility supports large-scale enterprise contracts and precision small-batch commissioning.', imageUrl: 'https://images.pexels.com/photos/5699479/pexels-photo-5699479.jpeg' },
+    { id: 'fusion-method', title: 'FUSION METHOD', description: '[ SPOT SUBLIMATION PLUS OVER-THE-FABRIC PRINTS ]', imageUrl: 'https://images.pexels.com/photos/3910065/pexels-photo-3910065.jpeg' },
+    { id: 'fusion-plus-method', title: 'FUSION PLUS METHOD', description: '[ FULL SUBLIMATION PLUS OVER-THE-FABRIC PRINTS ]', imageUrl: 'https://images.pexels.com/photos/5699479/pexels-photo-5699479.jpeg' },
 ];
 
 export const initialMaterialData: Material[] = [
@@ -69,7 +69,7 @@ export const initialPageBannerData: PageBanner[] = [
     { id: 'pb-browse', page: 'browse', title: 'THE CATALOGUE', description: 'Curated technical systems for athletic and lifestyle utility.', imageUrl: 'https://images.pexels.com/photos/1036856/pexels-photo-1036856.jpeg' },
     { id: 'pb-catalogue', page: 'catalogue', title: 'MASTER INVENTORY', description: 'Explore our full spectrum of specialized gear.', imageUrl: 'https://images.pexels.com/photos/1036856/pexels-photo-1036856.jpeg' },
     { id: 'pb-about', page: 'about', title: 'THE NARRATIVE', description: 'A legacy of quality. A future of local excellence.', imageUrl: 'https://images.pexels.com/photos/8365691/pexels-photo-8365691.jpeg' },
-    { id: 'pb-services', page: 'services', title: 'EXPERT SOLUTIONS', description: 'Strategic B2B apparel systems for global-ready brands.', imageUrl: 'https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg' },
+    { id: 'pb-the-team', page: 'the-team', title: 'THE TEAM', description: 'Meet the visionaries and craftsmen behind STATS.', imageUrl: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg' },
     { id: 'pb-contact', page: 'contact', title: 'Muntinlupa HQ', description: 'Flagship Store', imageUrl: 'https://player.cloudinary.com/embed/?cloud_name=dvodalpcz&public_id=Website_Location_lgjgbf' },
 ];
 

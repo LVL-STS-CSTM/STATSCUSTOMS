@@ -59,10 +59,10 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
     const exploreLinks = useMemo(() => [
         { label: 'About Us', view: 'about' as View },
         { label: 'Contact Us', view: 'contact' as View },
-        { label: 'How We Work', view: 'how-we-work' as View },
+        { label: 'Our Process', view: 'our-process' as View },
         { label: 'Our Materials', view: 'materials' as View },
         { label: 'Our Partners', view: 'partners' as View },
-        { label: 'Other Services', view: 'services' as View },
+        { label: 'The Team', view: 'the-team' as View },
     ].sort((a, b) => a.label.localeCompare(b.label)), []);
 
     useEffect(() => {

@@ -75,7 +75,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
                 <div className="absolute inset-0 flex flex-col items-center justify-end text-white pb-16 md:pb-24 px-4 pointer-events-none">
                     <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] mb-4 font-grotesk">{banner.description}</span>
-                    <h1 className="font-eurostile text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter text-center leading-none drop-shadow-2xl">{banner.title}</h1>
+                    <h1 className="font-eurostile text-3xl md:text-5xl lg:text-6xl uppercase tracking-tighter text-center leading-none drop-shadow-2xl">{banner.title}</h1>
                 </div>
             </div>
 
@@ -149,7 +149,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                 {/* Form Section */}
                 <div className="max-w-3xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="font-eurostile text-3xl md:text-4xl uppercase tracking-tighter mb-4">Submit Project Brief</h2>
+                        <h2 className="font-eurostile text-xl md:text-2xl uppercase tracking-tighter mb-4">Submit Project Brief</h2>
                         <p className="text-sm text-zinc-500 uppercase tracking-widest font-futura">Get in touch with our team to start your custom apparel project.</p>
                     </div>
                     
@@ -159,7 +159,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                                 <SendIcon className="w-8 h-8 text-white" />
                             </div>
                             <div>
-                                <h3 className="font-rheiborn text-2xl uppercase tracking-widest text-black">Message Sent</h3>
+                                <h3 className="font-rheiborn text-lg uppercase tracking-widest text-black">Message Sent</h3>
                                 <p className="text-zinc-500 mt-4 text-sm font-light uppercase tracking-widest font-futura">We've received your inquiry. One of our specialists will get back to you within 24 hours.</p>
                             </div>
                             <button onClick={() => setIsSubmitted(false)} className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 hover:text-black transition-colors">Send Another Message</button>

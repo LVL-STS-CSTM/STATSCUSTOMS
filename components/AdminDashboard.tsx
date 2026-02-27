@@ -10,7 +10,7 @@ import FaqManagement from './FaqManagement';
 import HeroManagement from './HeroManagement';
 import CollectionManagement from './CollectionManagement';
 import PartnerManagement from './PartnerManagement';
-import HowWeWorkManagement from './HowWeWorkManagement';
+import OurProcessManagement from './OurProcessManagement';
 import FabricManagement from './FabricManagement';
 import SubscriptionManagement from './SubscriptionManagement';
 import EmailMarketing from './EmailMarketing';
@@ -21,7 +21,6 @@ import PlatformRatingManagement from './PlatformRatingManagement';
 import CommunityManagement from './CommunityManagement';
 import PageBannerManagement from './PageBannerManagement';
 import SecurityManagement from './SecurityManagement';
-import ServiceManagement from './ServiceManagement';
 import SubscriptionModalManagement from './SubscriptionModalManagement';
 import HomeFeatureManagement from './HomeFeatureManagement';
 import { ViewGridSmallIcon, CartIcon, UserIcon, SparklesIcon, TargetIcon, CloseIcon } from './icons';
@@ -73,7 +72,7 @@ const QuoteManagement: React.FC = () => {
         <div className="space-y-8">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 border-b border-zinc-200 pb-6">
                 <div>
-                    <h2 className="text-2xl font-rheiborn font-black uppercase tracking-widest text-zinc-900">Inquiries & Orders</h2>
+                    <h2 className="text-lg font-rheiborn font-black uppercase tracking-widest text-zinc-900">Inquiries & Orders</h2>
                     <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mt-1 font-futura">Manage customer requests and production flow</p>
                 </div>
                 <div className="flex bg-zinc-100 p-1 rounded-lg border border-zinc-200">
@@ -203,7 +202,7 @@ const AdminDashboard: React.FC = () => {
     const { fetchData, isLoading: isDataSyncing } = useData();
     const [activeTab, setActiveTab] = useState<'analytics' | 'quotes' | 'products' | 'collections' | 'subscriptions' | 'email-marketing' | 'content' | 'pages' | 'security'>('analytics');
     const [contentSubTab, setContentSubTab] = useState<'banners' | 'feature-section' | 'product-features' | 'info-cards' | 'featured-video' | 'signup-popup'>('banners');
-    const [pageSubTab, setPageSubTab] = useState<'partners' | 'how-we-work' | 'materials' | 'services' | 'brand-reviews' | 'platform-ratings' | 'faqs' | 'community' | 'page-headers'>('partners');
+    const [pageSubTab, setPageSubTab] = useState<'partners' | 'our-process' | 'materials' | 'brand-reviews' | 'platform-ratings' | 'faqs' | 'the-team' | 'page-headers'>('partners');
 
     const handleRefresh = async () => {
         await Promise.all([fetchAdminData(), fetchData()]);
@@ -219,13 +218,12 @@ const AdminDashboard: React.FC = () => {
 
     const pageSubTabs = [
         { id: 'partners', label: 'Partners' },
-        { id: 'how-we-work', label: 'Process Steps' },
+        { id: 'our-process', label: 'Process Steps' },
         { id: 'materials', label: 'Materials' },
-        { id: 'services', label: 'Services' },
         { id: 'brand-reviews', label: 'Reviews' },
         { id: 'platform-ratings', label: 'Ratings' },
         { id: 'faqs', label: 'FAQs' },
-        { id: 'community', label: 'Community' },
+        { id: 'the-team', label: 'The Team' },
         // Moved here from general content
         { id: 'page-headers', label: 'Page Headers' },
     ];
@@ -388,12 +386,11 @@ const AdminDashboard: React.FC = () => {
                                     {pageSubTab === 'page-headers' && <PageBannerManagement />}
                                     {pageSubTab === 'faqs' && <FaqManagement />}
                                     {pageSubTab === 'partners' && <PartnerManagement />}
-                                    {pageSubTab === 'how-we-work' && <HowWeWorkManagement />}
+                                    {pageSubTab === 'our-process' && <OurProcessManagement />}
                                     {pageSubTab === 'materials' && <FabricManagement />}
                                     {pageSubTab === 'brand-reviews' && <BrandReviewManagement />}
                                     {pageSubTab === 'platform-ratings' && <PlatformRatingManagement />}
-                                    {pageSubTab === 'community' && <CommunityManagement />}
-                                    {pageSubTab === 'services' && <ServiceManagement />}
+                                    {pageSubTab === 'the-team' && <CommunityManagement />}
                                 </div>
                             </div>
                         )}

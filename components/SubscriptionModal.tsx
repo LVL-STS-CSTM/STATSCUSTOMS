@@ -109,7 +109,7 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, onClose, 
                             <svg className="w-16 h-16 text-green-500 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <h2 className="text-2xl font-eurostile uppercase tracking-wider text-gray-900">You're In!</h2>
+                            <h2 className="text-lg font-eurostile uppercase tracking-wider text-gray-900">You're In!</h2>
                             <p className="text-gray-700 mt-3">Keep an eye on your inbox for updates. Siguradong LEVEL up ang style mo!</p>
                             <button onClick={handleClose} className="mt-6 w-full py-3 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f] font-semibold">
                                 Continue Browsing
@@ -117,7 +117,7 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ isOpen, onClose, 
                         </div>
                     ) : (
                         <div className="p-8 md:p-12 flex-grow flex flex-col justify-center">
-                            <h2 className="text-3xl font-eurostile uppercase tracking-wider text-gray-900 text-center">{subscriptionModalContent.title}</h2>
+                            <h2 className="text-xl font-eurostile uppercase tracking-wider text-gray-900 text-center">{subscriptionModalContent.title}</h2>
                             <p className="text-gray-600 text-center mt-3 mb-6 uppercase tracking-widest text-[10px] font-bold">{subscriptionModalContent.description}</p>
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 {subscriptionModalContent.actionType !== 'redirect' && (

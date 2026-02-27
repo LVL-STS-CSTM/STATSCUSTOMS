@@ -28,7 +28,7 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({ isOpen, onClose, produc
                             </span>
                             <span className="text-[10px] font-rheiborn font-black uppercase tracking-[0.3em] text-zinc-400">Size Guide</span>
                         </div>
-                        <h2 className="font-rheiborn text-2xl uppercase tracking-tighter text-gray-900 leading-none max-w-md">{productName}</h2>
+                        <h2 className="font-rheiborn text-lg uppercase tracking-tighter text-gray-900 leading-none max-w-md">{productName}</h2>
                     </div>
                     <button onClick={onClose} className="p-2 hover:bg-zinc-100 rounded-full transition-colors">
                         <CloseIcon className="w-6 h-6 text-zinc-400 hover:text-black" />

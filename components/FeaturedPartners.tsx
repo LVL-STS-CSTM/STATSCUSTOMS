@@ -46,7 +46,7 @@ const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
         <section ref={ref} className="bg-gray-100 py-16 md:py-24 overflow-hidden group relative w-full">
             <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                 <div className="text-center">
-                    <h2 className="font-eurostile text-3xl md:text-4xl tracking-[0.3em] text-zinc-900 mb-6 uppercase">
+                    <h2 className="font-eurostile text-xl md:text-2xl tracking-[0.3em] text-zinc-900 mb-6 uppercase">
                         Strategic Alliances
                     </h2>
                     <p className="text-sm md:text-base text-zinc-500 leading-relaxed max-w-2xl mx-auto uppercase tracking-widest">

@@ -53,7 +53,7 @@ const CustomizationShowcase: React.FC = () => {
                             <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.6em] block mb-6 flex items-center gap-3 font-sans">
                                 <span className="w-2 h-2 bg-black rounded-none"></span>
                             </span>
-                            <h2 className="font-rheiborn font-medium text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.8] tracking-tight">
+                            <h2 className="font-rheiborn font-medium text-3xl md:text-5xl lg:text-6xl uppercase leading-[0.8] tracking-tight">
                                 Technical<br/>Capabilities
                             </h2>
                         </div>
@@ -76,7 +76,7 @@ const CustomizationShowcase: React.FC = () => {
                         >
                             {/* Number BG */}
                             <div className="absolute top-0 right-0 p-6 z-20 opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none">
-                                <span className="font-rheiborn font-black text-9xl text-white leading-none">{tech.id}</span>
+                                <span className="font-rheiborn font-black text-7xl text-white leading-none">{tech.id}</span>
                             </div>
 
                             {/* Image */}
@@ -103,7 +103,7 @@ const CustomizationShowcase: React.FC = () => {
                                             {tech.label}
                                         </span>
                                     </div>
-                                    <h3 className="font-rheiborn font-medium text-4xl md:text-5xl uppercase tracking-widest mb-4 leading-none text-white transition-colors">
+                                    <h3 className="font-rheiborn font-medium text-2xl md:text-3xl uppercase tracking-widest mb-4 leading-none text-white transition-colors">
                                         {tech.title}
                                     </h3>
                                     <div className="h-[1px] bg-white/30 mb-6 transition-all duration-700 ease-out w-12 group-hover:w-full"></div>

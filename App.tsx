@@ -25,10 +25,9 @@ const CataloguePage = lazy(() => import('./components/CataloguePage'));
 const AboutPage = lazy(() => import('./components/AboutPage'));
 const PartnersPage = lazy(() => import('./components/PartnersPage'));
 const FaqPage = lazy(() => import('./components/FaqPage'));
-const ServicesPage = lazy(() => import('./components/ServicesPage'));
+const TheTeamPage = lazy(() => import('./components/CommunityPage'));
 const FabricsPage = lazy(() => import('./components/FabricsPage'));
-const CommunityPage = lazy(() => import('./components/CommunityPage'));
-const HowWeWorkPage = lazy(() => import('./components/HowWeWorkPage'));
+const OurProcessPage = lazy(() => import('./components/OurProcessPage'));
 const TermsOfServicePage = lazy(() => import('./components/TermsOfServicePage'));
 const ReturnPolicyPage = lazy(() => import('./components/ReturnPolicyPage'));
 const PrivacyPolicyPage = lazy(() => import('./components/PrivacyPolicyPage'));
@@ -65,7 +64,7 @@ const AppContent: React.FC = () => {
         isLoading: isDataLoading 
     } = useData();
 
-    const knownViews = ['home', 'product', 'catalogue', 'browse', 'about', 'partners', 'contact', 'faq', 'admin', 'services', 'terms-of-service', 'return-policy', 'privacy-policy', 'materials', 'community', 'how-we-work', 'mockup-generator', 'track-project', 'checkout'];
+    const knownViews = ['home', 'product', 'catalogue', 'browse', 'about', 'partners', 'contact', 'faq', 'admin', 'terms-of-service', 'return-policy', 'privacy-policy', 'materials', 'the-team', 'our-process', 'mockup-generator', 'track-project', 'checkout'];
     const knownGroups = useMemo(() => collections.map(c => c.name), [collections]);
 
     const parseUrl = useCallback(() => {
@@ -179,10 +178,9 @@ const AppContent: React.FC = () => {
             case 'faq': return <Suspense fallback={<LoadingFallback />}><FaqPage faqData={faqData} /></Suspense>;
             case 'contact': return <Suspense fallback={<LoadingFallback />}><ContactPage showToast={setToastMessage} /></Suspense>;
             case 'admin': return isAuthenticated ? <Suspense fallback={<LoadingFallback />}><AdminDashboard /></Suspense> : <HomePage {...homePageProps} />;
-            case 'services': return <Suspense fallback={<LoadingFallback />}><ServicesPage onNavigate={handleNavigate} /></Suspense>;
             case 'materials': return <Suspense fallback={<LoadingFallback />}><FabricsPage /></Suspense>;
-            case 'community': return <Suspense fallback={<LoadingFallback />}><CommunityPage onNavigate={handleNavigate} /></Suspense>;
-            case 'how-we-work': return <Suspense fallback={<LoadingFallback />}><HowWeWorkPage /></Suspense>;
+            case 'the-team': return <Suspense fallback={<LoadingFallback />}><TheTeamPage onNavigate={handleNavigate} /></Suspense>;
+            case 'our-process': return <Suspense fallback={<LoadingFallback />}><OurProcessPage /></Suspense>;
             case 'mockup-generator': return <Suspense fallback={<LoadingFallback />}><MockupGeneratorPage /></Suspense>;
             case 'track-project': return <Suspense fallback={<LoadingFallback />}><TrackProjectPage /></Suspense>;
             case 'terms-of-service': return <Suspense fallback={<LoadingFallback />}><TermsOfServicePage /></Suspense>;

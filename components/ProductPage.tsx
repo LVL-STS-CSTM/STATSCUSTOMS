@@ -62,27 +62,27 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
 
     return (
         <div className="bg-white min-h-screen font-sans text-[#111]">
-            <div className="max-w-[1600px] mx-auto px-4 md:px-8 py-8 md:py-16">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-10">
                 
                 {/* Back Navigation */}
                 <button 
                     onClick={() => onNavigate('catalogue')}
-                    className="mb-8 text-[10px] font-grotesk font-bold uppercase tracking-[0.2em] text-zinc-400 hover:text-black transition-colors flex items-center gap-2 group"
+                    className="mb-6 text-[10px] font-grotesk font-bold uppercase tracking-[0.2em] text-zinc-400 hover:text-black transition-colors flex items-center gap-2 group"
                 >
                     <span className="group-hover:-translate-x-1 transition-transform">&larr;</span> Back to Catalogue
                 </button>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
                     
                     {/* LEFT: Gallery Section */}
-                    <div className="lg:col-span-8 flex flex-col-reverse lg:flex-row gap-4 h-fit overflow-hidden">
+                    <div className="lg:col-span-7 flex flex-col-reverse lg:flex-row gap-4 h-fit overflow-hidden">
                         {/* Vertical Thumbnails (Desktop) / Horizontal (Mobile) */}
-                        <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-y-auto lg:h-[80vh] no-scrollbar shrink-0 pb-2 lg:pb-0">
+                        <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-y-auto lg:h-[65vh] no-scrollbar shrink-0 pb-2 lg:pb-0">
                             {imagesForDisplay.map((url, idx) => (
                                 <button 
                                     key={idx} 
                                     onClick={() => setActiveImageIndex(idx)}
-                                    className={`relative w-16 h-20 lg:w-24 lg:h-32 aspect-[3/4] shrink-0 border transition-all duration-300 overflow-hidden ${activeImageIndex === idx ? 'border-black opacity-100' : 'border-transparent opacity-50 hover:opacity-80'}`}
+                                    className={`relative w-16 h-20 lg:w-20 lg:h-28 aspect-[3/4] shrink-0 border transition-all duration-300 overflow-hidden ${activeImageIndex === idx ? 'border-black opacity-100' : 'border-transparent opacity-50 hover:opacity-80'}`}
                                 >
                                     <img src={url} alt={`View ${idx}`} className="w-full h-full object-cover" />
                                 </button>
@@ -90,7 +90,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                         </div>
 
                         {/* Main Image - Updated to object-contain to prevent zoom/crop */}
-                        <div className="flex-grow bg-white relative overflow-hidden aspect-[3/4] h-[50vh] lg:h-[80vh] flex items-center justify-center cursor-zoom-in rounded-lg lg:rounded-none border border-zinc-100 lg:border-0">
+                        <div className="flex-grow bg-white relative overflow-hidden aspect-[3/4] h-[50vh] lg:h-[65vh] flex items-center justify-center cursor-zoom-in rounded-lg lg:rounded-none border border-zinc-100 lg:border-0">
                             <img 
                                 src={imagesForDisplay[activeImageIndex] || 'https://placehold.co/800x1000?text=No+Image'} 
                                 alt={product.name} 
@@ -100,11 +100,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                     </div>
 
                     {/* RIGHT: Product Info & Details */}
-                    <div className="lg:col-span-4 flex flex-col h-full lg:sticky lg:top-24">
-                        <header className="mb-8 border-b border-zinc-100 pb-8">
-                            <h1 className="font-eurostile font-bold text-3xl md:text-4xl lg:text-5xl text-black mb-2 uppercase tracking-tight leading-none">{product.name}</h1>
+                    <div className="lg:col-span-5 flex flex-col h-full lg:sticky lg:top-24">
+                        <header className="mb-6 border-b border-zinc-100 pb-6">
+                            <h1 className="font-eurostile font-bold text-xl md:text-2xl lg:text-3xl text-black mb-2 uppercase tracking-tight leading-none">{product.name}</h1>
                             {/* Price removed as requested */}
-                            <div className="flex items-center justify-end mt-6">
+                            <div className="flex items-center justify-end mt-4">
                                 <button 
                                     onClick={() => setIsSizeGuideOpen(true)}
                                     className="flex items-center gap-2 text-[9px] font-grotesk font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-zinc-600 hover:border-zinc-600 transition-all"
@@ -115,7 +115,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                         </header>
 
                         {/* Color Selection */}
-                        <div className="mb-10">
+                        <div className="mb-6">
                             <div className="flex justify-between items-center mb-4">
                                 <label className="block text-[10px] font-grotesk font-bold uppercase tracking-[0.2em] text-zinc-400">Color</label>
                                 <span className="text-[10px] font-grotesk font-bold uppercase tracking-[0.2em] text-black">{selectedColor?.name}</span>
@@ -202,8 +202,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                 </div>
 
                 {/* 3-CARD FEATURE SECTION */}
-                <section className="mt-16 lg:mt-32 border-t border-zinc-100 pt-12 lg:pt-16">
-                    <h3 className="text-[10px] font-grotesk font-bold uppercase tracking-[0.4em] text-zinc-400 mb-8 lg:mb-12 text-center">Product Features</h3>
+                <section className="mt-12 lg:mt-20 border-t border-zinc-100 pt-8 lg:pt-12">
+                    <h3 className="text-[10px] font-grotesk font-bold uppercase tracking-[0.4em] text-zinc-400 mb-6 lg:mb-8 text-center">Product Features</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {(product.features && product.features.length > 0 ? product.features : productFeatures.sort((a,b) => (a.displayOrder || 0) - (b.displayOrder || 0))).map((feature, idx) => (
                             <div key={idx} className="space-y-6 text-center">
@@ -226,9 +226,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
 
                 {/* RELATED PRODUCTS */}
                 {relatedProducts.length > 0 && (
-                    <section className="mt-16 lg:mt-32 pt-12 lg:pt-20 border-t border-zinc-100">
-                        <div className="flex justify-between items-end mb-8 lg:mb-12">
-                            <h2 className="font-eurostile font-bold text-2xl md:text-3xl uppercase tracking-tight">Complete the Kit</h2>
+                    <section className="mt-12 lg:mt-20 pt-8 lg:pt-12 border-t border-zinc-100">
+                        <div className="flex justify-between items-end mb-6 lg:mb-8">
+                            <h2 className="font-eurostile font-bold text-lg md:text-xl uppercase tracking-tight">Complete the Kit</h2>
                             <button onClick={() => onNavigate('catalogue')} className="hidden md:block text-[10px] font-grotesk font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:text-zinc-600 hover:border-zinc-600 transition-colors">View All</button>
                         </div>
                         <ProductGrid products={relatedProducts} onProductClick={onProductClick} />

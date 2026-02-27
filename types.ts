@@ -98,7 +98,7 @@ export interface Material {
  * @type View
  * @description Defines the possible page views for the application's router.
  */
-export type View = 'home' | 'product' | 'catalogue' | 'browse' | 'about' | 'partners' | 'contact' | 'faq' | 'admin' | 'services' | 'terms-of-service' | 'return-policy' | 'privacy-policy' | 'materials' | 'community' | 'how-we-work' | 'mockup-generator' | 'track-project' | 'checkout';
+export type View = 'home' | 'product' | 'catalogue' | 'browse' | 'about' | 'partners' | 'contact' | 'faq' | 'admin' | 'terms-of-service' | 'return-policy' | 'privacy-policy' | 'materials' | 'the-team' | 'our-process' | 'mockup-generator' | 'track-project' | 'checkout';
 
 /**
  * @interface PageBanner
@@ -192,7 +192,7 @@ export interface HeroContent {
  * @description Represents the content for a section on the "How We Work" page.
  */
 export interface HowWeWorkSection {
-    id: 'sample-testing' | 'small-batch' | 'sustainability';
+    id: string;
     title: string;
     description: string;
     imageUrl: string;

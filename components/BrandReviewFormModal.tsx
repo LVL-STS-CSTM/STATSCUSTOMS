@@ -141,7 +141,7 @@ const BrandReviewFormModal: React.FC<BrandReviewFormModalProps> = ({ isOpen, onC
                                  type="button" 
                                  key={star} 
                                  onClick={() => handleRatingChange(star)}
-                                 className="text-2xl transition-transform transform hover:scale-110"
+                                 className="text-lg transition-transform transform hover:scale-110"
                                >
                                  <StarIcon className={(formData.rating || 0) >= star ? 'text-yellow-400' : 'text-gray-300'}/>
                                </button>

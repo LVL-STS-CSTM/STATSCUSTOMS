@@ -5,20 +5,20 @@ import { View, CommunityPost } from '../types';
 import PageHeader from './PageHeader';
 import LazyImage from './LazyImage';
 
-interface CommunityPageProps {
+interface TheTeamPageProps {
     onNavigate: (page: View, value?: string | null) => void;
 }
 
-const TheTeamPage: React.FC<CommunityPageProps> = ({ onNavigate }) => {
+const TheTeamPage: React.FC<TheTeamPageProps> = ({ onNavigate }) => {
     const { communityPosts, products } = useData();
     const visiblePosts = useMemo(() => communityPosts.filter(p => p.isVisible), [communityPosts]);
 
     return (
         <div className="bg-gray-50">
-            <PageHeader page="the-team" fallbackTitle="THE TEAM" fallbackDescription="Meet the people behind the performance." />
+            <PageHeader page="the-team" fallbackTitle="The Team" fallbackDescription="Meet the people behind the brand." />
             
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div className="columns-1 lg:columns-2 gap-12 space-y-12">
+            <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div className="columns-1 md:columns-2 lg:columns-2 xl:columns-3 gap-8 space-y-8">
                     {visiblePosts.map(post => {
                         const tagged = post.taggedProductId ? products.find(p => p.id === post.taggedProductId) : null;
                         return (

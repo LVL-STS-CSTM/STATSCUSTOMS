@@ -122,7 +122,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate, showToast }) =>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                 </div>
-                <h1 className="font-rheiborn font-black text-3xl uppercase tracking-widest text-gray-900 mb-4">
+                <h1 className="font-rheiborn font-black text-xl uppercase tracking-widest text-gray-900 mb-4">
                     Requisition Submitted
                 </h1>
                 <p className="text-zinc-500 text-sm max-w-md mx-auto leading-relaxed uppercase tracking-widest font-futura font-medium mb-12">
@@ -326,7 +326,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onNavigate, showToast }) =>
                                 <span className="font-rheiborn font-black text-xl uppercase tracking-tighter">
                                     Estimated Total
                                 </span>
-                                <span className="font-grotesk font-black text-2xl">₱{subtotal.toLocaleString()}</span>
+                                <span className="font-grotesk font-black text-lg">₱{subtotal.toLocaleString()}</span>
                             </div>
                         </div>
                     </div>

@@ -71,7 +71,7 @@ const InfoCards: React.FC<InfoCardsProps> = ({ cards, onCardClick }) => {
                             <div className="relative z-10 p-6 flex flex-col items-center justify-center h-full w-full">
                                 <div className="border border-white/30 px-6 py-4 backdrop-blur-sm rounded-none transform transition-transform duration-500 group-hover:scale-105 group-hover:border-white/60">
                                     <h2 
-                                        className="font-rheiborn text-2xl md:text-3xl lg:text-4xl tracking-widest uppercase whitespace-pre-line leading-tight drop-shadow-lg"
+                                        className="font-rheiborn text-lg md:text-xl lg:text-2xl tracking-widest uppercase whitespace-pre-line leading-tight drop-shadow-lg"
                                     >
                                         {card.title}
                                     </h2>
@@ -119,7 +119,7 @@ const InfoCards: React.FC<InfoCardsProps> = ({ cards, onCardClick }) => {
                             <div className="max-w-2xl pointer-events-auto">
                                 <div className="mb-6 md:mb-8">
                                     <div className="w-16 h-1 bg-white/50 mb-6"></div>
-                                    <h3 className="font-rheiborn text-4xl sm:text-5xl md:text-7xl uppercase tracking-tighter mb-6 text-white drop-shadow-2xl leading-[0.9] whitespace-pre-line">
+                                    <h3 className="font-rheiborn text-2xl sm:text-3xl md:text-5xl uppercase tracking-tighter mb-6 text-white drop-shadow-2xl leading-[0.9] whitespace-pre-line">
                                         {selectedCard.title}
                                     </h3>
                                     <p className="text-base sm:text-lg md:text-xl font-futura font-light text-white/90 leading-relaxed drop-shadow-lg border-l-2 border-white/30 pl-6 mb-8">

@@ -33,7 +33,7 @@ const StatCard: React.FC<{
         
         <div>
             <h3 className={`text-[10px] font-black uppercase tracking-[0.3em] mb-2 ${alert ? 'text-zinc-400' : 'text-zinc-400'}`}>{title}</h3>
-            <p className="text-5xl font-rheiborn font-black tracking-tighter leading-none mb-4">{value}</p>
+            <p className="text-3xl font-rheiborn font-black tracking-tighter leading-none mb-4">{value}</p>
             <p className={`text-[10px] font-bold uppercase tracking-widest ${alert ? 'text-zinc-500' : 'text-zinc-400'}`}>{description}</p>
         </div>
         
@@ -69,7 +69,7 @@ const DashboardAnalytics: React.FC = () => {
     return (
         <div className="space-y-10">
             <div>
-                <h2 className="text-3xl font-rheiborn font-black uppercase tracking-widest text-zinc-900 mb-2">Performance Overview</h2>
+                <h2 className="text-xl font-rheiborn font-black uppercase tracking-widest text-zinc-900 mb-2">Performance Overview</h2>
                 <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Real-time business metrics</p>
             </div>
 

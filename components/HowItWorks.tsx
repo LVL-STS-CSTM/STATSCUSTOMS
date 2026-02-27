@@ -111,7 +111,7 @@ const HowItWorks: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16 md:mb-24">
                     <span className={`text-[10px] font-black text-zinc-500 uppercase tracking-[0.4em] block mb-4 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-4'} font-rheiborn`}>Operational Protocol</span>
-                    <h2 className={`font-rheiborn text-3xl md:text-6xl text-white mb-6 uppercase tracking-tighter transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Deployment Workflow</h2>
+                    <h2 className={`font-rheiborn text-xl md:text-4xl text-white mb-6 uppercase tracking-tighter transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Deployment Workflow</h2>
                     <p className={`text-base md:text-lg text-zinc-400 max-w-2xl mx-auto font-futura font-light transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>Precision-engineered execution from design blueprint to final delivery.</p>
                 </div>
 
@@ -198,14 +198,14 @@ const HowItWorks: React.FC = () => {
                                             ))}
                                         </div>
                                     </div>
-                                    <span className="text-4xl md:text-6xl font-black text-white/5 font-rheiborn ml-auto select-none">
+                                    <span className="text-2xl md:text-4xl font-black text-white/5 font-rheiborn ml-auto select-none">
                                         0{(selectedIndex || 0) + 1}
                                     </span>
                                 </div>
-                                <h3 className="font-rheiborn text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter mb-6 text-white drop-shadow-2xl leading-[0.9]">
+                                <h3 className="font-rheiborn text-2xl sm:text-3xl md:text-5xl lg:text-6xl uppercase tracking-tighter mb-6 text-white drop-shadow-2xl leading-[0.9]">
                                     {activeStep.title}
                                 </h3>
-                                <p className="text-base sm:text-lg md:text-2xl font-futura font-medium text-zinc-300 leading-relaxed drop-shadow-lg border-l-4 border-white pl-6">
+                                <p className="text-base sm:text-lg md:text-lg font-futura font-medium text-zinc-300 leading-relaxed drop-shadow-lg border-l-4 border-white pl-6">
                                     {activeStep.description}
                                 </p>
                                 <div className="mt-8 pl-6 text-zinc-400 text-sm md:text-base max-w-2xl leading-relaxed font-futura">

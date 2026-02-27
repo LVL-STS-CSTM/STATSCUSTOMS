@@ -29,7 +29,7 @@ const MaterialCareModal: React.FC<MaterialCareModalProps> = ({ isOpen, onClose, 
                         <img src={imageUrl} alt="Material Care Instructions" className="w-full h-auto object-contain rounded-md" />
                     ) : (
                         <div className="text-center py-20">
-                            <h3 className="text-2xl font-semibold text-gray-800">Coming Soon!</h3>
+                            <h3 className="text-lg font-semibold text-gray-800">Coming Soon!</h3>
                             <p className="text-gray-500 mt-2">Material care instructions for this fabric will be available shortly.</p>
                         </div>
                     )}

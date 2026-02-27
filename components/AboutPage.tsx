@@ -43,7 +43,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10"></div>
                 <div className="relative z-20 px-6 text-center max-w-5xl">
                     <span className="text-[10px] font-semibold uppercase tracking-[0.6em] text-white/60 mb-6 block animate-fade-in font-grotesk">Established in the Philippines</span>
-                    <h1 className="font-eurostile font-medium text-4xl md:text-6xl lg:text-7xl tracking-tighter uppercase leading-[0.85] animate-fade-in-up drop-shadow-2xl">
+                    <h1 className="font-eurostile font-medium text-2xl md:text-4xl lg:text-5xl tracking-tighter uppercase leading-[0.85] animate-fade-in-up drop-shadow-2xl">
                         The Narrative
                     </h1>
                     <p className="mt-8 text-[10px] md:text-xs max-w-2xl mx-auto text-white/60 font-light leading-relaxed uppercase tracking-[0.4em] animate-fade-in-up [animation-delay:200ms] font-grotesk">
@@ -75,7 +75,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                             <div className="absolute top-0 left-0 w-1.5 h-1.5 bg-black/20"></div>
                             <div className="absolute bottom-0 right-0 w-1.5 h-1.5 bg-black/20"></div>
                             
-                            <h2 className="font-eurostile text-4xl lg:text-7xl text-gray-900 mb-10 uppercase tracking-tighter leading-none">
+                            <h2 className="font-eurostile text-2xl lg:text-5xl text-gray-900 mb-10 uppercase tracking-tighter leading-none">
                                 Technical Sportswear<br/>Pridefully Filipino
                             </h2>
                             <div className="space-y-8 text-zinc-600 leading-relaxed font-light text-lg antialiased font-futura">
@@ -105,48 +105,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                 </div>
             </section>
             
-            {/* What We Do */}
-            <section ref={sectionRefs.what} className="py-32 px-6 bg-zinc-950 text-white relative overflow-hidden">
-                {/* Technical Blueprint Graphic Background - Updated */}
-                <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-                    {/* Visible Dot Grid */}
-                    <div className="absolute inset-0" style={{ 
-                        backgroundImage: `radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)`,
-                        backgroundSize: '40px 40px'
-                    }}></div>
-                    
-                    {/* Corner Markers (L-shapes) */}
-                    <div className="absolute top-8 left-8 w-6 h-6 border-t border-l border-white/30"></div>
-                    <div className="absolute top-8 right-8 w-6 h-6 border-t border-r border-white/30"></div>
-                    <div className="absolute bottom-8 left-8 w-6 h-6 border-b border-l border-white/30"></div>
-                    <div className="absolute bottom-8 right-8 w-6 h-6 border-b border-r border-white/30"></div>
-                </div>
 
-                <div className="max-w-5xl mx-auto text-center relative z-10">
-                    <div className={`transition-all duration-1000 ease-out ${visibility.what ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500 mb-8 block font-grotesk">What We Do</span>
-                        <h2 className="font-eurostile text-4xl lg:text-8xl text-white mb-12 uppercase tracking-tighter leading-none drop-shadow-2xl">
-                            Crafting Premium<br/>Performance
-                        </h2>
-                        <div className="space-y-8 text-zinc-400 leading-relaxed font-light text-xl antialiased max-w-4xl mx-auto font-futura">
-                            <p>
-                                We craft premium technical sportswear designed for those who live in the zone—where focus, purpose, and performance converge.
-                            </p>
-                            <p>
-                                Inspired by the Filipino spirit of resilience and relentless drive, we create gear that equips athletes, dreamers, and doers to push beyond limits and embrace the grind.
-                            </p>
-                            <p>
-                                Every piece is a testament to our uncompromising attention to detail and rigorous quality standards, blending advanced innovation with the artistry of Filipino craftsmanship. From the precision of every stitch to the performance of every fabric, we ensure that our sportswear not only meets but exceeds the demands of an active, dynamic lifestyle.
-                            </p>
-                            <div className="pt-12">
-                                <p className="text-white font-eurostile text-2xl md:text-3xl uppercase tracking-widest border-y border-white/10 py-8">
-                                    Balance Between Pressure & Ability
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* How We Work */}
             <section ref={sectionRefs.how} className="py-32 px-6 bg-white relative">
@@ -163,7 +122,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                                 <div className="w-10 h-[1px] bg-black"></div>
                                 <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black font-grotesk">How We Work</span>
                             </div>
-                            <h2 className="font-eurostile text-4xl lg:text-6xl text-gray-900 mb-10 uppercase tracking-tighter leading-none">Engineered by Athletes<br/>for Athletes</h2>
+                            <h2 className="font-eurostile text-2xl lg:text-4xl text-gray-900 mb-10 uppercase tracking-tighter leading-none">Engineered by Athletes<br/>for Athletes</h2>
                             <div className="space-y-8 text-zinc-600 leading-relaxed font-light text-lg antialiased font-futura">
                                 <p>
                                     Every STATS Technical Sportswear design is rooted in years of experience as athletes and individuals who live and breathe an active lifestyle. Our team knows what it takes to perform at the highest level because we’ve been there—pushing limits, testing boundaries, and understanding the nuances of movement.
@@ -243,7 +202,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                     <div className={`transition-all duration-1000 ease-out ${visibility.why ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <div className="text-center mb-20">
                             <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500 mb-6 block font-grotesk">Why We Do It</span>
-                            <h2 className="font-eurostile text-5xl lg:text-8xl text-white mb-12 uppercase tracking-tighter leading-none">Homegrown<br/>Excellence</h2>
+                            <h2 className="font-eurostile text-3xl lg:text-6xl text-white mb-12 uppercase tracking-tighter leading-none">Homegrown<br/>Excellence</h2>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-zinc-400 leading-relaxed font-light text-lg antialiased font-futura">
                             <div className="space-y-6">
@@ -264,7 +223,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                             </div>
                         </div>
                         <div className="mt-20 p-12 bg-white text-black text-center">
-                            <p className="font-eurostile text-2xl md:text-3xl lg:text-4xl uppercase tracking-tight leading-tight">
+                            <p className="font-eurostile text-lg md:text-xl lg:text-2xl uppercase tracking-tight leading-tight">
                                 We produce the best locally made technical sportswear because this is how sportswear <span className="font-bold">SHOULD BE</span>—crafted with purpose, built to perform, and designed to inspire greatness in every step of the journey.
                             </p>
                         </div>
@@ -280,7 +239,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
             {/* CTA */}
             <section ref={sectionRefs.cta} className={`py-32 px-6 bg-white transition-all duration-1000 ease-out ${visibility.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <div className="max-w-5xl mx-auto text-center">
-                    <h2 className="font-eurostile text-4xl md:text-6xl text-gray-900 mb-12 uppercase tracking-tighter leading-none">Ready to Experience<br/>Technical Excellence?</h2>
+                    <h2 className="font-eurostile text-2xl md:text-4xl text-gray-900 mb-12 uppercase tracking-tighter leading-none">Ready to Experience<br/>Technical Excellence?</h2>
                     <Button variant="solid" onClick={() => onNavigate('catalogue')} className="px-16 py-6 text-lg rounded-none shadow-2xl shadow-black/10 hover:scale-105 active:scale-95 transition-all uppercase tracking-widest font-bold font-grotesk">
                         Browse Collection
                     </Button>

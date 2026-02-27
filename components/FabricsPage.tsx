@@ -21,7 +21,7 @@ const MaterialSection: React.FC<{ material: Material; index: number; openCareMod
                 <div className="w-full lg:w-1/2 space-y-6">
                     <div>
                         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] font-rheiborn">Our Fabric</span>
-                        <h3 className="font-rheiborn text-3xl lg:text-4xl text-gray-900 mt-2 uppercase tracking-widest">{material.name}</h3>
+                        <h3 className="font-rheiborn text-xl lg:text-2xl text-gray-900 mt-2 uppercase tracking-widest">{material.name}</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
                         {material.features.map(f => <span key={f} className="bg-white text-gray-700 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-gray-100 shadow-sm font-futura">{f}</span>)}

@@ -24,16 +24,13 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <h4 className="text-white mb-8 font-eurostile font-bold uppercase text-lg tracking-[0.3em]">ABOUT</h4>
           <ul className="list-none p-0 m-0 text-xs text-zinc-400 space-y-4 font-grotesk">
             <li>
-                <button onClick={(e) => handleNavClick(e, 'services')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">WHAT WE DO</button>
-            </li>
-            <li>
-                <button onClick={(e) => handleNavClick(e, 'how-we-work')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">HOW WE WORK</button>
+                <button onClick={(e) => handleNavClick(e, 'our-process')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">OUR PROCESS</button>
             </li>
             <li>
                 <button onClick={(e) => handleNavClick(e, 'about')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">ABOUT US</button>
             </li>
             <li>
-                <button onClick={(e) => handleNavClick(e, 'community')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">COMMUNITY</button>
+                <button onClick={(e) => handleNavClick(e, 'the-team')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">THE TEAM</button>
             </li>
             <li>
                 <button onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">LOCATION</button>

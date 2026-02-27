@@ -67,7 +67,7 @@ const CommunityPostFormModal: React.FC<CommunityPostFormModalProps> = ({ isOpen,
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
                 <header className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10">
-                    <h2 className="text-xl font-semibold">{postToEdit ? 'Edit Post' : 'Add New Post'}</h2>
+                    <h2 className="text-xl font-semibold">{postToEdit ? 'Edit Member' : 'Add New Member'}</h2>
                     <button onClick={onClose} aria-label="Close form">
                         <CloseIcon className="w-6 h-6 text-gray-600 hover:text-black" />
                     </button>
@@ -154,8 +154,8 @@ const CommunityPostFormModal: React.FC<CommunityPostFormModalProps> = ({ isOpen,
                             />
                         </div>
                         <div className="ml-3 text-sm">
-                            <label htmlFor="isVisible" className="font-medium text-gray-700">Visible on Community Page</label>
-                            <p className="text-gray-500">Uncheck this to hide the post from the public page.</p>
+                            <label htmlFor="isVisible" className="font-medium text-gray-700">Visible on The Team Page</label>
+                            <p className="text-gray-500">Uncheck this to hide the member from the public page.</p>
                         </div>
                     </div>
 
@@ -164,7 +164,7 @@ const CommunityPostFormModal: React.FC<CommunityPostFormModalProps> = ({ isOpen,
                             Cancel
                         </button>
                         <button type="submit" className="px-6 py-2 bg-[#3A3A3A] text-white rounded-md hover:bg-[#4f4f4f]">
-                            Save Post
+                            Save Member
                         </button>
                     </footer>
                 </form>

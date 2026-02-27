@@ -1,0 +1,20 @@
+{
+  "credential": {
+    "username": "admin",
+    "password": "password123"
+  },
+  "howWeWorkSections": [
+    {
+      "id": "fusion-method",
+      "title": "FUSION METHOD",
+      "description": "[ SPOT SUBLIMATION PLUS OVER-THE-FABRIC PRINTS ]",
+      "imageUrl": "https://images.pexels.com/photos/3910065/pexels-photo-3910065.jpeg"
+    },
+    {
+      "id": "fusion-plus-method",
+      "title": "FUSION PLUS METHOD",
+      "description": "[ FULL SUBLIMATION PLUS OVER-THE-FABRIC PRINTS ]",
+      "imageUrl": "https://images.pexels.com/photos/5699479/pexels-photo-5699479.jpeg"
+    }
+  ]
+}

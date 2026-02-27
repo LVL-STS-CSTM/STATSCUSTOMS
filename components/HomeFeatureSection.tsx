@@ -109,7 +109,7 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
                                     {slide.subtitle}
                                 </span>
                                 {/* Minimized Text Size Here */}
-                                <h3 className="font-eurostile text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-widest leading-[0.9] mb-3 md:mb-6 drop-shadow-xl break-words">
+                                <h3 className="font-eurostile text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold uppercase tracking-widest leading-[0.9] mb-3 md:mb-6 drop-shadow-xl break-words">
                                     {slide.title}
                                 </h3>
                                 {/* Minimized Description Size Here */}

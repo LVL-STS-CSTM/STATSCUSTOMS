@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, bu
 
     const heroHeightClass = isFirst ? 'min-h-[100dvh] lg:max-h-[1080px]' : 'h-[50vh] min-h-[400px]';
     // Slightly nudged down titles for a more sophisticated, "perfect" scale
-    const titleSize = isFirst ? 'text-3xl md:text-4xl lg:text-6xl' : 'text-2xl md:text-3xl lg:text-4xl';
+    const titleSize = isFirst ? 'text-xl md:text-2xl lg:text-4xl' : 'text-lg md:text-xl lg:text-2xl';
     const descriptionSize = 'text-[10px] md:text-xs';
     
     const alignmentClass = 'flex items-end justify-start text-left';

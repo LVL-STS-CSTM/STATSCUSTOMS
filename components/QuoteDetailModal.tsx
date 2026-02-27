@@ -31,7 +31,7 @@ const QuoteDetailModal: React.FC<QuoteDetailModalProps> = ({ isOpen, onClose, qu
             <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden border border-gray-100">
                 <header className="flex items-center justify-between p-8 border-b sticky top-0 bg-white z-10">
                     <div>
-                        <h2 className="text-2xl font-rheiborn uppercase tracking-widest text-gray-900">{isDirectOrder ? 'Order Details' : 'Inquiry Details'}</h2>
+                        <h2 className="text-lg font-rheiborn uppercase tracking-widest text-gray-900">{isDirectOrder ? 'Order Details' : 'Inquiry Details'}</h2>
                         <div className="flex items-center gap-3 mt-1">
                             <span className="text-[10px] font-rheiborn font-black text-zinc-400 uppercase tracking-widest">Reference ID: {quote.id}</span>
                             <span className={`text-[8px] font-futura font-black px-2 py-0.5 rounded uppercase tracking-widest ${isDirectOrder ? 'bg-emerald-500 text-white' : 'bg-indigo-500 text-white'}`}>

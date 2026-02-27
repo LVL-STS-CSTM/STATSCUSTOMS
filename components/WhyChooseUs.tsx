@@ -80,7 +80,7 @@ const WhyChooseUs: React.FC = () => {
                     <span className={`inline-block py-1 px-3 rounded-full bg-white border border-zinc-200 text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] mb-6 shadow-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                         The Stats Advantage
                     </span>
-                    <h2 className={`font-eurostile text-3xl md:text-5xl lg:text-6xl text-gray-900 mb-6 uppercase tracking-widest leading-none transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                    <h2 className={`font-eurostile text-xl md:text-3xl lg:text-4xl text-gray-900 mb-6 uppercase tracking-widest leading-none transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                         Why Choose<br/>Stats Custom?
                     </h2>
                     <p className={`text-base md:text-lg text-gray-500 max-w-2xl mx-auto font-light transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>

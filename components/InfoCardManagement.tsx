@@ -5,8 +5,8 @@ import { InfoCard, View } from '../types';
 import { TrashIcon, PlusIcon } from './icons';
 
 const allViews: View[] = [
-    'about', 'partners', 'contact', 'faq', 'services', 
-    'terms-of-service', 'return-policy', 'privacy-policy', 'materials', 'catalogue', 'mockup-generator'
+    'about', 'partners', 'contact', 'faq', 
+    'terms-of-service', 'return-policy', 'privacy-policy', 'materials', 'catalogue', 'mockup-generator', 'the-team'
 ];
 
 const InfoCardEditor: React.FC<{ 

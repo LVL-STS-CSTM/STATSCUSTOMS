@@ -3,12 +3,12 @@ import { useData } from '../context/DataContext';
 import PageHeader from './PageHeader';
 import LazyImage from './LazyImage';
 
-const HowWeWorkPage: React.FC = () => {
+const OurProcessPage: React.FC = () => {
     const { howWeWorkSections } = useData();
 
     return (
         <div className="bg-white">
-            <PageHeader page="how-we-work" fallbackTitle="Quality Guaranteed" fallbackDescription="Our careful process ensures every piece meets our high standards of quality." />
+            <PageHeader page="our-process" fallbackTitle="Our Process" fallbackDescription="Our careful process ensures every piece meets our high standards of quality." />
             
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
                 <div className="space-y-32">
@@ -21,7 +21,7 @@ const HowWeWorkPage: React.FC = () => {
                             </div>
                             <div className="w-full lg:w-1/2 space-y-6">
                                 <span className="text-[10px] font-bold text-black uppercase tracking-[0.4em] font-rheiborn">Step 0{index + 1}</span>
-                                <h3 className="font-rheiborn text-4xl text-gray-900 uppercase tracking-widest">{section.title}</h3>
+                                <h3 className="font-rheiborn text-2xl text-gray-900 uppercase tracking-widest">{section.title}</h3>
                                 <p className="text-gray-500 leading-loose text-lg font-futura font-light antialiased">{section.description}</p>
                             </div>
                         </div>
@@ -32,4 +32,4 @@ const HowWeWorkPage: React.FC = () => {
     );
 };
 
-export default HowWeWorkPage;
+export default OurProcessPage;

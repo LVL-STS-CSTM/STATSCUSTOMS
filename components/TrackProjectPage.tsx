@@ -82,7 +82,7 @@ const TrackProjectPage: React.FC = () => {
 
             <div className="max-w-4xl mx-auto px-4 py-20">
                 <section className="bg-zinc-50 p-10 rounded-[2.5rem] border border-zinc-100 shadow-xl shadow-zinc-200/20">
-                    <h2 className="font-rheiborn text-2xl uppercase tracking-widest text-zinc-900 mb-8 text-center">Status Recon</h2>
+                    <h2 className="font-rheiborn text-lg uppercase tracking-widest text-zinc-900 mb-8 text-center">Status Recon</h2>
                     <form onSubmit={handleSearch} className="relative max-w-lg mx-auto">
                         <input 
                             type="text" 
@@ -109,7 +109,7 @@ const TrackProjectPage: React.FC = () => {
                              <div className="flex justify-between items-center mb-12">
                                 <div>
                                     <span className="text-[10px] font-rheiborn font-black text-zinc-400 uppercase tracking-[0.4em] block mb-1">Current Progress</span>
-                                    <h3 className="font-rheiborn text-3xl uppercase tracking-widest">Order Status</h3>
+                                    <h3 className="font-rheiborn text-xl uppercase tracking-widest">Order Status</h3>
                                 </div>
                                 <div className="text-right">
                                     <span className="text-[10px] font-rheiborn font-black text-zinc-400 uppercase tracking-[0.4em] block mb-1">Reference ID</span>

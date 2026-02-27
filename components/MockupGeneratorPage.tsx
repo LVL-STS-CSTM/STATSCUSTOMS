@@ -85,7 +85,7 @@ const MockupGeneratorPage: React.FC = () => {
                             <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
                             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">Design Studio</span>
                         </div>
-                        <h1 className="font-rheiborn text-3xl uppercase tracking-widest">Mockup Builder</h1>
+                        <h1 className="font-rheiborn text-xl uppercase tracking-widest">Mockup Builder</h1>
                         <p className="text-xs text-white/40 mt-1 font-medium">Create and preview your custom gear.</p>
                     </header>
 
