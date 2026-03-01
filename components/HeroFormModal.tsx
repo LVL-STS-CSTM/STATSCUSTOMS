@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { HeroContent, Product } from '../types';
 import { useData } from '../context/DataContext';
 import { CloseIcon, SparklesIcon } from './icons';
@@ -108,9 +109,9 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
     };
     
     const darkInputStyles = "mt-1 block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white sm:text-sm placeholder-gray-400";
-
-    return (
-        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+    
+    const modalContent = (
+        <div className="fixed inset-0 bg-black/60 z-[9999] flex items-center justify-center p-4">
             <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
                 <header className="flex items-center justify-between p-4 border-b sticky top-0 bg-white z-10">
                     <h2 className="text-xl font-semibold">{heroToEdit ? 'Edit Hero Banner' : 'Add New Hero Banner'}</h2>
@@ -270,6 +271,8 @@ const HeroFormModal: React.FC<HeroFormModalProps> = ({ isOpen, onClose, heroToEd
             </div>
         </div>
     );
+
+    return createPortal(modalContent, document.body);
 };
 
 export default HeroFormModal;

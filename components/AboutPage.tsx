@@ -96,7 +96,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                     </div>
                     <div className={`transition-all duration-1000 ease-out delay-200 ${visibility.who ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                         <div className="relative aspect-[4/5] overflow-hidden rounded-none shadow-2xl group">
-                            <LazyImage src="https://images.pexels.com/photos/5699865/pexels-photo-5699865.jpeg" alt="Technical fabrics" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            <LazyImage src="https://res.cloudinary.com/dvodalpcz/image/upload/v1772365153/Screenshot_2026-03-01_193845_vqqqr6.png" alt="Technical fabrics" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                             {/* Simple Black Overlay */}
                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
                             <div className="absolute inset-0 border-[20px] border-white/10 pointer-events-none"></div>
@@ -167,9 +167,9 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                     {/* Additional Gallery Images */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
                         {[
-                            { src: "https://images.pexels.com/photos/4753928/pexels-photo-4753928.jpeg", alt: "Production" },
-                            { src: "https://images.pexels.com/photos/3839432/pexels-photo-3839432.jpeg", alt: "Design" },
-                            { src: "https://images.pexels.com/photos/5490338/pexels-photo-5490338.jpeg", alt: "Quality" }
+                            { src: "https://res.cloudinary.com/dvodalpcz/image/upload/v1772364835/STATS2025_BRAND2-7_hxyqqk.jpg", alt: "Production" },
+                            { src: "https://res.cloudinary.com/dvodalpcz/image/upload/v1772364835/STATS2025_BRAND2-4_kpaxbn.jpg", alt: "Design" },
+                            { src: "https://res.cloudinary.com/dvodalpcz/image/upload/v1772364835/STATS2025_BRAND2-9_eoytuv.jpg", alt: "Quality" }
                         ].map((img, i) => (
                             <div key={i} className="aspect-[4/5] overflow-hidden relative group">
                                 <LazyImage src={img.src} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
@@ -227,15 +227,22 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                                 We produce the best locally made technical sportswear because this is how sportswear <span className="font-bold">SHOULD BE</span>—crafted with purpose, built to perform, and designed to inspire greatness in every step of the journey.
                             </p>
                         </div>
+
+                        {/* WE THE ANOMALY Image */}
+                        <div className="mt-20 flex justify-center">
+                            <div className="relative overflow-hidden">
+                                <img 
+                                    src="https://res.cloudinary.com/dvodalpcz/image/upload/v1772374524/2023_WTA_2_WHITE_znjkle.png" 
+                                    alt="We The Anomaly" 
+                                    className="h-[80px] w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-500"
+                                    referrerPolicy="no-referrer"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-
-            {/* Partners Section */}
-            <div className="bg-zinc-50 py-24 lg:py-32 transition-colors duration-300 overflow-hidden">
-                <FeaturedPartners partners={partners} />
-            </div>
-
+            
             {/* CTA */}
             <section ref={sectionRefs.cta} className={`py-32 px-6 bg-white transition-all duration-1000 ease-out ${visibility.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <div className="max-w-5xl mx-auto text-center">

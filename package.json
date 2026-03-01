@@ -4,9 +4,7 @@
   "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm:dev:client\" \"npm:dev:server\"",
-    "dev:client": "vite --port 3000 --host",
-    "dev:server": "tsx server.ts",
+    "dev": "tsx server.ts",
     "build": "vite build",
     "lint": "tsc --noEmit",
     "preview": "vite preview"

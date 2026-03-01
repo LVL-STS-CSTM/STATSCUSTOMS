@@ -26,8 +26,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
     const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '', phone: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isMapInteractive, setIsMapInteractive] = useState(false);
     
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -121,10 +121,19 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
 
                     {/* Right: Map */}
                     <div className="h-[400px] md:h-full min-h-[400px] bg-zinc-100 relative group/map overflow-hidden">
-                        <iframe src={mapEmbedUrl} width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" title="Location Map" className="absolute inset-0 w-full h-full grayscale group-hover/map:grayscale-0 transition-all duration-700"></iframe>
+                        <iframe 
+                            src={mapEmbedUrl} 
+                            width="100%" 
+                            height="100%" 
+                            style={{ border: 0 }} 
+                            allowFullScreen 
+                            loading="lazy" 
+                            title="Location Map" 
+                            className={`absolute inset-0 w-full h-full grayscale group-hover/map:grayscale-0 transition-all duration-700 ${!isMapInteractive ? 'pointer-events-none' : ''}`}
+                        ></iframe>
                         
                         {/* Custom Pinpoint Overlay */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10 -mt-8">
+                        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10 -mt-8 transition-opacity duration-300 ${isMapInteractive ? 'opacity-0' : 'opacity-100'}`}>
                             <div className="relative flex flex-col items-center">
                                 <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center shadow-2xl border-4 border-white relative z-20 transition-transform duration-500 group-hover/map:scale-110">
                                      <img src="https://i.imgur.com/OIYeMvS.png" alt="Stats Custom" className="w-12 h-12 object-contain" />
@@ -133,6 +142,28 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                                 <div className="w-24 h-4 bg-black/30 blur-md rounded-[100%] mt-4 opacity-50 group-hover/map:opacity-80 transition-opacity duration-500"></div>
                             </div>
                         </div>
+
+                        {/* Interaction Overlay */}
+                        {!isMapInteractive && (
+                            <div 
+                                className="absolute inset-0 z-20 flex items-end justify-center pb-8 cursor-pointer bg-black/0 hover:bg-black/5 transition-colors"
+                                onClick={() => setIsMapInteractive(true)}
+                            >
+                                <div className="bg-black text-white px-6 py-3 text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl border border-white/20 animate-bounce">
+                                    Click to Explore Map
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Reset Interaction Button */}
+                        {isMapInteractive && (
+                            <button 
+                                onClick={() => setIsMapInteractive(false)}
+                                className="absolute top-4 right-4 z-30 bg-white/90 backdrop-blur-md text-black px-4 py-2 text-[9px] font-black uppercase tracking-widest shadow-lg border border-zinc-200 hover:bg-black hover:text-white transition-all"
+                            >
+                                Lock Map
+                            </button>
+                        )}
                     </div>
                 </div>
 

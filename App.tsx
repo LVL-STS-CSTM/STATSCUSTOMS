@@ -25,7 +25,7 @@ const CataloguePage = lazy(() => import('./components/CataloguePage'));
 const AboutPage = lazy(() => import('./components/AboutPage'));
 const PartnersPage = lazy(() => import('./components/PartnersPage'));
 const FaqPage = lazy(() => import('./components/FaqPage'));
-const TheTeamPage = lazy(() => import('./components/CommunityPage'));
+const TheTeamPage = lazy(() => import('./components/TheTeamPage'));
 const FabricsPage = lazy(() => import('./components/FabricsPage'));
 const OurProcessPage = lazy(() => import('./components/OurProcessPage'));
 const TermsOfServicePage = lazy(() => import('./components/TermsOfServicePage'));

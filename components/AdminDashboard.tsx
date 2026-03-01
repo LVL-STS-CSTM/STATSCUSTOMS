@@ -18,11 +18,11 @@ import InfoCardManagement from './InfoCardManagement';
 import FeaturedVideoManagement from './FeaturedVideoManagement';
 import BrandReviewManagement from './BrandReviewManagement';
 import PlatformRatingManagement from './PlatformRatingManagement';
-import CommunityManagement from './CommunityManagement';
 import PageBannerManagement from './PageBannerManagement';
 import SecurityManagement from './SecurityManagement';
 import SubscriptionModalManagement from './SubscriptionModalManagement';
 import HomeFeatureManagement from './HomeFeatureManagement';
+import TheTeamManagement from './TheTeamManagement';
 import { ViewGridSmallIcon, CartIcon, UserIcon, SparklesIcon, TargetIcon, CloseIcon } from './icons';
 
 const STATUSES: QuoteStatus[] = ['New', 'Contacted', 'In Progress', 'Completed', 'Cancelled'];
@@ -390,7 +390,7 @@ const AdminDashboard: React.FC = () => {
                                     {pageSubTab === 'materials' && <FabricManagement />}
                                     {pageSubTab === 'brand-reviews' && <BrandReviewManagement />}
                                     {pageSubTab === 'platform-ratings' && <PlatformRatingManagement />}
-                                    {pageSubTab === 'the-team' && <CommunityManagement />}
+                                    {pageSubTab === 'the-team' && <TheTeamManagement />}
                                 </div>
                             </div>
                         )}

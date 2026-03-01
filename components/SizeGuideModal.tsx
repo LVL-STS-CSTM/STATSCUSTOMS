@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { ProductSize } from '../types';
 import { CloseIcon, RulerIcon } from './icons';
 
@@ -13,8 +14,8 @@ interface SizeGuideModalProps {
 const SizeGuideModal: React.FC<SizeGuideModalProps> = ({ isOpen, onClose, productName, sizes }) => {
     if (!isOpen) return null;
 
-    return (
-        <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 backdrop-blur-sm" onClick={onClose}>
+    const modalContent = (
+        <div className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4 backdrop-blur-sm" onClick={onClose}>
             {/* Increased max-width to 2xl for better table spread */}
             <div 
                 className="bg-white rounded-[2rem] shadow-2xl w-full max-w-2xl overflow-hidden animate-fade-in-up"
@@ -76,6 +77,8 @@ const SizeGuideModal: React.FC<SizeGuideModalProps> = ({ isOpen, onClose, produc
             </div>
         </div>
     );
+
+    return createPortal(modalContent, document.body);
 };
 
 export default SizeGuideModal;

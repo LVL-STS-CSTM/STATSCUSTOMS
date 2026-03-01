@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { SubmittedQuote } from '../types';
 import { CloseIcon, LinkIcon } from './icons';
 
@@ -25,9 +26,9 @@ const QuoteDetailModal: React.FC<QuoteDetailModalProps> = ({ isOpen, onClose, qu
     };
 
     const isDirectOrder = quote.id.startsWith('ORD');
-
-    return (
-        <div className="fixed inset-0 bg-black/80 z-[80] flex items-center justify-center p-4 backdrop-blur-md">
+    
+    const modalContent = (
+        <div className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4 backdrop-blur-md">
             <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden border border-gray-100">
                 <header className="flex items-center justify-between p-8 border-b sticky top-0 bg-white z-10">
                     <div>
@@ -159,6 +160,8 @@ const QuoteDetailModal: React.FC<QuoteDetailModalProps> = ({ isOpen, onClose, qu
             </div>
         </div>
     );
+
+    return createPortal(modalContent, document.body);
 };
 
 export default QuoteDetailModal;

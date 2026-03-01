@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { Product, FaqItem, Material, View } from '../types';
 import { SearchIcon, CloseIcon } from './icons';
 import LazyImage from './LazyImage';
@@ -226,8 +227,8 @@ const SearchModal: React.FC<SearchModalProps> = ({
         );
     };
 
-    return (
-        <div className={`fixed inset-0 z-50 flex flex-col items-center p-4 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+    const modalContent = (
+        <div className={`fixed inset-0 z-[9999] flex flex-col items-center p-4 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             <div className="fixed inset-0 bg-white/70 backdrop-blur-sm" onClick={onClose}></div>
             
             <div className="bg-white rounded-lg w-full max-w-2xl max-h-[80vh] flex flex-col shadow-2xl z-10 border border-gray-200 overflow-hidden">
@@ -252,6 +253,8 @@ const SearchModal: React.FC<SearchModalProps> = ({
             </div>
         </div>
     );
+
+    return createPortal(modalContent, document.body);
 };
 
 export default SearchModal;

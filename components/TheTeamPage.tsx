@@ -18,7 +18,7 @@ const TheTeamPage: React.FC<TheTeamPageProps> = ({ onNavigate }) => {
             <PageHeader page="the-team" fallbackTitle="The Team" fallbackDescription="Meet the people behind the brand." />
             
             <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div className="columns-1 md:columns-2 lg:columns-2 xl:columns-3 gap-8 space-y-8">
+                <div className="columns-1 md:columns-1 lg:columns-2 gap-8 space-y-8">
                     {visiblePosts.map(post => {
                         const tagged = post.taggedProductId ? products.find(p => p.id === post.taggedProductId) : null;
                         return (

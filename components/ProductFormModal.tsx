@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Product, Color, ProductFeatureItem } from '../types';
 import { useData } from '../context/DataContext';
 import { CloseIcon, PlusIcon, TrashIcon } from './icons';
@@ -219,8 +220,8 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
     const inputClasses = "mt-1 block w-full px-4 py-3 bg-zinc-50 border border-zinc-200 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition-all text-xs font-medium";
     const labelClasses = "block text-[9px] font-black uppercase tracking-widest text-zinc-400 ml-1 mb-1";
 
-    return (
-        <div className="fixed inset-0 bg-black/80 z-[80] flex items-center justify-center p-4 backdrop-blur-sm">
+    const modalContent = (
+        <div className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center p-4 backdrop-blur-sm">
             <div className="bg-white rounded-[2rem] shadow-2xl w-full max-w-4xl max-h-[95vh] flex flex-col overflow-hidden">
                 <header className="flex items-center justify-between px-8 py-6 border-b border-zinc-100 bg-white z-10">
                     <div>
@@ -542,6 +543,8 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({ isOpen, onClose, pr
             </div>
         </div>
     );
+
+    return createPortal(modalContent, document.body);
 };
 
 export default ProductFormModal;
