@@ -207,7 +207,7 @@ const AppContent: React.FC = () => {
                     isScrolled={isScrolled} 
                 />
 
-                <main className={`flex-grow overflow-x-hidden transition-opacity duration-700 ${isAppLoading || isDataLoading ? 'opacity-0' : 'opacity-100'} ${view === 'home' || view === 'checkout' ? 'pt-0' : 'pt-14 lg:pt-20'}`}>
+                <main className={`flex-grow overflow-x-hidden transition-opacity duration-700 ${isAppLoading || isDataLoading ? 'opacity-0' : 'opacity-100'} pb-24`}>
                     {renderView()}
                 </main>
 
