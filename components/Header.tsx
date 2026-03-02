@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
     return (
         <>
             {/* Floating Bottom Navigation */}
-            <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-[40] flex items-center bg-black/90 backdrop-blur-md rounded-full p-2 shadow-2xl border border-white/10 transition-all duration-500 ${isNavExpanded ? 'pl-4' : ''}`}>
+            <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-[40] flex items-center rounded-full p-2 transition-all duration-500 ${isNavExpanded ? 'bg-black/90 backdrop-blur-md shadow-2xl border border-white/10 pl-4' : 'bg-transparent'}`}>
                 <div className={`flex items-center overflow-hidden transition-all duration-500 ease-in-out ${isNavExpanded ? 'max-w-[300px] opacity-100 pr-4 gap-6' : 'max-w-0 opacity-0 px-0 gap-0'}`}>
                     <IconButton onClick={() => { handleNavClick('home'); setIsNavExpanded(false); }} ariaLabel="Home" theme="dark" className={view === 'home' ? 'text-white' : ''}>
                         <HomeIcon className="w-5 h-5" />
@@ -93,27 +93,28 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
                 </div>
                 <button 
                     onClick={() => setIsNavExpanded(!isNavExpanded)}
-                    className="relative w-12 h-12 flex items-center justify-center hover:scale-105 active:scale-95 transition-all shrink-0 group"
+                    className="relative w-12 h-12 flex items-center justify-center transition-all shrink-0 group"
                     aria-label="Toggle Navigation"
                 >
-                    {/* Corner Brackets */}
-                    <div className="absolute inset-0 pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/80"></div>
-                        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/80"></div>
-                        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/80"></div>
-                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/80"></div>
-                    </div>
+{/* Corner Brackets */}
+<div className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${isNavExpanded ? 'opacity-100' : 'opacity-50 group-hover:opacity-100'}`}>
+    <div className={`absolute w-2 h-2 border-t border-l border-gray-400/50 transition-all duration-300 ease-out ${isNavExpanded ? 'top-1 left-1' : 'top-0 left-0 group-hover:-translate-x-1 group-hover:-translate-y-1'}`}></div>
+    <div className={`absolute w-2 h-2 border-t border-r border-gray-400/50 transition-all duration-300 ease-out ${isNavExpanded ? 'top-1 right-1' : 'top-0 right-0 group-hover:translate-x-1 group-hover:-translate-y-1'}`}></div>
+    <div className={`absolute w-2 h-2 border-b border-l border-gray-400/50 transition-all duration-300 ease-out ${isNavExpanded ? 'bottom-1 left-1' : 'bottom-0 left-0 group-hover:-translate-x-1 group-hover:translate-y-1'}`}></div>
+    <div className={`absolute w-2 h-2 border-b border-r border-gray-400/50 transition-all duration-300 ease-out ${isNavExpanded ? 'bottom-1 right-1' : 'bottom-0 right-0 group-hover:translate-x-1 group-hover:translate-y-1'}`}></div>
+</div>
                     
-                    {isNavExpanded ? (
-                        <CloseIcon className="w-5 h-5 text-white" />
-                    ) : (
+                    <div className={`transition-all duration-500 ${isNavExpanded ? 'rotate-90 scale-0 opacity-0 absolute' : 'rotate-0 scale-100 opacity-100'}`}>
                         <img 
-                            src="https://i.imgur.com/OIYeMvS.png" 
+                            src="https://res.cloudinary.com/dvodalpcz/image/upload/v1772417159/2023_MAIN_D.GRAY_pgoqfc.png" 
                             alt="Menu" 
                             className="w-6 h-6 object-contain" 
                             onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} 
                         />
-                    )}
+                    </div>
+                    <div className={`transition-all duration-500 ${isNavExpanded ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-0 opacity-0 absolute'}`}>
+                        <CloseIcon className="w-5 h-5 text-white" />
+                    </div>
                 </button>
             </div>
             
