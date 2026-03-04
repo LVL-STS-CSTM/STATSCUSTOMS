@@ -17,12 +17,12 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
   return (
     <div className="bg-[#262626] text-white">
-     <footer className="p-8 md:p-12">
+     <footer className="py-8 px-4 md:py-10 md:px-8">
       <div className="flex justify-between flex-wrap max-w-7xl mx-auto gap-8">
         {/* About Section */}
         <div className="flex-1 min-w-[160px]">
-          <h4 className="text-white mb-8 font-eurostile font-bold uppercase text-lg tracking-[0.3em]">ABOUT</h4>
-          <ul className="list-none p-0 m-0 text-xs text-zinc-400 space-y-4 font-grotesk">
+          <h4 className="text-white mb-6 font-eurostile font-bold uppercase text-base tracking-[0.3em]">ABOUT</h4>
+          <ul className="list-none p-0 m-0 text-[11px] text-zinc-400 space-y-3 font-grotesk">
             <li>
                 <button onClick={(e) => handleNavClick(e, 'our-process')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">OUR PROCESS</button>
             </li>
@@ -40,8 +40,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Services Section */}
         <div className="flex-1 min-w-[160px]">
-          <h4 className="text-white mb-8 font-eurostile font-bold uppercase text-lg tracking-[0.3em]">SERVICES</h4>
-          <ul className="list-none p-0 m-0 text-xs text-zinc-400 space-y-4 font-grotesk">
+          <h4 className="text-white mb-6 font-eurostile font-bold uppercase text-base tracking-[0.3em]">SERVICES</h4>
+          <ul className="list-none p-0 m-0 text-[11px] text-zinc-400 space-y-3 font-grotesk">
             <li>
                 <button onClick={(e) => handleNavClick(e, 'faq')} className="hover:text-white transition-colors font-bold uppercase text-left w-full tracking-[0.2em]">FAQS</button>
             </li>
@@ -59,8 +59,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Connect Section */}
         <div className="flex-1 min-w-[160px]">
-          <h4 className="text-white mb-8 font-eurostile font-bold uppercase text-lg tracking-[0.3em]">CONNECT</h4>
-          <div className="flex gap-6 my-2.5">
+          <h4 className="text-white mb-6 font-eurostile font-bold uppercase text-base tracking-[0.3em]">CONNECT</h4>
+          <div className="flex gap-5 my-2">
             <a href="https://www.facebook.com/statsph" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-zinc-400 hover:text-white transition-colors">
               <FaFacebookF className="w-5 h-5" />
             </a>
@@ -83,9 +83,9 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
       </div>
       </footer>
-    <div className="bg-brand-black py-6 font-grotesk text-zinc-500 text-[10px] border-t border-zinc-800 uppercase tracking-widest">
+    <div className="bg-brand-black pt-6 pb-24 md:pb-6 font-grotesk text-zinc-500 text-[10px] border-t border-zinc-800 uppercase tracking-widest">
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center">
-            <p>
+            <p className="text-center md:text-left">
             Copyright &copy; 2026 - <b className="text-white">STATSPH</b>
             </p>
         </div>

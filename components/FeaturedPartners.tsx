@@ -9,38 +9,14 @@ interface FeaturedPartnersProps {
 
 const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
     const ref = useRef<HTMLDivElement>(null);
-    const scrollRef = useRef<HTMLDivElement>(null);
     const isVisible = useOnScreen(ref);
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
 
     if (!partners || partners.length === 0) {
         return null;
     }
 
-    const handleMouseDown = (e: React.MouseEvent) => {
-        if (!scrollRef.current) return;
-        setIsDragging(true);
-        setStartX(e.pageX - scrollRef.current.offsetLeft);
-        setScrollLeft(scrollRef.current.scrollLeft);
-    };
-
-    const handleMouseLeave = () => {
-        setIsDragging(false);
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-    };
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isDragging || !scrollRef.current) return;
-        e.preventDefault();
-        const x = e.pageX - scrollRef.current.offsetLeft;
-        const walk = (x - startX) * 2; // Scroll speed
-        scrollRef.current.scrollLeft = scrollLeft - walk;
-    };
+    // Duplicate partners array to create seamless loop
+    const displayPartners = [...partners, ...partners, ...partners, ...partners];
 
     return (
         <section ref={ref} className="bg-gray-100 py-16 md:py-24 overflow-hidden group relative w-full">
@@ -56,18 +32,14 @@ const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
             </div>
             
             {/* Carousel Container */}
-            <div className="relative w-full overflow-hidden py-4" style={{ overflow: 'hidden' }}>
-                <div 
-                    ref={scrollRef}
-                    className={`flex overflow-x-auto snap-x snap-mandatory no-scrollbar cursor-grab active:cursor-grabbing gap-12 md:gap-24 items-center px-12 select-none`}
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                    onMouseDown={handleMouseDown}
-                    onMouseLeave={handleMouseLeave}
-                    onMouseUp={handleMouseUp}
-                    onMouseMove={handleMouseMove}
-                >
-                    {partners.map((partner) => (
-                        <div key={partner.id} className="shrink-0 w-[120px] md:w-[160px] flex items-center justify-center grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-500 snap-center">
+            <div className="relative w-full overflow-hidden py-8 flex">
+                {/* Gradient Masks */}
+                <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-gray-100 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-gray-100 to-transparent z-10 pointer-events-none"></div>
+
+                <div className="flex w-max animate-scroll hover:[animation-play-state:paused] items-center">
+                    {displayPartners.map((partner, index) => (
+                        <div key={`${partner.id}-${index}`} className="shrink-0 w-[160px] md:w-[240px] flex items-center justify-center grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500 px-8">
                             <PartnerItem partner={partner} />
                         </div>
                     ))}
