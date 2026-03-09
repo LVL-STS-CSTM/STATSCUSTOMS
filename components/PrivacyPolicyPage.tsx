@@ -17,7 +17,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 </h1>
                 <div className="text-base">
                     <P>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</P>
-                    <P>STATS CUSTOM APPAREL ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.</P>
+                    <P>STATS CUSTOM APPAREL ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website. Please read this privacy policy carefully.</P>
 
                     <H2>1. COLLECTION OF YOUR INFORMATION</H2>
                     <P>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</P>

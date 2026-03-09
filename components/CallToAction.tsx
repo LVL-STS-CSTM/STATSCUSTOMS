@@ -45,13 +45,13 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
                 <div className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                     {/* Reduced font size */}
                     <h2 className="font-eurostile font-bold text-xl md:text-3xl lg:text-4xl text-white mb-8 uppercase tracking-widest leading-none drop-shadow-2xl">
-                        Define Your Legacy
+                        ENGINEERED EXCELLENCE
                     </h2>
                 </div>
                 
                 {/* Reduced text size */}
                 <p className={`text-sm md:text-base text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed font-futura font-light transition-all duration-1000 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-                    We don't just manufacture; we engineer identity. Premium craftsmanship, local excellence, and fair pricing. Equip your team with gear that demands respect.
+                   We produce the best locally made through Premium craftsmanship. Local excellence. Zero compromise. Elevate your team today.
                 </p>
                 
                 <div className={`transition-all duration-1000 ease-out delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
@@ -60,7 +60,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
                         onClick={(e: React.MouseEvent<HTMLButtonElement>) => { e.preventDefault(); onNavigate('contact'); }}
                         className="px-10 py-4 text-[10px] tracking-[0.3em] shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:bg-white/10 hover:text-white hover:border-white/50"
                     >
-                        INITIATE PROJECT
+                        BEGIN PROJECT
                     </Button>
                 </div>
             </div>

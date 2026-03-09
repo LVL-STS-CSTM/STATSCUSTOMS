@@ -6,9 +6,9 @@ import LazyImage from './LazyImage';
 const techniques = [
     { 
         id: '01',
-        title: "Heat Transfer", 
+        title: "Screen Print", 
         label: "Precision Depth",
-        description: "Graphics cleanly applied with commercial-grade heat for a crisp, vibrant finish.", 
+        description: "Cleanly applied with screens to press ink onto fabric for a bold and solid colors", 
         imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5dpvr5PsCJ9D_pBSX9k93hXqqbaeRfzEVMw&s" 
     },
     { 

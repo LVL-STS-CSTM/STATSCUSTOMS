@@ -86,7 +86,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     <div className="bg-brand-black pt-6 pb-24 md:pb-6 font-grotesk text-zinc-500 text-[10px] border-t border-zinc-800 uppercase tracking-widest">
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-center md:text-left">
-            Copyright &copy; 2026 - <b className="text-white">STATSPH</b>
+            Copyright &copy; 2026 - <b className="text-white">WESTATSPH</b>
             </p>
         </div>
     </div>

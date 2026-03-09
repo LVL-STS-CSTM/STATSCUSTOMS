@@ -116,68 +116,44 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                 }}></div>
 
                 <div className="max-w-7xl mx-auto relative z-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-32">
-                        <div className={`transition-all duration-1000 ease-out ${visibility.how ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-10 h-[1px] bg-black"></div>
-                                <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-black font-grotesk">How We Work</span>
-                            </div>
-                            <h2 className="font-eurostile text-2xl lg:text-4xl text-gray-900 mb-10 uppercase tracking-tighter leading-none">Engineered by Athletes<br/>for Athletes</h2>
-                            <div className="space-y-8 text-zinc-600 leading-relaxed font-light text-lg antialiased font-futura">
-                                <p>
-                                    Every STATS Technical Sportswear design is rooted in years of experience as athletes and individuals who live and breathe an active lifestyle. Our team knows what it takes to perform at the highest level because we’ve been there—pushing limits, testing boundaries, and understanding the nuances of movement.
-                                </p>
-                                <p>
-                                    This firsthand knowledge shapes every piece we create, ensuring that only the most essential features are included. We strip away the unnecessary, focusing on what truly matters: performance, comfort, and durability. Every stitch, seam, and detail is intentional, designed to support and enhance the way you move.
-                                </p>
-                                <p className="text-black font-semibold">
-                                    At STATS, our sportswear isn’t just made for athletes—it’s made by those who understand the grind, the passion, and the pursuit of excellence.
-                                </p>
-                            </div>
-                        </div>
-                        <div className={`grid grid-cols-1 gap-8 transition-all duration-1000 ease-out delay-300 ${visibility.how ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-                            <div className="bg-zinc-50 p-10 border-l-4 border-black relative group">
-                                {/* Corner Boxes for Cards */}
-                                <div className="absolute top-0 right-0 w-2 h-2 bg-black opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <div className="flex items-center gap-4 mb-4">
-                                    <SampleTestingIcon className="w-8 h-8"/>
-                                    <h3 className="font-eurostile text-xl uppercase tracking-wider">Sample Testing</h3>
-                                </div>
-                                <p className="text-zinc-600 font-light font-futura">Designs are finalized, then engineered in-house. Every prototype goes through rigorous fit, function, and durability trials.</p>
-                            </div>
-                            <div className="bg-zinc-50 p-10 border-l-4 border-black relative group">
-                                <div className="absolute top-0 right-0 w-2 h-2 bg-black opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <div className="flex items-center gap-4 mb-4">
-                                    <ProductionIcon className="w-8 h-8"/>
-                                    <h3 className="font-eurostile text-xl uppercase tracking-wider">Small Batch Production</h3>
-                                </div>
-                                <p className="text-zinc-600 font-light font-futura">Producing in small batches ensures tighter quality control, less waste, and gear that’s fresh, focused, and built for purpose.</p>
-                            </div>
-                            <div className="bg-zinc-50 p-10 border-l-4 border-black relative group">
-                                <div className="absolute top-0 right-0 w-2 h-2 bg-black opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <div className="flex items-center gap-4 mb-4">
-                                    <SustainabilityIcon className="w-8 h-8"/>
-                                    <h3 className="font-eurostile text-xl uppercase tracking-wider">Sustainability Statement</h3>
-                                </div>
-                                <p className="text-zinc-600 font-light font-futura">From small-batch production to using recycled fabrics for our hang tags, every step is intentional. We donate fabric cutouts to local sewing shops—minimizing waste and maximizing impact.</p>
-                            </div>
-                        </div>
+                    <div className={`text-center mb-20 transition-all duration-1000 ease-out ${visibility.how ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <h2 className="font-eurostile text-3xl md:text-5xl text-gray-900 mb-6 uppercase tracking-tighter leading-none">How We Work</h2>
+                        <p className="text-zinc-900 font-medium text-lg md:text-xl antialiased font-futura max-w-4xl mx-auto">
+                            Every STATS TECHNICAL SPORTSWEAR design is rooted in years of experience as athletes and individuals who live and breathe an active lifestyle.
+                        </p>
                     </div>
 
-                    {/* Additional Gallery Images */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
-                        {[
-                            { src: "https://res.cloudinary.com/dvodalpcz/image/upload/v1772364835/STATS2025_BRAND2-7_hxyqqk.jpg", alt: "Production" },
-                            { src: "https://res.cloudinary.com/dvodalpcz/image/upload/v1772364835/STATS2025_BRAND2-4_kpaxbn.jpg", alt: "Design" },
-                            { src: "https://res.cloudinary.com/dvodalpcz/image/upload/v1772364835/STATS2025_BRAND2-9_eoytuv.jpg", alt: "Quality" }
-                        ].map((img, i) => (
-                            <div key={i} className="aspect-[4/5] overflow-hidden relative group">
-                                <LazyImage src={img.src} alt={img.alt} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        {/* Column 1 */}
+                        <div className={`flex flex-col items-center transition-all duration-1000 ease-out delay-100 ${visibility.how ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                            <h3 className="font-eurostile text-xl md:text-2xl uppercase tracking-wider mb-8 text-center font-bold">Sample Testing</h3>
+                            <div className="aspect-[4/5] w-full overflow-hidden relative group">
+                                <LazyImage src="https://res.cloudinary.com/dvodalpcz/image/upload/v1772364835/STATS2025_BRAND2-7_hxyqqk.jpg" alt="Sample Testing" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
                                 {/* Corner Markers for Images */}
                                 <div className="absolute top-4 left-4 w-3 h-3 border-t border-l border-white/60 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 <div className="absolute bottom-4 right-4 w-3 h-3 border-b border-r border-white/60 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             </div>
-                        ))}
+                        </div>
+
+                        {/* Column 2 */}
+                        <div className={`flex flex-col items-center transition-all duration-1000 ease-out delay-200 ${visibility.how ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                            <h3 className="font-eurostile text-xl md:text-2xl uppercase tracking-wider mb-8 text-center font-bold">Small Batch Production</h3>
+                            <div className="aspect-[4/5] w-full overflow-hidden relative group">
+                                <LazyImage src="https://res.cloudinary.com/dvodalpcz/image/upload/v1772364835/STATS2025_BRAND2-4_kpaxbn.jpg" alt="Small Batch Production" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                                <div className="absolute top-4 left-4 w-3 h-3 border-t border-l border-white/60 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="absolute bottom-4 right-4 w-3 h-3 border-b border-r border-white/60 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </div>
+                        </div>
+
+                        {/* Column 3 */}
+                        <div className={`flex flex-col items-center transition-all duration-1000 ease-out delay-300 ${visibility.how ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                            <h3 className="font-eurostile text-xl md:text-2xl uppercase tracking-wider mb-8 text-center font-bold">Sustainability Statement</h3>
+                            <div className="aspect-[4/5] w-full overflow-hidden relative group">
+                                <LazyImage src="https://res.cloudinary.com/dvodalpcz/image/upload/v1772364835/STATS2025_BRAND2-9_eoytuv.jpg" alt="Sustainability Statement" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                                <div className="absolute top-4 left-4 w-3 h-3 border-t border-l border-white/60 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="absolute bottom-4 right-4 w-3 h-3 border-b border-r border-white/60 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
