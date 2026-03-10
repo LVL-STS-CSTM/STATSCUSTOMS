@@ -42,12 +42,12 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10"></div>
                 <div className="relative z-20 px-6 text-center max-w-5xl">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.6em] text-white/60 mb-6 block animate-fade-in font-grotesk">Established in the Philippines</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.6em] text-white/60 mb-6 block animate-fade-in font-grotesk"></span>
                     <h1 className="font-eurostile font-medium text-2xl md:text-4xl lg:text-5xl tracking-tighter uppercase leading-[0.85] animate-fade-in-up drop-shadow-2xl">
-                        The Narrative
+                        STATS CUSTOM
                     </h1>
                     <p className="mt-8 text-[10px] md:text-xs max-w-2xl mx-auto text-white/60 font-light leading-relaxed uppercase tracking-[0.4em] animate-fade-in-up [animation-delay:200ms] font-grotesk">
-                        Forged in the Philippines. Engineered for the World.
+                        Built in the Philippines. Engineered for the World.
                     </p>
                 </div>
             </section>

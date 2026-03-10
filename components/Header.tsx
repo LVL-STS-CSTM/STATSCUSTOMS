@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, onQuoteClick, onSearchClick
     return (
         <>
             {/* Floating Bottom Navigation */}
-            <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-[40] flex items-center rounded-full p-2 transition-all duration-500 ${isNavExpanded ? 'bg-black/90 backdrop-blur-md shadow-2xl border border-white/10 pl-4' : 'bg-transparent'}`}>
+            <div className={`fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-[40] flex items-center rounded-full p-2 transition-all duration-500 ${isNavExpanded ? 'bg-black/90 backdrop-blur-md shadow-2xl border border-white/10 pl-4' : 'bg-transparent'}`}>
                 <div className={`flex items-center overflow-hidden transition-all duration-500 ease-in-out ${isNavExpanded ? 'max-w-[300px] opacity-100 pr-4 gap-6' : 'max-w-0 opacity-0 px-0 gap-0'}`}>
                     <IconButton onClick={() => { handleNavClick('home'); setIsNavExpanded(false); }} ariaLabel="Home" theme="dark" className={view === 'home' ? 'text-white' : ''}>
                         <HomeIcon className="w-5 h-5" />

@@ -154,7 +154,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product, initialColorName, on
                                 </div>
                             </Accordion>
                             
-                            <Accordion title="SPECIFICATIONS">
+                            <Accordion title="DETAILS">
                                 <div className="pb-4 text-sm leading-relaxed text-zinc-600 font-futura">
                                     <ul className="space-y-2">
                                         <li className="flex justify-between">

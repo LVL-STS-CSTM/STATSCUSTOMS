@@ -149,7 +149,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                                 className="absolute inset-0 z-20 flex items-end justify-center pb-8 cursor-pointer bg-black/0 hover:bg-black/5 transition-colors"
                                 onClick={() => setIsMapInteractive(true)}
                             >
-                                <div className="bg-black text-white px-6 py-3 text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl border border-white/20 animate-bounce">
+                                <div className="bg-black text-white px-6 py-3 text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl border border-white/20">
                                     Click to Explore Map
                                 </div>
                             </div>

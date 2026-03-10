@@ -208,7 +208,7 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
             </div>
 
             {/* Mobile Filter Floating Button */}
-            <div className="lg:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-[45]">
+            <div className="lg:hidden fixed bottom-28 left-1/2 -translate-x-1/2 z-[45]">
                 <button 
                     onClick={() => setIsMobileFilterOpen(true)}
                     className="bg-black text-white px-8 py-4 rounded-full font-bold text-[10px] uppercase tracking-[0.4em] shadow-2xl flex items-center gap-3 active:scale-95 transition-transform font-grotesk"

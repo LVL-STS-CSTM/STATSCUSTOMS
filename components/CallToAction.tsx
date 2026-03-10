@@ -51,7 +51,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
                 
                 {/* Reduced text size */}
                 <p className={`text-sm md:text-base text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed font-futura font-light transition-all duration-1000 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-                   We produce the best locally made through Premium craftsmanship. Local excellence. Zero compromise. Elevate your team today.
+                 Premium craftsmanship. Local excellence. Zero compromise. Elevate your team today.
                 </p>
                 
                 <div className={`transition-all duration-1000 ease-out delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>

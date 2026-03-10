@@ -27,8 +27,8 @@ const techniques = [
     },
     { 
         id: '04',
-        title: "DTF Print", 
-        label: "Over-the-Fabric",
+        title: "Over-the-Fabric Print", 
+        label: "Adaptive Flex",
         description: "Versatile, high-detail full-color transfers with a durable, flexible finish.", 
         imageUrl: "https://www.shutterstock.com/image-photo/press-printing-on-colored-tshirts-600nw-2392783701.jpg" 
     }
