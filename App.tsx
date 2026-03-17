@@ -130,6 +130,7 @@ const AppContent: React.FC = () => {
 
     const handleCardClick = (card: InfoCard) => {
         if (card.linkType === 'page') handleNavigate(card.linkValue as View);
+        else if (card.linkType === 'collection') handleNavigate('catalogue', card.linkValue);
         else if (card.linkType === 'modal') {
             if (card.linkValue === 'subscribe') setIsSubscriptionModalOpen(true);
             if (card.linkValue === 'search') setIsSearchModalOpen(true);

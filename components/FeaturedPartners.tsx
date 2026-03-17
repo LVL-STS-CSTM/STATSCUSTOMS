@@ -23,11 +23,10 @@ const FeaturedPartners: React.FC<FeaturedPartnersProps> = ({ partners }) => {
             <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                 <div className="text-center">
                     <h2 className="font-eurostile text-xl md:text-2xl tracking-[0.3em] text-zinc-900 mb-6 uppercase">
-                        Strategic Alliances
+                        WHO WHE'VE WORKED WITH
                     </h2>
                     <p className="text-sm md:text-base text-zinc-500 leading-relaxed max-w-2xl mx-auto uppercase tracking-widest">
-                        Powering the visual identity of elite organizations, from agile startups to global icons.
-                    </p>
+                        Engineered for the best. Technical apparel for the elite. </p>
                 </div>
             </div>
             

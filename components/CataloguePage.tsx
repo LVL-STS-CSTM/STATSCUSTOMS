@@ -41,6 +41,7 @@ const FilterLink: React.FC<{ active: boolean; onClick: () => void; label: string
 const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick, initialFilter, onNavigate }) => {
     const { collections } = useData();
     const [sortOrder, setSortOrder] = useState('default');
+    const [gridColumns, setGridColumns] = useState(2);
     const [isSidebarVisible, setIsSidebarVisible] = useState(true);
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
@@ -187,10 +188,42 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                             </div>
                         </header>
 
-                        <ProductGrid 
-                            products={filteredProducts} 
-                            onProductClick={onProductClick} 
-                        />
+                        {/* Mobile Filter/Sort Bar */}
+                        <div className="lg:hidden sticky top-0 z-40 bg-white border-b border-zinc-100 mb-6 -mx-2 md:-mx-8">
+                            <div className="flex divide-x divide-zinc-100">
+                                <button onClick={() => setIsMobileFilterOpen(true)} className="flex-1 py-3 text-[10px] font-medium text-zinc-600 uppercase tracking-wide text-center">Filter</button>
+                                <div className="flex-1 py-3 text-[10px] font-medium text-zinc-600 uppercase tracking-wide text-center relative">
+                                    <select 
+                                        value={sortOrder}
+                                        onChange={(e) => setSortOrder(e.target.value)}
+                                        className="appearance-none bg-transparent border-0 py-0 text-[10px] font-medium text-zinc-600 uppercase tracking-wide focus:ring-0 cursor-pointer w-full text-center"
+                                    >
+                                        <option value="default">Sort</option>
+                                        <option value="newest">Newest</option>
+                                        <option value="price-asc">Price: Low-High</option>
+                                        <option value="price-desc">Price: High-Low</option>
+                                    </select>
+                                </div>
+                                <div className="flex items-center px-4 gap-2">
+                                    <button onClick={() => setGridColumns(1)} className={`p-0.5 ${gridColumns === 1 ? 'bg-zinc-600' : 'bg-zinc-200'}`}>
+                                        <div className="w-4 h-4"></div>
+                                    </button>
+                                    <button onClick={() => setGridColumns(2)} className={`grid grid-cols-2 gap-0.5 p-0.5 ${gridColumns === 2 ? 'bg-zinc-600' : 'bg-zinc-200'}`}>
+                                        <div className="w-2 h-2 bg-current"></div>
+                                        <div className="w-2 h-2 bg-current"></div>
+                                        <div className="w-2 h-2 bg-current"></div>
+                                        <div className="w-2 h-2 bg-current"></div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={gridColumns === 1 ? 'grid grid-cols-1 gap-4 md:grid-cols-3' : 'grid grid-cols-2 gap-4 md:grid-cols-4'}>
+                            <ProductGrid 
+                                products={filteredProducts} 
+                                onProductClick={onProductClick} 
+                            />
+                        </div>
 
                         {filteredProducts.length === 0 && (
                             <div className="py-40 text-center space-y-6">
@@ -205,17 +238,6 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                         )}
                     </div>
                 </div>
-            </div>
-
-            {/* Mobile Filter Floating Button */}
-            <div className="lg:hidden fixed bottom-28 left-1/2 -translate-x-1/2 z-[45]">
-                <button 
-                    onClick={() => setIsMobileFilterOpen(true)}
-                    className="bg-black text-white px-8 py-4 rounded-full font-bold text-[10px] uppercase tracking-[0.4em] shadow-2xl flex items-center gap-3 active:scale-95 transition-transform font-grotesk"
-                >
-                    <FilterIcon className="w-4 h-4" />
-                    Filter Products
-                </button>
             </div>
 
             {/* Mobile Filter Drawer */}

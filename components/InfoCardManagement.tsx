@@ -14,7 +14,7 @@ const InfoCardEditor: React.FC<{
     showToast: (message: string) => void;
     onDelete: (id: string) => void;
 }> = ({ cardData, showToast, onDelete }) => {
-    const { infoCards, updateData } = useData();
+    const { infoCards, updateData, collections } = useData();
     const [formData, setFormData] = useState<InfoCard>(cardData);
 
     useEffect(() => {
@@ -114,6 +114,7 @@ const InfoCardEditor: React.FC<{
                             className={darkInputStyles}
                         >
                             <option value="page">Internal Page</option>
+                            <option value="collection">Collection</option>
                             <option value="modal">Modal Pop-up</option>
                             <option value="external">External URL</option>
                         </select>
@@ -124,6 +125,12 @@ const InfoCardEditor: React.FC<{
                             <select name="linkValue" id={`linkValue-${formData.id}`} value={formData.linkValue} onChange={handleInputChange} className={darkInputStyles}>
                                  <option value="">-- Select Page --</option>
                                  {allViews.sort().map(view => <option key={view} value={view}>{view.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</option>)}
+                            </select>
+                        )}
+                        {formData.linkType === 'collection' && (
+                            <select name="linkValue" id={`linkValue-${formData.id}`} value={formData.linkValue} onChange={handleInputChange} className={darkInputStyles}>
+                                 <option value="">-- Select Collection --</option>
+                                 {collections.sort((a, b) => a.name.localeCompare(b.name)).map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
                             </select>
                         )}
                         {formData.linkType === 'modal' && (

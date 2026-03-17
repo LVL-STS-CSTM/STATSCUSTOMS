@@ -268,7 +268,7 @@ export interface EmailCampaign {
     recipientSegment: 'all' | 'recent';
 }
 
-export type InfoCardLinkType = 'page' | 'modal' | 'external';
+export type InfoCardLinkType = 'page' | 'modal' | 'external' | 'collection';
 
 export interface InfoCard {
     id: string;
