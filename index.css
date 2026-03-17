@@ -83,6 +83,25 @@ body {
   max-width: 100%;
 }
 
+/* Scale up the entire application on large monitors (27" / 1440p / 4K) */
+@media (min-width: 1600px) {
+  body {
+    zoom: 1.15;
+  }
+}
+
+@media (min-width: 1920px) {
+  body {
+    zoom: 1.35;
+  }
+}
+
+@media (min-width: 2560px) {
+  body {
+    zoom: 1.6;
+  }
+}
+
 .dark body {
   background-color: #09090b;
   color: #f4f4f5;

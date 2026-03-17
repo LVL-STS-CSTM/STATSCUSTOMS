@@ -194,7 +194,7 @@ const AppContent: React.FC = () => {
 
     return (
         <ErrorBoundary>
-            <div className="font-sans min-h-screen flex flex-col bg-white selection:bg-black selection:text-white transition-colors duration-300 overflow-x-hidden">
+            <div className="font-sans min-h-screen flex flex-col bg-white selection:bg-black selection:text-white transition-colors duration-300">
                 {isSplashVisible && <SplashScreen isFadingOut={!isAppLoading && !isDataLoading} />}
                 {toastMessage && <Toast message={toastMessage} onClose={() => setToastMessage('')} />}
 
@@ -208,7 +208,7 @@ const AppContent: React.FC = () => {
                     isScrolled={isScrolled} 
                 />
 
-                <main className={`flex-grow overflow-x-hidden transition-opacity duration-700 ${isAppLoading || isDataLoading ? 'opacity-0' : 'opacity-100'}`}>
+                <main className={`flex-grow transition-opacity duration-700 ${isAppLoading || isDataLoading ? 'opacity-0' : 'opacity-100'}`}>
                     {renderView()}
                 </main>
 

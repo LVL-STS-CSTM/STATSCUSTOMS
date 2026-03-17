@@ -152,7 +152,7 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                     
                     {/* Content Grid */}
                     <div className="flex-grow">
-                        <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 md:mb-12 gap-6 pb-6 border-b border-zinc-100">
+                        <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 md:mb-12 gap-4 md:gap-6 pb-4 md:pb-6 border-b border-zinc-100">
                             <div className="flex items-center gap-6">
                                 <button 
                                     onClick={() => setIsSidebarVisible(!isSidebarVisible)}
@@ -170,7 +170,7 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                                 </h1>
                             </div>
                             
-                            <div className="flex items-center gap-4 w-full sm:w-auto">
+                            <div className="hidden sm:flex items-center gap-4 w-full sm:w-auto">
                                 <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 font-grotesk">Sort By</span>
                                 <div className="relative flex-grow sm:flex-grow-0">
                                     <select 
@@ -185,11 +185,22 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                                     </select>
                                     <ChevronDownIcon className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 pointer-events-none text-zinc-400" />
                                 </div>
+                                <div className="flex items-center gap-2 ml-4">
+                                    <button onClick={() => setGridColumns(1)} className={`p-0.5 transition-colors ${gridColumns === 1 ? 'bg-zinc-800 text-zinc-800' : 'bg-zinc-200 text-zinc-900 hover:bg-zinc-300'}`}>
+                                        <div className="w-4 h-4 bg-current"></div>
+                                    </button>
+                                    <button onClick={() => setGridColumns(2)} className={`grid grid-cols-2 gap-0.5 p-0.5 transition-colors ${gridColumns === 2 ? 'bg-zinc-800 text-zinc-800' : 'bg-zinc-200 text-zinc-900 hover:bg-zinc-300'}`}>
+                                        <div className="w-2 h-2 bg-current"></div>
+                                        <div className="w-2 h-2 bg-current"></div>
+                                        <div className="w-2 h-2 bg-current"></div>
+                                        <div className="w-2 h-2 bg-current"></div>
+                                    </button>
+                                </div>
                             </div>
                         </header>
 
                         {/* Mobile Filter/Sort Bar */}
-                        <div className="lg:hidden sticky top-0 z-40 bg-white border-b border-zinc-100 mb-6 -mx-2 md:-mx-8">
+                        <div className="lg:hidden sticky top-0 z-40 bg-white border-b border-zinc-100 mb-4 md:mb-6 -mx-2 md:-mx-8">
                             <div className="flex divide-x divide-zinc-100">
                                 <button onClick={() => setIsMobileFilterOpen(true)} className="flex-1 py-3 text-[10px] font-medium text-zinc-600 uppercase tracking-wide text-center">Filter</button>
                                 <div className="flex-1 py-3 text-[10px] font-medium text-zinc-600 uppercase tracking-wide text-center relative">
@@ -205,10 +216,10 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                                     </select>
                                 </div>
                                 <div className="flex items-center px-4 gap-2">
-                                    <button onClick={() => setGridColumns(1)} className={`p-0.5 ${gridColumns === 1 ? 'bg-zinc-600' : 'bg-zinc-200'}`}>
-                                        <div className="w-4 h-4"></div>
+                                    <button onClick={() => setGridColumns(1)} className={`p-0.5 transition-colors ${gridColumns === 1 ? 'bg-zinc-800 text-zinc-800' : 'bg-zinc-200 text-zinc-900 hover:bg-zinc-300'}`}>
+                                        <div className="w-4 h-4 bg-current"></div>
                                     </button>
-                                    <button onClick={() => setGridColumns(2)} className={`grid grid-cols-2 gap-0.5 p-0.5 ${gridColumns === 2 ? 'bg-zinc-600' : 'bg-zinc-200'}`}>
+                                    <button onClick={() => setGridColumns(2)} className={`grid grid-cols-2 gap-0.5 p-0.5 transition-colors ${gridColumns === 2 ? 'bg-zinc-800 text-zinc-800' : 'bg-zinc-200 text-zinc-900 hover:bg-zinc-300'}`}>
                                         <div className="w-2 h-2 bg-current"></div>
                                         <div className="w-2 h-2 bg-current"></div>
                                         <div className="w-2 h-2 bg-current"></div>
@@ -218,10 +229,11 @@ const CataloguePage: React.FC<CataloguePageProps> = ({ products, onProductClick,
                             </div>
                         </div>
 
-                        <div className={gridColumns === 1 ? 'grid grid-cols-1 gap-4 md:grid-cols-3' : 'grid grid-cols-2 gap-4 md:grid-cols-4'}>
+                        <div className="mb-8">
                             <ProductGrid 
                                 products={filteredProducts} 
                                 onProductClick={onProductClick} 
+                                layout={gridColumns === 1 ? 'grid-lg' : 'grid-sm'}
                             />
                         </div>
 
