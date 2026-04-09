@@ -5,7 +5,6 @@ import path from 'path';
 import { GoogleGenAI } from '@google/genai';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { createServer as createViteServer } from 'vite';
 
 async function startServer() {
     const app = express();
@@ -146,6 +145,7 @@ async function startServer() {
     });
 
     if (process.env.NODE_ENV !== "production") {
+        const { createServer: createViteServer } = await import('vite');
         const vite = await createViteServer({
             server: { middlewareMode: true },
             appType: "spa",
@@ -153,7 +153,7 @@ async function startServer() {
         app.use(vite.middlewares);
     } else {
         app.use(express.static(path.resolve(process.cwd(), 'dist')));
-        app.get('*', (req, res) => {
+        app.get('*all', (req, res) => {
             res.sendFile(path.resolve(process.cwd(), 'dist/index.html'));
         });
     }
