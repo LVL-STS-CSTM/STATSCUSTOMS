@@ -12,20 +12,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Futura';
-  src: url('/fonts/futura-medium-bt.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Futura';
-  src: url('/fonts/Futura-Heavy-font.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-}
-
 /* Bebas Neue / Rheiborn — headings and titles only */
 h1, h2, h3, h4, h5, h6,
 .font-eurostile,
@@ -36,10 +22,10 @@ h1, h2, h3, h4, h5, h6,
   letter-spacing: 0.02em;
 }
 
-/* Futura — body copy and descriptions only */
+/* Space Grotesk — body copy, descriptions, and legacy futura classes */
 p, li, blockquote,
 .font-futura {
-  font-family: 'Futura', 'Space Grotesk', sans-serif !important;
+  font-family: 'Space Grotesk', sans-serif !important;
 }
 
 /* Space Grotesk — all UI, labels, buttons, nav */

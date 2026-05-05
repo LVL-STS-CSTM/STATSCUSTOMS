@@ -1,5 +1,5 @@
 
-import express, { Request, Response } from 'express';
+import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import { GoogleGenAI } from '@google/genai';
@@ -52,7 +52,7 @@ async function startServer() {
 
     const db = new DataStore();
 
-    app.get('/api/data/:key', (req: Request, res: Response) => {
+    app.get('/api/data/:key', (req: express.Request, res: express.Response) => {
         const key = req.params.key;
         const data = db.get(key);
         if (data === null) {
@@ -61,14 +61,14 @@ async function startServer() {
         res.json(data);
     });
 
-    app.post('/api/data/:key', (req: Request, res: Response) => {
+    app.post('/api/data/:key', (req: express.Request, res: express.Response) => {
         const key = req.params.key;
         const body = req.body;
         db.put(key, body);
         res.json({ success: true });
     });
 
-    app.post('/api/gemini', async (req: Request, res: Response) => {
+    app.post('/api/gemini', async (req: express.Request, res: express.Response) => {
         try {
             const { type, payload } = req.body;
             const apiKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
@@ -128,12 +128,12 @@ async function startServer() {
         }
     });
 
-    app.post('/api/quotes', (req: Request, res: Response) => {
+    app.post('/api/quotes', (req: express.Request, res: express.Response) => {
         console.log("Quote Received:", JSON.stringify(req.body, null, 2));
         res.json({ success: true, id: `MOCK-QT-${Date.now()}` });
     });
 
-    app.post('/api/admin/login', (req: Request, res: Response) => {
+    app.post('/api/admin/login', (req: express.Request, res: express.Response) => {
         const { username, password } = req.body;
         const storedCreds = db.get('credential');
         

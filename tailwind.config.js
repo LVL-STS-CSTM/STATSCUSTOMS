@@ -3,13 +3,18 @@
 export default {
   content: [
     "./index.html",
-    "./**/*.{js,ts,jsx,tsx}",
+    "./*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./context/**/*.{js,ts,jsx,tsx}",
+    "./services/**/*.{js,ts,jsx,tsx}",
+    "./api/**/*.{js,ts,jsx,tsx}",
+    "./functions/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
       fontFamily: {
         // Use CSS variables defined in index.css for a single source of truth
-        sans: ['var(--font-futura)'],
+        sans: ['"Space Grotesk"', 'sans-serif'],
         rheiborn: ['var(--font-rheiborn)'],
       },
       fontWeight: {
