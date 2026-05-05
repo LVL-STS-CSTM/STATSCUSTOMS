@@ -55,9 +55,6 @@ const PageHeader: React.FC<PageHeaderProps> = ({ page, fallbackTitle, fallbackDe
                 />
             </div>
             
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/30 z-10"></div>
-            <div className="absolute inset-0 bg-black/50 z-10 backdrop-blur-[1px]"></div>
-            
             <div className="relative z-20 px-6 max-w-6xl">
                 {/* Reduced from text-lg/3xl/4xl to text-xl/2xl/3xl */}
                 <h1 className="font-eurostile font-bold text-xl md:text-lg lg:text-xl tracking-widest uppercase leading-[0.95] animate-fade-in-up [animation-delay:200ms] drop-shadow-2xl">

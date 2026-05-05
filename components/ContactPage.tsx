@@ -72,7 +72,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                 ) : (
                     <img src={banner.imageUrl} alt={banner.title} className="absolute inset-0 w-full h-full object-cover opacity-80" />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
                 <div className="absolute inset-0 flex flex-col items-center justify-end text-white pb-16 md:pb-24 px-4 pointer-events-none">
                     <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] mb-4 font-grotesk">{banner.description}</span>
                     <h1 className="font-eurostile text-3xl md:text-5xl lg:text-6xl uppercase tracking-tighter text-center leading-none drop-shadow-2xl">{banner.title}</h1>

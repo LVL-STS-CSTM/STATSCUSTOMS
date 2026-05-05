@@ -43,9 +43,6 @@ const CategoryLandingPage: React.FC<CategoryLandingPageProps> = ({ onNavigate })
                                 />
                             </div>
                             
-                            {/* Dark Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700"></div>
-                            
                             {/* Content Container */}
                             <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end items-center text-center z-10">
                                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700 ease-out">

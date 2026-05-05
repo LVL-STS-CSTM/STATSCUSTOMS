@@ -63,10 +63,6 @@ const Hero: React.FC<HeroProps> = ({ mediaSrc, mediaType, title, description, bu
                 </>
             )}
             
-            <div className={`absolute inset-0 z-[1] ${hasError ? 'bg-neutral-900' : 'bg-black/30'}`}></div>
-            <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black/60 via-black/20 to-transparent z-[2]"></div>
-            <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/80 via-black/10 to-transparent z-[2]"></div>
-
             {!hideTextOverlay && (
                 <div className={`relative z-10 w-full max-w-screen-2xl mx-auto ${paddingClass}`}>
                     <div className="max-w-xl text-white">

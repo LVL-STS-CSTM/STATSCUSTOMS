@@ -40,7 +40,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
                         className="absolute inset-0 w-full h-full object-cover opacity-60"
                     />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80 z-10"></div>
                 <div className="relative z-20 px-6 text-center max-w-5xl">
                     <span className="text-[10px] font-semibold uppercase tracking-[0.6em] text-white/60 mb-6 block animate-fade-in font-grotesk"></span>
                     <h1 className="font-eurostile font-medium text-2xl md:text-4xl lg:text-5xl tracking-tighter uppercase leading-[0.85] animate-fade-in-up drop-shadow-2xl">
