@@ -45,7 +45,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ page, fallbackTitle, fallbackDe
     const scale = 1 + (scrollPos / 5000);
 
     return (
-        <section className="relative h-[50vh] min-h-[350px] lg:h-[60vh] bg-black text-white text-center flex items-center justify-center overflow-hidden">
+        <section className="relative h-[65vh] min-h-[450px] lg:h-[75vh] bg-black text-white text-center flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <img 
                     src={imageUrl} 
