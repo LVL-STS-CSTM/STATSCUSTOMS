@@ -169,10 +169,10 @@ const ContactPage: React.FC<ContactPageProps> = ({ showToast }) => {
                 {/* Store Images Gallery */}
                 <div className="mb-24">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <img src="https://picsum.photos/seed/store1/1200/800" alt="Store Interior 1" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
-                        <img src="https://picsum.photos/seed/store2/1200/800" alt="Store Interior 2" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
-                        <img src="https://picsum.photos/seed/store3/1200/800" alt="Store Interior 3" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
-                        <img src="https://picsum.photos/seed/store4/1200/800" alt="Store Interior 4" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
+                        <img src="https://i.imgur.com/86xAqS4.jpeg" alt="Store Interior 1" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
+                        <img src="https://i.imgur.com/FmGQ0QK.jpeg" alt="Store Interior 2" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
+                        <img src="https://i.imgur.com/VLSVwen.jpeg" alt="Store Interior 3" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
+                        <img src="https://i.imgur.com/zVmfjTt.jpeg" alt="Store Interior 4" className="w-full aspect-square object-cover" referrerPolicy="no-referrer" />
                     </div>
                 </div>
 

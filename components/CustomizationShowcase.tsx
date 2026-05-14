@@ -6,31 +6,31 @@ import LazyImage from './LazyImage';
 const techniques = [
     { 
         id: '01',
-        title: "Screen Print", 
+        title: "STICKERS", 
         label: "Precision Depth",
         description: "Cleanly applied with screens to press ink onto fabric for a bold and solid colors", 
-        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5dpvr5PsCJ9D_pBSX9k93hXqqbaeRfzEVMw&s" 
+        imageUrl: "https://i.imgur.com/KTo1nHD.jpeg" 
     },
     { 
         id: '02',
         title: "Embroidery", 
         label: "Artisan Stitch",
         description: "Stitched directly into the grain for a textured, 3D premium signature.", 
-        imageUrl: "https://image.made-in-china.com/365f3j00RCpMcDBsAUoK/Hello-Japan-12-Needles-6-Heads-2-Cab-Computerized-Embroidery-Machine-Portable-Digital-14-Needle-Cap-Embroidery-Machines.webp" 
+        imageUrl: "https://i.imgur.com/0KBR7Wy.jpeg" 
     },
     { 
         id: '03',
         title: "Sublimation", 
         label: "Atomic Infusion",
         description: "Fade-proof designs infused into the textile for total breathability.", 
-        imageUrl: "https://thevisualcommunicationguy.com/wp-content/uploads/2023/10/Sublimation-Printer-800x445.jpg" 
+        imageUrl: "https://i.imgur.com/w56R62d.jpeg" 
     },
     { 
         id: '04',
         title: "Over-the-Fabric Print", 
         label: "Adaptive Flex",
         description: "Versatile, high-detail full-color transfers with a durable, flexible finish.", 
-        imageUrl: "https://www.shutterstock.com/image-photo/press-printing-on-colored-tshirts-600nw-2392783701.jpg" 
+        imageUrl: "https://i.imgur.com/MFYwnJk.jpeg" 
     }
 ];
 
@@ -46,22 +46,17 @@ const CustomizationShowcase: React.FC = () => {
             <div className="max-w-[1800px] mx-auto px-6 lg:px-12 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-end mb-24 lg:mb-32">
                     <div className="lg:col-span-7 relative">
-                        {/* Animated Line */}
-                        <div className={`absolute -top-12 left-0 h-[1px] bg-black transition-all duration-[1.5s] ease-out ${isVisible ? 'w-32 opacity-100' : 'w-0 opacity-0'}`}></div>
-                        
                         <div className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-                            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.6em] block mb-6 flex items-center gap-3 font-sans">
-                                <span className="w-2 h-2 bg-black rounded-none"></span>
-                            </span>
-                            <h2 className="font-rheiborn font-medium text-3xl md:text-5xl lg:text-6xl uppercase leading-[0.8] tracking-tight">
+                            <div className="w-24 h-[1px] bg-black mb-12"></div>
+                            <h2 className="font-eurostile font-bold text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.85] tracking-tighter">
                                 Technical<br/>Capabilities
                             </h2>
                         </div>
                     </div>
                     <div className="lg:col-span-5 pb-2">
                         <div className={`transition-all duration-1000 delay-300 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-                            <p className="text-base md:text-lg text-zinc-600 leading-relaxed font-light border-l-2 border-zinc-200 pl-8 font-sans">
-                                <strong className="text-black font-bold">Precision & Quality.</strong> Crafted with purpose, built to perform, and designed to inspire greatness in every step of the journey.
+                            <p className="text-lg md:text-xl text-zinc-500 leading-relaxed font-light border-l border-zinc-200 pl-6 font-sans">
+                                <strong className="text-black font-medium">Precision & Quality.</strong> Crafted with purpose, built to perform, and designed to inspire greatness in every step of the journey.
                             </p>
                         </div>
                     </div>
@@ -71,12 +66,12 @@ const CustomizationShowcase: React.FC = () => {
                     {techniques.map((tech, index) => (
                         <div 
                             key={tech.title} 
-                            className={`group relative aspect-video overflow-hidden bg-zinc-900 cursor-pointer transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-32'}`}
+                            className={`group relative min-h-[350px] aspect-[4/3] md:aspect-video overflow-hidden bg-zinc-900 cursor-pointer transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-32'}`}
                             style={{ transitionDelay: `${index * 150}ms` }}
                         >
-                            {/* Number BG */}
+                            {/* number bg */}
                             <div className="absolute top-0 right-0 p-6 z-20 opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none">
-                                <span className="font-rheiborn font-black text-7xl text-white leading-none">{tech.id}</span>
+                                <span className="font-eurostile font-bold tracking-tighter text-7xl text-white leading-none">{tech.id}</span>
                             </div>
 
                             {/* Image */}
@@ -91,26 +86,26 @@ const CustomizationShowcase: React.FC = () => {
                             
                             {/* Gradient Overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
-                            
-                            {/* Border Reveal on Hover */}
-                            <div className="absolute inset-0 border-[1px] transition-all duration-500 m-4 pointer-events-none border-white/0 group-hover:border-white/20"></div>
 
-                            {/* Content */}
-                            <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end text-white z-20 pointer-events-none">
-                                <div className="transform transition-transform duration-500 ease-out group-hover:translate-y-0 translate-y-8">
-                                    <div className="overflow-hidden mb-2">
-                                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 block transition-transform duration-500 delay-100 font-sans translate-y-full group-hover:translate-y-0">
+                            {/* Border Reveal on Hover */}
+                            <div className="absolute inset-4 md:inset-6 border border-white/0 group-hover:border-white/20 transition-all duration-700 pointer-events-none z-10"></div>
+
+                            {/* Inner Content Box */}
+                            <div className="absolute inset-0 p-8 md:p-12 z-20 flex flex-col justify-end pointer-events-none">
+                                <div className="transform transition-transform duration-500 ease-out group-hover:-translate-y-2">
+                                    <div className="mb-2">
+                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 block transition-colors duration-500 font-sans group-hover:text-zinc-200">
                                             {tech.label}
                                         </span>
                                     </div>
-                                    <h3 className="font-rheiborn font-medium text-2xl md:text-3xl uppercase tracking-widest mb-4 leading-none text-white transition-colors">
+                                    <h3 className="font-eurostile font-bold text-3xl md:text-4xl uppercase tracking-tighter mb-4 leading-none text-white transition-colors">
                                         {tech.title}
                                     </h3>
-                                    <div className="h-[1px] bg-white/30 mb-6 transition-all duration-700 ease-out w-12 group-hover:w-full"></div>
+                                    <div className="h-[1px] bg-white/30 mb-4 transition-all duration-700 ease-out w-12 group-hover:w-[85%]"></div>
                                     
-                                    {/* Description - Hidden by default, shown on hover */}
-                                    <div className="overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100">
-                                        <p className="text-sm text-zinc-300 font-medium leading-relaxed max-w-[90%] font-sans">
+                                    {/* Description */}
+                                    <div className="transition-all duration-500 ease-out max-h-0 opacity-0 translate-y-4 group-hover:max-h-40 group-hover:opacity-100 group-hover:translate-y-0 overflow-hidden">
+                                        <p className="text-xs md:text-sm text-zinc-300 font-medium leading-relaxed font-sans max-w-[90%] md:max-w-[85%] pr-2">
                                             {tech.description}
                                         </p>
                                     </div>
