@@ -9,28 +9,28 @@ const steps = [
         title: "Consultation", 
         description: "Share your vision. We provide a transparent, detailed quote tailored to your needs.",
         details: "Our process begins with a deep dive into your project's goals. Whether you need performance wear for a team or branded merchandise for an event, we assess your needs to recommend the best fabrics and printing methods. We provide a comprehensive quote with no hidden fees, outlining costs, timelines, and deliverables so you can make informed decisions.",
-        imageUrl: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        imageUrl: "https://i.imgur.com/qY9YuQk.jpeg"
     },
     { 
         icon: <DesignIcon className="w-8 h-8" />, 
         title: "Design & Mockup", 
         description: "Our designers create digital proofs, refining every detail until it matches your vision perfectly.",
         details: "Visualizing your product is key. Our in-house design team transforms your concepts into professional digital mockups. We handle everything from logo placement to complex pattern creation. You'll receive detailed proofs for approval, allowing for adjustments to colors, sizing, and artwork placement to guarantee the final product matches your vision exactly.",
-        imageUrl: "https://images.pexels.com/photos/1765033/pexels-photo-1765033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+        imageUrl: "https://i.imgur.com/VPJZhGt.jpeg" 
     },
     { 
         icon: <ProductionIcon className="w-8 h-8" />, 
         title: "Production", 
         description: "Expert craftsmen bring your design to life using premium materials and precision equipment.",
         details: "Once the design is approved, we move to production using our advanced manufacturing facilities. We employ cutting-edge techniques like sublimation, screen printing, and embroidery. Our craftsmen pay close attention to detail, from precise cutting and sewing to the final finishing touches, ensuring retail-quality durability and aesthetics.",
-        imageUrl: "https://images.pexels.com/photos/823707/pexels-photo-823707.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        imageUrl: "https://i.imgur.com/vATVkAT.jpeg"
     },
     { 
         icon: <LogisticsIcon className="w-8 h-8" />, 
         title: "Delivery", 
         description: "Rigorous quality checks before we package and ship your order safely to your doorstep.",
         details: "Quality assurance is our priority. Every item undergoes a rigorous inspection to check for consistency and defects. We then professionally package your order for protection during transit. We partner with reliable logistics providers to ensure your custom apparel arrives on time and in perfect condition, ready for distribution.",
-        imageUrl: "https://images.pexels.com/photos/4393668/pexels-photo-4393668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        imageUrl: "https://i.imgur.com/IuRoH40.jpeg"
     }
 ];
 
@@ -150,25 +150,25 @@ const HowItWorks: React.FC = () => {
             {/* IMMERSIVE POPUP MODAL */}
             {activeStep && (
                 <div 
-                    className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-0 md:p-8 animate-fade-in"
+                    className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex items-center justify-center p-0 md:p-8 animate-fade-in"
                     onClick={() => setSelectedIndex(null)}
                 >
                     <div 
-                        className="relative w-full h-full md:max-w-[85vw] md:max-h-[90vh] bg-[#0A0A0A] md:rounded-none overflow-hidden shadow-2xl flex flex-col md:flex-row group border-0 md:border border-white/5"
+                        className="relative w-full h-full md:max-w-[85vw] md:max-h-[90vh] bg-[#0A0A0A] md:rounded-none overflow-hidden shadow-2xl flex flex-col group border-0 md:border border-white/5"
                         onClick={e => e.stopPropagation()}
                         onTouchStart={onTouchStart}
                         onTouchMove={onTouchMove}
                         onTouchEnd={onTouchEnd}
                     >
                         {/* Background Image */}
-                        <div className="absolute inset-0 z-0">
+                        <div className="relative w-full h-[45%] md:absolute md:inset-0 md:h-full z-0 overflow-hidden shrink-0">
                             <img 
                                 src={activeStep.imageUrl} 
                                 alt={activeStep.title} 
                                 className="w-full h-full object-cover transition-transform duration-700 ease-out scale-105"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30 md:to-transparent"></div>
-                            <div className="absolute inset-0 bg-black/40"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent md:hidden"></div>
+                            <div className="hidden md:block absolute inset-0 bg-black/5"></div>
                         </div>
 
                         {/* Navigation Arrows */}
@@ -179,13 +179,13 @@ const HowItWorks: React.FC = () => {
                             <ArrowLongRightIcon className="w-6 h-6" />
                         </button>
 
-                        <button onClick={() => setSelectedIndex(null)} className="absolute top-6 right-6 z-40 w-10 h-10 md:w-12 md:h-12 bg-white/5 text-white rounded-none flex items-center justify-center hover:bg-white hover:text-black transition-all backdrop-blur-md border border-white/10 active:scale-95" aria-label="Close">
+                        <button onClick={() => setSelectedIndex(null)} className="absolute top-4 right-4 md:top-6 md:right-6 z-40 w-10 h-10 md:w-12 md:h-12 bg-black/40 md:bg-white/5 text-white rounded-none flex items-center justify-center hover:bg-white hover:text-black transition-all backdrop-blur-md border border-white/10 active:scale-95" aria-label="Close">
                             <CloseIcon className="w-5 h-5 md:w-6 md:h-6" />
                         </button>
 
                         {/* Content Overlay */}
-                        <div className="relative z-20 flex flex-col justify-end w-full h-full p-8 md:p-16 lg:p-24 pointer-events-none">
-                            <div className="max-w-4xl pointer-events-auto">
+                        <div className="relative z-20 flex-1 flex flex-col justify-start md:justify-end w-full p-6 sm:p-8 md:h-full md:p-16 lg:p-24 pointer-events-none overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                            <div className="max-w-4xl pointer-events-auto pb-8 md:pb-0">
                                 <div className="flex items-center gap-4 mb-6 md:mb-8">
                                     <div className="w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-none flex items-center justify-center text-white shadow-lg">
                                         <div className="transform scale-75 md:scale-100">{activeStep.icon}</div>
@@ -202,13 +202,13 @@ const HowItWorks: React.FC = () => {
                                         0{(selectedIndex || 0) + 1}
                                     </span>
                                 </div>
-                                <h3 className="font-rheiborn text-2xl sm:text-3xl md:text-5xl lg:text-6xl uppercase tracking-tighter mb-6 text-white drop-shadow-2xl leading-[0.9]">
+                                <h3 className="font-rheiborn text-xl sm:text-2xl md:text-3xl lg:text-4xl uppercase tracking-tighter mb-4 text-white drop-shadow-2xl leading-[0.9]">
                                     {activeStep.title}
                                 </h3>
-                                <p className="text-base sm:text-lg md:text-lg font-futura font-medium text-zinc-300 leading-relaxed drop-shadow-lg border-l-4 border-white pl-6">
+                                <p className="text-sm sm:text-base md:text-base font-futura font-medium text-zinc-300 leading-relaxed drop-shadow-lg border-l-4 border-white pl-4 md:pl-6">
                                     {activeStep.description}
                                 </p>
-                                <div className="mt-8 pl-6 text-zinc-400 text-sm md:text-base max-w-2xl leading-relaxed font-futura">
+                                <div className="mt-6 pl-4 md:pl-6 text-zinc-400 text-xs md:text-sm max-w-2xl leading-relaxed font-futura">
                                     {activeStep.details}
                                 </div>
                             </div>

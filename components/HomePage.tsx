@@ -106,7 +106,7 @@ const HomePage: React.FC<HomePageProps> = ({
 
             <HowItWorks />
 
-            <div className="bg-zinc-100 pb-32 lg:pb-48 pt-12 transition-colors duration-300">
+            <div className="bg-zinc-100 pb-0 lg:pb-8 pt-8 transition-colors duration-300">
                 <InfoCards cards={infoCards} onCardClick={onCardClick} />
             </div>
             <CustomizationShowcase />

@@ -20,8 +20,8 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
         {
             id: 'main-feature',
             title: homeFeature.headline || 'Custom Apparel',
-            subtitle: homeFeature.tagline || 'Premium Quality',
-            description: homeFeature.description || '',
+            subtitle: homeFeature.tagline,
+            description: homeFeature.description,
             image: homeFeature.imageUrl
         },
         // Defensive check: ensure tabs is an array and items are valid before mapping
@@ -30,11 +30,11 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
             return {
                 id: `tab-${idx}`,
                 title: tab.label || 'Feature',
-                subtitle: tab.subtitle || 'Professional Grade',
-                description: tab.description || `Custom designed ${tab.label ? tab.label.toLowerCase() : 'gear'} crafted for durability, style, and team identity.`,
+                subtitle: tab.subtitle,
+                description: tab.description,
                 image: tab.imageUrl
             };
-        }).filter(slide => slide !== null) as { id: string; title: string; subtitle: string; description: string; image: string }[]
+        }).filter(slide => slide !== null) as { id: string; title: string; subtitle?: string; description?: string; image: string }[]
     ];
 
     const scroll = (direction: 'left' | 'right') => {
@@ -100,22 +100,26 @@ const HomeFeatureSection: React.FC<HomeFeatureSectionProps> = ({ onNavigate }) =
                                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                             />
                             
-                            {/* Overlay Gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 pointer-events-none"></div>
+                            {/* Overlay Gradient Removed */}
+                            <div className="absolute inset-0 pointer-events-none"></div>
                             
                             {/* Text Content */}
                             <div className="absolute bottom-0 left-0 p-6 md:p-16 text-white max-w-4xl pointer-events-none w-full flex flex-col items-center text-center md:items-start md:text-left">
-                                <span className="inline-block px-3 py-1.5 mb-4 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-none shadow-sm font-grotesk">
-                                    {slide.subtitle}
-                                </span>
+                                {slide.subtitle && slide.subtitle.trim() !== '' && (
+                                    <span className="inline-block px-3 py-1.5 mb-4 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-none shadow-sm font-grotesk">
+                                        {slide.subtitle}
+                                    </span>
+                                )}
                                 {/* Minimized Text Size Here */}
                                 <h3 className="font-eurostile text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold uppercase tracking-widest leading-[0.9] mb-3 md:mb-6 drop-shadow-xl break-words">
                                     {slide.title}
                                 </h3>
                                 {/* Minimized Description Size Here */}
-                                <p className="text-[10px] sm:text-xs md:text-sm font-medium text-white/80 max-w-xl leading-relaxed drop-shadow-md line-clamp-3 md:line-clamp-none font-futura">
-                                    {slide.description}
-                                </p>
+                                {slide.description && slide.description.trim() !== '' && (
+                                    <p className="text-[10px] sm:text-xs md:text-sm font-medium text-white/80 max-w-xl leading-relaxed drop-shadow-md line-clamp-3 md:line-clamp-none font-futura">
+                                        {slide.description}
+                                    </p>
+                                )}
                             </div>
                         </div>
                     ))}

@@ -48,9 +48,9 @@ export const initialInfoCardData: InfoCard[] = [
 
 export const initialFeaturedVideoData: FeaturedVideoContent = {
     isVisible: true,
-    title: 'BUILT FOR THE GRIND',
-    description: 'A look inside the LEVEL studio, where digital vision meets meticulous artisan execution.',
-    youtubeVideoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+    title: 'HIGH DEFINITION PRINTING',
+    description: 'Experience the quality of our SC High Definition printing process.',
+    youtubeVideoUrl: 'https://player.cloudinary.com/embed/?cloud_name=dvodalpcz&public_id=SC_WEB_BANNER_VIDEO_SECTION-HIGH_DEFINITION_v0qe2g'
 };
 
 export const initialBrandReviewData: BrandReview[] = [

@@ -27,9 +27,16 @@ const FeaturedVideo: React.FC<FeaturedVideoProps> = ({ title, description, youtu
     const ref = useRef<HTMLDivElement>(null);
     const isVisible = useOnScreen(ref);
     
-    const embedUrl = videoId 
-        ? `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=1&modestbranding=1&rel=0`
-        : '';
+    const isCloudinary = youtubeVideoUrl?.includes('cloudinary.com');
+    const isIframeEmbed = youtubeVideoUrl?.includes('player.cloudinary.com/embed');
+
+    let embedUrl = '';
+    if (videoId) {
+        embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=1&modestbranding=1&rel=0`;
+    } else if (isIframeEmbed) {
+        // Assume the URL is already an iframe embed link, let's append autoplay options if possible or just use as is
+        embedUrl = youtubeVideoUrl;
+    }
 
     return (
         <section 
@@ -50,7 +57,7 @@ const FeaturedVideo: React.FC<FeaturedVideoProps> = ({ title, description, youtu
                         <iframe
                             className="absolute top-0 left-0 w-full h-full"
                             src={embedUrl}
-                            title="YouTube video player"
+                            title="Video player"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
@@ -59,8 +66,8 @@ const FeaturedVideo: React.FC<FeaturedVideoProps> = ({ title, description, youtu
                 ) : (
                      <div className="relative shadow-2xl rounded-none overflow-hidden bg-gray-200" style={{ paddingTop: '56.25%' }}>
                         <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-center text-red-600 p-4">
-                            <h3 className="font-bold text-lg">Invalid YouTube URL</h3>
-                            <p className="text-sm">Please check the URL in the admin dashboard.</p>
+                            <h3 className="font-bold text-lg">Invalid Video URL</h3>
+                            <p className="text-sm">Please check the URL in the admin dashboard. Enter a valid YouTube URL or Cloudinary embed link.</p>
                         </div>
                      </div>
                 )}
