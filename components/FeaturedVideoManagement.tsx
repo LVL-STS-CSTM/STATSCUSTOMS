@@ -74,14 +74,14 @@ const FeaturedVideoManagement: React.FC = () => {
                             />
                         </div>
                         <div>
-                             <label htmlFor="youtubeVideoUrl" className="block text-sm font-medium text-gray-700">YouTube Video URL</label>
+                             <label htmlFor="youtubeVideoUrl" className="block text-sm font-medium text-gray-700">Video URL</label>
                             <input
                                 type="url"
                                 name="youtubeVideoUrl"
                                 id="youtubeVideoUrl"
                                 value={formData.youtubeVideoUrl}
                                 onChange={handleInputChange}
-                                placeholder="https://www.youtube.com/watch?v=..."
+                                placeholder="https://www.youtube.com/watch?v=... or https://player.cloudinary.com/embed/..."
                                 className={darkInputStyles}
                             />
                         </div>

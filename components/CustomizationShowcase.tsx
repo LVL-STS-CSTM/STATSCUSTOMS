@@ -8,28 +8,28 @@ const techniques = [
         title: "STICKERS", 
         label: "Precision Depth",
         description: "Cleanly applied with screens to press ink onto fabric for a bold and solid colors", 
-        imageUrl: "https://i.imgur.com/KTo1nHD.jpeg" 
+        imageUrl: "https://i.imgur.com/cBVDkEu.jpeg" 
     },
     { 
         id: '02',
-        title: "Embroidery", 
+        title: "EMBROIDERY", 
         label: "Artisan Stitch",
         description: "Stitched directly into the grain for a textured, 3D premium signature.", 
-        imageUrl: "https://i.imgur.com/0KBR7Wy.jpeg" 
+        imageUrl: "https://i.imgur.com/BsquG0t.jpeg" 
     },
     { 
         id: '03',
-        title: "Sublimation", 
+        title: "SUBLIMATION", 
         label: "Atomic Infusion",
         description: "Fade-proof designs infused into the textile for total breathability.", 
-        imageUrl: "https://i.imgur.com/w56R62d.jpeg" 
+        imageUrl: "https://i.imgur.com/c5JFyB0.jpeg" 
     },
     { 
         id: '04',
-        title: "Over-the-Fabric Print", 
+        title: "OVER-THE-FABRIC PRINT", 
         label: "Adaptive Flex",
         description: "Versatile, high-detail full-color transfers with a durable, flexible finish.", 
-        imageUrl: "https://i.imgur.com/MFYwnJk.jpeg" 
+        imageUrl: "https://i.imgur.com/Fb2bXOb.jpeg" 
     }
 ];
 
@@ -108,13 +108,6 @@ const CustomizationShowcase: React.FC = () => {
                                         <div className={`transition-all duration-500 ease-out overflow-hidden ${isActive ? 'max-h-40 opacity-100 translate-y-0' : 'max-h-0 opacity-0 translate-y-4 md:group-hover:max-h-40 md:group-hover:opacity-100 md:group-hover:translate-y-0'}`}>
                                             <p className="text-[11px] md:text-xs text-zinc-300 font-light leading-relaxed font-sans pr-4 md:pr-12">
                                                 {tech.description}
-                                            </p>
-                                        </div>
-
-                                        {/* Mobile tap hint */}
-                                        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isActive ? 'max-h-0 opacity-0' : 'max-h-8 opacity-100'}`}>
-                                            <p className="text-[9px] uppercase tracking-[0.2em] text-white/30 font-sans mt-2">
-                                                Tap to reveal
                                             </p>
                                         </div>
                                     </div>

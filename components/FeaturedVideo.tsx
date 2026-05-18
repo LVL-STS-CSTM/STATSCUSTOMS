@@ -28,14 +28,18 @@ const FeaturedVideo: React.FC<FeaturedVideoProps> = ({ title, description, youtu
     const isVisible = useOnScreen(ref);
     
     const isCloudinary = youtubeVideoUrl?.includes('cloudinary.com');
-    const isIframeEmbed = youtubeVideoUrl?.includes('player.cloudinary.com/embed');
+    const isIframeEmbed = youtubeVideoUrl?.includes('player.cloudinary.com/embed') || youtubeVideoUrl?.includes('youtube.com/embed') || youtubeVideoUrl?.includes('vimeo.com');
+    const isDirectVideo = youtubeVideoUrl?.match(/\.(mp4|webm|ogg)$/i) || (isCloudinary && !youtubeVideoUrl?.includes('player.cloudinary.com/embed'));
 
     let embedUrl = '';
     if (videoId) {
         embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=1&modestbranding=1&rel=0`;
     } else if (isIframeEmbed) {
-        // Assume the URL is already an iframe embed link, let's append autoplay options if possible or just use as is
         embedUrl = youtubeVideoUrl;
+        // Check if cloudinary embed and append autoplay
+        if (youtubeVideoUrl.includes('player.cloudinary.com/embed') && !youtubeVideoUrl.includes('autoplay')) {
+            embedUrl += youtubeVideoUrl.includes('?') ? '&player[autoplay]=true&player[loop]=true&player[muted]=true' : '?player[autoplay]=true&player[loop]=true&player[muted]=true';
+        }
     }
 
     return (
@@ -62,6 +66,17 @@ const FeaturedVideo: React.FC<FeaturedVideoProps> = ({ title, description, youtu
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                         ></iframe>
+                    </div>
+                ) : isDirectVideo ? (
+                    <div className="relative shadow-2xl rounded-none overflow-hidden" style={{ paddingTop: '56.25%' }}>
+                        <video
+                            className="absolute top-0 left-0 w-full h-full object-cover"
+                            src={youtubeVideoUrl}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                        ></video>
                     </div>
                 ) : (
                      <div className="relative shadow-2xl rounded-none overflow-hidden bg-gray-200" style={{ paddingTop: '56.25%' }}>
