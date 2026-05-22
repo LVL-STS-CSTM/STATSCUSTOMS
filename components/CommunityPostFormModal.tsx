@@ -17,6 +17,7 @@ const emptyPost: Omit<CommunityPost, 'id'> = {
     source: 'Instagram',
     taggedProductId: '',
     isVisible: true,
+    refLink: '',
 };
 
 const sources: CommunityPost['source'][] = ['Instagram', 'Facebook', 'Client Submission'];
@@ -141,6 +142,19 @@ const CommunityPostFormModal: React.FC<CommunityPostFormModalProps> = ({ isOpen,
                                 <option key={product.id} value={product.id}>{product.name}</option>
                             ))}
                         </select>
+                    </div>
+
+                    <div>
+                        <label htmlFor="refLink" className="block text-sm font-medium text-gray-700">Reference Link (Optional)</label>
+                        <input
+                            type="url"
+                            name="refLink"
+                            id="refLink"
+                            value={formData.refLink || ''}
+                            onChange={handleInputChange}
+                            placeholder="https://..."
+                            className={darkInputStyles}
+                        />
                     </div>
 
                      <div className="flex items-start pt-2">

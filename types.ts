@@ -317,6 +317,7 @@ export interface CommunityPost {
     source: CommunityPostSource;
     taggedProductId?: string;
     isVisible: boolean;
+    refLink?: string;
 }
 
 export type PopupActionType = 'subscribe' | 'redirect';

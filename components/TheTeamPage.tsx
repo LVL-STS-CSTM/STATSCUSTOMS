@@ -33,7 +33,13 @@ const TheTeamPage: React.FC<TheTeamPageProps> = ({ onNavigate }) => {
                                     <p className="text-sm font-light italic leading-relaxed mb-4 font-futura">"{post.caption}"</p>
                                     <div className="flex items-center justify-between border-t border-white/20 pt-4">
                                         <div className="flex flex-col">
-                                            <span className="text-xs font-bold uppercase tracking-widest font-rheiborn">{post.author}</span>
+                                            {post.refLink ? (
+                                                <a href={post.refLink} target="_blank" rel="noopener noreferrer" className="text-xs font-bold uppercase tracking-widest font-rheiborn hover:text-gray-300 transition-colors underline decoration-white/50 underline-offset-4">
+                                                    {post.author}
+                                                </a>
+                                            ) : (
+                                                <span className="text-xs font-bold uppercase tracking-widest font-rheiborn">{post.author}</span>
+                                            )}
                                             <span className="text-[10px] text-white/60 font-medium font-futura">{post.source}</span>
                                         </div>
                                         {tagged && (

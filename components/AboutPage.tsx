@@ -1,6 +1,7 @@
 
 import React, { useRef } from 'react';
 import { View, Partner } from '../types';
+import PageHeader from './PageHeader';
 import Button from './Button';
 import { useOnScreen } from '../useOnScreen';
 import LazyImage from './LazyImage';
@@ -31,25 +32,12 @@ const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, partners }) => {
 
     return (
         <div className="bg-white text-[#3A3A3A] font-grotesk">
-            {/* Full Banner Hero */}
-            <section className="relative h-[calc(100dvh-3.5rem)] min-h-[600px] bg-black text-white flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <img 
-                        src="https://images.pexels.com/photos/8365691/pexels-photo-8365691.jpeg" 
-                        alt="About Stats" 
-                        className="absolute inset-0 w-full h-full object-cover opacity-60"
-                    />
-                </div>
-                <div className="relative z-20 px-6 text-center max-w-5xl">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.6em] text-white/60 mb-6 block animate-fade-in font-grotesk"></span>
-                    <h1 className="font-eurostile font-medium text-2xl md:text-4xl lg:text-5xl tracking-tighter uppercase leading-[0.85] animate-fade-in-up drop-shadow-2xl">
-                        STATS CUSTOM
-                    </h1>
-                    <p className="mt-8 text-[10px] md:text-xs max-w-2xl mx-auto text-white/60 font-light leading-relaxed uppercase tracking-[0.4em] animate-fade-in-up [animation-delay:200ms] font-grotesk">
-                        Built in the Philippines. Engineered for the World.
-                    </p>
-                </div>
-            </section>
+            <PageHeader 
+                page="about"
+                fallbackTitle="STATS CUSTOM"
+                fallbackDescription="Built in the Philippines. Engineered for the World."
+                fallbackImage="https://images.pexels.com/photos/8365691/pexels-photo-8365691.jpeg"
+            />
             
             {/* Who We Are */}
             <section ref={sectionRefs.who} className="py-32 px-6 bg-white relative overflow-hidden">
