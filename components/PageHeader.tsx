@@ -56,12 +56,11 @@ const PageHeader: React.FC<PageHeaderProps> = ({ page, fallbackTitle, fallbackDe
             </div>
             
             <div className="relative z-20 px-6 max-w-6xl">
-                {/* Increased title size */}
-                <h1 className="font-eurostile font-bold text-4xl md:text-6xl lg:text-7xl xl:text-8xl tracking-widest uppercase leading-[0.95] animate-fade-in-up [animation-delay:200ms] drop-shadow-2xl">
+                <h1 className="font-eurostile text-3xl md:text-5xl lg:text-6xl uppercase tracking-tighter leading-[0.95] animate-fade-in-up [animation-delay:200ms] drop-shadow-2xl">
                     {title}
                 </h1>
                 {description && (
-                    <p className="mt-4 text-[9px] md:text-[10px] max-w-xl mx-auto text-white/60 font-futura font-medium leading-relaxed uppercase tracking-[0.3em] animate-fade-in-up [animation-delay:400ms] antialiased">
+                    <p className="mt-4 text-[10px] md:text-xs max-w-xl mx-auto text-white/60 font-grotesk font-bold leading-relaxed uppercase tracking-[0.5em] animate-fade-in-up [animation-delay:400ms] antialiased">
                         {description}
                     </p>
                 )}
