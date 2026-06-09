@@ -43,8 +43,8 @@ const CommunityPostFormModal: React.FC<CommunityPostFormModalProps> = ({ isOpen,
     
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formData.imageUrl || !formData.caption || !formData.author) {
-            alert('Image URL, Caption, and Author are required fields.');
+        if (!formData.imageUrl || !formData.author) {
+            alert('Image URL and Author are required fields.');
             return;
         }
         
@@ -90,14 +90,13 @@ const CommunityPostFormModal: React.FC<CommunityPostFormModalProps> = ({ isOpen,
                         />
                     </div>
                      <div>
-                        <label htmlFor="caption" className="block text-sm font-medium text-gray-700">Caption</label>
+                        <label htmlFor="caption" className="block text-sm font-medium text-gray-700">Caption (Optional)</label>
                         <textarea
                             name="caption"
                             id="caption"
                             rows={3}
                             value={formData.caption}
                             onChange={handleInputChange}
-                            required
                             className={darkInputStyles}
                         />
                     </div>

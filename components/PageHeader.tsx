@@ -25,11 +25,30 @@ const PageHeader: React.FC<PageHeaderProps> = ({ page, fallbackTitle, fallbackDe
     const activeBanner = specificBanner || genericBanner;
 
     // Title Priority: Specific Banner Title -> Force Title (Category Name) -> Generic Banner Title -> Fallback
-    const title = specificBanner?.title || forceTitle || genericBanner?.title || fallbackTitle || '';
+    // Allow empty titles from banners if the user intentionally removed them.
+    let title = '';
+    if (specificBanner && specificBanner.title != null) {
+        title = specificBanner.title;
+    } else if (forceTitle) {
+        title = forceTitle;
+    } else if (genericBanner && genericBanner.title != null) {
+        title = genericBanner.title;
+    } else {
+        title = fallbackTitle || '';
+    }
     
-    // Description Priority: Specific Banner Desc -> Force Desc (Dynamic "Viewing...") -> Generic Banner Desc -> Fallback
-    // Note: If a user created a specific banner for "Accessories", we prioritize that description over the auto-generated "Viewing filtered results..."
-    const description = specificBanner?.description || forceDescription || genericBanner?.description || fallbackDescription || '';
+    // Description Priority: Allow empty strings from user configuration if the user intentionally removed it.
+    // Order: Specific Banner (Category) -> Force Desc -> Generic Banner (Page) -> Fallback
+    let description = '';
+    if (specificBanner && specificBanner.description != null) {
+        description = specificBanner.description;
+    } else if (forceDescription) {
+        description = forceDescription;
+    } else if (genericBanner && genericBanner.description != null) {
+        description = genericBanner.description;
+    } else {
+        description = fallbackDescription || '';
+    }
     
     // Image Priority: Active Banner Image -> Fallback -> Default
     const imageUrl = activeBanner?.imageUrl || fallbackImage || 'https://images.pexels.com/photos/8365691/pexels-photo-8365691.jpeg';

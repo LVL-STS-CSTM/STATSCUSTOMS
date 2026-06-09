@@ -30,7 +30,9 @@ const TheTeamPage: React.FC<TheTeamPageProps> = ({ onNavigate }) => {
                                 
                                 {/* Content Overlay */}
                                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                                    <p className="text-sm font-light italic leading-relaxed mb-4 font-futura">"{post.caption}"</p>
+                                    {post.caption && post.caption.trim() !== "" && post.caption.trim() !== "_" && (
+                                        <p className="text-sm font-light italic leading-relaxed mb-4 font-futura">"{post.caption}"</p>
+                                    )}
                                     <div className="flex items-center justify-between border-t border-white/20 pt-4">
                                         <div className="flex flex-col">
                                             {post.refLink ? (
@@ -40,7 +42,6 @@ const TheTeamPage: React.FC<TheTeamPageProps> = ({ onNavigate }) => {
                                             ) : (
                                                 <span className="text-xs font-bold uppercase tracking-widest font-rheiborn">{post.author}</span>
                                             )}
-                                            <span className="text-[10px] text-white/60 font-medium font-futura">{post.source}</span>
                                         </div>
                                         {tagged && (
                                             <button 
