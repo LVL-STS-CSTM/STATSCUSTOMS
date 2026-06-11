@@ -19,13 +19,13 @@ const OurProcessPage: React.FC = () => {
                                     <ImageCarousel 
                                         images={section.imageUrls && section.imageUrls.length > 0 ? section.imageUrls : [section.imageUrl]} 
                                         alt={section.title} 
-                                        aspectRatio="aspect-[4/3]" 
+                                        aspectRatio="aspect-[4/5]" 
                                     />
                                 </div>
                             </div>
                             <div className="w-full lg:w-2/5 space-y-6">
                                 <h3 className="font-rheiborn text-2xl text-gray-900 uppercase tracking-widest">{section.title}</h3>
-                                <p className="text-gray-500 leading-loose text-lg font-futura font-light antialiased">{section.description}</p>
+                                <p className="text-gray-500 leading-loose text-lg font-futura font-light antialiased text-justify">{section.description}</p>
                             </div>
                         </div>
                     ))}
