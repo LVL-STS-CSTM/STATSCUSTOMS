@@ -56,7 +56,7 @@ const SectionEditor: React.FC<{
                     />
                 </div>
                 <div>
-                    <label htmlFor={`imageUrl-${formData.id}`} className="block text-sm font-medium text-gray-700">Image URL</label>
+                    <label htmlFor={`imageUrl-${formData.id}`} className="block text-sm font-medium text-gray-700">Primary Image URL</label>
                     <input
                         type="url"
                         name="imageUrl"
@@ -64,6 +64,29 @@ const SectionEditor: React.FC<{
                         value={formData.imageUrl}
                         onChange={handleInputChange}
                         className={darkInputStyles}
+                    />
+                </div>
+                <div>
+                    <label htmlFor={`imageUrls-${formData.id}`} className="block text-sm font-medium text-gray-700">Carousel Image URLs (Optional, one per line. Overrides Primary if provided)</label>
+                    <textarea
+                        name="imageUrls"
+                        id={`imageUrls-${formData.id}`}
+                        rows={3}
+                        value={formData.imageUrls?.join('\n') || ''}
+                        onChange={(e) => {
+                            const val = e.target.value;
+                            if (!val.trim()) {
+                                setFormData(prev => {
+                                    const { imageUrls, ...rest } = prev;
+                                    return rest;
+                                });
+                                return;
+                            }
+                            const lines = val.split('\n').map(l => l.trim()).filter(l => l !== '');
+                            setFormData(prev => ({ ...prev, imageUrls: lines }));
+                        }}
+                        className={darkInputStyles}
+                        placeholder="https://...&#10;https://..."
                     />
                 </div>
                 <div className="flex justify-end pt-2">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useData } from '../context/DataContext';
 import PageHeader from './PageHeader';
-import LazyImage from './LazyImage';
+import ImageCarousel from './ImageCarousel';
 
 const OurProcessPage: React.FC = () => {
     const { howWeWorkSections } = useData();
@@ -15,8 +15,12 @@ const OurProcessPage: React.FC = () => {
                     {howWeWorkSections.map((section, index) => (
                         <div key={section.id} className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-24 ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
                             <div className="w-full lg:w-3/5">
-                                <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-gray-50">
-                                    <LazyImage src={section.imageUrl} alt={section.title} aspectRatio="aspect-[4/3]" />
+                                <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-gray-50 bg-gray-50">
+                                    <ImageCarousel 
+                                        images={section.imageUrls && section.imageUrls.length > 0 ? section.imageUrls : [section.imageUrl]} 
+                                        alt={section.title} 
+                                        aspectRatio="aspect-[4/3]" 
+                                    />
                                 </div>
                             </div>
                             <div className="w-full lg:w-2/5 space-y-6">

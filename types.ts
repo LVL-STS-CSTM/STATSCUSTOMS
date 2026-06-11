@@ -196,6 +196,7 @@ export interface HowWeWorkSection {
     title: string;
     description: string;
     imageUrl: string;
+    imageUrls?: string[];
 }
 
 /**
